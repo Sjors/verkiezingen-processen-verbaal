@@ -17,3 +17,7 @@ Meestal als volgt:
 7. Check één of meer PDF bestanden om te zien of de download gelukt is
 8. Commit: ze de URL in de commit message
 9. maak een pull request
+
+## Eigenaardigheden per gemeente
+
+* Venray: de bestanden hebben geen PDF extentie; voeg evt. `.pdf` toe om ze te bekijken
