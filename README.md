@@ -10,14 +10,14 @@ Meestal als volgt:
 
 1. Google "[gemeente] processen-verbaal tweede kamerverkiezingen 2023"
 2. Kopieer de URL van de pagina met de tabel van processen-verbaal
-3. Check of hij te verwerken is: `./urls-from-html.py https://www.[gemeente].nl/verkiezingen/processen-verbaal-.../`: zie je een lijst met PDF's?
+3. Controleer of hij te verwerken is: `./urls-from-html.py https://www.[gemeente].nl/verkiezingen/processen-verbaal-.../`: zie je een lijst met PDF's?
 4. Zoek het .txt bestand voor de gemeente, bv. "0034 Utrecht.txt"
 5. Sla op: `./urls-from-html.py https://utrecht.nl/... | uniq > 2023-TK/0034\ Utrecht.txt`
 6. Download de documenten: `./download.sh`
-7. Check één of meer PDF bestanden om te zien of de download gelukt is
-8. Commit: ze de URL in de commit message
-9. maak een pull request
+7. Controleer één of meer PDF-bestanden om te zien of de download gelukt is
+8. Commit: zet de URL in de commit message
+9. Maak een pull request
 
 ## Eigenaardigheden per gemeente
 
-* Venray: de bestanden hebben geen PDF extentie; voeg evt. `.pdf` toe om ze te bekijken
+* Venray: de bestanden hebben geen PDF-extensie; voeg evt. `.pdf` toe om ze te bekijken
