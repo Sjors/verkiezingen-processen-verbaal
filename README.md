@@ -15,7 +15,7 @@ Meestal als volgt:
 5. Sla op: `./urls-from-html.py https://utrecht.nl/... | uniq > 2023-TK/0034\ Utrecht.txt`
 6. Download de documenten: `./download.sh`
 7. Check één of meer PDF bestanden om te zien of de download gelukt is
-8. Commit: ze de URL in de commit message
+8. Commit: zet de URL in de commit message
 9. maak een pull request
 
 ## Eigenaardigheden per gemeente
