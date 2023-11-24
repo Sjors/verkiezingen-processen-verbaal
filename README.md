@@ -8,7 +8,9 @@ Dit maakt het makkelijker ze te downloaden.
 
 Meestal als volgt:
 
-1. Google "[gemeente] processen-verbaal tweede kamerverkiezingen 2023"
+1. Zoek de processen-verbaal op de site van de gemeente:
+  a) via de links van Kiesraad [hier](https://www.kiesraad.nl/verkiezingen/tweede-kamer/uitslagen/uitslagen-per-gemeente-tweede-kamer); of
+  b) Google "[gemeente] processen-verbaal tweede kamerverkiezingen 2023"
 2. Kopieer de URL van de pagina met de tabel van processen-verbaal
 3. Controleer of hij te verwerken is: `./urls-from-html.py https://www.[gemeente].nl/verkiezingen/processen-verbaal-.../`: zie je een lijst met PDF's?
 4. Zoek het .txt bestand voor de gemeente, bv. "0034 Utrecht.txt"
