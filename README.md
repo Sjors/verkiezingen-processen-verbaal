@@ -23,6 +23,8 @@ Meestal als volgt:
 8. Commit: zet de URL in de commit message
 9. Maak een pull request
 
+10. (Optioneel): voeg het gebruikte download commando toe aan `scrape-urls.sh`
+
 ## Eigenaardigheden per gemeente
 
-* Venray: de bestanden hebben geen PDF-extensie; voeg evt. `.pdf` toe om ze te bekijken
+* Venray, Tiel: de bestanden hebben geen PDF-extensie; voeg evt. `.pdf` toe om ze te bekijken

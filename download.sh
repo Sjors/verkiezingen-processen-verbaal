@@ -18,11 +18,16 @@ pushd 2023-TK
         # Sla over als er niet meer files zijn, dit is met name
         # nodig voor de --content-disposition bestanden, om
         # te voorkomen dat we die servers hameren.
+        echo "Gemeente $n: $naam, $n_urls bestanden beschikbaar, $n_files reeds gedownload..."
         if (( $n_urls > $n_files )); then
-          echo "Gemeente $n: $naam, $n_urls bestanden beschikbaar, $n_files reeds gedownload..."
           cat "$file" | while IFS= read -r url || [[ -n $url ]]; do
+            # Haal line end characters weg:
+            url="${url%%[[:cntrl:]]}"
             case $n in
-              0317|0677|1680)
+              1680)
+                # Informatie (tijdelijk) niet meer beschikbaar, laat bestaande downloads met rust
+              ;;
+              0047|0317|0677|1680)
                 # URL's van het type dsresource?objectid=c52cd...
                 # Deze zouden anders allemaal "dsresource" heten.
                 # --no-clobber zorgt dat bestaande bestanden niet vervangen
@@ -35,6 +40,7 @@ pushd 2023-TK
               *)
                 # Download alleen nieuwe bestanden (negeert wijzigigen)
                 path=`basename "$url"`
+                # Haal query string weg ?...
                 dest="$n/${path%%\?*}"
                 if [ ! -s "$dest" ]; then
                   wget "$url" -O "$dest" --no-check-certificate
