@@ -22,6 +22,9 @@ pushd 2023-TK
           echo "Gemeente $n: $naam, $n_urls bestanden beschikbaar, $n_files reeds gedownload..."
           cat "$file" | while IFS= read -r url || [[ -n $url ]]; do
             case $n in
+              1680)
+                # Informatie (tijdelijk) niet meer beschikbaar, laat bestaande downloads met rust
+              ;;
               0317|0677|1680)
                 # URL's van het type dsresource?objectid=c52cd...
                 # Deze zouden anders allemaal "dsresource" heten.
