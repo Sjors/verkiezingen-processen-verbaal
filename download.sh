@@ -43,6 +43,7 @@ pushd 2023-TK
                 # Haal query string weg ?...
                 dest="$n/${path%%\?*}"
                 if [ ! -s "$dest" ]; then
+                  sleep 1
                   wget "$url" -O "$dest" --no-check-certificate
                 fi
                 ;;
