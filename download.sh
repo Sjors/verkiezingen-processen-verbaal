@@ -2,6 +2,7 @@
 # Voor elke gemeente met processen-verbaal,
 # download ze hooguit één keer.
 
+set -e
 pushd 2023-TK
     find *.txt -type f -size +0 | while read -r file; do
         n=`echo $file | awk '{print $1}'`
