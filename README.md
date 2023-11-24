@@ -25,4 +25,4 @@ Meestal als volgt:
 
 ## Eigenaardigheden per gemeente
 
-* Venray: de bestanden hebben geen PDF-extensie; voeg evt. `.pdf` toe om ze te bekijken
+* Venray, Tiel: de bestanden hebben geen PDF-extensie; voeg evt. `.pdf` toe om ze te bekijken
