@@ -20,7 +20,7 @@ pushd 2023-TK
         # te voorkomen dat we die servers hameren.
         if (( $n_urls > $n_files )); then
           echo "Gemeente $n: $naam, $n_urls bestanden beschikbaar, $n_files reeds gedownload..."
-          cat "$file" | while read url || [[ -n $url ]]; do
+          cat "$file" | while IFS= read -r url || [[ -n $url ]]; do
             case $n in
               0317|0677|1680)
                 # URL's van het type dsresource?objectid=c52cd...
@@ -34,9 +34,10 @@ pushd 2023-TK
                 ;;
               *)
                 # Download alleen nieuwe bestanden (negeert wijzigigen)
-                dest="$n/`basename $url | cut -d? -f1`"
+                path=`basename "$url"`
+                dest="$n/${path%%\?*}"
                 if [ ! -s "$dest" ]; then
-                  wget $url -O "$dest" --no-check-certificate
+                  wget "$url" -O "$dest" --no-check-certificate
                 fi
                 ;;
             esac
