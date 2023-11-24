@@ -27,4 +27,8 @@ Meestal als volgt:
 
 ## Eigenaardigheden per gemeente
 
-* Venray, Tiel, Coevorden: de bestanden hebben geen PDF-extensie; voeg evt. `.pdf` toe om ze te bekijken
+* De bestanden van de volgende gemeenten hebben geen PDF-extensie; voeg evt. `.pdf` toe om ze te bekijken
+    * Emmen
+    * Venray
+    * Tiel
+    * Coevorden
