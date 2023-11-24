@@ -18,8 +18,8 @@ pushd 2023-TK
         # Sla over als er niet meer files zijn, dit is met name
         # nodig voor de --content-disposition bestanden, om
         # te voorkomen dat we die servers hameren.
+        echo "Gemeente $n: $naam, $n_urls bestanden beschikbaar, $n_files reeds gedownload..."
         if (( $n_urls > $n_files )); then
-          echo "Gemeente $n: $naam, $n_urls bestanden beschikbaar, $n_files reeds gedownload..."
           cat "$file" | while IFS= read -r url || [[ -n $url ]]; do
             # Haal line end characters weg:
             url="${url%%[[:cntrl:]]}"
