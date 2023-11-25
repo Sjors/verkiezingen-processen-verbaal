@@ -80,6 +80,7 @@ pushd 2023-TK
     # L
 
     # M
+    ../urls-from-html.py https://www.mookenmiddelaar.nl/uitslag-van-de-tweede-kamer-verkiezing-22-november-2023-0 | grep -v huisregels > "$(stad 0944)"
 
     # N
     ../urls-from-html.py https://www.nederbetuwe.nl/verkiezingen "dumpFile" > "$(stad 1740)"
