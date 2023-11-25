@@ -54,6 +54,8 @@ pushd 2023-TK
     # S
     ../urls-from-html.py https://www.schiermonnikoog.nl/uitslagen-verkiezingen | grep -e tk23 -e 0088_controleprotocol_gsb > "$(stad 0088)"
     ../urls-from-html.py https://www.smallingerland.nl/Onderwerpen/Verkiezingen/Uitslag_Tweede_Kamerverkiezingen_2023 "/Uitslag_Tweede_Kamerverkiezingen_2023/" https://www.smallingerland.nl | grep -v osv4_3 > "$(stad 0090)"
+    ../urls-from-html.py https://www.steenwijkerland.nl/Over_Steenwijkerland/Verkiezingen/Uitslagen_verkiezingen/Voorlopige_uitslag_Tweede_Kamerverkiezing_2023/Processen_verbaal_van_de_stembureaus/Donderdag_23_november_2023 ".pdf" https://www.steenwijkerland.nl > "$(stad 1708)"
+    ../urls-from-html.py https://www.steenwijkerland.nl/Over_Steenwijkerland/Verkiezingen/Uitslagen_verkiezingen/Voorlopige_uitslag_Tweede_Kamerverkiezing_2023/Processen_verbaal_van_de_stembureaus/Woensdag_22_november_2023 ".pdf" https://www.steenwijkerland.nl >> "$(stad 1708)"
     ../urls-from-html.py https://www.gemeentestein.nl/uitslag-tweede-kamerverkiezing-2023 ".pdf" https://www.gemeentestein.nl > "$(stad 0971)"
     ../urls-from-html.py https://stichtsevecht.nl/onderwerp/8115/uitslagen-verkiezingen-tweede-kamer-2023-en-processen-verbaal/ > "$(stad 1904)"
     echo https://verkiezingen.sudwestfryslan.nl/TK2023/pv/Na_31-2_GSB.pdf > "$(stad 1900)"
