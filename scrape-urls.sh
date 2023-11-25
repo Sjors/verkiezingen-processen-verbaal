@@ -80,6 +80,7 @@ pushd 2023-TK
     # L
 
     # M
+    ../urls-from-html.py https://www.medemblik.nl/raad-en-bestuur/verkiezingen-tweede-kamer-2023/voorlopige-uitslag-verkiezing-tweede-kamer-2023/alle-uitslagen-per-stembureau-proces-verbalen ".pdf" https://www.medemblik.nl > "$(stad 0420)"
     ../urls-from-html.py https://www.meerssen.nl/nieuws_en_bekendmakingen/actueel/2023/11 "bestand" https://www.meerssen.nl > "$(stad 0938)"
     ../urls-from-html.py https://www.meierijstad.nl/Alle_onderwerpen/Bestuur_en_organisatie/Verkiezingen/Uitslag_verkiezingen ".pdf" https://www.meierijstad.nl > "$(stad 1948)"
     ../urls-from-html.py https://www.meierijstad.nl/Alle_onderwerpen/Bestuur_en_organisatie/Verkiezingen/Uitslag_verkiezingen/De_proces_verbalen ".pdf" https://www.meierijstad.nl >> "$(stad 1948)"
