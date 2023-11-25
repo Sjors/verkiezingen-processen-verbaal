@@ -84,6 +84,7 @@ pushd 2023-TK
     # K
 
     # L
+    ../urls-from-html.py https://www.loonopzand.nl/organisatie-en-politiek/tweedekamerverkiezingen/verkiezingsuitslag-tweedekamerverkiezing-2023 ".pdf" https://www.loonopzand.nl > "$(stad 0809)"
     ../urls-from-html.py https://www.lopik.nl/uitslag-tweede-kamerverkiezing | uniq > "$(stad 0331)"
 
     # M
