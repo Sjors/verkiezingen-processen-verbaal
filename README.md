@@ -40,3 +40,5 @@ Meestal als volgt:
     * Leidschendam-Voorburg
     * Culemborg
     * Duiven
+    * Drimmelen
+    * Dinkelland
