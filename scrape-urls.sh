@@ -62,6 +62,7 @@ exit
     # P
 
     # R
+    ../urls-from-html.py https://www.rheden.nl/Inwoners/Tweede_Kamerverkiezingen_2023/Verkiezingsuitslag/Proces_verbalen ".pdf" https://www.rheden.nl > "$(stad 0275)"
     ../urls-from-html.py https://www.ridderkerk.nl/actueel/processen-verbaal-en-telling-tweede-kamerverkiezing/ > "$(stad 0597)"
     ../urls-from-html.py https://www.rijssen-holten.nl/uitslag-verkiezingen-tweede-kamer-2023/ > "$(stad 1742)"
     ../urls-from-html.py https://www.rijswijk.nl/voorlopige-uitslag-tweede-kamerverkiezing-2023 > "$(stad 0603)"
