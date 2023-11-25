@@ -3,6 +3,7 @@ stad () {
     find . -type f -name '*.txt' | grep $1
 }
 pushd 2023-TK
+    ../urls-from-html.py https://www.waalre.nl/inwoners-en-ondernemers/tweede-kamerverkiezingen-2023 ".pdf" https://www.waalre.nl > "$(stad 0866)"
     ../urls-from-html.py https://www.waalwijk.nl/verkiezingsuitslag-verkiezingen-tweede-kamer-2023 > "$(stad 0867)"
     ../urls-from-html.py https://www.wageningen.nl/actueel/tweede-kamer-verkiezingen/uitslagen/ > "$(stad 0289)"
     ../urls-from-html.py https://www.wassenaar.nl/uitslag-van-de-verkiezingen-voor-de-tweede-kamer-2023 > "$(stad 0629)"
