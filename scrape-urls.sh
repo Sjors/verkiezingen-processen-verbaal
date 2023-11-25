@@ -49,6 +49,7 @@ pushd 2023-TK
     # P
 
     # R
+    ../urls-from-html.py https://www.rijssen-holten.nl/uitslag-verkiezingen-tweede-kamer-2023/ > "$(stad 1742)"
     ../urls-from-html.py https://www.rijswijk.nl/voorlopige-uitslag-tweede-kamerverkiezing-2023 > "$(stad 0603)"
     ../urls-from-html.py https://www.roerdalen.nl/uitslagen-verkiezingen > "$(stad 1669)"
     ../urls-from-html.py https://roosendaal.nl/uitslag-tweede-kamerverkiezing "/download" https://roosendaal.nl > "$(stad 1674)"
