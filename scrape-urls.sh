@@ -58,6 +58,7 @@ pushd 2023-TK
     ../urls-from-html.py https://www.bloemendaal.nl/over-de-gemeente/verkiezingen/uitslagen ".pdf" https://www.bloemendaal.nl > "$(stad 0377)"
     ../urls-from-html.py https://www.barendrecht.nl/actueel/voorlopige-uitslag-tweede-kamerverkiezing/ | sort -u --version-sort > "$(stad 0489)"
     ../urls-from-html.py https://www.bergendal.nl/uitslag-tweede-kamerverkiezing-november-2023 > "$(stad 1945)"
+    ../urls-from-html.py https://www.baarle-nassau.nl/verkiezingsuitslagen ".pdf" https://www.baarle-nassau.nl > "$(stad 0744)"
 
     # C
     ../urls-from-html.py https://www.coevorden.nl/verkiezingsuitslagen "pdf" https://www.coevorden.nl > "$(stad 0109)"
