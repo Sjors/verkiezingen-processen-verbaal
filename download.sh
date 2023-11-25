@@ -37,8 +37,8 @@ pushd 2023-TK
                 # https://stackoverflow.com/a/22013384/313633
                 wget "$url" --content-disposition --restrict-file-names=ascii --no-check-certificate --no-clobber --directory-prefix=$n
                 ;;
-              0202|1721|1719)
-                # Speciaal geval voor Arnhem, Bernheze en Drimmelen, want aantal bestandsnamen heeft dezelfde naam
+              0202|1721|1719|1774)
+                # Speciaal geval voor Arnhem, Bernheze, Drimmelen en Dinkelland, want aantal bestandsnamen heeft dezelfde naam
                 wget "$url" --content-disposition --backups --no-check-certificate --directory-prefix=$n
                 ;;
               *)
