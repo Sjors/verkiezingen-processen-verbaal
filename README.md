@@ -33,3 +33,4 @@ Meestal als volgt:
     * Tiel
     * Coevorden
     * Raalte
+    * Borne
