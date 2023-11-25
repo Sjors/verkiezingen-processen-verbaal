@@ -80,6 +80,9 @@ pushd 2023-TK
     ../urls-from-html.py https://www.dongen.nl/verkiezingen-1 ".pdf" https://www.dongen.nl | grep -v .csv > "$(stad 0766)"
     ../urls-from-html.py https://www.dronten.nl/direct-regelen/burgerzaken/verkiezingen/openbare-kennisgevingen-verkiezingen | grep -e 0303 -e Model-na31-1 -e Verslagcontroleprotocolgemeentelijkstembureau > "$(stad 0303)"
     ../urls-from-html.py https://www.debilt.nl/bestuur-en-organisatie/verkiezingen/voorlopige-uitslagen-tweede-kamerverkiezingen-2023 ".pdf" https://www.debilt.nl | grep -v docreader > "$(stad 0310)"
+    ../urls-from-html.py https://www.deventer.nl/verkiezingen/processen-verbaal-verkiezing-22-november-2023 > "$(stad 0150)"
+    ../urls-from-html.py https://www.deventer.nl/verkiezingen/processen-verbaal-verkiezing-22-november-2023/uitkomsten-per-stembureau >> "$(stad 0150)"
+    ../urls-from-html.py https://www.deventer.nl/verkiezingen/processen-verbaal-verkiezing-22-november-2023/proces-verbaal-van-stembureau >> "$(stad 0150)"
 
     # E
     ../urls-from-html.py https://www.eindhoven.nl/bestuur-en-beleid/verkiezing-tweede-kamer-2023/verkiezingsuitslagen > "$(stad 0772)"
