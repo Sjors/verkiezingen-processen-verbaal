@@ -30,6 +30,7 @@ pushd 2023-TK
 
 exit
     # B
+    ../urls-from-html.py https://www.gemeentebest.nl/verkiezingen ".pdf" https://www.gemeentebest.nl > "$(stad 0753)"
 
     # C
     ../urls-from-html.py https://www.coevorden.nl/verkiezingsuitslagen "pdf" https://www.coevorden.nl > "$(stad 0109)"
