@@ -88,6 +88,7 @@ pushd 2023-TK
     # K
 
     # L
+    ../urls-from-html.py https://www.laren.nl/Bestuur/Tweede_Kamerverkiezing_op_22_november_2023 dsresource https://www.laren.nl > "$(stad 0417)"
     ../urls-from-html.py https://gemeente.leiden.nl/bestuur/tweede-kamerverkiezingen-op-22-november-2023/ ".pdf" https://gemeente.leiden.nl > "$(stad 0546)"
     ../urls-from-html.py https://gemeente.leiden.nl/bestuur/tweede-kamerverkiezingen-op-22-november-2023/ ".zip" >> "$(stad 0546)"
     ../urls-from-html.py https://www.leiderdorp.nl/verkiezingen ".pdf" https://www.leiderdorp.nl > "$(stad 0547)"
