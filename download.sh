@@ -27,7 +27,7 @@ pushd 2023-TK
               1680)
                 # Informatie (tijdelijk) niet meer beschikbaar, laat bestaande downloads met rust
               ;;
-              0047|0183|0202|0274|0317|0677|1674|1680|1883|1961)
+              0047|0183|0274|0317|0677|1674|1680|1883|1961)
                 # URL's van het type dsresource?objectid=c52cd...
                 # Deze zouden anders allemaal "dsresource" heten.
                 # --no-clobber zorgt dat bestaande bestanden niet vervangen
@@ -36,6 +36,10 @@ pushd 2023-TK
                 # als "Gemeenschapscentrum ´t Heike"
                 # https://stackoverflow.com/a/22013384/313633
                 wget "$url" --content-disposition --restrict-file-names=ascii --no-check-certificate --no-clobber --directory-prefix=$n
+                ;;
+              0202)
+                # Speciaal geval voor Arnhem, want aantal bestandsnamen heeft dezelfde naam
+                wget "$url" --content-disposition --backups --no-check-certificate --directory-prefix=$n
                 ;;
               *)
                 # Download alleen nieuwe bestanden (negeert wijzigigen)
