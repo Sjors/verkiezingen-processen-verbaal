@@ -81,6 +81,7 @@ pushd 2023-TK
     # M
 
     # N
+    ../urls-from-html.py https://www.nieuwkoop.nl/verkiezingsuitslagen | grep -v docreader > "$(stad 0569)"
     ../urls-from-html.py https://www.nijkerk.eu/uitslag-verkiezingen-tweede-kamer-22-november-2023 > "$(stad 0267)"
     ../urls-from-html.py https://www.nijmegen.nl/diensten/verkiezingen/uitslagen-verkiezingen/ > "$(stad 0268)"
     echo https://www.noardeast-fryslan.nl/sites/default/files/2023-11/Stembureau%2023%20It%20Koetshus%20Easternijtsjerk%20ZH.pdf > "$(stad 1970)"
