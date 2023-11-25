@@ -66,6 +66,7 @@ pushd 2023-TK
     ../urls-from-html.py https://www.coevorden.nl/verkiezingsuitslagen "pdf" https://www.coevorden.nl > "$(stad 0109)"
     ../urls-from-html.py https://www.culemborg.nl/uitslagen "pdf" https://www.culemborg.nl > "$(stad 0216)"
     ../urls-from-html.py https://www.castricum.nl/verkiezingen ".pdf" https://www.castricum.nl > "$(stad 0383)"
+    ../urls-from-html.py https://www.cranendonck.nl/uitslag-tweede-kamerverkiezingen-2023 | grep -v docreader > "$(stad 1706)"
 
     # D
     ../urls-from-html.py https://tellingen.stembureausindenhaag.nl/Processen-verbaal-Tweede-Kamerverkiezing-2023 ".pdf" https://tellingen.stembureausindenhaag.nl > "$(stad 0518)"
