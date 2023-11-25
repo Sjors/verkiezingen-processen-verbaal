@@ -84,6 +84,7 @@ pushd 2023-TK
     # K
 
     # L
+    ../urls-from-html.py https://www.lingewaard.nl/uitslag-tweede-kamerverkiezing-2023 > "$(stad 1705)"
     ../urls-from-html.py https://www.lisse.nl/verkiezingen/uitslag-tweede-kamerverkiezingen-2023 ".pdf" https://www.lisse.nl > "$(stad 0553)"
     ../urls-from-html.py https://www.lochem.nl/bestuur-en-organisatie/verkiezingen/uitslagen ".pdf" https://www.lochem.nl > "$(stad 0262)"
     ../urls-from-html.py https://www.loonopzand.nl/organisatie-en-politiek/tweedekamerverkiezingen/verkiezingsuitslag-tweedekamerverkiezing-2023 ".pdf" https://www.loonopzand.nl > "$(stad 0809)"
