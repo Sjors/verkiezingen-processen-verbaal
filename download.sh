@@ -43,7 +43,8 @@ pushd 2023-TK
                 # Haal query string weg ?...
                 dest="$n/${path%%\?*}"
                 if [ ! -s "$dest" ]; then
-                  wget "$url" -O "$dest" --no-check-certificate
+                  sleep 1
+                  wget "$url" -O "$dest" --no-check-certificate --read-timeout=5
                 fi
                 ;;
             esac
