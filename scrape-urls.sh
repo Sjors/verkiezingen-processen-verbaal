@@ -52,6 +52,7 @@ pushd 2023-TK
     ../urls-from-html.py https://tellingen.stembureausinrotterdam.nl/Documenten-TK23 > "$(stad 0599)" ".pdf" https://tellingen.stembureausinrotterdam.nl
 
     # S
+    ../urls-from-html.py https://www.scherpenzeel.nl/uitslagen-verkiezing-tweede-kamer-2023 > "$(stad 0279)"
     ../urls-from-html.py https://www.schiedam.nl/a-tot-z/uitslagen-bekendmakingen > "$(stad 0606)"
     ../urls-from-html.py https://www.schiermonnikoog.nl/uitslagen-verkiezingen | grep -e tk23 -e 0088_controleprotocol_gsb > "$(stad 0088)"
     ../urls-from-html.py https://www.simpelveld.nl/uitslag-tweede-kamerverkiezingen-2023 > "$(stad 0965)"
