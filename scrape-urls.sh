@@ -80,6 +80,7 @@ pushd 2023-TK
     # L
 
     # M
+    ../urls-from-html.py https://www.meerssen.nl/nieuws_en_bekendmakingen/actueel/2023/11 "bestand" https://www.meerssen.nl > "$(stad 0938)"
     ../urls-from-html.py https://www.meierijstad.nl/Alle_onderwerpen/Bestuur_en_organisatie/Verkiezingen/Uitslag_verkiezingen ".pdf" https://www.meierijstad.nl > "$(stad 1948)"
     ../urls-from-html.py https://www.meierijstad.nl/Alle_onderwerpen/Bestuur_en_organisatie/Verkiezingen/Uitslag_verkiezingen/De_proces_verbalen ".pdf" https://www.meierijstad.nl >> "$(stad 1948)"
     ../urls-from-html.py https://www.meppel.nl/Inwoner/Burgerzaken/Verkiezingen_2023/Verkiezingsuitslag ".pdf" https://www.meppel.nl > "$(stad 0119)"
