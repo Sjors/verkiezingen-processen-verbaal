@@ -1,7 +1,18 @@
 #!/bin/sh
+# Eén of meer commando's om er gemeente de URL's van alle processen-verbaal te
+# verzamelen.
+
+# Hulpfunctie om het nummer van een stad om te zetten in de naam van het tekstbestand.
+# Voorbeeld:
+# stad 0344
+# 0344 Utrecht.txt
 stad () {
     find . -type f -name '*.txt' | grep $1
 }
+
+# Deze lijst is niet compleet. De URL's van sommige gemeentes zijn handmatig
+# verzameld, danwel het gebruikte commando is hier niet gedocumenteerd. Dit
+# kan eventueel later aangevuld worden.
 pushd 2023-TK
     # A
 
