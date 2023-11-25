@@ -50,6 +50,7 @@ pushd 2023-TK
     ../urls-from-html.py https://www.beuningen.nl/projecten/Tweede_Kamerverkiezingen_2023/Uitslag_verkiezing ".org" https://www.beuningen.nl | grep -v bestuur_en_organisatie > "$(stad 0209)"
     echo "https://www.beuningen.nl/projecten/Tweede_Kamerverkiezingen_2023/Uitslag_verkiezing/0209_Proces_verbaal_GSB_TK23.pdf" >> "$(stad 0209)"
     ../urls-from-html.py https://www.beverwijk.nl/verkiezingen > "$(stad 0375)"
+    ../urls-from-html.py https://www.bunschoten.nl/uitslag-verkiezingen > "$(stad 0313)"
 
     # C
     ../urls-from-html.py https://www.coevorden.nl/verkiezingsuitslagen "pdf" https://www.coevorden.nl > "$(stad 0109)"
