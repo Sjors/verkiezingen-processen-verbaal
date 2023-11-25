@@ -56,6 +56,7 @@ pushd 2023-TK
     ../urls-from-html.py https://tellingen.stembureausindenhaag.nl/Algemeen ".pdf" https://tellingen.stembureausindenhaag.nl >> "$(stad 0518)"
 
     # T
+    ../urls-from-html.py https://www.texel.nl/bestuur-en-organisatie/tweedekamerverkiezingen/verkiezingsuitslagen-tweede-kamerverkiezingen/ > "$(stad 0448)"
     ../urls-from-html.py https://www.teylingen.nl/verkiezingen/uitslag-tweede-kamerverkiezingen-2023 ".pdf" https://www.teylingen.nl > "$(stad 1525)"
     ../urls-from-html.py https://www.tholen.nl/verkiezingen/uitslag-tweede-kamerverkiezing-2023 ".pdf" https://www.tholen.nl > "$(stad 0716)"
     ../urls-from-html.py https://www.tubbergen.nl/tweede-kamerverkiezingen-2023 "download" https://www.tubbergen.nl | grep -v 4544 | grep -v 4556 | grep -v 4557 | grep -v 4611 | grep -v 4612  | grep -v 4613 | sort | uniq  > "$(stad 0183)"
