@@ -61,6 +61,7 @@ exit
 
     # P
 
+    ../urls-from-html.py https://purmerend.nl/bestuur-en-organisatie/verkiezingen/tweede-kamerverkiezing-2023/uitslag-tweede-kamerverkiezing-2023 "/document" https://purmerend.nl > "$(stad 0439)"
     echo "https://www.putten.nl/dsresource?objectid=2d8ccef1-bf90-4229-9d87-a84fb28a1f42&type=pdf" > "$(stad 0273)"
     echo "https://www.putten.nl/dsresource?objectid=8c684d3a-1f41-40b7-84ed-80ee9a063ab6&type=pdf" >> "$(stad 0273)"
     ../urls-from-html.py https://www.putten.nl/Bestuur/Verkiezingen/Uitslag_en_proces_verbaal_Tweede_Kamer_verkiezing_2023/Proces_Verbaal_per_stembureau ".pdf" https://www.putten.nl >> "$(stad 0273)"
