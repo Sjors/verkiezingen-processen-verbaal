@@ -27,6 +27,7 @@ pushd 2023-TK
 	../urls-from-html.py https://www.alblasserdam.nl/Bestuur_Organisatie/Alle_onderwerpen/Verkiezingen/Tweede_Kamerverkiezing/Uitslag_Tweede_Kamerverkiezing_2023_Alblasserdam ".pdf" https://www.alblasserdam.nl > "$(stad 0482)"
 	../urls-from-html.py https://www.alphen-chaam.nl/verkiezingsuitslagen ".pdf" https://www.alphen-chaam.nl > "$(stad 1723)"
 	../urls-from-html.py https://www.albrandswaard.nl/home/verkiezingen/documenten-verkiezingenuitslag/ | sort -u --version-sort > "$(stad 0613)"
+	../urls-from-html.py https://www.bernheze.org/bestuur-en-organisatie/verkiezingen/ | grep -v 3/6/9/1/verslag-controleprotocol-gsb.pdf > "$(stad 1721)"
 
     # B
     ../urls-from-html.py https://www.gemeentebest.nl/verkiezingen ".pdf" https://www.gemeentebest.nl > "$(stad 0753)"
@@ -44,6 +45,7 @@ pushd 2023-TK
     ../urls-from-html.py https://www.borsele.nl/processen-verbaal-tweede-kamerverkiezingen-2023 > "$(stad 0654)"
     ../urls-from-html.py https://www.blaricum.nl/Bestuur/Tweede_Kamerverkiezing_op_22_november_2023 "dsresource" https://www.blaricum.nl | grep -v 6849b6db-bfc6-4b5f-8d9b-0b664191929d > "$(stad 0376)"
     ../urls-from-html.py https://www.bergeijk.nl/uitslag-tweede-kamerverkiezingen-2023 | grep -v docreader > "$(stad 1724)"
+    ../urls-from-html.py https://www.bernheze.org/bestuur-en-organisatie/verkiezingen/ ".pdf" https://www.bernheze.org | grep -v 3/6/9/1/verslag-controleprotocol-gsb.pdf > "$(stad 1721)"
 
     # C
     ../urls-from-html.py https://www.coevorden.nl/verkiezingsuitslagen "pdf" https://www.coevorden.nl > "$(stad 0109)"
