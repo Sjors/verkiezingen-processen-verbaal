@@ -80,6 +80,7 @@ pushd 2023-TK
     # L
 
     # M
+    ../urls-from-html.py https://www.midden-groningen.nl/uitslagen > "$(stad 1952)"
     ../urls-from-html.py https://www.moerdijk.nl/web/Verkiezingen/verkiezingen-tweede-kamer-22-november/Aanmelden/Voorlopige-uitslag-verkiezing-Tweede-Kamer-2023.html ".pdf" https://www.moerdijk.nl | grep -v factsheet > "$(stad 1709)"
     ../urls-from-html.py https://www.montferland.info/uitslagen-tweede-kamerverkiezing-2023 > "$(stad 1955)"
     ../urls-from-html.py https://www.montfoort.nl/Alle_onderwerpen/Bestuur_en_organisatie/Verkiezingen/Uitslag_verkiezingen:8_RNTENIQDCNDgDytC9bLA ".pdf" https://www.montfoort.nl > "$(stad 0335)"
