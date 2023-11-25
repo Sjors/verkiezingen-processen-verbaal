@@ -35,6 +35,7 @@ exit
     ../urls-from-html.py https://www.borne.nl/stemmen-en-uitslagen ".pdf" https://www.borne.nl > "$(stad 0147)"
     ../urls-from-html.py https://www.buren.nl/verkiezingen/ > "$(stad 0214)"
     ../urls-from-html.py https://www.baarn.nl/verkiezingsuitslagen > "$(stad 0308)"
+    ../urls-from-html.py https://www.breda.nl/uitslag-verkiezing-tweede-kamer ".pdf" https://www.breda.nl > "$(stad 0758)"
 
     # C
     ../urls-from-html.py https://www.coevorden.nl/verkiezingsuitslagen "pdf" https://www.coevorden.nl > "$(stad 0109)"
