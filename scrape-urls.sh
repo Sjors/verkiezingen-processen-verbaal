@@ -52,6 +52,7 @@ pushd 2023-TK
     ../urls-from-html.py https://www.beverwijk.nl/verkiezingen > "$(stad 0375)"
     ../urls-from-html.py https://www.bunschoten.nl/uitslag-verkiezingen > "$(stad 0313)"
     ../urls-from-html.py https://www.bergen-nh.nl/verkiezingen ".pdf" https://www.bergen-nh.nl > "$(stad 0893)"
+    ../urls-from-html.py https://www.gemeenteberkelland.nl/verkiezingen/uitslagen/ > "$(stad 1859)"
 
     # C
     ../urls-from-html.py https://www.coevorden.nl/verkiezingsuitslagen "pdf" https://www.coevorden.nl > "$(stad 0109)"
