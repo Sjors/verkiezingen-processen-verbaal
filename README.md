@@ -32,3 +32,4 @@ Meestal als volgt:
     * Venray
     * Tiel
     * Coevorden
+    * Raalte
