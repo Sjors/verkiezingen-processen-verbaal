@@ -74,6 +74,7 @@ pushd 2023-TK
     ../urls-from-html.py https://tellingen.stembureausindenhaag.nl/Algemeen ".pdf" https://tellingen.stembureausindenhaag.nl >> "$(stad 0518)"
     ../urls-from-html.py https://www.delft.nl/proces-verbaal | grep -v .csv > "$(stad 0503)"
     ../urls-from-html.py https://www.druten.nl/verkiezingen-uitslag ".pdf" https://www.druten.nl > "$(stad 0225)"
+    ../urls-from-html.py https://www.duiven.nl/voorlopige-uitslag-verkiezingen-tweede-kamer "pdf" https://www.duiven.nl > "$(stad 0226)"
 
     # E
     ../urls-from-html.py https://www.eindhoven.nl/bestuur-en-beleid/verkiezing-tweede-kamer-2023/verkiezingsuitslagen > "$(stad 0772)"
