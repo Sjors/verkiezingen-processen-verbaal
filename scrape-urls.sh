@@ -55,6 +55,7 @@ pushd 2023-TK
     ../urls-from-html.py https://www.gemeenteberkelland.nl/verkiezingen/uitslagen/ > "$(stad 1859)"
     ../urls-from-html.py https://www.beekdaelen.nl/uitslagen-tweede-kamer-verkiezingen-22-november-2023 > "$(stad 1954)"
     ../urls-from-html.py https://www.bergen.nl/tweede-kamer-2023 > "$(stad 0893)"
+    ../urls-from-html.py https://www.bloemendaal.nl/over-de-gemeente/verkiezingen/uitslagen ".pdf" https://www.bloemendaal.nl > "$(stad 0377)"
 
     # C
     ../urls-from-html.py https://www.coevorden.nl/verkiezingsuitslagen "pdf" https://www.coevorden.nl > "$(stad 0109)"
