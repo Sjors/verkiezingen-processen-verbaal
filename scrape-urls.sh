@@ -55,6 +55,7 @@ pushd 2023-TK
     ../urls-from-html.py https://www.utrecht.nl/bestuur-en-organisatie/verkiezingen/ > "$(stad 0344)" ".pdf" https://www.utrecht.nl
 
     # V
+    ../urls-from-html.py https://www.veldhoven.nl/inwoners-en-ondernemers/verkiezingen/uitslag > "$(stad 0861)"
     ../urls-from-html.py https://www.velsen.nl/publicaties-en-uitslagen ".pdf" https://www.velsen.nl > "$(stad 0453)"
     ../urls-from-html.py https://www.venlo.nl/processen-verbaal-tweede-kamerverkiezing > "$(stad 0983)"
     ../urls-from-html.py https://www.vijfheerenlanden.nl/Bestuur/Overzichtspagina_Bestuur/Verkiezingen/Tweede_Kamerverkiezing_2023/Voorlopige_uitslag_Tweede_Kamerverkiezing_2023 ".pdf" https://www.vijfheerenlanden.nl | uniq > "$(stad 1961)"
