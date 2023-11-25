@@ -58,6 +58,7 @@ exit
     # N
 
     # O
+    ../urls-from-html.py https://www.oudewater.nl/Verkiezingen/Verkiezingen_2023 ".org" https://www.oudewater.nl > "$(stad 0589)"
     ../urls-from-html.py https://www.overbetuwe.nl/verkiezingen/uitslagen > "$(stad 1734)"
 
     # P
