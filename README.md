@@ -36,3 +36,4 @@ Meestal als volgt:
     * Raalte
     * Borne
     * Oss
+    * Borger-Odoorn
