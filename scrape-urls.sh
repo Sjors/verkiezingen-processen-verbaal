@@ -71,6 +71,7 @@ pushd 2023-TK
     # N
 
     # O
+    ../urls-from-html.py https://oostzaan.nl/verkiezingen/uitslagen-verkiezingen-tweede-kamer-2023 ".pdf" https://oostzaan.nl > "$(stad 0431)"
     ../urls-from-html.py https://www.opsterland.nl/verkiezingen/uitslagen | grep -v docreader > "$(stad 0086)"
     ../urls-from-html.py https://www.oss.nl/Tonen-op-pagina-standaard/Uitslag-Tweede-Kamer-verkiezingen-2.htm "to2" https://www.oss.nl > "$(stad 0828)"
     ../urls-from-html.py https://www.oude-ijsselstreek.nl/processen-verbaal-n10-n31-en-verslag-controleprotocol > "$(stad 1509)"
