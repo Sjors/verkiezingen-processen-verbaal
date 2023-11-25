@@ -30,6 +30,20 @@ pushd 2023-TK
 
 exit
     # B
+    ../urls-from-html.py https://www.gemeentebest.nl/verkiezingen ".pdf" https://www.gemeentebest.nl > "$(stad 0753)"
+    ../urls-from-html.py https://www.gemeentebeek.nl/tweedekamerverkiezingen/uitslagen > "$(stad 0888)"
+    ../urls-from-html.py https://www.borne.nl/stemmen-en-uitslagen ".pdf" https://www.borne.nl > "$(stad 0147)"
+    ../urls-from-html.py https://www.buren.nl/verkiezingen/ > "$(stad 0214)"
+    ../urls-from-html.py https://www.baarn.nl/verkiezingsuitslagen > "$(stad 0308)"
+    ../urls-from-html.py https://www.breda.nl/uitslag-verkiezing-tweede-kamer ".pdf" https://www.breda.nl > "$(stad 0758)"
+    ../urls-from-html.py https://www.bunnik.nl/verkiezingen ".pdf" https://www.bunnik.nl > "$(stad 0312)"
+    ../urls-from-html.py https://www.boekel.nl/bestuur-en-organisatie/verkiezingen/tweede-kamer-verkiezing-22-november-2023/uitslagen/ ".pdf" https://www.boekel.nl > "$(stad 0755)"
+    ../urls-from-html.py https://www.boxtel.nl/verkiezingen/uitslagen > "$(stad 0757)"
+    ../urls-from-html.py https://www.beesel.nl/verkiezingen ".pdf" https://www.beesel.nl | grep tk-2023 > "$(stad 0889)"
+    ../urls-from-html.py https://www.bladel.nl/uitslag-verkiezingen-22-november-2023 | grep -v docreader > "$(stad 1728)"
+    ../urls-from-html.py https://www.brummen.nl/inwoner-en-ondernemer/verkiezingsuitslagen-1 ".pdf" https://www.brummen.nl > "$(stad 0213)"
+    ../urls-from-html.py https://www.borsele.nl/processen-verbaal-tweede-kamerverkiezingen-2023 > "$(stad 0654)"
+    ../urls-from-html.py https://www.blaricum.nl/Bestuur/Tweede_Kamerverkiezing_op_22_november_2023 "dsresource" https://www.blaricum.nl | grep -v 6849b6db-bfc6-4b5f-8d9b-0b664191929d > "$(stad 0376)"
 
     # C
     ../urls-from-html.py https://www.coevorden.nl/verkiezingsuitslagen "pdf" https://www.coevorden.nl > "$(stad 0109)"

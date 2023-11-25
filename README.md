@@ -34,3 +34,4 @@ Meestal als volgt:
     * Coevorden
     * Oudewater
     * Raalte
+    * Borne
