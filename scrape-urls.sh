@@ -85,8 +85,27 @@ pushd 2023-TK
     # M
 
     # N
+    ../urls-from-html.py https://www.noordwijk.nl/onderwerp/burgerzaken/verkiezingen/verkiezingen-informatie-en-uitslagen/processen-verbaal-verkiezingen-tweede-kamer-2023/ | grep -v Bibliotheek > "$(stad 0575)"
+    ../urls-from-html.py https://verkiezingen.nuenen.nl/processen-verbaal-en-bijlagen > "$(stad 0820)"
+    ../urls-from-html.py https://www.nunspeet.nl/verkiezingen/uitslagen ".pdf" https://www.nunspeet.nl > "$(stad 0302)"
 
     # O
+    ../urls-from-html.py https://www.oegstgeest.nl/bestuur/tweede-kamerverkiezingen-2023/voorlopige-uitslag ".pdf" https://www.oegstgeest.nl > "$(stad 0579)"
+    ../urls-from-html.py https://www.oirschot.nl/verkiezingen | grep -v docreader | grep -v ronl > "$(stad 0823)"
+    ../urls-from-html.py https://www.oisterwijk.nl/bestuur-en-organisatie/tweede-kamerverkiezingen ".pdf" https://www.oisterwijk.nl > "$(stad 0824)"
+    ../urls-from-html.py https://www.gemeente-oldambt.nl/bestanden-verkiezingsuitslag-tweede-kamerverkiezing-oldambt-2023 ".pdf" https://www.gemeente-oldambt.nl > "$(stad 1895)"
+    ../urls-from-html.py https://www.oldebroek.nl/Bestuur_en_organisatie/Verkiezingen/Uitslagen_verkiezingen/Processen_verbaal_Tweede_Kamerverkiezingen_2023 ".pdf" https://www.oldebroek.nl > "$(stad 0269)"
+    ../urls-from-html.py https://www.oldebroek.nl/Bestuur_en_organisatie/Verkiezingen/Uitslagen_verkiezingen/Bijlagen_2_uitkomsten_per_Stembureau_TK2023 ".pdf" https://www.oldebroek.nl >> "$(stad 0269)"
+    ../urls-from-html.py https://www.oldebroek.nl/Bestuur_en_organisatie/Verkiezingen/Uitslagen_verkiezingen "dsresource" https://www.oldebroek.nl >> "$(stad 0269)"
+    ../urls-from-html.py https://www.oldenzaal.nl/verkiezingsuitslag ".pdf" https://www.oldenzaal.nl  > "$(stad 0173)"
+    ../urls-from-html.py https://www.olst-wijhe.nl/bestuur/verkiezingen/uitslagen-verkiezingen/definitieve-uitslag-tweede-kamer-verkiezingen-2023/controle-centrale-tellingen > "$(stad 1773)"
+    ../urls-from-html.py https://www.olst-wijhe.nl/bestuur/verkiezingen/uitslagen-verkiezingen/definitieve-uitslag-tweede-kamer-verkiezingen-2023/proces-verbaal-centrale-tellingen >> "$(stad 1773)"
+    ../urls-from-html.py https://www.olst-wijhe.nl/bestuur/verkiezingen/uitslagen-verkiezingen/definitieve-uitslag-tweede-kamer-verkiezingen-2023/proces-verbaal-stembureaus >> "$(stad 1773)"
+    ../urls-from-html.py https://www.ommen.nl/tweede-kamerverkiezingen-2023/uitslagen-kennisgevingen/ | sort -u --version-sort > "$(stad 0175)"
+    ../urls-from-html.py https://www.oostgelre.nl/uitslagen-tweede-kamerverkiezingen-22-november-2023-oost-gelre ".pdf" https://www.oostgelre.nl > "$(stad 1586)"
+    ../urls-from-html.py https://oostzaan.nl/verkiezingen/uitslagen-verkiezingen-tweede-kamer-2023 ".pdf" https://oostzaan.nl > "$(stad 0431)"
+    ../urls-from-html.py https://www.opsterland.nl/verkiezingen/uitslagen | grep -v docreader > "$(stad 0086)"
+    ../urls-from-html.py https://www.oss.nl/Tonen-op-pagina-standaard/Uitslag-Tweede-Kamer-verkiezingen-2.htm "to2" https://www.oss.nl > "$(stad 0828)"
     ../urls-from-html.py https://www.oude-ijsselstreek.nl/processen-verbaal-n10-n31-en-verslag-controleprotocol > "$(stad 1509)"
     ../urls-from-html.py https://www.ouder-amstel.nl/Home/Verkiezingen/Definitieve_uitslag_Tweede_Kamerverkiezingen_2023 ".pdf" https://www.ouder-amstel.nl > "$(stad 0437)"
     ../urls-from-html.py https://www.oudewater.nl/Verkiezingen/Verkiezingen_2023 ".org" https://www.oudewater.nl > "$(stad 0589)"

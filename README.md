@@ -35,3 +35,4 @@ Meestal als volgt:
     * Oudewater
     * Raalte
     * Borne
+    * Oss
