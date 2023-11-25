@@ -53,6 +53,7 @@ pushd 2023-TK
 
     # U
     ../urls-from-html.py https://www.utrecht.nl/bestuur-en-organisatie/verkiezingen/ > "$(stad 0344)" ".pdf" https://www.utrecht.nl
+    ../urls-from-html.py https://www.heuvelrug.nl/uitslag-verkiezingen > "$(stad 1581)"
 
     # V
     ../urls-from-html.py https://www.vaals.nl/verkiezingen/tweede-kamerverkiezingen-2023/uitslag-tweede-kamerverkiezing-2023 ".pdf" https://www.vaals.nl > "$(stad 0981)"
