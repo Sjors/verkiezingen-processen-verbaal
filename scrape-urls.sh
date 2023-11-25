@@ -61,6 +61,7 @@ exit
 
     # P
 
+    ../urls-from-html.py https://www.papendrecht.nl/Inwoners/Overzicht_Inwoners/Verkiezingen/Verkiezing_2023/Verkiezingsuitslagen_Tweede_Kamer_22_november_2023 ".pdf" https://www.papendrecht.nl > "$(stad 0590)"
     ../urls-from-html.py https://www.peelenmaas.nl/bestuur-en-organisatie/verkiezingen/Verkiezingsuitslag ".pdf" https://www.peelenmaas.nl | sort -u --version-sort > "$(stad 1894)"
     ../urls-from-html.py https://www.pekela.nl/Onderwerpen/Actueel/Verkiezingen/Alle_onderwerpen_verkiezingen/Processen_verbaal_Tweede_Kamerverkiezingen dsresource https://www.pekela.nl | grep -v pinterest > "$(stad 0765)"
     ../urls-from-html.py https://www.pijnacker-nootdorp.nl/politiek-en-organisatie/verkiezingen/uitslagen-tweede-kamerverkiezingen-22-november-2023/ |  sort -u --version-sort > "$(stad 1926)"
