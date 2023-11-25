@@ -80,6 +80,7 @@ pushd 2023-TK
     # L
 
     # M
+    ../urls-from-html.py https://www.maasdriel.nl/inwoner-en-ondernemer/verkiezingen/tweede-kamerverkiezingen-2023/uitslagen-per-stembureau-tweede-kamerverkiezingen-2023 ".pdf" https://www.maasdriel.nl > "$(stad 0263)"
     ../urls-from-html.py https://www.gemeentemaasgouw.nl/verkiezingsuitslag > "$(stad 1641)"
     ../urls-from-html.py https://www.maassluis.nl/uitslag-tweede-kamerverkiezingen > "$(stad 0556)"
     ../urls-from-html.py https://www.gemeentemaastricht.nl/verkiezingen/uitslag-tweede-kamerverkiezing-2023 ".pdf" https://www.gemeentemaastricht.nl > "$(stad 0935)"
