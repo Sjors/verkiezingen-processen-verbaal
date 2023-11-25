@@ -71,6 +71,7 @@ pushd 2023-TK
     # N
 
     # O
+    ../urls-from-html.py https://www.oss.nl/Tonen-op-pagina-standaard/Uitslag-Tweede-Kamer-verkiezingen-2.htm "to2" https://www.oss.nl > "$(stad 0828)"
     ../urls-from-html.py https://www.oude-ijsselstreek.nl/processen-verbaal-n10-n31-en-verslag-controleprotocol > "$(stad 1509)"
     ../urls-from-html.py https://www.ouder-amstel.nl/Home/Verkiezingen/Definitieve_uitslag_Tweede_Kamerverkiezingen_2023 ".pdf" https://www.ouder-amstel.nl > "$(stad 0437)"
     ../urls-from-html.py https://www.oudewater.nl/Verkiezingen/Verkiezingen_2023 ".org" https://www.oudewater.nl > "$(stad 0589)"
