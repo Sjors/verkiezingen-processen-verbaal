@@ -28,7 +28,6 @@ pushd 2023-TK
 	../urls-from-html.py https://www.alphen-chaam.nl/verkiezingsuitslagen ".pdf" https://www.alphen-chaam.nl > "$(stad 1723)"
 	../urls-from-html.py https://www.albrandswaard.nl/home/verkiezingen/documenten-verkiezingenuitslag/ | sort -u --version-sort > "$(stad 0613)"
 
-exit
     # B
     ../urls-from-html.py https://www.gemeentebest.nl/verkiezingen ".pdf" https://www.gemeentebest.nl > "$(stad 0753)"
     ../urls-from-html.py https://www.gemeentebeek.nl/tweedekamerverkiezingen/uitslagen > "$(stad 0888)"
