@@ -53,6 +53,7 @@ pushd 2023-TK
 
     # S
     ../urls-from-html.py https://www.schiermonnikoog.nl/uitslagen-verkiezingen | grep -e tk23 -e 0088_controleprotocol_gsb > "$(stad 0088)"
+    ../urls-from-html.py https://www.sliedrecht.nl/Bestuur_politiek/Verkiezingen/Tweede_Kamerverkiezing/Uitslagen_Tweede_Kamerverkiezing_22_november_2023 ".org" https://www.sliedrecht.nl/ > "$(stad 0610)"
     ../urls-from-html.py https://www.smallingerland.nl/Onderwerpen/Verkiezingen/Uitslag_Tweede_Kamerverkiezingen_2023 "/Uitslag_Tweede_Kamerverkiezingen_2023/" https://www.smallingerland.nl | grep -v osv4_3 > "$(stad 0090)"
     ../urls-from-html.py https://www.soest.nl/verkiezingen/uitslag-verkiezingen ".pdf" https://www.soest.nl > "$(stad 0342)"
     ../urls-from-html.py https://www.someren.nl/raad-en-college/verkiezingen/tweede-kamerverkiezingen-2023/definitieve-uitslag ".pdf" https://www.someren.nl > "$(stad 0847)"
