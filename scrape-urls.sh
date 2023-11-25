@@ -84,6 +84,7 @@ pushd 2023-TK
     ../urls-from-html.py https://www.deventer.nl/verkiezingen/processen-verbaal-verkiezing-22-november-2023/uitkomsten-per-stembureau >> "$(stad 0150)"
     ../urls-from-html.py https://www.deventer.nl/verkiezingen/processen-verbaal-verkiezing-22-november-2023/proces-verbaal-van-stembureau >> "$(stad 0150)"
     ../urls-from-html.py https://www.doesburg.nl/proces-verbalen-verkiezingen-2023 > "$(stad 0221)"
+    ../urls-from-html.py https://cms.dordrecht.nl/Bestuur/Overzicht_Bestuur/Verkiezingen/Tweede_Kamerverkiezing/Uitslagen_Tweede_Kamerverkiezing_22_november_2023 ".pdf" https://cms.dordrecht.nl > "$(stad 0505)"
 
     # E
     ../urls-from-html.py https://www.eindhoven.nl/bestuur-en-beleid/verkiezing-tweede-kamer-2023/verkiezingsuitslagen > "$(stad 0772)"
