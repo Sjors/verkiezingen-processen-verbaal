@@ -90,6 +90,8 @@ pushd 2023-TK
     ../urls-from-html.py https://www.doetinchem.nl/verkiezingen/uitslag > "$(stad 0222)"
     ../urls-from-html.py https://www.denhelder.nl/Onderwerpen/Actueel/Tweede_Kamerverkiezing_22_november_2023/Uitslagen_Tweede_Kamerverkiezingen "dsresource" https://www.denhelder.nl | grep -v abea78dc-e4ad-4495-a8db-f8ee7987594e > "$(stad 0400)"
     ../urls-from-html.py https://www.dinkelland.nl/tweede-kamerverkiezingen-2023 "file" https://www.dinkelland.nl | grep -v .csv > "$(stad 1774)"
+    ../urls-from-html.py https://www.dantumadiel.frl/nieuwsoverzicht-0/definitieve-uitslag-tweede-kamerverkiezingen-2023 > "$(stad 1891)"
+    ../urls-from-html.py https://www.dantumadiel.frl/processen-verbaal-verkiezingen-tweede-kamer-2023-0 >> "$(stad 1891)"
 
     # E
     ../urls-from-html.py https://www.eindhoven.nl/bestuur-en-beleid/verkiezing-tweede-kamer-2023/verkiezingsuitslagen > "$(stad 0772)"
