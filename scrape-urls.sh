@@ -71,6 +71,7 @@ pushd 2023-TK
     # N
 
     # O
+    ../urls-from-html.py https://www.oegstgeest.nl/bestuur/tweede-kamerverkiezingen-2023/voorlopige-uitslag ".pdf" https://www.oegstgeest.nl > "$(stad 0579)"
     ../urls-from-html.py https://www.oirschot.nl/verkiezingen | grep -v docreader | grep -v ronl > "$(stad 0823)"
     ../urls-from-html.py https://www.oisterwijk.nl/bestuur-en-organisatie/tweede-kamerverkiezingen ".pdf" https://www.oisterwijk.nl > "$(stad 0824)"
     ../urls-from-html.py https://www.gemeente-oldambt.nl/bestanden-verkiezingsuitslag-tweede-kamerverkiezing-oldambt-2023 ".pdf" https://www.gemeente-oldambt.nl > "$(stad 1895)"
