@@ -50,6 +50,7 @@ pushd 2023-TK
 
     # R
     ../urls-from-html.py https://tellingen.stembureausinrotterdam.nl/Documenten-TK23 > "$(stad 0599)" ".pdf" https://tellingen.stembureausinrotterdam.nl
+    ../urls-from-html.py https://www.rucphen.nl/verkiezingen/uitslag-verkiezingen ".pdf" https://www.rucphen.nl > "$(stad 0840)"
 
     # S
     ../urls-from-html.py https://www.schagen.nl/tweede-kamerverkiezingen-2023 > "$(stad 0441)"
