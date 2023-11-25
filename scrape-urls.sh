@@ -39,6 +39,7 @@ exit
     ../urls-from-html.py https://www.bunnik.nl/verkiezingen ".pdf" https://www.bunnik.nl > "$(stad 0312)"
     ../urls-from-html.py https://www.boekel.nl/bestuur-en-organisatie/verkiezingen/tweede-kamer-verkiezing-22-november-2023/uitslagen/ ".pdf" https://www.boekel.nl > "$(stad 0755)"
     ../urls-from-html.py https://www.boxtel.nl/verkiezingen/uitslagen > "$(stad 0757)"
+    ../urls-from-html.py https://www.beesel.nl/verkiezingen ".pdf" https://www.beesel.nl | grep tk-2023 > "$(stad 0889)"
 
     # C
     ../urls-from-html.py https://www.coevorden.nl/verkiezingsuitslagen "pdf" https://www.coevorden.nl > "$(stad 0109)"
