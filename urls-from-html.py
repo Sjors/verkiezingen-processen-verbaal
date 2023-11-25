@@ -20,4 +20,4 @@ prefix = sys.argv[3] if len(sys.argv) > 3 else ""
 links = soup.find_all('a', href=re.compile(r'(' + regex + ')'))
 
 for el in links:
-    print(prefix + el['href'])
+    print(el['href']) if el['href'].startswith(prefix) else print(prefix + el['href'])
