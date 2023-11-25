@@ -81,6 +81,7 @@ pushd 2023-TK
     # M
 
     # N
+    ../urls-from-html.py https://www.noordoostpolder.nl/uitslagen > "$(stad 0171)" ".pdf" https://www.noordoostpolder.nl
     ../urls-from-html.py https://www.noordwijk.nl/onderwerp/burgerzaken/verkiezingen/verkiezingen-informatie-en-uitslagen/processen-verbaal-verkiezingen-tweede-kamer-2023/ | grep -v Bibliotheek > "$(stad 0575)"
     ../urls-from-html.py https://verkiezingen.nuenen.nl/processen-verbaal-en-bijlagen > "$(stad 0820)"
     ../urls-from-html.py https://www.nunspeet.nl/verkiezingen/uitslagen ".pdf" https://www.nunspeet.nl > "$(stad 0302)"
