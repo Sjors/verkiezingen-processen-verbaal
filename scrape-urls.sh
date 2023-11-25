@@ -27,6 +27,7 @@ pushd 2023-TK
 	../urls-from-html.py https://www.alblasserdam.nl/Bestuur_Organisatie/Alle_onderwerpen/Verkiezingen/Tweede_Kamerverkiezing/Uitslag_Tweede_Kamerverkiezing_2023_Alblasserdam ".pdf" https://www.alblasserdam.nl > "$(stad 0482)"
 	../urls-from-html.py https://www.alphen-chaam.nl/verkiezingsuitslagen ".pdf" https://www.alphen-chaam.nl > "$(stad 1723)"
 	../urls-from-html.py https://www.albrandswaard.nl/home/verkiezingen/documenten-verkiezingenuitslag/ | sort -u --version-sort > "$(stad 0613)"
+	../urls-from-html.py https://www.bernheze.org/bestuur-en-organisatie/verkiezingen/ | grep -v 3/6/9/1/verslag-controleprotocol-gsb.pdf > "$(stad 1721)"
 
     # B
     ../urls-from-html.py https://www.gemeentebest.nl/verkiezingen ".pdf" https://www.gemeentebest.nl > "$(stad 0753)"
@@ -43,6 +44,17 @@ pushd 2023-TK
     ../urls-from-html.py https://www.brummen.nl/inwoner-en-ondernemer/verkiezingsuitslagen-1 ".pdf" https://www.brummen.nl > "$(stad 0213)"
     ../urls-from-html.py https://www.borsele.nl/processen-verbaal-tweede-kamerverkiezingen-2023 > "$(stad 0654)"
     ../urls-from-html.py https://www.blaricum.nl/Bestuur/Tweede_Kamerverkiezing_op_22_november_2023 "dsresource" https://www.blaricum.nl | grep -v 6849b6db-bfc6-4b5f-8d9b-0b664191929d > "$(stad 0376)"
+    ../urls-from-html.py https://www.bergeijk.nl/uitslag-tweede-kamerverkiezingen-2023 | grep -v docreader > "$(stad 1724)"
+    ../urls-from-html.py https://www.bernheze.org/bestuur-en-organisatie/verkiezingen/ ".pdf" https://www.bernheze.org | grep -v 3/6/9/1/verslag-controleprotocol-gsb.pdf > "$(stad 1721)"
+    ../urls-from-html.py https://www.barneveld.nl/over-barneveld/verkiezingen/verkiezing-tweede-kamer-2023/uitslag-verkiezingen ".pdf" https://www.barneveld.nl > "$(stad 0203)"
+    ../urls-from-html.py https://www.beuningen.nl/projecten/Tweede_Kamerverkiezingen_2023/Uitslag_verkiezing ".org" https://www.beuningen.nl | grep -v bestuur_en_organisatie > "$(stad 0209)"
+    echo "https://www.beuningen.nl/projecten/Tweede_Kamerverkiezingen_2023/Uitslag_verkiezing/0209_Proces_verbaal_GSB_TK23.pdf" >> "$(stad 0209)"
+    ../urls-from-html.py https://www.beverwijk.nl/verkiezingen > "$(stad 0375)"
+    ../urls-from-html.py https://www.bunschoten.nl/uitslag-verkiezingen > "$(stad 0313)"
+    ../urls-from-html.py https://www.bergen-nh.nl/verkiezingen ".pdf" https://www.bergen-nh.nl > "$(stad 0373)"
+    ../urls-from-html.py https://www.gemeenteberkelland.nl/verkiezingen/uitslagen/ > "$(stad 1859)"
+    ../urls-from-html.py https://www.beekdaelen.nl/uitslagen-tweede-kamer-verkiezingen-22-november-2023 > "$(stad 1954)"
+    ../urls-from-html.py https://www.bergen.nl/tweede-kamer-2023 > "$(stad 0893)"
 
     # C
     ../urls-from-html.py https://www.coevorden.nl/verkiezingsuitslagen "pdf" https://www.coevorden.nl > "$(stad 0109)"
