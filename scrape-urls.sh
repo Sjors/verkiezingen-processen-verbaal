@@ -84,6 +84,7 @@ pushd 2023-TK
     # K
 
     # L
+    ../urls-from-html.py https://www.lopik.nl/uitslag-tweede-kamerverkiezing | uniq > "$(stad 0331)"
 
     # M
     ../urls-from-html.py https://www.maasdriel.nl/inwoner-en-ondernemer/verkiezingen/tweede-kamerverkiezingen-2023/uitslagen-per-stembureau-tweede-kamerverkiezingen-2023 ".pdf" https://www.maasdriel.nl > "$(stad 0263)"
