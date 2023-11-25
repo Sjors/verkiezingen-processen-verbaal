@@ -71,6 +71,7 @@ pushd 2023-TK
     # N
 
     # O
+    ../urls-from-html.py https://www.ommen.nl/tweede-kamerverkiezingen-2023/uitslagen-kennisgevingen/ | sort -u --version-sort > "$(stad 0175)"
     ../urls-from-html.py https://www.oostgelre.nl/uitslagen-tweede-kamerverkiezingen-22-november-2023-oost-gelre ".pdf" https://www.oostgelre.nl > "$(stad 1586)"
     ../urls-from-html.py https://oostzaan.nl/verkiezingen/uitslagen-verkiezingen-tweede-kamer-2023 ".pdf" https://oostzaan.nl > "$(stad 0431)"
     ../urls-from-html.py https://www.opsterland.nl/verkiezingen/uitslagen | grep -v docreader > "$(stad 0086)"
