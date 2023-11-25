@@ -62,6 +62,7 @@ exit
     # P
 
     # R
+    ../urls-from-html.py https://www.renswoude.nl/verkiezingen | grep -v docreader > "$(stad 0339)"
     ../urls-from-html.py https://www.reuseldemierden.nl/zo-is-er-gestemd-in-reusel-de-mierden | grep -v docreader > "$(stad 1667)"
     ../urls-from-html.py https://www.rheden.nl/Inwoners/Tweede_Kamerverkiezingen_2023/Verkiezingsuitslag/Proces_verbalen ".pdf" https://www.rheden.nl > "$(stad 0275)"
     ../urls-from-html.py https://www.ridderkerk.nl/actueel/processen-verbaal-en-telling-tweede-kamerverkiezing/ > "$(stad 0597)"
