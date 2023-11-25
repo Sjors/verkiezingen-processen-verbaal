@@ -41,6 +41,7 @@ exit
     ../urls-from-html.py https://www.boxtel.nl/verkiezingen/uitslagen > "$(stad 0757)"
     ../urls-from-html.py https://www.beesel.nl/verkiezingen ".pdf" https://www.beesel.nl | grep tk-2023 > "$(stad 0889)"
     ../urls-from-html.py https://www.bladel.nl/uitslag-verkiezingen-22-november-2023 | grep -v docreader > "$(stad 1728)"
+    ../urls-from-html.py https://www.brummen.nl/inwoner-en-ondernemer/verkiezingsuitslagen-1 ".pdf" https://www.brummen.nl > "$(stad 0213)"
 
     # C
     ../urls-from-html.py https://www.coevorden.nl/verkiezingsuitslagen "pdf" https://www.coevorden.nl > "$(stad 0109)"
