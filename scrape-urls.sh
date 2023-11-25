@@ -88,6 +88,7 @@ pushd 2023-TK
     # K
 
     # L
+    ../urls-from-html.py https://www.landgraaf.nl/processen-verbaal-verkiezingen > "$(stad 0882)"
     ../urls-from-html.py https://www.landsmeer.nl/nieuws_en_bekendmakingen/tweede_kamer_verkiezingen_2023 bestand https://www.landsmeer.nl > "$(stad 0415)"
     ../urls-from-html.py https://www.lansingerland.nl/politiek-en-organisatie/tweede-kamerverkiezing/processen-verbaal-tweede-kamerverkiezing-2023/ > "$(stad 1621)"
     ../urls-from-html.py https://www.laren.nl/Bestuur/Tweede_Kamerverkiezing_op_22_november_2023 dsresource https://www.laren.nl > "$(stad 0417)"
