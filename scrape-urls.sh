@@ -71,6 +71,9 @@ pushd 2023-TK
     # N
 
     # O
+    ../urls-from-html.py https://www.oldebroek.nl/Bestuur_en_organisatie/Verkiezingen/Uitslagen_verkiezingen/Processen_verbaal_Tweede_Kamerverkiezingen_2023 ".pdf" https://www.oldebroek.nl > "$(stad 0269)"
+    ../urls-from-html.py https://www.oldebroek.nl/Bestuur_en_organisatie/Verkiezingen/Uitslagen_verkiezingen/Bijlagen_2_uitkomsten_per_Stembureau_TK2023 ".pdf" https://www.oldebroek.nl >> "$(stad 0269)"
+    ../urls-from-html.py https://www.oldebroek.nl/Bestuur_en_organisatie/Verkiezingen/Uitslagen_verkiezingen "dsresource" https://www.oldebroek.nl >> "$(stad 0269)"
     ../urls-from-html.py https://www.oldenzaal.nl/verkiezingsuitslag ".pdf" https://www.oldenzaal.nl  > "$(stad 0173)"
     exit
     ../urls-from-html.py https://www.olst-wijhe.nl/bestuur/verkiezingen/uitslagen-verkiezingen/definitieve-uitslag-tweede-kamer-verkiezingen-2023/controle-centrale-tellingen > "$(stad 1773)"
