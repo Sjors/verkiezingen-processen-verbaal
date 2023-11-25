@@ -80,6 +80,7 @@ pushd 2023-TK
     # L
 
     # M
+    ../urls-from-html.py https://www.meppel.nl/Inwoner/Burgerzaken/Verkiezingen_2023/Verkiezingsuitslag ".pdf" https://www.meppel.nl > "$(stad 0119)"
     ../urls-from-html.py https://www.middendelfland.nl/uitslag-tweede-kamerverkiezing > "$(stad 1842)"
     ../urls-from-html.py https://www.middendrenthe.nl/verkiezingen-tweede-kamer/uitslag-verkiezingen ".pdf" https://www.middendrenthe.nl > "$(stad 1731)"
     ../urls-from-html.py https://www.midden-groningen.nl/uitslagen > "$(stad 1952)"
