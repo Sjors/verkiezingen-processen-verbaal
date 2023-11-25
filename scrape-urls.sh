@@ -84,6 +84,7 @@ pushd 2023-TK
     # K
 
     # L
+    ../urls-from-html.py https://www.lv.nl/voorlopige-uitslag-tweede-kamerverkiezing "/file" https://www.lv.nl > "$(stad 1916)"
     ../urls-from-html.py https://www.lelystad.nl/4/verkiezingen/verkiezingsuitslagen/Tweede-Kamerverkiezing-2023.html ".pdf" https://www.lelystad.nl > "$(stad 0995)"
     ../urls-from-html.py https://www.leudal.nl/uitslag-tweede-kamerverkiezing-2023 > "$(stad 1640)"
     ../urls-from-html.py https://www.leusden.nl/verkiezingen/uitslagen/uitslag-tweede-kamerverkiezingen-2023 ".pdf" https://www.leusden.nl > "$(stad 0327)"
