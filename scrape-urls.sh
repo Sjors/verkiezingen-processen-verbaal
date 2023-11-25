@@ -15,6 +15,18 @@ stad () {
 # kan eventueel later aangevuld worden.
 pushd 2023-TK
     # A
+	../urls-from-html.py https://www.almere.nl/bestuur/verkiezingen/processen-verbaal-tweede-kamerverkiezingen-2023 ".pdf" https://www.almere.nl > "$(stad 0034)"
+	../urls-from-html.py https://www.asten.nl/gemeentebestuur-en-organisatie/verkiezingen/tweede-kamer-verkiezingen/voorlopige-verkiezingsuitslag-tweede-kamer-2023 ".pdf" https://www.asten.nl | grep -v docreader > "$(stad 0743)"
+	../urls-from-html.py https://www.almelo.nl/uitslagenverkiezingen ".pdf" https://www.almelo.nl > "$(stad 0141)"
+	../urls-from-html.py https://www.arnhem.nl/Bestuur/Overig/verkiezingen/Telling_en_processen_verbaal_Tweede_Kamerverkiezingen_2023 "pdf" https://www.arnhem.nl > "$(stad 0202)"
+	../urls-from-html.py https://www.alkmaar.nl/verkiezingsuitslagen/ | sort -u > "$(stad 0361)"
+	../urls-from-html.py https://www.aalsmeer.nl/bestuur-organisatie/publicatie/verkiezingen_uitslagen_definitieve-uitslag-tweede-kamerverkiezingen-2023 ".pdf" https://www.aalsmeer.nl > "$(stad 0358)"
+	../urls-from-html.py https://www.apeldoorn.nl/tk-verkiezingen-2023/uitslag-tweede-kamerverkiezingen-2023 ".pdf" https://www.apeldoorn.nl > "$(stad 0200)"
+	../urls-from-html.py https://www.amersfoort.nl/verkiezingsuitslagen > "$(stad 0307)"
+	../urls-from-html.py https://www.amstelveen.nl/bestuur-organisatie/publicatie/verkiezingen_uitslagen_definitieve-uitslagen-tweede-kamerverkiezing-2023 ".pdf" https://www.amstelveen.nl > "$(stad 0362)"
+	../urls-from-html.py https://www.alblasserdam.nl/Bestuur_Organisatie/Alle_onderwerpen/Verkiezingen/Tweede_Kamerverkiezing/Uitslag_Tweede_Kamerverkiezing_2023_Alblasserdam ".pdf" https://www.alblasserdam.nl > "$(stad 0482)"
+	../urls-from-html.py https://www.alphen-chaam.nl/verkiezingsuitslagen ".pdf" https://www.alphen-chaam.nl > "$(stad 1723)"
+	../urls-from-html.py https://www.albrandswaard.nl/home/verkiezingen/documenten-verkiezingenuitslag/ | sort -u > "$(stad 0613)"
 
     # B
 
