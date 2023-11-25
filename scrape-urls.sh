@@ -64,6 +64,10 @@ pushd 2023-TK
 
     # C
     ../urls-from-html.py https://www.coevorden.nl/verkiezingsuitslagen "pdf" https://www.coevorden.nl > "$(stad 0109)"
+    ../urls-from-html.py https://www.culemborg.nl/uitslagen "pdf" https://www.culemborg.nl > "$(stad 0216)"
+    ../urls-from-html.py https://www.castricum.nl/verkiezingen ".pdf" https://www.castricum.nl > "$(stad 0383)"
+    ../urls-from-html.py https://www.cranendonck.nl/uitslag-tweede-kamerverkiezingen-2023 | grep -v docreader > "$(stad 1706)"
+    ../urls-from-html.py https://www.capelleaandenijssel.nl/processen-verbaal-verkiezing-tweede-kamer-2023 > "$(stad 0502)"
 
     # D
     ../urls-from-html.py https://tellingen.stembureausindenhaag.nl/Processen-verbaal-Tweede-Kamerverkiezing-2023 ".pdf" https://tellingen.stembureausindenhaag.nl > "$(stad 0518)"
@@ -84,6 +88,24 @@ pushd 2023-TK
     # K
 
     # L
+    ../urls-from-html.py https://www.laarbeek.nl/uitslagen-tweede-kamer-verkiezingen-2023 file https://www.laarbeek.nl > "$(stad 1659)"
+    ../urls-from-html.py https://www.gemeentelandvancuijk.nl/processen-verbaal-tweede-kamerveriezingen-2023 ".pdf" https://www.gemeentelandvancuijk.nl > "$(stad 1982)"
+    ../urls-from-html.py https://www.landgraaf.nl/processen-verbaal-verkiezingen > "$(stad 0882)"
+    ../urls-from-html.py https://www.landsmeer.nl/nieuws_en_bekendmakingen/tweede_kamer_verkiezingen_2023 bestand https://www.landsmeer.nl > "$(stad 0415)"
+    ../urls-from-html.py https://www.lansingerland.nl/politiek-en-organisatie/tweede-kamerverkiezing/processen-verbaal-tweede-kamerverkiezing-2023/ > "$(stad 1621)"
+    ../urls-from-html.py https://www.laren.nl/Bestuur/Tweede_Kamerverkiezing_op_22_november_2023 dsresource https://www.laren.nl > "$(stad 0417)"
+    ../urls-from-html.py https://gemeente.leiden.nl/bestuur/tweede-kamerverkiezingen-op-22-november-2023/ ".pdf" https://gemeente.leiden.nl > "$(stad 0546)"
+    ../urls-from-html.py https://gemeente.leiden.nl/bestuur/tweede-kamerverkiezingen-op-22-november-2023/ ".zip" >> "$(stad 0546)"
+    ../urls-from-html.py https://www.leiderdorp.nl/verkiezingen ".pdf" https://www.leiderdorp.nl > "$(stad 0547)"
+    ../urls-from-html.py https://www.lv.nl/voorlopige-uitslag-tweede-kamerverkiezing "/file" https://www.lv.nl > "$(stad 1916)"
+    ../urls-from-html.py https://www.lelystad.nl/4/verkiezingen/verkiezingsuitslagen/Tweede-Kamerverkiezing-2023.html ".pdf" https://www.lelystad.nl > "$(stad 0995)"
+    ../urls-from-html.py https://www.leudal.nl/uitslag-tweede-kamerverkiezing-2023 > "$(stad 1640)"
+    ../urls-from-html.py https://www.leusden.nl/verkiezingen/uitslagen/uitslag-tweede-kamerverkiezingen-2023 ".pdf" https://www.leusden.nl > "$(stad 0327)"
+    ../urls-from-html.py https://www.lingewaard.nl/uitslag-tweede-kamerverkiezing-2023 > "$(stad 1705)"
+    ../urls-from-html.py https://www.lisse.nl/verkiezingen/uitslag-tweede-kamerverkiezingen-2023 ".pdf" https://www.lisse.nl > "$(stad 0553)"
+    ../urls-from-html.py https://www.lochem.nl/bestuur-en-organisatie/verkiezingen/uitslagen ".pdf" https://www.lochem.nl > "$(stad 0262)"
+    ../urls-from-html.py https://www.loonopzand.nl/organisatie-en-politiek/tweedekamerverkiezingen/verkiezingsuitslag-tweedekamerverkiezing-2023 ".pdf" https://www.loonopzand.nl > "$(stad 0809)"
+    ../urls-from-html.py https://www.lopik.nl/uitslag-tweede-kamerverkiezing | uniq > "$(stad 0331)"
 
     # M
     ../urls-from-html.py https://www.maasdriel.nl/inwoner-en-ondernemer/verkiezingen/tweede-kamerverkiezingen-2023/uitslagen-per-stembureau-tweede-kamerverkiezingen-2023 ".pdf" https://www.maasdriel.nl > "$(stad 0263)"
