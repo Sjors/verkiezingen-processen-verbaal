@@ -81,6 +81,7 @@ pushd 2023-TK
     # M
 
     # N
+    ../urls-from-html.py https://www.nieuwegein.nl/gemeente-bestuur-en-organisatie/verkiezingen ".pdf" https://www.nieuwegein.nl | grep -v docreader > "$(stad 0356)"
     ../urls-from-html.py https://www.nieuwkoop.nl/verkiezingsuitslagen | grep -v docreader > "$(stad 0569)"
     ../urls-from-html.py https://www.nijkerk.eu/uitslag-verkiezingen-tweede-kamer-22-november-2023 > "$(stad 0267)"
     ../urls-from-html.py https://www.nijmegen.nl/diensten/verkiezingen/uitslagen-verkiezingen/ > "$(stad 0268)"
