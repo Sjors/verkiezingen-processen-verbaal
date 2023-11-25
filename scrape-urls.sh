@@ -88,6 +88,7 @@ pushd 2023-TK
     ../urls-from-html.py https://www.dewolden.nl/verkiezingen/bekijken-stemmen-per-stembureau ".pdf" https://www.dewolden.nl > "$(stad 1690)"
     ../urls-from-html.py https://drimmelen.nl/uitslagen-van-de-tweede-kamerverkiezingen-2023 "file" https://drimmelen.nl | grep -v docreader | grep -v 11318/download > "$(stad 1719)"
     ../urls-from-html.py https://www.doetinchem.nl/verkiezingen/uitslag > "$(stad 0222)"
+    ../urls-from-html.py https://www.denhelder.nl/Onderwerpen/Actueel/Tweede_Kamerverkiezing_22_november_2023/Uitslagen_Tweede_Kamerverkiezingen "dsresource" https://www.denhelder.nl | grep -v abea78dc-e4ad-4495-a8db-f8ee7987594e > "$(stad 0400)"
 
     # E
     ../urls-from-html.py https://www.eindhoven.nl/bestuur-en-beleid/verkiezing-tweede-kamer-2023/verkiezingsuitslagen > "$(stad 0772)"
