@@ -88,6 +88,7 @@ pushd 2023-TK
     # K
 
     # L
+    ../urls-from-html.py https://www.laarbeek.nl/uitslagen-tweede-kamer-verkiezingen-2023 file https://www.laarbeek.nl > "$(stad 1659)"
     ../urls-from-html.py https://www.gemeentelandvancuijk.nl/processen-verbaal-tweede-kamerveriezingen-2023 ".pdf" https://www.gemeentelandvancuijk.nl > "$(stad 1982)"
     ../urls-from-html.py https://www.landgraaf.nl/processen-verbaal-verkiezingen > "$(stad 0882)"
     ../urls-from-html.py https://www.landsmeer.nl/nieuws_en_bekendmakingen/tweede_kamer_verkiezingen_2023 bestand https://www.landsmeer.nl > "$(stad 0415)"
