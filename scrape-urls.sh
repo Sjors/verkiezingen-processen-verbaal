@@ -16,6 +16,7 @@ stad () {
 pushd 2023-TK
     # A
     ../urls-from-html.py https://www.almere.nl/bestuur/verkiezingen/processen-verbaal-tweede-kamerverkiezingen-2023 ".pdf" https://www.almere.nl > "$(stad 0034)"
+    ../urls-from-html.py https://www.alphenaandenrijn.nl/Verkiezingen/Uitslag_Tweede_Kamerverkiezing_2023_definitief dsresource https://www.alphenaandenrijn.nl > "$(stad 0484)"
     wget -O amsterdam.json --no-check-certificate "https://api.data.amsterdam.nl/v1/verkiezingen/processenverbaal/?verkiezingsjaar=2023&page_size=10000&documentnaam[like]=*"
     cat amsterdam.json | jq -r '._embedded.processenverbaal[].uri' > "$(stad 0363)"
     ../urls-from-html.py https://www.asten.nl/gemeentebestuur-en-organisatie/verkiezingen/tweede-kamer-verkiezingen/voorlopige-verkiezingsuitslag-tweede-kamer-2023 ".pdf" https://www.asten.nl | grep -v docreader > "$(stad 0743)"
