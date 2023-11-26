@@ -113,8 +113,6 @@ pushd 2023-TK
     ../urls-from-html.py https://www.eindhoven.nl/bestuur-en-beleid/verkiezing-tweede-kamer-2023/verkiezingsuitslagen > "$(stad 0772)"
     ../urls-from-html.py https://gemeente.emmen.nl/processen-verbaal "file" https://gemeente.emmen.nl | grep -v csv > "$(stad 0114)"
 
-    # F
-
     # G
     ../urls-from-html.py https://www.geertruidenberg.nl/uitslagen-van-de-verkiezingen ".pdf" https://www.geertruidenberg.nl > "$(stad 0779)"
     ../urls-from-html.py https://www.geldrop-mierlo.nl/voorlopige-uitslag-tweede-kamerverkiezingen-2023 > "$(stad 1771)"
@@ -224,7 +222,6 @@ pushd 2023-TK
     ../urls-from-html.py https://www.overbetuwe.nl/verkiezingen/uitslagen > "$(stad 1734)"
 
     # P
-
     ../urls-from-html.py https://www.papendrecht.nl/Inwoners/Overzicht_Inwoners/Verkiezingen/Verkiezing_2023/Verkiezingsuitslagen_Tweede_Kamer_22_november_2023 ".pdf" https://www.papendrecht.nl > "$(stad 0590)"
     ../urls-from-html.py https://www.peelenmaas.nl/bestuur-en-organisatie/verkiezingen/Verkiezingsuitslag ".pdf" https://www.peelenmaas.nl | sort -u --version-sort > "$(stad 1894)"
     ../urls-from-html.py https://www.pekela.nl/Onderwerpen/Actueel/Verkiezingen/Alle_onderwerpen_verkiezingen/Processen_verbaal_Tweede_Kamerverkiezingen dsresource https://www.pekela.nl | grep -v pinterest > "$(stad 0765)"
@@ -234,6 +231,7 @@ pushd 2023-TK
     echo "https://www.putten.nl/dsresource?objectid=8c684d3a-1f41-40b7-84ed-80ee9a063ab6&type=pdf" >> "$(stad 0273)"
     ../urls-from-html.py https://www.putten.nl/Bestuur/Verkiezingen/Uitslag_en_proces_verbaal_Tweede_Kamer_verkiezing_2023/Proces_Verbaal_per_stembureau ".pdf" https://www.putten.nl >> "$(stad 0273)"
     ../urls-from-html.py https://www.putten.nl/Bestuur/Verkiezingen/Uitslag_en_proces_verbaal_Tweede_Kamer_verkiezing_2023/Uitslag_per_stembureau ".pdf" https://www.putten.nl >> "$(stad 0273)"
+
     # R
     ../urls-from-html.py https://www.raalte.nl/uitslagen-tweede-kamerverkiezingen-2023 "/file" https://www.raalte.nl > "$(stad 0177)"
     ../urls-from-html.py https://www.reimerswaal.nl/uitslag-verkiezingen > "$(stad 0703)"
