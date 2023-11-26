@@ -334,6 +334,7 @@ pushd 2023-TK
     ../urls-from-html.py https://www.veendam.nl/Onderwerpen/Actueel/Verkiezingen/Processen_verbaal_Tweede_Kamerverkiezingen "pdf" https://www.veendam.nl > "$(stad 0047)"
     ../urls-from-html.py https://www.veendam.nl/Onderwerpen/Actueel/Verkiezingen/Processen_verbaal_Tweede_Kamerverkiezingen "org" https://www.veendam.nl | grep -v Bestuur_en_organisatie | grep -v a0b33a62-4b04-4642-a60b-bae0939acdbe >> "$(stad 0047)"
     ../urls-from-html.py https://www.voorst.nl/verkiezingen/documenten-verkiezingsuitslagen-tweede-kamer ".pdf" https://www.voorst.nl > "$(stad 0285)"
+    ../urls-from-html.py https://www.vlaardingen.nl/Bestuur/Verkiezingen/Tweede_Kamerverkiezingen_2021:bv43S99BRHeJXU18U40arg/Voorlopige_uitslag_Tweedekamerverkiezingen_2023:ddGYnBdZRQOHODvm_NK9UA "dsresource" https://www.vlaardingen.nl | grep -v bf6bc677-df5d-4d55-96e2-c43c6d1652fb | grep -v pinterest > "$(stad 0622)"
 
     # W
     ../urls-from-html.py https://www.waadhoeke.nl/uitslagen ".pdf" https://www.waadhoeke.nl > "$(stad 1949)"
