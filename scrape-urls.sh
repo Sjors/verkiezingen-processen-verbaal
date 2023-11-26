@@ -138,6 +138,8 @@ pushd 2023-TK
     ../urls-from-html.py https://www.ijsselstein.nl/Bestuur_en_organisatie/Verkiezingen/Tweede_Kamerverkiezing_2023/processen_verbaal ".pdf" https://www.ijsselstein.nl > "$(stad 0353)"
 
     # K
+    ../urls-from-html.py  https://www.kampen.nl/tweede-kamerverkiezingen ".pdf" https://www.kampen.nl > "$(stad 0166)"
+    # TODO: Kapelle
     ../urls-from-html.py https://www.katwijk.nl/gemeente-en-burgerzaken/verkiezingen/uitslagen ".pdf" https://www.katwijk.nl > "$(stad 0537)"
     ../urls-from-html.py https://www.kerkrade.nl/uitslagen-tweede-kamerverkiezing-2023 > "$(stad 0928)"
     ../urls-from-html.py https://www.koggenland.nl/definitieve-uitslag-tweede-kamerverkiezing-22-november-2023 > "$(stad 1598)"
