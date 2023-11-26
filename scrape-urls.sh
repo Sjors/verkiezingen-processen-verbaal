@@ -131,6 +131,19 @@ pushd 2023-TK
 
     # H
     ../urls-from-html.py https://www.gemeentehw.nl/tweede-kamerverkiezingen-2023/processen-verbaal-en-formulieren/ > "$(stad 1963)"
+    ../urls-from-html.py https://www.haaksbergen.nl/verkiezingen/officielepublicaties.html ".pdf" https://www.haaksbergen.nl > "$(stad 0158)"
+    # TODO: Haarlem op 2023-11-26 nog geen PDF's te vinden
+    ../urls-from-html.py https://haarlemmermeergemeente.nl/verslagen-processen-verbaal-per-stembureau-per-partij "pdf" https://haarlemmermeergemeente.nl > "$(stad 0394)"
+    ../urls-from-html.py https://haarlemmermeergemeente.nl/verslagen-processen-verbaal-per-stembureau-per-kandidaat "pdf" https://haarlemmermeergemeente.nl | grep -v controleprotocol- >> "$(stad 0394)"
+    ../urls-from-html.py https://www.halderberge.nl/verkiezingen > "$(stad 1655)"
+    ../urls-from-html.py https://www.hardenberg.nl/verkiezingen/uitslagen ".pdf" https://www.hardenberg.nl | uniq > "$(stad 0160)"
+    ../urls-from-html.py https://www.hardenberg.nl/verkiezingen/uitslagen/processen-verbaal ".pdf" https://www.hardenberg.nl | uniq >> "$(stad 0160)"
+    ../urls-from-html.py https://www.harderwijk.nl/verkiezingen/uitslagen-verkiezingen ".pdf" https://www.harderwijk.nl > "$(stad 0243)"
+    ../urls-from-html.py https://www.hardinxveld-giessendam.nl/Bestuur/Gemeenteraad/Verkiezingen/Uitslag_Tweede_Kamerverkiezing/Processen_verbaal_Tweede_Kamerverkiezing_2023_Hardinxveld_Giessendam ".pdf" https://www.hardinxveld-giessendam.nl/ > "$(stad 0523)"
+    ../urls-from-html.py https://www.harlingen.nl/verkiezingen | grep -v stemmen_ > "$(stad 0072)"
+    ../urls-from-html.py https://www.hattem.nl/Inwoners/Verkiezingen/Uitslagen dsresource https://www.hattem.nl > "$(stad 0244)"
+    ../urls-from-html.py https://www.heemskerk.nl/over-heemskerk/verkiezingen/tweede-kamerverkiezingen-2023 ".pdf" https://www.heemskerk.nl > "$(stad 0396)"
+    # ...nog bezig...
     ../urls-from-html.py https://www.hoogeveen.nl/verkiezingen/bekijken-stemmen-per-stembureau/ ".pdf" https://www.hoogeveen.nl > "$(stad 0118)"
 
     # I
@@ -328,7 +341,7 @@ pushd 2023-TK
     ../urls-from-html.py https://www.zwolle.nl/uitslagen-verkiezingen > "$(stad 0193)" ".pdf" https://www.zwolle.nl
     ../urls-from-html.py https://zutphen.nl/verkiezingen/uitslagen > "$(stad 0301)" ".pdf" https://zutphen.nl
     ../urls-from-html.py https://www.zoeterwoude.nl/gemeenteraad-en-bestuur/verkiezingen > "$(stad 0638)" ".pdf" https://www.zoeterwoude.nl
-    ../urls-from-html.py https://www.zoetermeer.nl/processen-verbaal-tellingen-tweede-kamerverkiezing-2023  > "$(stad 0637)"
+    ../urls-from-html.py https://www.zoetermeer.nl/processen-verbaal-tellingen-tweede-kamerverkiezing-2023 | grep -v docreader > "$(stad 0637)"
     ../urls-from-html.py https://www.zevenaar.nl/voorlopige-uitslag-verkiezingen-tweede-kamer > "$(stad 0299)" ".pdf" https://www.zevenaar.nl
     ../urls-from-html.py https://www.zeist.nl/gemeente-bestuur-en-organisatie/verkiezingen/uitslag-verkiezingen ".pdf" https://www.zeist.nl | grep -v docreader > "$(stad 0355)"
     ../urls-from-html.py https://www.zeewolde.nl/verkiezingen/uitslagen ".pdf" https://www.zeewolde.nl > "$(stad 0050)"
