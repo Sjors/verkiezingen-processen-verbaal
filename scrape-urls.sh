@@ -305,6 +305,8 @@ pushd 2023-TK
     ../urls-from-html.py https://www.tiel.nl/processen-verbaal "file" https://www.tiel.nl | grep -v csv > "$(stad 0281)"
     ../urls-from-html.py https://www.tilburg.nl/gemeente/bestuur/verkiezingen/uitslagen-per-stembureau-tweede-kamer-verkiezingen-2023 ".pdf" https://www.tilburg.nl > "$(stad 0855)"
     ../urls-from-html.py https://www.terschelling.nl/uitslagen-tweede-kamerverkiezingen-22-november-2023 > "$(stad 0093)"
+    ../urls-from-html.py https://www.terneuzen.nl/Verkiezingen/Processen_verbaal_stembureau_s_N10_1_TK2023 ".pdf" https://www.terneuzen.nl > "$(stad 0715)"
+    ../urls-from-html.py https://www.terneuzen.nl/Verkiezingen ".pdf" https://www.terneuzen.nl >> "$(stad 0715)"
 
     # U
     ../urls-from-html.py https://www.uitgeest.nl/verkiezingen ".pdf" https://www.uitgeest.nl > "$(stad 0450)"
