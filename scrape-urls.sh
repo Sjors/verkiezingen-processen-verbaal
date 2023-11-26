@@ -143,6 +143,12 @@ pushd 2023-TK
     ../urls-from-html.py https://www.harlingen.nl/verkiezingen | grep -v stemmen_ > "$(stad 0072)"
     ../urls-from-html.py https://www.hattem.nl/Inwoners/Verkiezingen/Uitslagen dsresource https://www.hattem.nl > "$(stad 0244)"
     ../urls-from-html.py https://www.heemskerk.nl/over-heemskerk/verkiezingen/tweede-kamerverkiezingen-2023 ".pdf" https://www.heemskerk.nl > "$(stad 0396)"
+    ../urls-from-html.py https://www.heemstede.nl/verkiezingen/uitslagen ".pdf" https://www.heemstede.nl > "$(stad 0397)"
+    ../urls-from-html.py https://www.heerde.nl/Bestuur_en_organisatie/Verkiezingen/Uitslagen/Processen_verbaal dsresource https://www.heerde.nl > "$(stad 0246)"
+    ../urls-from-html.py https://www.heerde.nl/Bestuur_en_organisatie/Verkiezingen/Uitslagen dsresource https://www.heerde.nl | grep -v pinterest | grep -v 602a1f96-5f56-4772-ad73-def73fef50 >> "$(stad 0246)"
+    ../urls-from-html.py https://www.heerenveen.nl/actueel/verkiezingen/uitslagen-tweede-kamerverkiezingen/ | grep -v uitslag[-_] > "$(stad 0074)"
+    ../urls-from-html.py https://www.heerlen.nl/verkiezingen/definitieve-uitslag-verkiezingen-tweede-kamer-22-november-2023.html ".pdf" https://www.heerlen.nl > "$(stad 0917)"
+    ../urls-from-html.py https://www.heeze-leende.nl/uitslagen-tweede-kamerverkiezingen-2023 > "$(stad 1658)"
     # ...nog bezig...
     ../urls-from-html.py https://www.hoogeveen.nl/verkiezingen/bekijken-stemmen-per-stembureau/ ".pdf" https://www.hoogeveen.nl > "$(stad 0118)"
 
@@ -238,7 +244,7 @@ pushd 2023-TK
     # P
     ../urls-from-html.py https://www.papendrecht.nl/Inwoners/Overzicht_Inwoners/Verkiezingen/Verkiezing_2023/Verkiezingsuitslagen_Tweede_Kamer_22_november_2023 ".pdf" https://www.papendrecht.nl > "$(stad 0590)"
     ../urls-from-html.py https://www.peelenmaas.nl/bestuur-en-organisatie/verkiezingen/Verkiezingsuitslag ".pdf" https://www.peelenmaas.nl | sort -u --version-sort > "$(stad 1894)"
-    ../urls-from-html.py https://www.pekela.nl/Onderwerpen/Actueel/Verkiezingen/Alle_onderwerpen_verkiezingen/Processen_verbaal_Tweede_Kamerverkiezingen dsresource https://www.pekela.nl | grep -v pinterest > "$(stad 0765)"
+    ../urls-from-html.py https://www.pekela.nl/Onderwerpen/Actueel/Verkiezingen/Alle_onderwerpen_verkiezingen/Processen_verbaal_Tweede_Kamerverkiezingen dsresource https://www.pekela.nl | grep -v pinterest | grep -v 19964d42-3745-46dd-92e9-7bec527bd2de > "$(stad 0765)"
     ../urls-from-html.py https://www.pijnacker-nootdorp.nl/politiek-en-organisatie/verkiezingen/uitslagen-tweede-kamerverkiezingen-22-november-2023/ |  sort -u --version-sort > "$(stad 1926)"
     ../urls-from-html.py https://purmerend.nl/bestuur-en-organisatie/verkiezingen/tweede-kamerverkiezing-2023/uitslag-tweede-kamerverkiezing-2023 "/document" https://purmerend.nl > "$(stad 0439)"
     echo "https://www.putten.nl/dsresource?objectid=2d8ccef1-bf90-4229-9d87-a84fb28a1f42&type=pdf" > "$(stad 0273)"
