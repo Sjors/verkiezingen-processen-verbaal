@@ -347,6 +347,7 @@ pushd 2023-TK
     ../urls-from-html.py https://wormerland.nl/verkiezingen/uitslagen-verkiezingen-tweede-kamer-2023 > "$(stad 0880)" ".pdf" https://wormerland.nl
     ../urls-from-html.py https://www.woudenberg.nl/tweede-kamerverkiezingen-2023 > "$(stad 0351)" ".pdf" https://www.woudenberg.nl
     ../urls-from-html.py https://www.weststellingwerf.nl/uitslag-tweede-kamerverkiezing-2023 > "$(stad 0098)"
+    ../urls-from-html.py https://www.wierden.nl/uitslagen-en-processen-verbaal-tweede-kamerverkiezingen-2023 | grep -v docreader > "$(stad 0189)"
 
     # Z
     ../urls-from-html.py https://www.zwolle.nl/uitslagen-verkiezingen > "$(stad 0193)" ".pdf" https://www.zwolle.nl
