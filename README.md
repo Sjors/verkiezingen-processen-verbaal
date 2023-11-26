@@ -4,6 +4,23 @@ Lijst met URL's van processen-verbaal van verkiezingen, maar niet de documenten 
 
 Dit maakt het makkelijker ze te downloaden.
 
+## Gebruik
+
+Download alle processesen-verbaal voor de gemeentes die aan dit project zijn toegevoegd:
+
+```sh
+./download.sh
+```
+
+Mocht je een foutmelding krijgen, probeer het commando opnieuw. Gemeentes die
+reeds compleet zijn. worden niet opnieuw gedownload.
+
+Voor Losser, Oosterhout, Nissewaard is een apart commando nodig:
+
+```sh
+./mijn-stembureau.sh
+```
+
 ## Gemeente toevoegen
 
 Meestal als volgt:
