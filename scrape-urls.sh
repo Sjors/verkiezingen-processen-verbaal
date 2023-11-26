@@ -177,6 +177,7 @@ pushd 2023-TK
     ../urls-from-html.py https://www.lochem.nl/bestuur-en-organisatie/verkiezingen/uitslagen ".pdf" https://www.lochem.nl > "$(stad 0262)"
     ../urls-from-html.py https://www.loonopzand.nl/organisatie-en-politiek/tweedekamerverkiezingen/verkiezingsuitslag-tweedekamerverkiezing-2023 ".pdf" https://www.loonopzand.nl > "$(stad 0809)"
     ../urls-from-html.py https://www.lopik.nl/uitslag-tweede-kamerverkiezing | uniq > "$(stad 0331)"
+    ../urls-from-html.py https://www.leeuwarden.nl/uitslagen-en-processen-verbaal-tweede-kamerverkiezingen-2023/ | sort -u --version-sort
 
     # M
     ../urls-from-html.py https://www.maasdriel.nl/inwoner-en-ondernemer/verkiezingen/tweede-kamerverkiezingen-2023/uitslagen-per-stembureau-tweede-kamerverkiezingen-2023 ".pdf" https://www.maasdriel.nl > "$(stad 0263)"
