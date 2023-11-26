@@ -16,7 +16,7 @@ stad () {
 pushd 2023-TK
     # A
     ../urls-from-html.py https://www.almere.nl/bestuur/verkiezingen/processen-verbaal-tweede-kamerverkiezingen-2023 ".pdf" https://www.almere.nl > "$(stad 0034)"
-    ../urls-from-html.py https://www.alphenaandenrijn.nl/Verkiezingen/Uitslag_Tweede_Kamerverkiezing_2023_definitief dsresource https://www.alphenaandenrijn.nl > "$(stad 0484)"
+    ../urls-from-html.py https://www.alphenaandenrijn.nl/Verkiezingen/Uitslag_Tweede_Kamerverkiezing_2023_definitief dsresource https://www.alphenaandenrijn.nl | grep -v 99dee5b4-eaff-4760-8dc4-5914369e5adc > "$(stad 0484)"
     wget -O amsterdam.json --no-check-certificate "https://api.data.amsterdam.nl/v1/verkiezingen/processenverbaal/?verkiezingsjaar=2023&page_size=10000&documentnaam[like]=*"
     cat amsterdam.json | jq -r '._embedded.processenverbaal[].uri' > "$(stad 0363)"
     ../urls-from-html.py https://www.asten.nl/gemeentebestuur-en-organisatie/verkiezingen/tweede-kamer-verkiezingen/voorlopige-verkiezingsuitslag-tweede-kamer-2023 ".pdf" https://www.asten.nl | grep -v docreader > "$(stad 0743)"
@@ -196,8 +196,8 @@ pushd 2023-TK
     ../urls-from-html.py https://www.ijsselstein.nl/Bestuur_en_organisatie/Verkiezingen/Tweede_Kamerverkiezing_2023/processen_verbaal ".pdf" https://www.ijsselstein.nl > "$(stad 0353)"
 
     # K
-    ../urls-from-html.py https://www.kaagenbraassem.nl/Bestuur_en_organisatie/Verkiezingen/Definitieve_uitslag_Tweede_Kamerverkiezingen dsresource https://www.kaagenbraassem.nl | grep -v pinterest > "$(stad 1884)"
-    ../urls-from-html.py  https://www.kampen.nl/tweede-kamerverkiezingen ".pdf" https://www.kampen.nl > "$(stad 0166)"
+    ../urls-from-html.py https://www.kaagenbraassem.nl/Bestuur_en_organisatie/Verkiezingen/Definitieve_uitslag_Tweede_Kamerverkiezingen dsresource https://www.kaagenbraassem.nl | grep -v pinterest | grep -v 9a760e92-2864-4e5b-a60b-f7a5f441a03c > "$(stad 1884)"
+    ../urls-from-html.py https://www.kampen.nl/tweede-kamerverkiezingen ".pdf" https://www.kampen.nl > "$(stad 0166)"
     ../urls-from-html.py https://www.kapelle.nl/verkiezingsuitslag#processen-verbaal-verkiezing-tweede-kamer-3311 > "$(stad 0678)"
     ../urls-from-html.py https://www.katwijk.nl/gemeente-en-burgerzaken/verkiezingen/uitslagen ".pdf" https://www.katwijk.nl > "$(stad 0537)"
     ../urls-from-html.py https://www.kerkrade.nl/uitslagen-tweede-kamerverkiezing-2023 > "$(stad 0928)"
@@ -211,7 +211,7 @@ pushd 2023-TK
     ../urls-from-html.py https://www.landgraaf.nl/processen-verbaal-verkiezingen > "$(stad 0882)"
     ../urls-from-html.py https://www.landsmeer.nl/nieuws_en_bekendmakingen/tweede_kamer_verkiezingen_2023 bestand https://www.landsmeer.nl > "$(stad 0415)"
     ../urls-from-html.py https://www.lansingerland.nl/politiek-en-organisatie/tweede-kamerverkiezing/processen-verbaal-tweede-kamerverkiezing-2023/ > "$(stad 1621)"
-    ../urls-from-html.py https://www.laren.nl/Bestuur/Tweede_Kamerverkiezing_op_22_november_2023 dsresource https://www.laren.nl > "$(stad 0417)"
+    ../urls-from-html.py https://www.laren.nl/Bestuur/Tweede_Kamerverkiezing_op_22_november_2023 dsresource https://www.laren.nl | grep -v 111ce0b2-5f2d-468f-9e90-100d8e138d2e > "$(stad 0417)"
     ../urls-from-html.py https://gemeente.leiden.nl/bestuur/tweede-kamerverkiezingen-op-22-november-2023/ ".pdf" https://gemeente.leiden.nl > "$(stad 0546)"
     ../urls-from-html.py https://gemeente.leiden.nl/bestuur/tweede-kamerverkiezingen-op-22-november-2023/ ".zip" >> "$(stad 0546)"
     ../urls-from-html.py https://www.leiderdorp.nl/verkiezingen ".pdf" https://www.leiderdorp.nl > "$(stad 0547)"
@@ -247,7 +247,7 @@ pushd 2023-TK
     ../urls-from-html.py https://www.middelburg.nl/processen-verbaal-verkiezing > "$(stad 0687)"
 
     # N
-    ../urls-from-html.py https://www.nederbetuwe.nl/verkiezingen "dumpFile" > "$(stad 1740)"
+    ../urls-from-html.py https://www.nederbetuwe.nl/verkiezingen "dumpFile" | grep -v d4a8d47c52cf79ad1a9f4313d98461bf718cc97c > "$(stad 1740)"
     ../urls-from-html.py https://www.nieuwegein.nl/gemeente-bestuur-en-organisatie/verkiezingen ".pdf" https://www.nieuwegein.nl | grep -v docreader > "$(stad 0356)"
     ../urls-from-html.py https://www.nieuwkoop.nl/verkiezingsuitslagen | grep -v docreader > "$(stad 0569)"
     ../urls-from-html.py https://www.nijkerk.eu/uitslag-verkiezingen-tweede-kamer-22-november-2023 > "$(stad 0267)"
@@ -270,7 +270,7 @@ pushd 2023-TK
     ../urls-from-html.py https://www.gemeente-oldambt.nl/bestanden-verkiezingsuitslag-tweede-kamerverkiezing-oldambt-2023 ".pdf" https://www.gemeente-oldambt.nl > "$(stad 1895)"
     ../urls-from-html.py https://www.oldebroek.nl/Bestuur_en_organisatie/Verkiezingen/Uitslagen_verkiezingen/Processen_verbaal_Tweede_Kamerverkiezingen_2023 ".pdf" https://www.oldebroek.nl > "$(stad 0269)"
     ../urls-from-html.py https://www.oldebroek.nl/Bestuur_en_organisatie/Verkiezingen/Uitslagen_verkiezingen/Bijlagen_2_uitkomsten_per_Stembureau_TK2023 ".pdf" https://www.oldebroek.nl >> "$(stad 0269)"
-    ../urls-from-html.py https://www.oldebroek.nl/Bestuur_en_organisatie/Verkiezingen/Uitslagen_verkiezingen "dsresource" https://www.oldebroek.nl >> "$(stad 0269)"
+    ../urls-from-html.py https://www.oldebroek.nl/Bestuur_en_organisatie/Verkiezingen/Uitslagen_verkiezingen "dsresource" https://www.oldebroek.nl | grep -v b659fe32-02fe-48a4-ae30-24e03149af04 >> "$(stad 0269)"
     ../urls-from-html.py https://www.oldenzaal.nl/verkiezingsuitslag ".pdf" https://www.oldenzaal.nl  > "$(stad 0173)"
     ../urls-from-html.py https://www.olst-wijhe.nl/bestuur/verkiezingen/uitslagen-verkiezingen/definitieve-uitslag-tweede-kamer-verkiezingen-2023/controle-centrale-tellingen > "$(stad 1773)"
     ../urls-from-html.py https://www.olst-wijhe.nl/bestuur/verkiezingen/uitslagen-verkiezingen/definitieve-uitslag-tweede-kamer-verkiezingen-2023/proces-verbaal-centrale-tellingen >> "$(stad 1773)"
@@ -300,7 +300,7 @@ pushd 2023-TK
     # R
     ../urls-from-html.py https://www.raalte.nl/uitslagen-tweede-kamerverkiezingen-2023 "/file" https://www.raalte.nl > "$(stad 0177)"
     ../urls-from-html.py https://www.reimerswaal.nl/uitslag-verkiezingen > "$(stad 0703)"
-    ../urls-from-html.py https://www.renkum.nl/Bestuur/Tweede_Kamerverkiezing_2023/Uitslag_Tweede_Kamerverkiezing_2023 "dsresource" https://www.renkum.nl | grep -v pinterest > "$(stad 0274)"
+    ../urls-from-html.py https://www.renkum.nl/Bestuur/Tweede_Kamerverkiezing_2023/Uitslag_Tweede_Kamerverkiezing_2023 "dsresource" https://www.renkum.nl | grep -v pinterest | grep -v 2cfa937d-d9e1-4f3e-aa83-1f3386181edd > "$(stad 0274)"
     ../urls-from-html.py https://www.renswoude.nl/verkiezingen | grep -v docreader > "$(stad 0339)"
     ../urls-from-html.py https://www.reuseldemierden.nl/zo-is-er-gestemd-in-reusel-de-mierden | grep -v docreader > "$(stad 1667)"
     ../urls-from-html.py https://www.rheden.nl/Inwoners/Tweede_Kamerverkiezingen_2023/Verkiezingsuitslag/Proces_verbalen ".pdf" https://www.rheden.nl > "$(stad 0275)"
@@ -320,7 +320,7 @@ pushd 2023-TK
     ../urls-from-html.py https://www.schiermonnikoog.nl/uitslagen-verkiezingen | grep -e tk23 -e 0088_controleprotocol_gsb > "$(stad 0088)"
     ../urls-from-html.py https://www.simpelveld.nl/uitslag-tweede-kamerverkiezingen-2023 > "$(stad 0965)"
     ../urls-from-html.py https://www.sint-michielsgestel.nl/verkiezingen/uitslagen > "$(stad 0845)"
-    ../urls-from-html.py https://www.sittard-geleen.nl/Bestuur/Verkiezingen/Tweede_kamerverkiezingen_2023/UItslag_verkiezingen_TK_2023 "objectid" https://www.sittard-geleen.nl > "$(stad 1883)"
+    ../urls-from-html.py https://www.sittard-geleen.nl/Bestuur/Verkiezingen/Tweede_kamerverkiezingen_2023/UItslag_verkiezingen_TK_2023 "objectid" https://www.sittard-geleen.nl | grep -v 3284d922-56b7-43f6-96d4-da50020d5023 > "$(stad 1883)"
     ../urls-from-html.py https://www.sliedrecht.nl/Bestuur_politiek/Verkiezingen/Tweede_Kamerverkiezing/Uitslagen_Tweede_Kamerverkiezing_22_november_2023 ".org" https://www.sliedrecht.nl/ > "$(stad 0610)"
     ../urls-from-html.py https://www.smallingerland.nl/Onderwerpen/Verkiezingen/Uitslag_Tweede_Kamerverkiezingen_2023 "/Uitslag_Tweede_Kamerverkiezingen_2023/" https://www.smallingerland.nl | grep -v osv4_3 > "$(stad 0090)"
     ../urls-from-html.py https://www.soest.nl/verkiezingen/uitslag-verkiezingen ".pdf" https://www.soest.nl > "$(stad 0342)"
