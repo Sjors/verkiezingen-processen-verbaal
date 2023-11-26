@@ -296,6 +296,7 @@ pushd 2023-TK
     ../urls-from-html.py https://www.tynaarlo.nl/verkiezingen/uitslagen-verkiezingen ".pdf" https://www.tynaarlo.nl > "$(stad 1730)"
     ../urls-from-html.py https://www.t-diel.nl/uitslag-en-inzage-processen-verbaal-van-de-tweede-kamerverkiezing-2023 > "$(stad 0737)"
     ../urls-from-html.py https://www.tiel.nl/processen-verbaal "file" https://www.tiel.nl | grep -v csv > "$(stad 0281)"
+    ../urls-from-html.py https://www.tilburg.nl/gemeente/bestuur/verkiezingen/uitslagen-per-stembureau-tweede-kamer-verkiezingen-2023 ".pdf" https://www.tilburg.nl > "$(stad 0855)"
 
     # U
     ../urls-from-html.py https://www.uitgeest.nl/verkiezingen ".pdf" https://www.uitgeest.nl > "$(stad 0450)"
