@@ -215,7 +215,7 @@ pushd 2023-TK
     ../urls-from-html.py https://gemeente.leiden.nl/bestuur/tweede-kamerverkiezingen-op-22-november-2023/ ".pdf" https://gemeente.leiden.nl > "$(stad 0546)"
     ../urls-from-html.py https://gemeente.leiden.nl/bestuur/tweede-kamerverkiezingen-op-22-november-2023/ ".zip" >> "$(stad 0546)"
     ../urls-from-html.py https://www.leiderdorp.nl/verkiezingen ".pdf" https://www.leiderdorp.nl > "$(stad 0547)"
-    ../urls-from-html.py https://www.lv.nl/voorlopige-uitslag-tweede-kamerverkiezing "/file" https://www.lv.nl > "$(stad 1916)"
+    ../urls-from-html.py https://www.lv.nl/voorlopige-uitslag-tweede-kamerverkiezing "/file" https://www.lv.nl | grep -v osv4-3tellingtk2023 > "$(stad 1916)"
     ../urls-from-html.py https://www.lelystad.nl/4/verkiezingen/verkiezingsuitslagen/Tweede-Kamerverkiezing-2023.html ".pdf" https://www.lelystad.nl > "$(stad 0995)"
     ../urls-from-html.py https://www.leudal.nl/uitslag-tweede-kamerverkiezing-2023 > "$(stad 1640)"
     ../urls-from-html.py https://www.leusden.nl/verkiezingen/uitslagen/uitslag-tweede-kamerverkiezingen-2023 ".pdf" https://www.leusden.nl > "$(stad 0327)"
@@ -232,7 +232,7 @@ pushd 2023-TK
     ../urls-from-html.py https://www.maassluis.nl/uitslag-tweede-kamerverkiezingen > "$(stad 0556)"
     ../urls-from-html.py https://www.gemeentemaastricht.nl/verkiezingen/uitslag-tweede-kamerverkiezing-2023 ".pdf" https://www.gemeentemaastricht.nl > "$(stad 0935)"
     ../urls-from-html.py https://www.medemblik.nl/raad-en-bestuur/verkiezingen-tweede-kamer-2023/voorlopige-uitslag-verkiezing-tweede-kamer-2023/alle-uitslagen-per-stembureau-proces-verbalen ".pdf" https://www.medemblik.nl > "$(stad 0420)"
-    ../urls-from-html.py https://www.meerssen.nl/nieuws_en_bekendmakingen/actueel/2023/11 "bestand" https://www.meerssen.nl > "$(stad 0938)"
+    ../urls-from-html.py https://www.meerssen.nl/nieuws_en_bekendmakingen/actueel/2023/11 "bestand" https://www.meerssen.nl | grep -v osv4-3_telling_tk2023 > "$(stad 0938)"
     ../urls-from-html.py https://www.meierijstad.nl/Alle_onderwerpen/Bestuur_en_organisatie/Verkiezingen/Uitslag_verkiezingen ".pdf" https://www.meierijstad.nl > "$(stad 1948)"
     ../urls-from-html.py https://www.meierijstad.nl/Alle_onderwerpen/Bestuur_en_organisatie/Verkiezingen/Uitslag_verkiezingen/De_proces_verbalen ".pdf" https://www.meierijstad.nl >> "$(stad 1948)"
     ../urls-from-html.py https://www.meppel.nl/Inwoner/Burgerzaken/Verkiezingen_2023/Verkiezingsuitslag ".pdf" https://www.meppel.nl > "$(stad 0119)"
@@ -279,7 +279,7 @@ pushd 2023-TK
     ../urls-from-html.py https://www.oostgelre.nl/uitslagen-tweede-kamerverkiezingen-22-november-2023-oost-gelre ".pdf" https://www.oostgelre.nl > "$(stad 1586)"
     ../urls-from-html.py https://oostzaan.nl/verkiezingen/uitslagen-verkiezingen-tweede-kamer-2023 ".pdf" https://oostzaan.nl > "$(stad 0431)"
     ../urls-from-html.py https://www.opsterland.nl/verkiezingen/uitslagen | grep -v docreader > "$(stad 0086)"
-    ../urls-from-html.py https://www.oss.nl/Tonen-op-pagina-standaard/Uitslag-Tweede-Kamer-verkiezingen-2.htm "to2" https://www.oss.nl > "$(stad 0828)"
+    ../urls-from-html.py https://www.oss.nl/Tonen-op-pagina-standaard/Uitslag-Tweede-Kamer-verkiezingen-2.htm "to2" https://www.oss.nl | grep -v Osv4-3 > "$(stad 0828)"
     ../urls-from-html.py https://www.oude-ijsselstreek.nl/processen-verbaal-n10-n31-en-verslag-controleprotocol > "$(stad 1509)"
     ../urls-from-html.py https://www.ouder-amstel.nl/Home/Verkiezingen/Definitieve_uitslag_Tweede_Kamerverkiezingen_2023 ".pdf" https://www.ouder-amstel.nl > "$(stad 0437)"
     ../urls-from-html.py https://www.oudewater.nl/Verkiezingen/Verkiezingen_2023 ".org" https://www.oudewater.nl | grep -v Telling_TK_2023 > "$(stad 0589)"
@@ -298,7 +298,7 @@ pushd 2023-TK
     ../urls-from-html.py https://www.putten.nl/Bestuur/Verkiezingen/Uitslag_en_proces_verbaal_Tweede_Kamer_verkiezing_2023/Uitslag_per_stembureau ".pdf" https://www.putten.nl >> "$(stad 0273)"
 
     # R
-    ../urls-from-html.py https://www.raalte.nl/uitslagen-tweede-kamerverkiezingen-2023 "/file" https://www.raalte.nl > "$(stad 0177)"
+    ../urls-from-html.py https://www.raalte.nl/uitslagen-tweede-kamerverkiezingen-2023 "/file" https://www.raalte.nl | grep -v osv4-3tellingtk2023 > "$(stad 0177)"
     ../urls-from-html.py https://www.reimerswaal.nl/uitslag-verkiezingen > "$(stad 0703)"
     ../urls-from-html.py https://www.renkum.nl/Bestuur/Tweede_Kamerverkiezing_2023/Uitslag_Tweede_Kamerverkiezing_2023 "dsresource" https://www.renkum.nl | grep -v pinterest | grep -v 2cfa937d-d9e1-4f3e-aa83-1f3386181edd > "$(stad 0274)"
     ../urls-from-html.py https://www.renswoude.nl/verkiezingen | grep -v docreader > "$(stad 0339)"
@@ -335,7 +335,7 @@ pushd 2023-TK
     ../urls-from-html.py https://stichtsevecht.nl/onderwerp/8115/uitslagen-verkiezingen-tweede-kamer-2023-en-processen-verbaal/ > "$(stad 1904)"
     echo https://verkiezingen.sudwestfryslan.nl/TK2023/pv/Na_31-2_GSB.pdf > "$(stad 1900)"
     ../urls-from-html.py https://www.stadskanaal.nl/inwoners/verkiezingen/verkiezingsuitslagen | grep -v uitslagen | grep -v Uitslag > "$(stad 0037)"
-    ../urls-from-html.py https://www.schouwen-duiveland.nl/verkiezingen/processenverbaal-tweede-kamer-verkiezingen-2023 ".pdf" https://www.schouwen-duiveland.nl > "$(stad 1676)"
+    ../urls-from-html.py https://www.schouwen-duiveland.nl/verkiezingen/processenverbaal-tweede-kamer-verkiezingen-2023 ".pdf" https://www.schouwen-duiveland.nl | grep -v osv4-3_telling_tk2023 > "$(stad 1676)"
     ../urls-from-html.py https://www.gemeentesluis.nl/Bestuur_en_Organisatie/Verkiezingen ".pdf" https://www.gemeentesluis.nl | grep /Verkiezingen/ | sort -u --version-sort > "$(stad 1714)"
 
     # T
