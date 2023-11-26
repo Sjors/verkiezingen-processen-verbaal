@@ -6,6 +6,9 @@ pushd 2023-TK
     mkdir -p 0168 && pushd 0168
         ../../mijnstembureau.py https://mijnstembureau-losser.nl/uitslagen/tk/totaal
     popd
+    mkdir -p 0642 && pushd 0642
+        ../../mijnstembureau.py https://mijnstembureau-zwijndrecht.nl/uitslagen/tk/totaal
+    popd
     mkdir -p 0826 && pushd 0826
         ../../mijnstembureau.py https://www.mijnstembureau-oosterhout.nl/uitslagen/tk/totaal
     popd
