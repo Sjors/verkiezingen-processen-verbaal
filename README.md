@@ -15,7 +15,12 @@ Download alle processesen-verbaal voor de gemeentes die aan dit project zijn toe
 Mocht je een foutmelding krijgen, probeer het commando opnieuw. Gemeentes die
 reeds compleet zijn. worden niet opnieuw gedownload.
 
-Voor Losser, Oosterhout, Nissewaard is een apart commando nodig:
+Voor de volgende gemeenten is een apart commando nodig:
+* Losser
+* Oosterhout
+* Nissewaard
+* Enschede
+* Zwijndrecht
 
 ```sh
 ./mijn-stembureau.sh

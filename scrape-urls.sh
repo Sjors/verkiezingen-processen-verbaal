@@ -19,15 +19,18 @@ pushd 2023-TK
     ../urls-from-html.py https://www.asten.nl/gemeentebestuur-en-organisatie/verkiezingen/tweede-kamer-verkiezingen/voorlopige-verkiezingsuitslag-tweede-kamer-2023 ".pdf" https://www.asten.nl | grep -v docreader > "$(stad 0743)"
     ../urls-from-html.py https://www.almelo.nl/uitslagenverkiezingen ".pdf" https://www.almelo.nl > "$(stad 0141)"
     ../urls-from-html.py https://www.arnhem.nl/Bestuur/Overig/verkiezingen/Telling_en_processen_verbaal_Tweede_Kamerverkiezingen_2023 "dsresource" https://www.arnhem.nl | sort -u --version-sort > "$(stad 0202)"
+    ../urls-from-html.py https://www.aaenhunze.nl/Bestuur/Verkiezingen/Proces_verbalen_Tweede_Kamerverkiezing_2023 "dsresource" https://www.aaenhunze.nl | sort -u --version-sort > "$(stad 1680)"
     ../urls-from-html.py https://www.alkmaar.nl/verkiezingsuitslagen/ | sort -u > "$(stad 0361)"
+    ../urls-from-html.py https://www.gemeentealtena.nl/verkiezingen/verkiezingen-tweede-kamer-2023 ".pdf" https://www.gemeentealtena.nl > "$(stad 1959)"
+    ../urls-from-html.py https://www.achtkarspelen.nl/uitslag-en-processen-verbaal-tweede-kamerverkiezing-2023-in-achtkarspelen | grep -v uitslag > "$(stad 0059)"
     ../urls-from-html.py https://www.aalsmeer.nl/bestuur-organisatie/publicatie/verkiezingen_uitslagen_definitieve-uitslag-tweede-kamerverkiezingen-2023 ".pdf" https://www.aalsmeer.nl > "$(stad 0358)"
-    ../urls-from-html.py https://www.apeldoorn.nl/tk-verkiezingen-2023/uitslag-tweede-kamerverkiezingen-2023 ".pdf" https://www.apeldoorn.nl > "$(stad 0200)"
     ../urls-from-html.py https://www.amersfoort.nl/verkiezingsuitslagen > "$(stad 0307)"
+	../urls-from-html.py https://www.ameland.nl/verkiezing-tweede-kamer-2023 > "$(stad 0060)"
+	../urls-from-html.py https://www.apeldoorn.nl/tk-verkiezingen-2023/uitslag-tweede-kamerverkiezingen-2023 ".pdf" https://www.apeldoorn.nl > "$(stad 0200)"
     ../urls-from-html.py https://www.amstelveen.nl/bestuur-organisatie/publicatie/verkiezingen_uitslagen_definitieve-uitslagen-tweede-kamerverkiezing-2023 ".pdf" https://www.amstelveen.nl > "$(stad 0362)"
     ../urls-from-html.py https://www.alblasserdam.nl/Bestuur_Organisatie/Alle_onderwerpen/Verkiezingen/Tweede_Kamerverkiezing/Uitslag_Tweede_Kamerverkiezing_2023_Alblasserdam ".pdf" https://www.alblasserdam.nl > "$(stad 0482)"
     ../urls-from-html.py https://www.alphen-chaam.nl/verkiezingsuitslagen ".pdf" https://www.alphen-chaam.nl > "$(stad 1723)"
     ../urls-from-html.py https://www.albrandswaard.nl/home/verkiezingen/documenten-verkiezingenuitslag/ | sort -u --version-sort > "$(stad 0613)"
-    ../urls-from-html.py https://www.bernheze.org/bestuur-en-organisatie/verkiezingen/ | grep -v 3/6/9/1/verslag-controleprotocol-gsb.pdf > "$(stad 1721)"
 
     # B
     ../urls-from-html.py https://www.gemeentebest.nl/verkiezingen ".pdf" https://www.gemeentebest.nl > "$(stad 0753)"
@@ -108,10 +111,24 @@ pushd 2023-TK
     ../urls-from-html.py https://www.dijkenwaard.nl/verkiezingen/uitslagen ".pdf" https://www.dijkenwaard.nl | sort -u --version-sort > "$(stad 1980)"
     ../urls-from-html.py https://gemeente.derondevenen.nl/Bestuur_en_organisatie/Verkiezingen/Uitslag_verkiezingen ".org" https://gemeente.derondevenen.nl | grep Verkiezingen/Uitslag_verkiezingen/ | grep -v osv4 > "$(stad 0736)"
     ../urls-from-html.py https://www.defryskemarren.nl/verkiezingen/uitslagen/ > "$(stad 1940)"
+    ../urls-from-html.py https://www.dalfsen.nl/uitslagbestanden-overdrachtsdocument-en-processen-verbaal | grep -v docreader > "$(stad 0148)"
 
     # E
     ../urls-from-html.py https://www.eindhoven.nl/bestuur-en-beleid/verkiezing-tweede-kamer-2023/verkiezingsuitslagen > "$(stad 0772)"
     ../urls-from-html.py https://gemeente.emmen.nl/processen-verbaal "file" https://gemeente.emmen.nl | grep -v csv > "$(stad 0114)"
+    ../urls-from-html.py https://www.epe.nl/processen-verbaal-tweede-kamerverkiezing-2023 > "$(stad 0232)"
+    ../urls-from-html.py https://www.elburg.nl/Bestuur_en_organisatie/Uitslag_Tweede_Kamerverkiezing_2023 "pdf" https://www.elburg.nl > "$(stad 0230)"
+    ../urls-from-html.py https://www.elburg.nl/Bestuur_en_organisatie/Uitslag_Tweede_Kamerverkiezing_2023/Processen_verbaal_van_de_stembureaus_model_N10_2 "pdf" https://www.elburg.nl >> "$(stad 0230)"
+    ../urls-from-html.py https://www.elburg.nl/Bestuur_en_organisatie/Uitslag_Tweede_Kamerverkiezing_2023/Alle_bijlagen_bij_het_proces_verbaal_gemeentelijk_stembureau_bijlage_1_en_bijlage_2 "pdf" https://www.elburg.nl >> "$(stad 0230)"
+    ../urls-from-html.py https://www.ermelo.nl/verkiezingen/uitslagen ".pdf" https://www.ermelo.nl > "$(stad 0233)"
+    ../urls-from-html.py https://www.eersel.nl/uitslagen-verkiezingen-22-november-2023 | grep -v docreader > "$(stad 0770)"
+    ../urls-from-html.py https://www.enkhuizen.nl/bestuur-en-organisatie/verkiezingen/verkiezingsuitslag/ | sort -u --version-sort > "$(stad 0388)"
+    ../urls-from-html.py https://www.eemsdelta.nl/uitslag-tweede-kamerverkiezing-2023 > "$(stad 1979)"
+    ../urls-from-html.py https://www.etten-leur.nl/uitslagen-tweede-kamerverkiezing/ > "$(stad 0777)"
+    ../urls-from-html.py https://www.edam-volendam.nl/uitslagen-tweede-kamerverkiezingen-2023 | grep -v Totaaluitslag > "$(stad 0385)"
+    ../urls-from-html.py https://www.echt-susteren.nl/verkiezingsuitslag | grep -v docreader > "$(stad 1711)"
+    ../urls-from-html.py https://www.eijsden-margraten.nl/verkiezingen ".pdf" https://www.eijsden-margraten.nl | grep /1903_ > "$(stad 1903)"
+    ../urls-from-html.py https://www.eemnes.nl/Bestuur/Tweede_Kamerverkiezing_op_22_november_2023 "dsresource" https://www.eemnes.nl | grep -v 244e352b-6749-493e-bddf-7fb40b01e871 > "$(stad 0317)"
 
     # G
     ../urls-from-html.py https://www.geertruidenberg.nl/uitslagen-van-de-verkiezingen ".pdf" https://www.geertruidenberg.nl > "$(stad 0779)"
@@ -177,7 +194,7 @@ pushd 2023-TK
     # K
     ../urls-from-html.py https://www.kaagenbraassem.nl/Bestuur_en_organisatie/Verkiezingen/Definitieve_uitslag_Tweede_Kamerverkiezingen dsresource https://www.kaagenbraassem.nl | grep -v pinterest > "$(stad 1884)"
     ../urls-from-html.py  https://www.kampen.nl/tweede-kamerverkiezingen ".pdf" https://www.kampen.nl > "$(stad 0166)"
-    # TODO: Kapelle
+    ../urls-from-html.py https://www.kapelle.nl/verkiezingsuitslag#processen-verbaal-verkiezing-tweede-kamer-3311 > "$(stad 0678)"
     ../urls-from-html.py https://www.katwijk.nl/gemeente-en-burgerzaken/verkiezingen/uitslagen ".pdf" https://www.katwijk.nl > "$(stad 0537)"
     ../urls-from-html.py https://www.kerkrade.nl/uitslagen-tweede-kamerverkiezing-2023 > "$(stad 0928)"
     ../urls-from-html.py https://www.koggenland.nl/definitieve-uitslag-tweede-kamerverkiezing-22-november-2023 > "$(stad 1598)"
@@ -203,6 +220,7 @@ pushd 2023-TK
     ../urls-from-html.py https://www.lochem.nl/bestuur-en-organisatie/verkiezingen/uitslagen ".pdf" https://www.lochem.nl > "$(stad 0262)"
     ../urls-from-html.py https://www.loonopzand.nl/organisatie-en-politiek/tweedekamerverkiezingen/verkiezingsuitslag-tweedekamerverkiezing-2023 ".pdf" https://www.loonopzand.nl > "$(stad 0809)"
     ../urls-from-html.py https://www.lopik.nl/uitslag-tweede-kamerverkiezing | uniq > "$(stad 0331)"
+    ../urls-from-html.py https://www.leeuwarden.nl/uitslagen-en-processen-verbaal-tweede-kamerverkiezingen-2023/ | sort -u --version-sort
 
     # M
     ../urls-from-html.py https://www.maasdriel.nl/inwoner-en-ondernemer/verkiezingen/tweede-kamerverkiezingen-2023/uitslagen-per-stembureau-tweede-kamerverkiezingen-2023 ".pdf" https://www.maasdriel.nl > "$(stad 0263)"
@@ -221,6 +239,8 @@ pushd 2023-TK
     ../urls-from-html.py https://www.montferland.info/uitslagen-tweede-kamerverkiezing-2023 > "$(stad 1955)"
     ../urls-from-html.py https://www.montfoort.nl/Alle_onderwerpen/Bestuur_en_organisatie/Verkiezingen/Uitslag_verkiezingen:8_RNTENIQDCNDgDytC9bLA ".pdf" https://www.montfoort.nl > "$(stad 0335)"
     ../urls-from-html.py https://www.mookenmiddelaar.nl/uitslag-van-de-tweede-kamer-verkiezing-22-november-2023-0 | grep -v huisregels > "$(stad 0944)"
+    ../urls-from-html.py https://www.molenlanden.nl/uitslag-verkiezingen-tweede-kamer-22-november-2023 > "$(stad 1978)"
+    ../urls-from-html.py https://www.middelburg.nl/processen-verbaal-verkiezing > "$(stad 0687)"
 
     # N
     ../urls-from-html.py https://www.nederbetuwe.nl/verkiezingen "dumpFile" > "$(stad 1740)"
@@ -237,6 +257,7 @@ pushd 2023-TK
     ../urls-from-html.py https://www.noordwijk.nl/onderwerp/burgerzaken/verkiezingen/verkiezingen-informatie-en-uitslagen/processen-verbaal-verkiezingen-tweede-kamer-2023/ | grep -v Bibliotheek > "$(stad 0575)"
     ../urls-from-html.py https://verkiezingen.nuenen.nl/processen-verbaal-en-bijlagen > "$(stad 0820)"
     ../urls-from-html.py https://www.nunspeet.nl/verkiezingen/uitslagen ".pdf" https://www.nunspeet.nl > "$(stad 0302)"
+    ../urls-from-html.py https://www.nederweert.nl/verkiezingsuitslagen > "$(stad 0946)"
 
     # O
     ../urls-from-html.py https://www.oegstgeest.nl/bestuur/tweede-kamerverkiezingen-2023/voorlopige-uitslag ".pdf" https://www.oegstgeest.nl > "$(stad 0579)"
@@ -259,6 +280,7 @@ pushd 2023-TK
     ../urls-from-html.py https://www.ouder-amstel.nl/Home/Verkiezingen/Definitieve_uitslag_Tweede_Kamerverkiezingen_2023 ".pdf" https://www.ouder-amstel.nl > "$(stad 0437)"
     ../urls-from-html.py https://www.oudewater.nl/Verkiezingen/Verkiezingen_2023 ".org" https://www.oudewater.nl > "$(stad 0589)"
     ../urls-from-html.py https://www.overbetuwe.nl/verkiezingen/uitslagen > "$(stad 1734)"
+    ../urls-from-html.py https://www.ooststellingwerf.nl/verkiezingen/uitslag > "$(stad 0085)"
 
     # P
     ../urls-from-html.py https://www.papendrecht.nl/Inwoners/Overzicht_Inwoners/Verkiezingen/Verkiezing_2023/Verkiezingsuitslagen_Tweede_Kamer_22_november_2023 ".pdf" https://www.papendrecht.nl > "$(stad 0590)"
@@ -307,6 +329,9 @@ pushd 2023-TK
     ../urls-from-html.py https://www.gemeentestein.nl/uitslag-tweede-kamerverkiezing-2023 ".pdf" https://www.gemeentestein.nl > "$(stad 0971)"
     ../urls-from-html.py https://stichtsevecht.nl/onderwerp/8115/uitslagen-verkiezingen-tweede-kamer-2023-en-processen-verbaal/ > "$(stad 1904)"
     echo https://verkiezingen.sudwestfryslan.nl/TK2023/pv/Na_31-2_GSB.pdf > "$(stad 1900)"
+    ../urls-from-html.py https://www.stadskanaal.nl/inwoners/verkiezingen/verkiezingsuitslagen | grep -v uitslagen | grep -v Uitslag > "$(stad 0037)"
+    ../urls-from-html.py https://www.schouwen-duiveland.nl/verkiezingen/processenverbaal-tweede-kamer-verkiezingen-2023 ".pdf" https://www.schouwen-duiveland.nl > "$(stad 1676)"
+    ../urls-from-html.py https://www.gemeentesluis.nl/Bestuur_en_Organisatie/Verkiezingen ".pdf" https://www.gemeentesluis.nl | grep /Verkiezingen/ | sort -u --version-sort > "$(stad 1714)"
 
     # T
     ../urls-from-html.py https://www.texel.nl/bestuur-en-organisatie/tweedekamerverkiezingen/verkiezingsuitslagen-tweede-kamerverkiezingen/ > "$(stad 0448)"
@@ -316,6 +341,11 @@ pushd 2023-TK
     ../urls-from-html.py https://www.twenterand.nl/verkiezingsuitslagen-2023-stembureau ".pdf" > "$(stad 1700)"
     ../urls-from-html.py https://www.tynaarlo.nl/verkiezingen/uitslagen-verkiezingen ".pdf" https://www.tynaarlo.nl > "$(stad 1730)"
     ../urls-from-html.py https://www.t-diel.nl/uitslag-en-inzage-processen-verbaal-van-de-tweede-kamerverkiezing-2023 > "$(stad 0737)"
+    ../urls-from-html.py https://www.tiel.nl/processen-verbaal "file" https://www.tiel.nl | grep -v csv > "$(stad 0281)"
+    ../urls-from-html.py https://www.tilburg.nl/gemeente/bestuur/verkiezingen/uitslagen-per-stembureau-tweede-kamer-verkiezingen-2023 ".pdf" https://www.tilburg.nl > "$(stad 0855)"
+    ../urls-from-html.py https://www.terschelling.nl/uitslagen-tweede-kamerverkiezingen-22-november-2023 > "$(stad 0093)"
+    ../urls-from-html.py https://www.terneuzen.nl/Verkiezingen/Processen_verbaal_stembureau_s_N10_1_TK2023 ".pdf" https://www.terneuzen.nl > "$(stad 0715)"
+    ../urls-from-html.py https://www.terneuzen.nl/Verkiezingen ".pdf" https://www.terneuzen.nl >> "$(stad 0715)"
 
     # U
     ../urls-from-html.py https://www.uitgeest.nl/verkiezingen ".pdf" https://www.uitgeest.nl > "$(stad 0450)"
@@ -337,6 +367,11 @@ pushd 2023-TK
     ../urls-from-html.py https://www.vlissingen.nl/tweede-kamerverkiezing-22-november-2023-uitslag-en-proces-verbaal | grep -v docreader > "$(stad 0718)"
     ../urls-from-html.py https://www.voerendaal.nl/over-voerendaal/verkiezingen/uitslag-verkiezingen-2023-tweede-kamer ".pdf" https://www.voerendaal.nl > "$(stad 0986)"
     ../urls-from-html.py https://vught.nl/uitslag-tweede-kamerverkiezing ".pdf" https://vught.nl > "$(stad 0865)"
+    ../urls-from-html.py https://www.vlieland.nl/uitslag-tweede-kamerverkiezing-2023-in-de-gemeente-vlieland > "$(stad 0096)"
+    ../urls-from-html.py https://www.veendam.nl/Onderwerpen/Actueel/Verkiezingen/Processen_verbaal_Tweede_Kamerverkiezingen "pdf" https://www.veendam.nl > "$(stad 0047)"
+    ../urls-from-html.py https://www.veendam.nl/Onderwerpen/Actueel/Verkiezingen/Processen_verbaal_Tweede_Kamerverkiezingen "org" https://www.veendam.nl | grep -v Bestuur_en_organisatie | grep -v a0b33a62-4b04-4642-a60b-bae0939acdbe >> "$(stad 0047)"
+    ../urls-from-html.py https://www.voorst.nl/verkiezingen/documenten-verkiezingsuitslagen-tweede-kamer ".pdf" https://www.voorst.nl > "$(stad 0285)"
+    ../urls-from-html.py https://www.vlaardingen.nl/Bestuur/Verkiezingen/Tweede_Kamerverkiezingen_2021:bv43S99BRHeJXU18U40arg/Voorlopige_uitslag_Tweedekamerverkiezingen_2023:ddGYnBdZRQOHODvm_NK9UA "dsresource" https://www.vlaardingen.nl | grep -v bf6bc677-df5d-4d55-96e2-c43c6d1652fb | grep -v pinterest > "$(stad 0622)"
 
     # W
     ../urls-from-html.py https://www.waadhoeke.nl/uitslagen ".pdf" https://www.waadhoeke.nl > "$(stad 1949)"
@@ -361,6 +396,8 @@ pushd 2023-TK
     ../urls-from-html.py https://www.woerden.nl/Verkiezingen/Verkiezingen_2023 > "$(stad 0632)" ".pdf" https://www.woerden.nl
     ../urls-from-html.py https://wormerland.nl/verkiezingen/uitslagen-verkiezingen-tweede-kamer-2023 > "$(stad 0880)" ".pdf" https://wormerland.nl
     ../urls-from-html.py https://www.woudenberg.nl/tweede-kamerverkiezingen-2023 > "$(stad 0351)" ".pdf" https://www.woudenberg.nl
+    ../urls-from-html.py https://www.weststellingwerf.nl/uitslag-tweede-kamerverkiezing-2023 > "$(stad 0098)"
+    ../urls-from-html.py https://www.wierden.nl/uitslagen-en-processen-verbaal-tweede-kamerverkiezingen-2023 | grep -v docreader > "$(stad 0189)"
 
     # Z
     ../urls-from-html.py https://www.zwolle.nl/uitslagen-verkiezingen > "$(stad 0193)" ".pdf" https://www.zwolle.nl
@@ -371,4 +408,6 @@ pushd 2023-TK
     ../urls-from-html.py https://www.zeist.nl/gemeente-bestuur-en-organisatie/verkiezingen/uitslag-verkiezingen ".pdf" https://www.zeist.nl | grep -v docreader > "$(stad 0355)"
     ../urls-from-html.py https://www.zeewolde.nl/verkiezingen/uitslagen ".pdf" https://www.zeewolde.nl > "$(stad 0050)"
     ../urls-from-html.py https://www.zaltbommel.nl/inwoner-en-ondernemer/tweede-kamer-verkiezingen-2023/uitslag-verkiezingen-tweede-kamer/uitslag-verkiezingen-tweede-kamer ".pdf" https://www.zaltbommel.nl > "$(stad 0297)"
+    ../urls-from-html.py https://www.zuidplas.nl/processen-verbaal-van-de-stembureaus > "$(stad 1892)"
+    ../urls-from-html.py https://www.zwartewaterland.nl/uitslagen-tweede-kamerverkiezingen-22-november-2023 > "$(stad 1896)"
 popd
