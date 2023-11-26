@@ -67,6 +67,7 @@ pushd 2023-TK
     ../urls-from-html.py https://www.baarle-nassau.nl/verkiezingsuitslagen ".pdf" https://www.baarle-nassau.nl > "$(stad 0744)"
     ../urls-from-html.py https://www.borger-odoorn.nl/voorlopige-uitslag-tweede-kamerverkiezingen-2023 "file" https://www.borger-odoorn.nl | grep -v gemeenteborgerodoorncsv | grep -v controleprotocol-en-telling > "$(stad 1681)"
     ../urls-from-html.py https://www.bergenopzoom.nl/verkiezingen/uitslagen > "$(stad 0748)"
+    ../urls-from-html.py https://www.bodegraven-reeuwijk.nl/uitslag-tweede-kamerverkiezingen-2023 ".pdf" https://www.bodegraven-reeuwijk.nl > "$(stad 1901)"
     # Brunssum
     ../urls-from-html.py https://www.brunssum.nl/Verkiezingen/Uitslagen_Tweede_Kamer_verkiezingen_2023/Uitslagen_per_stembureau/01_Gemeentehuis ".pdf" https://www.brunssum.nl | uniq > "$(stad 0899)"
     ../urls-from-html.py https://www.brunssum.nl/Verkiezingen/Uitslagen_Tweede_Kamer_verkiezingen_2023/Uitslagen_per_stembureau/02_Brikke_Oave ".pdf" https://www.brunssum.nl | grep -v controle >> "$(stad 0899)"
