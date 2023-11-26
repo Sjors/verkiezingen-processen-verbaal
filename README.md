@@ -28,6 +28,16 @@ Voor de volgende gemeenten is een apart commando nodig:
 ./mijn-stembureau.sh
 ```
 
+# Hashes en timestamp
+
+De sha256 hashes van alle processen-verbaal staan in [Timestamps/2023-TK.asc](Timestamps/2023-TK.asc). Daarnaast heb ik een timestamp gemaakt, welke te verifieren is op [opentimestamps.org]<https://opentimestamps.org>
+of met [ots-client](https://github.com/opentimestamps/opentimestamps-client) en je eigen Bitcoin node:
+
+```
+ots verify 2023-TK.asc.ots
+Success! Bitcoin block 818632 attests existence as of 2023-11-26 CET
+```
+
 ## Gemeente toevoegen
 
 Meestal als volgt:
