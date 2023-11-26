@@ -124,7 +124,7 @@ pushd 2023-TK
     ../urls-from-html.py https://www.elburg.nl/Bestuur_en_organisatie/Uitslag_Tweede_Kamerverkiezing_2023 "pdf" https://www.elburg.nl > "$(stad 0230)"
     ../urls-from-html.py https://www.elburg.nl/Bestuur_en_organisatie/Uitslag_Tweede_Kamerverkiezing_2023/Processen_verbaal_van_de_stembureaus_model_N10_2 "pdf" https://www.elburg.nl >> "$(stad 0230)"
     ../urls-from-html.py https://www.elburg.nl/Bestuur_en_organisatie/Uitslag_Tweede_Kamerverkiezing_2023/Alle_bijlagen_bij_het_proces_verbaal_gemeentelijk_stembureau_bijlage_1_en_bijlage_2 "pdf" https://www.elburg.nl >> "$(stad 0230)"
-    ../urls-from-html.py https://www.ermelo.nl/verkiezingen/uitslagen ".pdf" https://www.ermelo.nl > "$(stad 0233)"
+    ../urls-from-html.py https://www.ermelo.nl/verkiezingen/uitslagen ".pdf" https://www.ermelo.nl | grep -v OSV4-3_telling_TK2023 > "$(stad 0233)"
     ../urls-from-html.py https://www.eersel.nl/uitslagen-verkiezingen-22-november-2023 | grep -v docreader > "$(stad 0770)"
     ../urls-from-html.py https://www.enkhuizen.nl/bestuur-en-organisatie/verkiezingen/verkiezingsuitslag/ | sort -u --version-sort > "$(stad 0388)"
     ../urls-from-html.py https://www.eemsdelta.nl/uitslag-tweede-kamerverkiezing-2023 > "$(stad 1979)"
