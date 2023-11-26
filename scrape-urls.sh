@@ -121,6 +121,7 @@ pushd 2023-TK
     ../urls-from-html.py https://www.enkhuizen.nl/bestuur-en-organisatie/verkiezingen/verkiezingsuitslag/ | sort -u --version-sort > "$(stad 0388)"
     ../urls-from-html.py https://www.eemsdelta.nl/uitslag-tweede-kamerverkiezing-2023 > "$(stad 1979)"
     ../urls-from-html.py https://www.etten-leur.nl/uitslagen-tweede-kamerverkiezing/ > "$(stad 0777)"
+    ../urls-from-html.py https://www.edam-volendam.nl/uitslagen-tweede-kamerverkiezingen-2023 | grep -v Totaaluitslag > "$(stad 0385)"
 
     # G
     ../urls-from-html.py https://www.geertruidenberg.nl/uitslagen-van-de-verkiezingen ".pdf" https://www.geertruidenberg.nl > "$(stad 0779)"
