@@ -47,6 +47,15 @@ Meestal als volgt:
 
 10. (Optioneel): voeg het gebruikte download commando toe aan `scrape-urls.sh`
 
+Om te zien welke gemeentes nog ontbreken:
+
+```
+./progress.sh
+```
+
+N.B. sommmige in deze lijst hebben wel processen-verbaal gepubliceerd, maar
+die zijn niet via een rechtstreekse URL te benaderen.
+
 ## Eigenaardigheden per gemeente
 
 * De bestanden van de volgende gemeenten hebben geen PDF-extensie; voeg evt. `.pdf` toe om ze te bekijken
