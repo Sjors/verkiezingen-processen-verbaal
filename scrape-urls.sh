@@ -356,4 +356,5 @@ pushd 2023-TK
     ../urls-from-html.py https://www.zeewolde.nl/verkiezingen/uitslagen ".pdf" https://www.zeewolde.nl > "$(stad 0050)"
     ../urls-from-html.py https://www.zaltbommel.nl/inwoner-en-ondernemer/tweede-kamer-verkiezingen-2023/uitslag-verkiezingen-tweede-kamer/uitslag-verkiezingen-tweede-kamer ".pdf" https://www.zaltbommel.nl > "$(stad 0297)"
     ../urls-from-html.py https://www.zuidplas.nl/processen-verbaal-van-de-stembureaus > "$(stad 1892)"
+    ../urls-from-html.py https://www.zwartewaterland.nl/uitslagen-tweede-kamerverkiezingen-22-november-2023 > "$(stad 1896)"
 popd
