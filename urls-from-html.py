@@ -7,12 +7,20 @@
 # ./urls-from-html.py https://www.voorneaanzee.nl/processen-verbaal-tweede-kamerverkiezing-2023
 # ./urls-from-html.py https://www.venray.nl/uitslag-tweede-kamerverkiezingen-2023 "/file/proces" https://www.venray.nl
 
-from urllib.request import urlopen
+import urllib.request
 from bs4 import BeautifulSoup
 import re
 import sys
 
-response = urlopen(sys.argv[1]).read()
+req = urllib.request.Request(
+    sys.argv[1],
+    data=None,
+    headers={
+        'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/35.0.1916.47 Safari/537.36'
+    }
+)
+
+response = urllib.request.urlopen(req).read()
 soup= BeautifulSoup(response, "html.parser")
 
 regex = sys.argv[2] if len(sys.argv) > 2 else ".pdf"
