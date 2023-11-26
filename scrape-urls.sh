@@ -61,6 +61,18 @@ pushd 2023-TK
     ../urls-from-html.py https://www.baarle-nassau.nl/verkiezingsuitslagen ".pdf" https://www.baarle-nassau.nl > "$(stad 0744)"
     ../urls-from-html.py https://www.borger-odoorn.nl/voorlopige-uitslag-tweede-kamerverkiezingen-2023 "file" https://www.borger-odoorn.nl | grep -v gemeenteborgerodoorncsv | grep -v controleprotocol-en-telling > "$(stad 1681)"
     ../urls-from-html.py https://www.bergenopzoom.nl/verkiezingen/uitslagen > "$(stad 0748)"
+    # Brunssum
+    ../urls-from-html.py https://www.brunssum.nl/Verkiezingen/Uitslagen_Tweede_Kamer_verkiezingen_2023/Uitslagen_per_stembureau/01_Gemeentehuis ".pdf" https://www.brunssum.nl | uniq > "$(stad 0899)"
+    ../urls-from-html.py https://www.brunssum.nl/Verkiezingen/Uitslagen_Tweede_Kamer_verkiezingen_2023/Uitslagen_per_stembureau/02_Brikke_Oave ".pdf" https://www.brunssum.nl | grep -v controle >> "$(stad 0899)"
+    ../urls-from-html.py https://www.brunssum.nl/Verkiezingen/Uitslagen_Tweede_Kamer_verkiezingen_2023/Uitslagen_per_stembureau/03_Sporthal_Rumpen_1 ".pdf" https://www.brunssum.nl | grep -v controle >> "$(stad 0899)"
+    ../urls-from-html.py https://www.brunssum.nl/Verkiezingen/Uitslagen_Tweede_Kamer_verkiezingen_2023/Uitslagen_per_stembureau/04_Sporthal_Rumpen_2 ".pdf" https://www.brunssum.nl | grep -v controle >> "$(stad 0899)"
+    ../urls-from-html.py https://www.brunssum.nl/Verkiezingen/Uitslagen_Tweede_Kamer_verkiezingen_2023/Uitslagen_per_stembureau/05_BS_De_Caleidoscoop ".pdf" https://www.brunssum.nl | grep -v controle >> "$(stad 0899)"
+    ../urls-from-html.py https://www.brunssum.nl/Verkiezingen/Uitslagen_Tweede_Kamer_verkiezingen_2023/Uitslagen_per_stembureau/06_Noorderhuis ".pdf" https://www.brunssum.nl | grep -v controle >> "$(stad 0899)"
+    ../urls-from-html.py https://www.brunssum.nl/Verkiezingen/Uitslagen_Tweede_Kamer_verkiezingen_2023/Uitslagen_per_stembureau/07_Microhal_1 ".pdf" https://www.brunssum.nl | grep -v controle >> "$(stad 0899)"
+    ../urls-from-html.py https://www.brunssum.nl/Verkiezingen/Uitslagen_Tweede_Kamer_verkiezingen_2023/Uitslagen_per_stembureau/08_Microhal_2 ".pdf" https://www.brunssum.nl | grep -v controle >> "$(stad 0899)"
+    ../urls-from-html.py https://www.brunssum.nl/Verkiezingen/Uitslagen_Tweede_Kamer_verkiezingen_2023/Uitslagen_per_stembureau/09_Gymzaal_BMV_Bronsheim_1 ".pdf" https://www.brunssum.nl | grep -v controle >> "$(stad 0899)"
+    ../urls-from-html.py https://www.brunssum.nl/Verkiezingen/Uitslagen_Tweede_Kamer_verkiezingen_2023/Uitslagen_per_stembureau/15_MFA_Emma_Nova ".pdf" https://www.brunssum.nl | grep -v controle >> "$(stad 0899)"
+    ../urls-from-html.py https://www.brunssum.nl/Verkiezingen/Uitslagen_Tweede_Kamer_verkiezingen_2023/Uitslagen_per_stembureau/17_Mobiel_Stembureau ".pdf" https://www.brunssum.nl | grep -v controle >> "$(stad 0899)"
 
     # C
     ../urls-from-html.py https://www.coevorden.nl/verkiezingsuitslagen "pdf" https://www.coevorden.nl > "$(stad 0109)"
