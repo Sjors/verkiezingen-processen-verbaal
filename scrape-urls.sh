@@ -292,6 +292,7 @@ pushd 2023-TK
     echo https://verkiezingen.sudwestfryslan.nl/TK2023/pv/Na_31-2_GSB.pdf > "$(stad 1900)"
     ../urls-from-html.py https://www.stadskanaal.nl/inwoners/verkiezingen/verkiezingsuitslagen | grep -v uitslagen | grep -v Uitslag > "$(stad 0037)"
     ../urls-from-html.py https://www.schouwen-duiveland.nl/verkiezingen/processenverbaal-tweede-kamer-verkiezingen-2023 ".pdf" https://www.schouwen-duiveland.nl > "$(stad 1676)"
+    ../urls-from-html.py https://www.gemeentesluis.nl/Bestuur_en_Organisatie/Verkiezingen ".pdf" https://www.gemeentesluis.nl | grep /Verkiezingen/ | sort -u --version-sort > "$(stad 1714)"
 
     # T
     ../urls-from-html.py https://www.texel.nl/bestuur-en-organisatie/tweedekamerverkiezingen/verkiezingsuitslagen-tweede-kamerverkiezingen/ > "$(stad 0448)"
