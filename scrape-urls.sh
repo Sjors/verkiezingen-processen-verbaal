@@ -138,8 +138,8 @@ pushd 2023-TK
     ../urls-from-html.py https://www.ijsselstein.nl/Bestuur_en_organisatie/Verkiezingen/Tweede_Kamerverkiezing_2023/processen_verbaal ".pdf" https://www.ijsselstein.nl > "$(stad 0353)"
 
     # K
-    ../urls-from-html.py  https://www.kampen.nl/tweede-kamerverkiezingen ".pdf" https://www.kampen.nl > "$(stad 0166)"
     ../urls-from-html.py https://www.kaagenbraassem.nl/Bestuur_en_organisatie/Verkiezingen/Definitieve_uitslag_Tweede_Kamerverkiezingen dsresource https://www.kaagenbraassem.nl | grep -v pinterest > "$(stad 1884)"
+    ../urls-from-html.py  https://www.kampen.nl/tweede-kamerverkiezingen ".pdf" https://www.kampen.nl > "$(stad 0166)"
     # TODO: Kapelle
     ../urls-from-html.py https://www.katwijk.nl/gemeente-en-burgerzaken/verkiezingen/uitslagen ".pdf" https://www.katwijk.nl > "$(stad 0537)"
     ../urls-from-html.py https://www.kerkrade.nl/uitslagen-tweede-kamerverkiezing-2023 > "$(stad 0928)"
