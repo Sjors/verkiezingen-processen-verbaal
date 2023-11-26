@@ -27,7 +27,7 @@ pushd 2023-TK
               1680)
                 # Informatie (tijdelijk) niet meer beschikbaar, laat bestaande downloads met rust
               ;;
-              0047|0183|0269|0273|0274|0317|0335|0353|0376|0400|0417|0677|0765|1674|1680|1740|1883|1884|1948|1961)
+              0047|0183|230|0269|0273|0274|0317|0335|0353|0376|0400|0417|0677|0765|1674|1680|1740|1883|1884|1948|1961)
                 # URL's van het type dsresource?objectid=c52cd...
                 # Deze zouden anders allemaal "dsresource" heten.
                 # --no-clobber zorgt dat bestaande bestanden niet vervangen

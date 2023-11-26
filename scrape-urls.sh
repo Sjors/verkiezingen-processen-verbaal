@@ -113,7 +113,9 @@ pushd 2023-TK
     ../urls-from-html.py https://www.eindhoven.nl/bestuur-en-beleid/verkiezing-tweede-kamer-2023/verkiezingsuitslagen > "$(stad 0772)"
     ../urls-from-html.py https://gemeente.emmen.nl/processen-verbaal "file" https://gemeente.emmen.nl | grep -v csv > "$(stad 0114)"
     ../urls-from-html.py https://www.epe.nl/processen-verbaal-tweede-kamerverkiezing-2023 > "$(stad 0232)"
-    
+    ../urls-from-html.py https://www.elburg.nl/Bestuur_en_organisatie/Uitslag_Tweede_Kamerverkiezing_2023 "pdf" https://www.elburg.nl > "$(stad 0230)"
+    ../urls-from-html.py https://www.elburg.nl/Bestuur_en_organisatie/Uitslag_Tweede_Kamerverkiezing_2023/Processen_verbaal_van_de_stembureaus_model_N10_2 "pdf" https://www.elburg.nl >> "$(stad 0230)"
+    ../urls-from-html.py https://www.elburg.nl/Bestuur_en_organisatie/Uitslag_Tweede_Kamerverkiezing_2023/Alle_bijlagen_bij_het_proces_verbaal_gemeentelijk_stembureau_bijlage_1_en_bijlage_2 "pdf" https://www.elburg.nl >> "$(stad 0230)"
 
     # G
     ../urls-from-html.py https://www.geertruidenberg.nl/uitslagen-van-de-verkiezingen ".pdf" https://www.geertruidenberg.nl > "$(stad 0779)"
