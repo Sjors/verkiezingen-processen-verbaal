@@ -323,6 +323,7 @@ pushd 2023-TK
     ../urls-from-html.py https://www.vlieland.nl/uitslag-tweede-kamerverkiezing-2023-in-de-gemeente-vlieland > "$(stad 0096)"
     ../urls-from-html.py https://www.veendam.nl/Onderwerpen/Actueel/Verkiezingen/Processen_verbaal_Tweede_Kamerverkiezingen "pdf" https://www.veendam.nl > "$(stad 0047)"
     ../urls-from-html.py https://www.veendam.nl/Onderwerpen/Actueel/Verkiezingen/Processen_verbaal_Tweede_Kamerverkiezingen "org" https://www.veendam.nl | grep -v Bestuur_en_organisatie | grep -v a0b33a62-4b04-4642-a60b-bae0939acdbe >> "$(stad 0047)"
+    ../urls-from-html.py https://www.voorst.nl/verkiezingen/documenten-verkiezingsuitslagen-tweede-kamer ".pdf" https://www.voorst.nl > "$(stad 0285)"
 
     # W
     ../urls-from-html.py https://www.waadhoeke.nl/uitslagen ".pdf" https://www.waadhoeke.nl > "$(stad 1949)"
