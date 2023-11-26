@@ -140,6 +140,7 @@ pushd 2023-TK
     # K
     ../urls-from-html.py https://www.katwijk.nl/gemeente-en-burgerzaken/verkiezingen/uitslagen ".pdf" https://www.katwijk.nl > "$(stad 0537)"
     ../urls-from-html.py https://www.krimpenerwaard.nl/verkiezingen > "$(stad 1931)"
+    ../urls-from-html.py https://krimpenaandenijssel.nl/dossiers/definitieve-uitslag-tweede-kamerverkiezingen-2023/ > "$(stad 0542)"
 
     # L
     ../urls-from-html.py https://www.laarbeek.nl/uitslagen-tweede-kamer-verkiezingen-2023 file https://www.laarbeek.nl > "$(stad 1659)"
