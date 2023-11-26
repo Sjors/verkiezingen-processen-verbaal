@@ -291,6 +291,7 @@ pushd 2023-TK
     ../urls-from-html.py https://stichtsevecht.nl/onderwerp/8115/uitslagen-verkiezingen-tweede-kamer-2023-en-processen-verbaal/ > "$(stad 1904)"
     echo https://verkiezingen.sudwestfryslan.nl/TK2023/pv/Na_31-2_GSB.pdf > "$(stad 1900)"
     ../urls-from-html.py https://www.stadskanaal.nl/inwoners/verkiezingen/verkiezingsuitslagen | grep -v uitslagen | grep -v Uitslag > "$(stad 0037)"
+    ../urls-from-html.py https://www.schouwen-duiveland.nl/verkiezingen/processenverbaal-tweede-kamer-verkiezingen-2023 ".pdf" https://www.schouwen-duiveland.nl > "$(stad 1676)"
 
     # T
     ../urls-from-html.py https://www.texel.nl/bestuur-en-organisatie/tweedekamerverkiezingen/verkiezingsuitslagen-tweede-kamerverkiezingen/ > "$(stad 0448)"
