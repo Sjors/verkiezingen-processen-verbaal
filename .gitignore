@@ -1,5 +1,8 @@
 # Documenten (bv. 2023-TK/0432/*.pdf)
 */[0-9][0-9][0-9][0-9]
 
+# Amsterdam
+*.json
+
 # macOS
 .DS_Store

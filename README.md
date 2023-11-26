@@ -6,6 +6,8 @@ Dit maakt het makkelijker ze te downloaden.
 
 ## Gebruik
 
+Installeer [jq](https://jqlang.github.io/jq/).
+
 Download alle processesen-verbaal voor de gemeentes die aan dit project zijn toegevoegd:
 
 ```sh
