@@ -182,7 +182,7 @@ pushd 2023-TK
     ../urls-from-html.py https://www.hofvantwente.nl/bestuur/tweede-kamerverkiezingen-2023 "(TK_2023|TK23).*pdf" https://www.hofvantwente.nl > "$(stad 1735)"
     ../urls-from-html.py https://www.hollandskroon.nl/inwoners/verkiezingen/uitslagen-tweede-kamerverkiezingen-2023 ".pdf" https://www.hollandskroon.nl > "$(stad 1911)"
     ../urls-from-html.py https://www.hoogeveen.nl/verkiezingen/bekijken-stemmen-per-stembureau/ ".pdf" https://www.hoogeveen.nl > "$(stad 0118)"
-    ../urls-from-html.py https://www.hoorn.nl/pv-verkiezingen ".pdf" https://www.hoorn.nl/pv-verkiezingen > "$(stad 0405)"
+    ../urls-from-html.py https://www.hoorn.nl/pv-verkiezingen ".pdf" https://www.hoorn.nl > "$(stad 0405)"
     ../urls-from-html.py https://www.horstaandemaas.nl/uitslag-verkiezingen "pdf" https://www.horstaandemaas.nl > "$(stad 1507)"
     ../urls-from-html.py https://www.houten.nl/gemeenteraad-en-college/verkiezingen ".pdf" https://www.houten.nl > "$(stad 0321)"
     ../urls-from-html.py https://www.huizen.nl/definitieve-uitslag-tweede-kamerverkiezing-2023 | grep -v docreader > "$(stad 0406)"
