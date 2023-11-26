@@ -93,7 +93,7 @@ pushd 2023-TK
     ../urls-from-html.py https://www.dantumadiel.frl/nieuwsoverzicht-0/definitieve-uitslag-tweede-kamerverkiezingen-2023 > "$(stad 1891)"
     ../urls-from-html.py https://www.dantumadiel.frl/processen-verbaal-verkiezingen-tweede-kamer-2023-0 >> "$(stad 1891)"
     ../urls-from-html.py https://www.drechterland.nl/bestuur-en-organisatie/verkiezingen/verkiezingsuitslag/ | sort -u --version-sort > "$(stad 0498)"
-    ../urls-from-html.py https://www.dijkenwaard.nl/verkiezingen/uitslagen ".pdf" https://www.dijkenwaard.nl > "$(stad 1980)"
+    ../urls-from-html.py https://www.dijkenwaard.nl/verkiezingen/uitslagen ".pdf" https://www.dijkenwaard.nl | sort -u --version-sort > "$(stad 1980)"
     ../urls-from-html.py https://gemeente.derondevenen.nl/Bestuur_en_organisatie/Verkiezingen/Uitslag_verkiezingen ".org" https://gemeente.derondevenen.nl | grep Verkiezingen/Uitslag_verkiezingen/ | grep -v osv4 > "$(stad 0736)"
     ../urls-from-html.py https://www.defryskemarren.nl/verkiezingen/uitslagen/ > "$(stad 1940)"
 
