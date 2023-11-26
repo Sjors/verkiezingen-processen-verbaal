@@ -123,6 +123,7 @@ pushd 2023-TK
     ../urls-from-html.py https://www.etten-leur.nl/uitslagen-tweede-kamerverkiezing/ > "$(stad 0777)"
     ../urls-from-html.py https://www.edam-volendam.nl/uitslagen-tweede-kamerverkiezingen-2023 | grep -v Totaaluitslag > "$(stad 0385)"
     ../urls-from-html.py https://www.echt-susteren.nl/verkiezingsuitslag | grep -v docreader > "$(stad 1711)"
+    ../urls-from-html.py https://www.eijsden-margraten.nl/verkiezingen ".pdf" https://www.eijsden-margraten.nl | grep /1903_ > "$(stad 1903)"
 
     # G
     ../urls-from-html.py https://www.geertruidenberg.nl/uitslagen-van-de-verkiezingen ".pdf" https://www.geertruidenberg.nl > "$(stad 0779)"
