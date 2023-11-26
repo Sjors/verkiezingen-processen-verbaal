@@ -39,3 +39,4 @@ Meestal als volgt:
     * Borger-Odoorn
     * Leidschendam-Voorburg
     * Culemborg
+    * Gemert-Bakel
