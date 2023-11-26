@@ -169,7 +169,7 @@ pushd 2023-TK
     ../urls-from-html.py https://www.horstaandemaas.nl/uitslag-verkiezingen "pdf" https://www.horstaandemaas.nl > "$(stad 1507)"
     ../urls-from-html.py https://www.houten.nl/gemeenteraad-en-college/verkiezingen ".pdf" https://www.houten.nl > "$(stad 0321)"
     ../urls-from-html.py https://www.huizen.nl/definitieve-uitslag-tweede-kamerverkiezing-2023 | grep -v docreader > "$(stad 0406)"
-    ../urls-from-html.py https://www.gemeentehulst.nl/verkiezingen/uitslagen dsresource | grep -v pinterest | grep -v d28050fd-d0f1-4e4c-8f57-723fa89f0c2f > "$(stad 0677)"
+    ../urls-from-html.py https://www.gemeentehulst.nl/verkiezingen/uitslagen dsresource https://www.gemeentehulst.nl | grep -v pinterest | grep -v d28050fd-d0f1-4e4c-8f57-723fa89f0c2f > "$(stad 0677)"
 
     # I
     ../urls-from-html.py https://www.ijsselstein.nl/Bestuur_en_organisatie/Verkiezingen/Tweede_Kamerverkiezing_2023/processen_verbaal ".pdf" https://www.ijsselstein.nl > "$(stad 0353)"
