@@ -201,6 +201,7 @@ pushd 2023-TK
     ../urls-from-html.py https://www.montfoort.nl/Alle_onderwerpen/Bestuur_en_organisatie/Verkiezingen/Uitslag_verkiezingen:8_RNTENIQDCNDgDytC9bLA ".pdf" https://www.montfoort.nl > "$(stad 0335)"
     ../urls-from-html.py https://www.mookenmiddelaar.nl/uitslag-van-de-tweede-kamer-verkiezing-22-november-2023-0 | grep -v huisregels > "$(stad 0944)"
     ../urls-from-html.py https://www.molenlanden.nl/uitslag-verkiezingen-tweede-kamer-22-november-2023 > "$(stad 1978)"
+    ../urls-from-html.py https://www.middelburg.nl/processen-verbaal-verkiezing > "$(stad 0687)"
 
     # N
     ../urls-from-html.py https://www.nederbetuwe.nl/verkiezingen "dumpFile" > "$(stad 1740)"
