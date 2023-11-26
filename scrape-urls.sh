@@ -110,6 +110,7 @@ pushd 2023-TK
     ../urls-from-html.py https://www.ijsselstein.nl/Bestuur_en_organisatie/Verkiezingen/Tweede_Kamerverkiezing_2023/processen_verbaal ".pdf" https://www.ijsselstein.nl > "$(stad 0353)"
 
     # K
+    ../urls-from-html.py https://www.katwijk.nl/gemeente-en-burgerzaken/verkiezingen/uitslagen ".pdf" https://www.katwijk.nl > "$(stad 0537)"
 
     # L
     ../urls-from-html.py https://www.laarbeek.nl/uitslagen-tweede-kamer-verkiezingen-2023 file https://www.laarbeek.nl > "$(stad 1659)"
