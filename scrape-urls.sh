@@ -130,6 +130,7 @@ pushd 2023-TK
     echo https://www.gulpen-wittem.nl/data/downloadables/1/8/5/8/1729_pv_stembureau_11_wilder-tref_tk23_zh.pdf>> "$(stad 1729)"
 
     # H
+    ../urls-from-html.py https://www.gemeentehw.nl/tweede-kamerverkiezingen-2023/processen-verbaal-en-formulieren/ > "$(stad 1963)"
     ../urls-from-html.py https://www.hoogeveen.nl/verkiezingen/bekijken-stemmen-per-stembureau/ ".pdf" https://www.hoogeveen.nl > "$(stad 0118)"
 
     # I
