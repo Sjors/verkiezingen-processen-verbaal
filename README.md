@@ -42,3 +42,4 @@ Meestal als volgt:
     * Duiven
     * Drimmelen
     * Dinkelland
+    * Gemert-Bakel
