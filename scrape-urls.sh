@@ -30,6 +30,7 @@ pushd 2023-TK
 	../urls-from-html.py https://www.bernheze.org/bestuur-en-organisatie/verkiezingen/ | grep -v 3/6/9/1/verslag-controleprotocol-gsb.pdf > "$(stad 1721)"
 	../urls-from-html.py https://www.ameland.nl/verkiezing-tweede-kamer-2023 > "$(stad 0060)"
 	../urls-from-html.py https://www.achtkarspelen.nl/uitslag-en-processen-verbaal-tweede-kamerverkiezing-2023-in-achtkarspelen | grep -v uitslag > "$(stad 0059)"
+	../urls-from-html.py https://www.aaenhunze.nl/Bestuur/Verkiezingen/Proces_verbalen_Tweede_Kamerverkiezing_2023 "dsresource" https://www.aaenhunze.nl | sort -u --version-sort > "$(stad 1680)"
 
     # B
     ../urls-from-html.py https://www.gemeentebest.nl/verkiezingen ".pdf" https://www.gemeentebest.nl > "$(stad 0753)"
