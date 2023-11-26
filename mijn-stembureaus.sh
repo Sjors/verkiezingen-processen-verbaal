@@ -1,5 +1,8 @@
 #!/bin/sh
 pushd 2023-TK
+    mkdir -p 0153 && pushd 0153
+        ../../mijnstembureau.py https://mijnstembureau-enschede.nl/uitslagen/tk/totaal
+    popd
     mkdir -p 0168 && pushd 0168
         ../../mijnstembureau.py https://mijnstembureau-losser.nl/uitslagen/tk/totaal
     popd
