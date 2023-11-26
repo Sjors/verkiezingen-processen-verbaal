@@ -48,7 +48,7 @@ pushd 2023-TK
                 dest="$n/${path%%\?*}"
                 if [ ! -s "$dest" ]; then
                   sleep 1
-                  wget "$url" -O "$dest" --no-check-certificate --read-timeout=5
+                  wget "$url" -O "$dest" --no-check-certificate --read-timeout=8
                 fi
                 ;;
             esac
