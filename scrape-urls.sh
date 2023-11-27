@@ -133,6 +133,7 @@ pushd 2023-TK
     ../urls-from-html.py https://www.echt-susteren.nl/verkiezingsuitslag | grep -v docreader > "$(stad 1711)"
     ../urls-from-html.py https://www.eijsden-margraten.nl/verkiezingen ".pdf" https://www.eijsden-margraten.nl | grep /1903_ > "$(stad 1903)"
     ../urls-from-html.py https://www.eemnes.nl/Bestuur/Tweede_Kamerverkiezing_op_22_november_2023 "dsresource" https://www.eemnes.nl | grep -v 244e352b-6749-493e-bddf-7fb40b01e871 > "$(stad 0317)"
+    ../urls-from-html.py https://www.ede.nl/bestuur-en-organisatie/verkiezingen-tweede-kamer ".pdf" https://www.ede.nl > "$(stad 0228)"
 
     # G
     ../urls-from-html.py https://www.geertruidenberg.nl/uitslagen-van-de-verkiezingen ".pdf" https://www.geertruidenberg.nl > "$(stad 0779)"
@@ -406,6 +407,8 @@ pushd 2023-TK
     ../urls-from-html.py https://www.woudenberg.nl/tweede-kamerverkiezingen-2023 > "$(stad 0351)" ".pdf" https://www.woudenberg.nl
     ../urls-from-html.py https://www.weststellingwerf.nl/uitslag-tweede-kamerverkiezing-2023 > "$(stad 0098)"
     ../urls-from-html.py https://www.wierden.nl/uitslagen-en-processen-verbaal-tweede-kamerverkiezingen-2023 | grep -v docreader > "$(stad 0189)"
+    ../urls-from-html.py https://www.gemeentewestland.nl/bestuur-en-organisatie/tweede-kamerverkiezingen-22-november-2023/uitslagen-tweede-kamerverkiezing-westland-per-kandidaat ".pdf" https://www.gemeentewestland.nl > "$(stad 1783)"
+    ../urls-from-html.py https://www.gemeentewestland.nl/bestuur-en-organisatie/tweede-kamerverkiezingen-22-november-2023/uitslagen-tweede-kamerverkiezing-op-kandidaatsniveau ".pdf" https://www.gemeentewestland.nl >> "$(stad 1783)"
 
     # Z
     ../urls-from-html.py https://www.zwolle.nl/uitslagen-verkiezingen > "$(stad 0193)" ".pdf" https://www.zwolle.nl
