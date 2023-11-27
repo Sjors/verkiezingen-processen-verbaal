@@ -127,7 +127,7 @@ except IndexError as e:
 
 settings = {
     "overwrite_files": False,
-    "target_date": datetime(2023, 11, 24, 15, 7, 29, tzinfo=ZoneInfo("Europe/Amsterdam")),
+    "target_date": datetime(2023, 11, 21, tzinfo=ZoneInfo("Europe/Amsterdam")),
     "level_filter": [municipality],  # On level index 0, filter folder/file names on municipality name (case insensitve regex). On level 1 and higher there will be no regex filter.
     "extensions": [".pdf", ".csv"]
 }
