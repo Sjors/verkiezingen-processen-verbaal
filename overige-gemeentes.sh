@@ -15,4 +15,10 @@ pushd 2023-TK
     mkdir -p 1930 && pushd 1930
         ../../mijnstembureau.py https://stembureau-nissewaard.nl/uitslagen/tk/totaal
     popd
+    mkdir -p 0392 && pushd 0392
+        ../../pleio.py Haarlem
+    popd
+    mkdir -p 0473 && pushd 0473
+        ../../pleio.py Zandvoort
+    popd
 popd

@@ -23,9 +23,11 @@ Voor de volgende gemeenten is een apart commando nodig:
 * Nissewaard
 * Enschede
 * Zwijndrecht
+* Haarlem
+* Zandvoort
 
 ```sh
-./mijn-stembureau.sh
+./overige-gemeentes.sh
 ```
 
 # Hashes en timestamp
