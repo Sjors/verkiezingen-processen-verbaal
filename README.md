@@ -30,6 +30,11 @@ Voor de volgende gemeenten is een apart commando nodig:
 ./overige-gemeentes.sh
 ```
 
+Voor Leiden dient handmatig een zip bestand gedownload te worden, zie issue #68
+
+Roermond (issue #56) en Assen (issue #55) gebruiken Google Drive en Stack Storage,
+dus moeten ook handmatig gedownload worden.
+
 # Hashes en timestamp
 
 De sha256 hashes van alle processen-verbaal staan in [Timestamps/2023-TK.asc](Timestamps/2023-TK.asc). Daarnaast heb ik een timestamp gemaakt, welke te verifieren is op [opentimestamps.org](https://opentimestamps.org)
