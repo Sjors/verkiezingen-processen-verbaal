@@ -146,7 +146,7 @@ pushd 2024-EP
     ../urls-from-html.py https://www.goirle.nl/verkiezingen ".pdf" https://www.goirle.nl > "$(stad 0785)"
     ../urls-from-html.py https://gooisemeren.nl/verkiezingen-tweede-kamer-22-november-2023/uitslag-tweede-kamerverkiezing-22-november-2023/ ".pdf" https://gooisemeren.nl > "$(stad 1942)"
     ../urls-from-html.py https://www.gorinchem.nl/verkiezing-europees-parlement-2024/processen-verbaal-verkiezing-europees-parlement-2024 > "$(stad 0512)"
-    ../urls-from-html.py https://www.gouda.nl/bestuur-en-organisatie/tweede-kamerverkiezingen/processen-verbaal-tweede-kamerverkiezing/ > "$(stad 0513)"
+    ../urls-from-html.py https://www.gouda.nl/bestuur-en-organisatie/europese-verkiezingen/processen-verbaal-europees-parlementsverkiezing/ > "$(stad 0513)"
     wget -nv -nd -nc -np -r --remote-encoding=utf-8 --local-encoding=utf-8 --spider --no-parent https://documenten.groningen.nl/TK2023/ 2>&1 | grep "pdf 200 OK" | awk '{print $4}' > "$(stad 0014)"
     ../urls-from-html.py https://www.gulpen-wittem.nl/onderwerpen/verkiezingen/uitslag-verkiezingen "tk23.*pdf" https://www.gulpen-wittem.nl > "$(stad 1729)"
     echo https://www.gulpen-wittem.nl/data/downloadables/1/8/5/8/1729_pv_stembureau_11_wilder-tref_tk23_zh.pdf>> "$(stad 1729)"
