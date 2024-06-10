@@ -356,12 +356,12 @@ pushd 2024-EP
 
     # U
     ../urls-from-html.py https://www.uitgeest.nl/verkiezingen ".pdf" https://www.uitgeest.nl > "$(stad 0450)"
-    ../urls-from-html.py https://www.uithoorn.nl/Home/Verkiezingen/Definitieve_uitslag_Europees_Parlement_2024 ".pdf" https://www.uithoorn.nl > "$(stad 0451)"
-    ../urls-from-html.py https://www.urk.nl/uitslag-tweede-kamer-verkiezing > "$(stad 0184)"
+    ../urls-from-html.py https://www.uithoorn.nl/Home/Verkiezingen/Verkiezingen_Europees_Parlement_2024/Definitieve_uitslag_Europees_Parlement_2024 ".pdf" https://www.uithoorn.nl > "$(stad 0451)"
+    ../urls-from-html.py https://www.urk.nl/uitslag-verkiezing-europees-parlement > "$(stad 0184)"
     ../urls-from-html.py https://www.utrecht.nl/bestuur-en-organisatie/verkiezingen/ > "$(stad 0344)" ".pdf" https://www.utrecht.nl
-    ../urls-from-html.py https://www.heuvelrug.nl/uitslag-verkiezingen > "$(stad 1581)"
+    ../urls-from-html.py https://www.heuvelrug.nl/verkiezingen > "$(stad 1581)"
 
-    # # V
+    # V
     ../urls-from-html.py https://www.vaals.nl/verkiezingen/europees-parlementsverkiezing-2024/uitslagen-europees-parlementsverkiezing ".pdf" https://www.vaals.nl > "$(stad 0981)"
     ../urls-from-html.py https://www.valkenburg.nl/voor-inwoners-en-ondernemers/verkiezingen/uitslag-europese-verkiezingen ".pdf" https://www.valkenburg.nl > "$(stad 0994)"
     ../urls-from-html.py https://www.valkenswaard.nl/uitslagEP2024 > "$(stad 0858)"
@@ -380,7 +380,7 @@ pushd 2024-EP
     ../urls-from-html.py https://www.voorst.nl/verkiezingen/documenten-verkiezingsuitslagen-ep ".pdf" https://www.voorst.nl > "$(stad 0285)"
     ../urls-from-html.py https://www.voorst.nl/verkiezingen/documenten-verkiezingsuitslag-europees-parlement-6-juni-2024 "pdf" https://www.vlaardingen.nl > "$(stad 0622)"
 
-    # # W
+    # W
     ../urls-from-html.py https://www.waadhoeke.nl/uitslagen ".pdf" https://www.waadhoeke.nl > "$(stad 1949)"
     ../urls-from-html.py https://www.waalre.nl/verkiezingen ".pdf" https://www.waalre.nl > "$(stad 0866)"
     ../urls-from-html.py https://www.waalwijk.nl/verkiezingsuitslag-verkiezing-europees-parlement-2024 > "$(stad 0867)"
