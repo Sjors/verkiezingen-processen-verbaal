@@ -3,7 +3,7 @@
 # download ze hooguit één keer.
 
 set -e
-pushd 2023-TK
+pushd 2024-EP
     find *.txt -type f -size +0 | while read -r file; do
         n=`echo $file | awk '{print $1}'`
         naam=`echo $file | awk '{print substr($2, 1, length($2)-4)}'`
