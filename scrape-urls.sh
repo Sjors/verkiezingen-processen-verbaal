@@ -13,7 +13,7 @@ stad () {
 # Deze lijst is niet compleet. De URL's van sommige gemeentes zijn handmatig
 # verzameld, danwel het gebruikte commando is hier niet gedocumenteerd. Dit
 # kan eventueel later aangevuld worden.
-pushd 2023-TK
+pushd 2024-EP
     # A
     ../urls-from-html.py https://www.almere.nl/bestuur/verkiezingen/processen-verbaal-tweede-kamerverkiezingen-2023 ".pdf" https://www.almere.nl > "$(stad 0034)"
     ../urls-from-html.py https://www.alphenaandenrijn.nl/Verkiezingen/Uitslag_Tweede_Kamerverkiezing_2023_definitief dsresource https://www.alphenaandenrijn.nl > "$(stad 0484)"
