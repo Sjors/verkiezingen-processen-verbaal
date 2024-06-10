@@ -302,17 +302,20 @@ pushd 2024-EP
     ../urls-from-html.py https://www.raalte.nl/uitslagen-verkiezing-europees-parlement-2024 "/file" https://www.raalte.nl > "$(stad 0177)"
     ../urls-from-html.py https://www.reimerswaal.nl/uitslag-verkiezingen > "$(stad 0703)"
     ../urls-from-html.py https://www.renkum.nl/Bestuur/Europees_Parlement/Uitslag_Europees_Parlement "dsresource" https://www.renkum.nl | grep -v pinterest > "$(stad 0274)"
+    ../urls-from-html.py https://www.raalte.nl/https://www.raalte.nl/uitslagen-europees-parlementsverkiezing-2024 "/file" https://www.raalte.nl > "$(stad 0177)"
+    ../urls-from-html.py https://www.reimerswaal.nl/uitslag-verkiezing-europees-parlement > "$(stad 0703)"
+    ../urls-from-html.py https://www.renkum.nl/Bestuur/Verkiezing_Europees_Parlement/Uitslag_verkiezing_Europees_Parlement "dsresource" https://www.renkum.nl | grep -v pinterest > "$(stad 0274)"
     ../urls-from-html.py https://www.renswoude.nl/verkiezingen | grep -v docreader > "$(stad 0339)"
     ../urls-from-html.py https://www.reuseldemierden.nl/zo-is-er-gestemd-in-reusel-de-mierden | grep -v docreader > "$(stad 1667)"
-    ../urls-from-html.py https://www.rheden.nl/Inwoners/Europees_Parlement_2024/Verkiezingsuitslag/Proces_verbalen ".pdf" https://www.rheden.nl > "$(stad 0275)"
+    ../urls-from-html.py https://www.rheden.nl/Inwoners/Europees_Parlement_Verkiezingen/Verkiezingsuitslag ".pdf" https://www.rheden.nl > "$(stad 0275)"
     ../urls-from-html.py https://www.rhenen.nl/praat-en-doe-mee/verkiezingen/uitslagen ".pdf" https://www.rhenen.nl > "$(stad 0340)"
     ../urls-from-html.py https://www.ridderkerk.nl/actueel/processen-verbaal-en-telling-tweede-kamerverkiezing/ > "$(stad 0597)"
-    ../urls-from-html.py https://www.rijssen-holten.nl/uitslag-verkiezingen-europees-parlement-2024/ > "$(stad 1742)"
-    ../urls-from-html.py https://www.rijswijk.nl/voorlopige-uitslag-tweede-kamerverkiezing-2023 > "$(stad 0603)"
+    ../urls-from-html.py https://www.rijssen-holten.nl/ep-verkiezingen-2024/uitslag-verkiezingen-europees-parlement-2024-2/ > "$(stad 1742)"
+    ../urls-from-html.py https://www.rijswijk.nl/voorlopige-uitslag-europese-parlementsverkiezing-2024 > "$(stad 0603)"
     ../urls-from-html.py https://www.roerdalen.nl/uitslagen-verkiezingen > "$(stad 1669)"
-    ../urls-from-html.py https://roosendaal.nl/uitslag-tweede-kamerverkiezing "/download" https://roosendaal.nl > "$(stad 1674)"
-    ../urls-from-html.py https://tellingen.stembureausinrotterdam.nl/Documenten-TK23 > "$(stad 0599)" ".pdf" https://tellingen.stembureausinrotterdam.nl
-    ../urls-from-html.py https://www.rucphen.nl/verkiezingen/uitslag-verkiezingen ".pdf" https://www.rucphen.nl > "$(stad 0840)"
+    ../urls-from-html.py https://www.roosendaal.nl/uitslag-verkiezing-europees-parlement "/download" https://roosendaal.nl > "$(stad 1674)"
+    ../urls-from-html.py https://tellingen.stembureausinrotterdam.nl > "$(stad 0599)" ".pdf" https://tellingen.stembureausinrotterdam.nl
+    ../urls-from-html.py https://www.rucphen.nl/verkiezingen/Uitslag-verkiezingen ".pdf" https://www.rucphen.nl > "$(stad 0840)"
     ../urls-from-html.py https://www.rozendaal.nl/verkiezingen-22-november-2023/uitslagen-verkiezingen-tk2023/ | grep -v Verkiezingsuitslagen.pdf > "$(stad 0277)"
 
     # S
