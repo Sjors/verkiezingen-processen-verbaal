@@ -415,11 +415,11 @@ pushd 2024-EP
     ../urls-from-html.py https://www.zwolle.nl/uitslagen-verkiezingen > "$(stad 0193)" ".pdf" https://www.zwolle.nl
     ../urls-from-html.py https://zutphen.nl/verkiezingen/uitslagen > "$(stad 0301)" ".pdf" https://zutphen.nl
     ../urls-from-html.py https://www.zoeterwoude.nl/gemeenteraad-en-bestuur/verkiezingen > "$(stad 0638)" ".pdf" https://www.zoeterwoude.nl
-    ../urls-from-html.py https://www.zoetermeer.nl/processen-verbaal-tellingen-tweede-kamerverkiezing-2023 | grep -v docreader > "$(stad 0637)"
-    ../urls-from-html.py https://www.zevenaar.nl/voorlopige-uitslag-verkiezingen-tweede-kamer > "$(stad 0299)" ".pdf" https://www.zevenaar.nl
-    ../urls-from-html.py https://www.zeist.nl/gemeente-bestuur-en-organisatie/verkiezingen/uitslag-verkiezingen ".pdf" https://www.zeist.nl | grep -v docreader > "$(stad 0355)"
+    ../urls-from-html.py https://www.zoetermeer.nl/processen-verbaal-tellingen-verkiezing-europees-parlement-2024 | grep -v docreader > "$(stad 0637)"
+    ../urls-from-html.py https://www.zevenaar.nl/voorlopige-uitslag-verkiezing-europees-parlement-2024 > "$(stad 0299)" ".pdf" https://www.zevenaar.nl
+    ../urls-from-html.py https://www.zeist.nl/gemeente-bestuur-en-organisatie/verkiezingen/uitslag-europese-verkiezingen ".pdf" https://www.zeist.nl | grep -v docreader > "$(stad 0355)"
     ../urls-from-html.py https://www.zeewolde.nl/verkiezingen/uitslagen ".pdf" https://www.zeewolde.nl > "$(stad 0050)"
-    ../urls-from-html.py https://www.zaltbommel.nl/inwoner-en-ondernemer/tweede-kamer-verkiezingen-2023/uitslag-verkiezingen-tweede-kamer/uitslag-verkiezingen-tweede-kamer ".pdf" https://www.zaltbommel.nl > "$(stad 0297)"
+    ../urls-from-html.py https://www.zaltbommel.nl/inwoner-en-ondernemer/verkiezingen-europees-parlement-6-juni-2024/uitslagen-verkiezingen-europees-parlement-2024 ".pdf" https://www.zaltbommel.nl > "$(stad 0297)"
     ../urls-from-html.py https://www.zuidplas.nl/processen-verbaal-van-de-stembureaus > "$(stad 1892)"
-    ../urls-from-html.py https://www.zwartewaterland.nl/uitslagen-tweede-kamerverkiezingen-22-november-2023 > "$(stad 1896)"
+    ../urls-from-html.py https://www.zwartewaterland.nl/verkiezingen/uitslagen > "$(stad 1896)"
 popd
