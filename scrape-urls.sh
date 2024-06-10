@@ -380,34 +380,32 @@ pushd 2024-EP
     ../urls-from-html.py https://www.voorst.nl/verkiezingen/documenten-verkiezingsuitslagen-tweede-kamer ".pdf" https://www.voorst.nl > "$(stad 0285)"
     ../urls-from-html.py https://www.vlaardingen.nl/Bestuur/Verkiezingen/Tweede_Kamerverkiezingen_2021:bv43S99BRHeJXU18U40arg/Voorlopige_uitslag_Tweedekamerverkiezingen_2023:ddGYnBdZRQOHODvm_NK9UA "dsresource" https://www.vlaardingen.nl | grep -v bf6bc677-df5d-4d55-96e2-c43c6d1652fb | grep -v pinterest > "$(stad 0622)"
 
-    # W
+    # # W
     ../urls-from-html.py https://www.waadhoeke.nl/uitslagen ".pdf" https://www.waadhoeke.nl > "$(stad 1949)"
-    ../urls-from-html.py https://www.waalre.nl/inwoners-en-ondernemers/verkiezing-europees-parlement-2024 ".pdf" https://www.waalre.nl > "$(stad 0866)"
-    ../urls-from-html.py https://www.waalwijk.nl/verkiezingsuitslag-verkiezingen-europees-parlement-2024 > "$(stad 0867)"
+    ../urls-from-html.py https://www.waalre.nl/verkiezingen ".pdf" https://www.waalre.nl > "$(stad 0866)"
+    ../urls-from-html.py https://www.waalwijk.nl/verkiezingsuitslag-verkiezing-europees-parlement-2024 > "$(stad 0867)"
     ../urls-from-html.py https://www.wageningen.nl/actueel/tweede-kamer-verkiezingen/uitslagen/ > "$(stad 0289)"
-    ../urls-from-html.py https://www.wassenaar.nl/uitslag-van-de-verkiezingen-voor-de-europees-parlement-2024 > "$(stad 0629)"
-    ../urls-from-html.py https://www.waterland.nl/uitslagen-verkiezing-europees-parlement-2024 > "$(stad 0852)"
+    ../urls-from-html.py https://www.wassenaar.nl/uitslag-verkiezingen-europees-parlement-2024-0 > "$(stad 0629)"
+    ../urls-from-html.py https://www.waterland.nl/uitslag-en-telproces-verkiezingen-2024 > "$(stad 0852)"
     ../urls-from-html.py https://www.weert.nl/verkiezingen ".pdf" https://www.weert.nl > "$(stad 0988)"
-    ../urls-from-html.py https://www.westbetuwe.nl/proces-verbaal-tweede-kamerverkiezingen ".pdf" https://www.westbetuwe.nl > "$(stad 1960)"
-    ../urls-from-html.py https://www.westerkwartier.nl/uitslagen-tweede-kamer-verkiezingen-november-2023 | grep -v docreader > "$(stad 1969)"
-     ../urls-from-html.py https://www.westmaasenwaal.nl/uitslag-tweede-kamerverkiezingen > "$(stad 0668)"
-    echo "https://www.gemeentewesterveld.nl/Bestuur_en_organisatie/Actueel/Verkiezingen/Uitslag_verkiezingen_22_november_2023/Verslag_controleprotocol_gemeentelijk_stembureau.pdf" > "$(stad 1701)"
-    ../urls-from-html.py https://www.gemeentewesterveld.nl/Bestuur_en_organisatie/Actueel/Verkiezingen/Uitslag_verkiezingen_22_november_2023/Proces_verbaal_per_stembureau ".pdf" https://www.gemeentewesterveld.nl >> "$(stad 1701)"
-    ../urls-from-html.py https://www.gemeentewesterveld.nl/Bestuur_en_organisatie/Actueel/Verkiezingen/Uitslag_verkiezingen_22_november_2023/Uitkomsten_per_stembureau ".pdf" https://www.gemeentewesterveld.nl >> "$(stad 1701)"
-    ../urls-from-html.py https://www.westervoort.nl/voorlopige-uitslag-verkiezingen-tweede-kamer  ".pdf" https://www.westervoort.nl > "$(stad 0293)"
-    ../urls-from-html.py https://www.westerwolde.nl/verkiezingsuitslagen-bekijken > "$(stad 1950)"
+    ../urls-from-html.py https://www.westbetuwe.nl/proces-verbaal-europees-parlementsverkiezingen ".pdf" https://www.westbetuwe.nl > "$(stad 1960)"
+    ../urls-from-html.py https://www.westerkwartier.nl/uitslagen-verkiezingen-europees-parlement-2024 | grep -v docreader > "$(stad 1969)"
+    ../urls-from-html.py https://www.westmaasenwaal.nl/uitslag-verkiezingen-europees-parlement > "$(stad 0668)"
+    ../urls-from-html.py https://www.gemeentewesterveld.nl/Bestuur_en_organisatie/Actueel/Verkiezing_Europees_Parlement/Uitslagen_verkiezingen ".pdf" https://www.gemeentewesterveld.nl >> "$(stad 1701)"
+    ../urls-from-html.py https://www.westervoort.nl/voorlopige-uitslag-verkiezing-europees-parlement-2024 ".pdf" https://www.westervoort.nl > "$(stad 0293)"
+    ../urls-from-html.py https://www.westerwolde.nl/uitslagen > "$(stad 1950)"
     ../urls-from-html.py https://www.wijchen.nl/verkiezingen-uitslag ".pdf" https://www.wijchen.nl > "$(stad 0296)"
-    ../urls-from-html.py https://www.wijdemeren.nl/4/verkiezingen/Verkiezingsuitslag.html  ".pdf" https://www.wijdemeren.nl > "$(stad 1696)"
+    ../urls-from-html.py https://www.wijdemeren.nl/4/verkiezingen/Europees-Parlement/167328-Verkiezingsuitslag.html  ".pdf" https://www.wijdemeren.nl > "$(stad 1696)"
     ../urls-from-html.py https://www.wijkbijduurstede.nl/verkiezingen/uitslagen-verkiezing-europees-parlement-2024  ".pdf" https://www.wijkbijduurstede.nl > "$(stad 0352)"
     ../urls-from-html.py https://www.wijkbijduurstede.nl/verkiezingen/proces-verbalen-verkiezing-europees-parlement-2024 ".pdf" https://www.wijkbijduurstede.nl >> "$(stad 0352)"
     ../urls-from-html.py https://www.wijkbijduurstede.nl/verkiezingen/uitslagen-per-stembureau ".pdf" https://www.wijkbijduurstede.nl >> "$(stad 0352)"
     ../urls-from-html.py https://www.winterswijk.nl/uitslagen | grep -v readspeaker > "$(stad 0294)"
     ../urls-from-html.py https://www.woensdrecht.nl/uitslagen-verkiezingen-europees-parlement-2024  > "$(stad 0873)"
-    ../urls-from-html.py https://www.woerden.nl/Verkiezingen/Verkiezingen_2023 > "$(stad 0632)" ".pdf" https://www.woerden.nl
+    ../urls-from-html.py https://www.woerden.nl/Verkiezingen/Verkiezingen_2024 > "$(stad 0632)" ".pdf" https://www.woerden.nl
     ../urls-from-html.py https://wormerland.nl/verkiezingen/uitslagen-verkiezingen-europees-parlement-2024 > "$(stad 0880)" ".pdf" https://wormerland.nl
-    ../urls-from-html.py https://www.woudenberg.nl/verkiezing-europees-parlement-2024 > "$(stad 0351)" ".pdf" https://www.woudenberg.nl
-    ../urls-from-html.py https://www.weststellingwerf.nl/uitslag-tweede-kamerverkiezing-2023 > "$(stad 0098)"
-    ../urls-from-html.py https://www.wierden.nl/uitslagen-en-processen-verbaal-verkiezing-europees-parlement-2024 | grep -v docreader > "$(stad 0189)"
+    ../urls-from-html.py https://www.woudenberg.nl/verkiezingen/verkiezing-europees-parlement-6-juni-2024 > "$(stad 0351)" ".pdf" https://www.woudenberg.nl
+    ../urls-from-html.py https://www.weststellingwerf.nl/uitslagen-verkiezingen > "$(stad 0098)"
+    ../urls-from-html.py https://www.wierden.nl/processen-verbaal-europees-parlement-2024 | grep -v docreader > "$(stad 0189)"
     ../urls-from-html.py https://www.gemeentewestland.nl/bestuur-en-organisatie/tweede-kamerverkiezingen-22-november-2023/uitslagen-tweede-kamerverkiezing-westland-per-kandidaat ".pdf" https://www.gemeentewestland.nl > "$(stad 1783)"
     ../urls-from-html.py https://www.gemeentewestland.nl/bestuur-en-organisatie/tweede-kamerverkiezingen-22-november-2023/uitslagen-tweede-kamerverkiezing-op-kandidaatsniveau ".pdf" https://www.gemeentewestland.nl >> "$(stad 1783)"
 
