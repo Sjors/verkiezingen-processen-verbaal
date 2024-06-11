@@ -383,8 +383,8 @@ pushd 2024-EP
     ../urls-from-html.py https://www.vlieland.nl/uitslag-verkiezing-europees-parlement-gemeente-vlieland > "$(stad 0096)"
     ../urls-from-html.py https://www.veendam.nl/Onderwerpen/Actueel/Verkiezingen/Processen_verbaal_Europees_Parlement "pdf" https://www.veendam.nl > "$(stad 0047)"
     ../urls-from-html.py https://www.veendam.nl/Onderwerpen/Actueel/Verkiezingen/Processen_verbaal_Europees_Parlement "org" https://www.veendam.nl | grep -v Bestuur_en_organisatie | grep -v a0b33a62-4b04-4642-a60b-bae0939acdbe >> "$(stad 0047)"
-    ../urls-from-html.py https://www.voorst.nl/verkiezingen/documenten-verkiezingsuitslagen-ep ".pdf" https://www.voorst.nl > "$(stad 0285)"
-    ../urls-from-html.py https://www.voorst.nl/verkiezingen/documenten-verkiezingsuitslag-europees-parlement-6-juni-2024 "pdf" https://www.vlaardingen.nl > "$(stad 0622)"
+    ../urls-from-html.py https://www.voorst.nl/verkiezingen/documenten-verkiezingsuitslag-europees-parlement-6-juni-2024 ".pdf" https://www.voorst.nl > "$(stad 0285)"
+    ../urls-from-html.py https://www.vlaardingen.nl/Bestuur/Verkiezingen/Europese_verkiezingen/Uitslag_Europees_Parlementsverkiezing_2024 "pdf" https://www.vlaardingen.nl > "$(stad 0622)"
 
     # W
     ../urls-from-html.py https://www.waadhoeke.nl/uitslagen ".pdf" https://www.waadhoeke.nl > "$(stad 1949)"
