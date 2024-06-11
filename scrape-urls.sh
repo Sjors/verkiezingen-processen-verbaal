@@ -387,7 +387,7 @@ pushd 2024-EP
     ../urls-from-html.py https://www.waadhoeke.nl/uitslagen ".pdf" https://www.waadhoeke.nl > "$(stad 1949)"
     ../urls-from-html.py https://www.waalre.nl/verkiezingen ".pdf" https://www.waalre.nl > "$(stad 0866)"
     ../urls-from-html.py https://www.waalwijk.nl/verkiezingsuitslag-verkiezing-europees-parlement-2024 > "$(stad 0867)"
-    ../urls-from-html.py https://www.wageningen.nl/actueel/tweede-kamer-verkiezingen/uitslagen/ > "$(stad 0289)"
+    ../urls-from-html.py https://www.wageningen.nl/actueel/verkiezingen-europees-parlement/uitslagen > "$(stad 0289)"
     ../urls-from-html.py https://www.wassenaar.nl/uitslag-verkiezingen-europees-parlement-2024-0 > "$(stad 0629)"
     ../urls-from-html.py https://www.waterland.nl/uitslag-en-telproces-verkiezingen-2024 > "$(stad 0852)"
     ../urls-from-html.py https://www.weert.nl/verkiezingen ".pdf" https://www.weert.nl > "$(stad 0988)"
@@ -409,8 +409,8 @@ pushd 2024-EP
     ../urls-from-html.py https://www.woudenberg.nl/verkiezingen/verkiezing-europees-parlement-6-juni-2024 > "$(stad 0351)" ".pdf" https://www.woudenberg.nl
     ../urls-from-html.py https://www.weststellingwerf.nl/uitslagen-verkiezingen > "$(stad 0098)"
     ../urls-from-html.py https://www.wierden.nl/processen-verbaal-europees-parlement-2024 | grep -v docreader > "$(stad 0189)"
-    ../urls-from-html.py https://www.gemeentewestland.nl/bestuur-en-organisatie/tweede-kamerverkiezingen-22-november-2023/uitslagen-tweede-kamerverkiezing-westland-per-kandidaat ".pdf" https://www.gemeentewestland.nl > "$(stad 1783)"
-    ../urls-from-html.py https://www.gemeentewestland.nl/bestuur-en-organisatie/tweede-kamerverkiezingen-22-november-2023/uitslagen-tweede-kamerverkiezing-op-kandidaatsniveau ".pdf" https://www.gemeentewestland.nl >> "$(stad 1783)"
+    ../urls-from-html.py https://www.gemeentewestland.nl/bestuur-en-organisatie/tweede-kamerverkiezingen-22-november-2023/uitslagen-tweede-kamerverkiezing-op-kandidaatsniveau-1-1 ".pdf" https://www.gemeentewestland.nl > "$(stad 1783)"
+    ../urls-from-html.py https://www.gemeentewestland.nl/bestuur-en-organisatie/tweede-kamerverkiezingen-22-november-2023/uitslagen-tweede-kamerverkiezing-op-kandidaatsniveau-1 ".pdf" https://www.gemeentewestland.nl >> "$(stad 1783)"
 
     # Z
     ../urls-from-html.py https://www.zwolle.nl/uitslagen-verkiezingen > "$(stad 0193)" ".pdf" https://www.zwolle.nl
