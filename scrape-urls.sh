@@ -302,10 +302,7 @@ pushd 2024-EP
     ../urls-from-html.py https://www.putten.nl/Bestuur/Verkiezingen/Uitslag_en_proces_verbaal_Europees_Parlement_2024/Uitslag_per_stembureau ".pdf" https://www.putten.nl >> "$(stad 0273)"
 
     # R
-    ../urls-from-html.py https://www.raalte.nl/uitslagen-verkiezing-europees-parlement-2024 "/file" https://www.raalte.nl > "$(stad 0177)"
-    ../urls-from-html.py https://www.reimerswaal.nl/uitslag-verkiezingen > "$(stad 0703)"
-    ../urls-from-html.py https://www.renkum.nl/Bestuur/Europees_Parlement/Uitslag_Europees_Parlement "dsresource" https://www.renkum.nl | grep -v pinterest > "$(stad 0274)"
-    ../urls-from-html.py https://www.raalte.nl/https://www.raalte.nl/uitslagen-europees-parlementsverkiezing-2024 "/file" https://www.raalte.nl > "$(stad 0177)"
+    ../urls-from-html.py https://www.raalte.nl/uitslagen-europees-parlementsverkiezing-2024 "/file" https://www.raalte.nl > "$(stad 0177)"
     ../urls-from-html.py https://www.reimerswaal.nl/uitslag-verkiezing-europees-parlement > "$(stad 0703)"
     ../urls-from-html.py https://www.renkum.nl/Bestuur/Verkiezing_Europees_Parlement/Uitslag_verkiezing_Europees_Parlement "dsresource" https://www.renkum.nl | grep -v pinterest > "$(stad 0274)"
     ../urls-from-html.py https://www.renswoude.nl/verkiezingen | grep -v docreader > "$(stad 0339)"
