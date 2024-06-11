@@ -254,18 +254,16 @@ pushd 2024-EP
     ../urls-from-html.py https://www.nederbetuwe.nl/verkiezingen "dumpFile" > "$(stad 1740)"
     ../urls-from-html.py https://www.nieuwegein.nl/gemeente-bestuur-en-organisatie/verkiezingen ".pdf" https://www.nieuwegein.nl | grep -v docreader > "$(stad 0356)"
     ../urls-from-html.py https://www.nieuwkoop.nl/verkiezingsuitslagen | grep -v docreader > "$(stad 0569)"
-    ../urls-from-html.py https://www.nijkerk.eu/uitslag-verkiezingen-tweede-kamer-22-november-2023 > "$(stad 0267)"
+    ../urls-from-html.py https://www.nijkerk.eu/uitslag-verkiezingen-europees-parlement-2024 > "$(stad 0267)"
     ../urls-from-html.py https://www.nijmegen.nl/diensten/verkiezingen/uitslagen-verkiezingen/ > "$(stad 0268)"
-    echo https://www.noardeast-fryslan.nl/sites/default/files/2023-11/Stembureau%2023%20It%20Koetshus%20Easternijtsjerk%20ZH.pdf > "$(stad 1970)"
-    ../urls-from-html.py https://www.noardeast-fryslan.nl/processen-verbaal-verkiezingen-europees-parlement-2024 >> "$(stad 1970)"
-    ../urls-from-html.py https://www.noardeast-fryslan.nl/nieuwsoverzicht/definitieve-uitslagen-verkiezing-europees-parlement-2024-noardeast-fryslan >> "$(stad 1970)"
-    ../urls-from-html.py https://www.noord-beveland.nl/uitslag-tweede-kamerverkiezing-2023 > "$(stad 1695)"
-    ../urls-from-html.py https://www.noordenveld.nl/processen-verbaal-tweede-kamer-verkiezing-22-november-2023 > "$(stad 1699)"
-    ../urls-from-html.py https://www.noordoostpolder.nl/uitslagen > "$(stad 0171)" ".pdf" https://www.noordoostpolder.nl
-    ../urls-from-html.py https://www.noordwijk.nl/onderwerp/burgerzaken/verkiezingen/verkiezingen-informatie-en-uitslagen/processen-verbaal-verkiezingen-europees-parlement-2024/ | grep -v Bibliotheek > "$(stad 0575)"
-    ../urls-from-html.py https://verkiezingen.nuenen.nl/processen-verbaal-en-bijlagen > "$(stad 0820)"
+    ../urls-from-html.py https://www.noardeast-fryslan.nl/processen-verbaal-verkiezingen-europees-parlement-6-juni-2024 > "$(stad 1970)"
+    ../urls-from-html.py https://www.noord-beveland.nl/uitslag-europees-parlementsverkiezing-2024 > "$(stad 1695)"
+    ../urls-from-html.py https://www.noordenveld.nl/uitslag-verkiezing-europees-parlement-2024# > "$(stad 1699)"
+    ../urls-from-html.py https://www.noordoostpolder.nl/uitslagen-2024 > "$(stad 0171)" ".pdf" https://www.noordoostpolder.nl
+    ../urls-from-html.py https://www.noordwijk.nl/onderwerp/burgerzaken/verkiezingen/verkiezingen-informatie-en-uitslagen/uitslagen-verkiezingen-europees-parlement-2024-2/ | grep -v Bibliotheek > "$(stad 0575)"
+    ../urls-from-html.py https://www.nuenen.nl/verkiezingen/uitslagen/processen-verbaal > "$(stad 0820)"
     ../urls-from-html.py https://www.nunspeet.nl/verkiezingen/uitslagen ".pdf" https://www.nunspeet.nl > "$(stad 0302)"
-    ../urls-from-html.py https://www.nederweert.nl/verkiezingsuitslagen > "$(stad 0946)"
+    ../urls-from-html.py https://www.nederweert.nl/uitslagen > "$(stad 0946)"
 
     # O
     ../urls-from-html.py https://www.oegstgeest.nl/bestuur/verkiezing-europees-parlement-2024/voorlopige-uitslag ".pdf" https://www.oegstgeest.nl > "$(stad 0579)"
