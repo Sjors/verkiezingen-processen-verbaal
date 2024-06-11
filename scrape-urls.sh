@@ -10,6 +10,9 @@ stad () {
     find . -type f -name '*.txt' | grep $1
 }
 
+# Maak het makkelijker om niet werkende URLs te vinden
+set -x
+
 # Deze lijst is niet compleet. De URL's van sommige gemeentes zijn handmatig
 # verzameld, danwel het gebruikte commando is hier niet gedocumenteerd. Dit
 # kan eventueel later aangevuld worden.
