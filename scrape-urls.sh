@@ -347,16 +347,16 @@ pushd 2024-EP
     ../urls-from-html.py https://www.gemeentesluis.nl/Bestuur_en_Organisatie/Verkiezingen ".pdf" https://www.gemeentesluis.nl | grep /Verkiezingen/ | sort -u --version-sort > "$(stad 1714)"
 
     # T
-    ../urls-from-html.py https://www.texel.nl/bestuur-en-organisatie/tweedekamerverkiezingen/verkiezingsuitslagen-tweede-kamerverkiezingen/ > "$(stad 0448)"
-    ../urls-from-html.py https://www.teylingen.nl/verkiezingen/uitslag-verkiezing-europees-parlement-2024 ".pdf" https://www.teylingen.nl > "$(stad 1525)"
+    ../urls-from-html.py https://www.texel.nl/bestuur-en-organisatie/europeseverkiezingen/verkiezingsuitslagen-europese-parlementsverkiezingen/ > "$(stad 0448)"
+    ../urls-from-html.py https://www.teylingen.nl/verkiezingen/proces-verbalen ".pdf" https://www.teylingen.nl > "$(stad 1525)"
     ../urls-from-html.py https://www.tholen.nl/verkiezingen/verkiezing-europees-parlement/uitslagen-verkiezingen-europees-parlement-2024 ".pdf" https://www.tholen.nl > "$(stad 0716)"
     ../urls-from-html.py https://www.tubbergen.nl/verkiezingen-2024 "download" https://www.tubbergen.nl | grep -v 4544 | grep -v 4556 | grep -v 4557 | grep -v 4611 | grep -v 4612  | grep -v 4613 | sort | uniq  > "$(stad 0183)"
-    ../urls-from-html.py https://www.twenterand.nl/verkiezingsuitslagen-2023-stembureau ".pdf" > "$(stad 1700)"
+    ../urls-from-html.py https://www.twenterand.nl/verkiezingsuitslagen-2024 ".pdf" > "$(stad 1700)"
     ../urls-from-html.py https://www.tynaarlo.nl/verkiezingen/uitslagen-verkiezingen ".pdf" https://www.tynaarlo.nl > "$(stad 1730)"
     ../urls-from-html.py https://www.t-diel.nl/uitslag-en-processen-verbaal-verkiezing-europees-parlement-2024-in-tytsjerksteradiel > "$(stad 0737)"
-    ../urls-from-html.py https://www.tiel.nl/processen-verbaal "file" https://www.tiel.nl | grep -v csv > "$(stad 0281)"
+    ../urls-from-html.py https://www.tiel.nl/uitslagen-verkiezing-europees-parlement-2024 "pdf" https://www.tiel.nl | grep -v csv > "$(stad 0281)"
     ../urls-from-html.py https://www.tilburg.nl/gemeente/bestuur/uitslagen-en-het-proces-verbaal-per-stembureau-verkiezing-europees-parlement-1/ ".pdf" https://www.tilburg.nl > "$(stad 0855)"
-    ../urls-from-html.py https://www.terschelling.nl/uitslagen-tweede-kamerverkiezingen-22-november-2023 > "$(stad 0093)"
+    ../urls-from-html.py https://www.terschelling.nl/uitslagen-europees-parlementsverkiezingen-2024 > "$(stad 0093)"
     ../urls-from-html.py https://www.terneuzen.nl/Verkiezingen/Processen_verbaal_stembureau_s_N10_1 ".pdf" https://www.terneuzen.nl > "$(stad 0715)"
     ../urls-from-html.py https://www.terneuzen.nl/Verkiezingen ".pdf" https://www.terneuzen.nl >> "$(stad 0715)"
 
