@@ -200,12 +200,12 @@ pushd 2024-EP
     ../urls-from-html.py https://www.ijsselstein.nl/Bestuur_en_organisatie/Verkiezingen/Europees_Parlement/processen_verbaal ".pdf" https://www.ijsselstein.nl > "$(stad 0353)"
 
     # K
-    ../urls-from-html.py https://www.kaagenbraassem.nl/Bestuur_en_organisatie/Verkiezingen/Definitieve_uitslag_Tweede_Kamerverkiezingen dsresource https://www.kaagenbraassem.nl | grep -v pinterest > "$(stad 1884)"
-    ../urls-from-html.py  https://www.kampen.nl/tweede-kamerverkiezingen ".pdf" https://www.kampen.nl > "$(stad 0166)"
-    ../urls-from-html.py https://www.kapelle.nl/verkiezingsuitslag#processen-verbaal-verkiezing-tweede-kamer-3311 > "$(stad 0678)"
+    ../urls-from-html.py https://www.kaagenbraassem.nl/Bestuur_en_organisatie/Verkiezingen/Uitslag_Europese_verkiezingen_2024 dsresource https://www.kaagenbraassem.nl | grep -v pinterest > "$(stad 1884)"
+    ../urls-from-html.py https://www.kampen.nl/verkiezingen-europees-parlement ".pdf" https://www.kampen.nl > "$(stad 0166)"
+    ../urls-from-html.py https://www.kapelle.nl/uitslag-europees-parlementsverkiezing > "$(stad 0678)"
     ../urls-from-html.py https://www.katwijk.nl/gemeente-en-burgerzaken/verkiezingen/uitslagen ".pdf" https://www.katwijk.nl > "$(stad 0537)"
-    ../urls-from-html.py https://www.kerkrade.nl/uitslagen-tweede-kamerverkiezing-2023 > "$(stad 0928)"
-    ../urls-from-html.py https://www.koggenland.nl/definitieve-uitslag-tweede-kamerverkiezing-22-november-2023 > "$(stad 1598)"
+    ../urls-from-html.py https://www.kerkrade.nl/uitslag-europees-parlementsverkiezing > "$(stad 0928)"
+    ../urls-from-html.py https://www.koggenland.nl/definitieve-uitslag-verkiezingen-EP2024 > "$(stad 1598)"
     ../urls-from-html.py https://krimpenaandenijssel.nl/dossiers/definitieve-uitslag-verkiezing-europees-parlement-2024/ > "$(stad 0542)"
     ../urls-from-html.py https://www.krimpenerwaard.nl/verkiezingen > "$(stad 1931)"
 
