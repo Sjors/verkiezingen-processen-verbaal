@@ -389,7 +389,7 @@ pushd 2024-EP
     ../urls-from-html.py https://www.waalwijk.nl/verkiezingsuitslag-verkiezing-europees-parlement-2024 > "$(stad 0867)"
     ../urls-from-html.py https://www.wageningen.nl/actueel/verkiezingen-europees-parlement/uitslagen > "$(stad 0289)"
     ../urls-from-html.py https://www.wassenaar.nl/uitslag-verkiezingen-europees-parlement-2024-0 > "$(stad 0629)"
-    ../urls-from-html.py https://www.waterland.nl/uitslag-en-telproces-verkiezingen-2024 > "$(stad 0852)"
+    ../urls-from-html.py https://www.waterland.nl/uitslag-en-telproces-verkiezingen-2024 ".pdf" https://www.waterland.nl > "$(stad 0852)"
     ../urls-from-html.py https://www.weert.nl/verkiezingen ".pdf" https://www.weert.nl > "$(stad 0988)"
     ../urls-from-html.py https://www.westbetuwe.nl/proces-verbaal-europees-parlementsverkiezingen ".pdf" https://www.westbetuwe.nl > "$(stad 1960)"
     ../urls-from-html.py https://www.westerkwartier.nl/uitslagen-verkiezingen-europees-parlement-2024 | grep -v docreader > "$(stad 1969)"
@@ -400,8 +400,6 @@ pushd 2024-EP
     ../urls-from-html.py https://www.wijchen.nl/verkiezingen-uitslag ".pdf" https://www.wijchen.nl > "$(stad 0296)"
     ../urls-from-html.py https://www.wijdemeren.nl/4/verkiezingen/Europees-Parlement/167328-Verkiezingsuitslag.html  ".pdf" https://www.wijdemeren.nl > "$(stad 1696)"
     ../urls-from-html.py https://www.wijkbijduurstede.nl/verkiezingen/uitslagen-verkiezing-europees-parlement-2024  ".pdf" https://www.wijkbijduurstede.nl > "$(stad 0352)"
-    ../urls-from-html.py https://www.wijkbijduurstede.nl/verkiezingen/proces-verbalen-verkiezing-europees-parlement-2024 ".pdf" https://www.wijkbijduurstede.nl >> "$(stad 0352)"
-    ../urls-from-html.py https://www.wijkbijduurstede.nl/verkiezingen/uitslagen-per-stembureau ".pdf" https://www.wijkbijduurstede.nl >> "$(stad 0352)"
     ../urls-from-html.py https://www.winterswijk.nl/uitslagen | grep -v readspeaker > "$(stad 0294)"
     ../urls-from-html.py https://www.woensdrecht.nl/uitslagen-verkiezingen-europees-parlement-2024  > "$(stad 0873)"
     ../urls-from-html.py https://www.woerden.nl/Verkiezingen/Verkiezingen_2024 > "$(stad 0632)" ".pdf" https://www.woerden.nl
