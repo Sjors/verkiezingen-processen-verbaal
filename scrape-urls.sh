@@ -197,7 +197,7 @@ pushd 2024-EP
     ../urls-from-html.py https://www.gemeentehulst.nl/verkiezingen/uitslagen dsresource https://www.gemeentehulst.nl | grep -v pinterest | grep -v d28050fd-d0f1-4e4c-8f57-723fa89f0c2f > "$(stad 0677)"
 
     # I
-    ../urls-from-html.py https://www.ijsselstein.nl/Bestuur_en_organisatie/Verkiezingen/Europees_Parlement/processen_verbaal ".pdf" https://www.ijsselstein.nl > "$(stad 0353)"
+    ../urls-from-html.py https://www.ijsselstein.nl/Bestuur_en_organisatie/Verkiezingen/Verkiezingen_Europees_Parlement_2024/Processen_verbaal dsresource https://www.ijsselstein.nl > "$(stad 0353)"
 
     # K
     ../urls-from-html.py https://www.kaagenbraassem.nl/Bestuur_en_organisatie/Verkiezingen/Uitslag_Europese_verkiezingen_2024 dsresource https://www.kaagenbraassem.nl | grep -v pinterest > "$(stad 1884)"
