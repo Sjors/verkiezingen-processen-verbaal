@@ -291,15 +291,13 @@ pushd 2024-EP
     ../urls-from-html.py https://www.ooststellingwerf.nl/verkiezingen/uitslag > "$(stad 0085)"
 
     # P
-    ../urls-from-html.py https://www.papendrecht.nl/Inwoners/Overzicht_Inwoners/Verkiezingen/Verkiezing_2023/Verkiezingsuitslagen_Tweede_Kamer_22_november_2023 ".pdf" https://www.papendrecht.nl > "$(stad 0590)"
+    ../urls-from-html.py https://www.papendrecht.nl/Inwoners/Overzicht_Inwoners/Verkiezingen/Verkiezing_Europees_Parlement ".pdf" https://www.papendrecht.nl > "$(stad 0590)"
     ../urls-from-html.py https://www.peelenmaas.nl/bestuur-en-organisatie/verkiezingen/Verkiezingsuitslag ".pdf" https://www.peelenmaas.nl | sort -u --version-sort > "$(stad 1894)"
     ../urls-from-html.py https://www.pekela.nl/Onderwerpen/Actueel/Verkiezingen/Alle_onderwerpen_verkiezingen/Processen_verbaal_Tweede_Kamerverkiezingen dsresource https://www.pekela.nl | grep -v pinterest | grep -v 19964d42-3745-46dd-92e9-7bec527bd2de > "$(stad 0765)"
-    ../urls-from-html.py https://www.pijnacker-nootdorp.nl/politiek-en-organisatie/verkiezingen/uitslagen-tweede-kamerverkiezingen-22-november-2023/ |  sort -u --version-sort > "$(stad 1926)"
-    ../urls-from-html.py https://purmerend.nl/bestuur-en-organisatie/verkiezingen/tweede-kamerverkiezing-2023/uitslag-tweede-kamerverkiezing-2023 "/document" https://purmerend.nl > "$(stad 0439)"
-    echo "https://www.putten.nl/dsresource?objectid=2d8ccef1-bf90-4229-9d87-a84fb28a1f42&type=pdf" > "$(stad 0273)"
-    echo "https://www.putten.nl/dsresource?objectid=8c684d3a-1f41-40b7-84ed-80ee9a063ab6&type=pdf" >> "$(stad 0273)"
-    ../urls-from-html.py https://www.putten.nl/Bestuur/Verkiezingen/Uitslag_en_proces_verbaal_Europees_Parlement_2024/Proces_Verbaal_per_stembureau ".pdf" https://www.putten.nl >> "$(stad 0273)"
-    ../urls-from-html.py https://www.putten.nl/Bestuur/Verkiezingen/Uitslag_en_proces_verbaal_Europees_Parlement_2024/Uitslag_per_stembureau ".pdf" https://www.putten.nl >> "$(stad 0273)"
+    ../urls-from-html.py https://www.pijnacker-nootdorp.nl/politiek-en-organisatie/uitslag-verkiezingen-europees-parlement-6-juni-2024/ |  sort -u --version-sort > "$(stad 1926)"
+    ../urls-from-html.py https://purmerend.nl/bestuur-en-organisatie/verkiezingen/europees-parlement-2024/uitslag-europese-parlementsverkiezingen-2024 "/document" https://purmerend.nl > "$(stad 0439)"
+    ../urls-from-html.py https://www.putten.nl/Bestuur/Verkiezingen/Uitslagen_Europees_Parlement_2024/Proces_Verbaal_per_stembureau ".pdf" https://www.putten.nl > "$(stad 0273)"
+    ../urls-from-html.py https://www.putten.nl/Bestuur/Verkiezingen/Uitslagen_Europees_Parlement_2024/Uitslagen_per_stembureau ".pdf" https://www.putten.nl >> "$(stad 0273)"
 
     # R
     ../urls-from-html.py https://www.raalte.nl/uitslagen-europees-parlementsverkiezing-2024 "/file" https://www.raalte.nl > "$(stad 0177)"
