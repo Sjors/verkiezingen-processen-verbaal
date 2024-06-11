@@ -127,12 +127,12 @@ except IndexError as e:
 
 settings = {
     "overwrite_files": False,
-    "target_date": datetime(2023, 11, 21, tzinfo=ZoneInfo("Europe/Amsterdam")),
+    "target_date": datetime(2024, 6, 1, tzinfo=ZoneInfo("Europe/Amsterdam")),
     "level_filter": [municipality],  # On level index 0, filter folder/file names on municipality name (case insensitve regex). On level 1 and higher there will be no regex filter.
     "extensions": [".pdf", ".csv"]
 }
 
-starting_url = "https://haarlem.pleio.nl/groups/view/7b769524-7339-4ae6-ab49-c10b7c20abed/verkiezingen-2023/files/e5a1650c-258b-4048-b7af-c3827b7d9c93"
+starting_url = "https://haarlem.pleio.nl/groups/view/7b769524-7339-4ae6-ab49-c10b7c20abed/verkiezingen/files/ce13ac21-051b-4a33-bc64-0be1ae37ac94"
 parsed_url = urlparse(starting_url)
 api_url = urlunparse((parsed_url.scheme, parsed_url.netloc, "/graphql", "", "", ""))
 host = f"{parsed_url.scheme}://{parsed_url.netloc}"

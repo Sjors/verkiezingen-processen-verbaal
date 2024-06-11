@@ -5,7 +5,7 @@
 # Usage example:
 #  mkdir 0168
 #  cd 0168
-#  ./mijnstembureau.py https://mijnstembureau-losser.nl/uitslagen/tk/totaal
+#  ./mijnstembureau.py https://mijnstembureau-losser.nl/uitslagen/ep/totaal
 
 from urllib.parse import urlparse, urlunparse, quote
 from requests import Request, Session
@@ -35,14 +35,14 @@ def filter_filename(filename):
 ######### main
 
 overwrite_files = False
-target_date = datetime(2023, 11, 21)
+target_date = datetime(2024, 6, 1)
 
 
 try:
     base_url = sys.argv[1]
     base_url = base_url.rstrip("/")
 except IndexError as e:
-    print("Provide as first argument the 'mijnstembureau' url ending with /tk/totaal or /tk/download")
+    print("Provide as first argument the 'mijnstembureau' url ending with /ep/totaal or /ep/download")
     sys.exit(1)
 
 parsed_url = urlparse(base_url)
