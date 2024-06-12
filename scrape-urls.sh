@@ -169,7 +169,7 @@ pushd 2024-EP
     ../urls-from-html.py https://www.heeze-leende.nl/uitslag-europees-parlementsverkiezingen-2024 > "$(stad 1658)"
     ../urls-from-html.py https://www.heiloo.nl/verkiezingen ".pdf" https://www.heiloo.nl > "$(stad 0399)"
     ../urls-from-html.py https://www.hellendoorn.nl/europees-parlementsverkiezing-2024/uitslag-verkiezingen-europees-parlement-2024/ ".pdf" https://www.hellendoorn.nl > "$(stad 0163)"
-    ../urls-from-html.py https://www.helmond.nl/1/nieuws/2024/juni/voorlopige-uitslag-verkiezingen-europees-parlement-2024 ".pdf" https://helmond.nl | sed "s/00008524-0794_Uitslag_Stembureau_101_Ameide_TK23.pdf000085/000085/" > "$(stad 0794)"
+    ../urls-from-html.py https://www.helmond.nl/1/nieuws/2024/juni/voorlopige-uitslag-verkiezingen-europees-parlement-2024 ".pdf" https://helmond.nl > "$(stad 0794)"
     ../urls-from-html.py https://www.h-i-ambacht.nl/Politiek_Bestuur/Totaaloverzicht_Politiek_en_Bestuur/Verkiezingen/Verkiezing_Europees_Parlement/Uitslagen_Europees_Parlementsverkiezing_6_juni_2024 "\.org" https://www.h-i-ambacht.nl | grep -v osv4 > "$(stad 0531)"
     ../urls-from-html.py https://www.hengelo.nl/Welkom-in-Hengelo/GPDC-Producten-catalogus-1/_Burger/Verkiezingsuitslagen.html "EP24" https://www.hengelo.nl > "$(stad 0164)"
     ../urls-from-html.py https://www.s-hertogenbosch.nl/verkiezingen/ > "$(stad 0796)"
@@ -180,7 +180,7 @@ pushd 2024-EP
     ../urls-from-html.py https://www.hillegom.nl/verkiezingen/proces-verbalen ".pdf" https://www.hillegom.nl > "$(stad 0534)"
     ../urls-from-html.py https://www.hilvarenbeek.nl/verkiezingen/publicaties ".pdf" http://hilvarenbeek.nl > "$(stad 0798)"
     ../urls-from-html.py https://hilversum.nl/verkiezingsuitslagen-europees-parlementsverkiezing-2024 > "$(stad 0402)"
-    ../urls-from-html.py https://www.hofvantwente.nl/bestuur/verkiezingen-europees-parlement-2024 "(TK_2023|TK23).*pdf" https://www.hofvantwente.nl > "$(stad 1735)"
+    ../urls-from-html.py https://www.hofvantwente.nl/bestuur/verkiezingen-europees-parlement-2024 "EPV24" https://www.hofvantwente.nl > "$(stad 1735)"
     ../urls-from-html.py https://www.hollandskroon.nl/verkiezingen-en-uitslagen/uitslagen-europees-parlementsverkiezingen-2024/ ".pdf" https://www.hollandskroon.nl > "$(stad 1911)"
     ../urls-from-html.py https://www.hoogeveen.nl/verkiezingen/bekijken-stemmen-per-stembureau ".pdf" https://www.hoogeveen.nl > "$(stad 0118)"
     ../urls-from-html.py https://www.hoorn.nl/pv-verkiezingen ".pdf" https://www.hoorn.nl > "$(stad 0405)"
@@ -300,13 +300,13 @@ pushd 2024-EP
     ../urls-from-html.py https://www.roosendaal.nl/uitslag-verkiezing-europees-parlement "/download" https://roosendaal.nl > "$(stad 1674)"
     ../urls-from-html.py https://tellingen.stembureausinrotterdam.nl > "$(stad 0599)" ".pdf" https://tellingen.stembureausinrotterdam.nl
     ../urls-from-html.py https://www.rucphen.nl/verkiezingen/Uitslag-verkiezingen ".pdf" https://www.rucphen.nl > "$(stad 0840)"
-    ../urls-from-html.py https://www.rozendaal.nl/verkiezingen-22-november-2023/uitslagen-verkiezingen-tk2023/ | grep -v Verkiezingsuitslagen.pdf > "$(stad 0277)"
+    ../urls-from-html.py https://www.rozendaal.nl/verkiezingen-22-november-2023/uitslag-verkiezingen-europees-parlement/ > "$(stad 0277)"
 
     # S
     ../urls-from-html.py https://www.schagen.nl/europees-parlement-2024 > "$(stad 0441)"
     ../urls-from-html.py https://www.scherpenzeel.nl/uitslagen-europees-parlementsverkiezing-2024 > "$(stad 0279)"
     ../urls-from-html.py https://www.schiedam.nl/a-tot-z/uitslagen-bekendmakingen > "$(stad 0606)"
-    ../urls-from-html.py https://www.schiermonnikoog.nl/uitslagen-verkiezingen | grep -e tk23 -e 0088_controleprotocol_gsb > "$(stad 0088)"
+    ../urls-from-html.py https://www.schiermonnikoog.nl/uitslagen-verkiezingen "ep24" > "$(stad 0088)"
     ../urls-from-html.py https://www.simpelveld.nl/uitslag-verkiezingen-europees-parlement-2024-gemeente-simpelveld > "$(stad 0965)"
     ../urls-from-html.py https://www.sint-michielsgestel.nl/verkiezingen/uitslagen > "$(stad 0845)"
     ../urls-from-html.py https://www.sittard-geleen.nl/Bestuur/Verkiezingen/Verkiezingen_Europees_Parlement_6_juni_2024/UItslag_verkiezingen_EP_2024 "objectid" https://www.sittard-geleen.nl > "$(stad 1883)"
