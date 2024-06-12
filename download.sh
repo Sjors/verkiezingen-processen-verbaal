@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 # Voor elke gemeente met processen-verbaal,
 # download ze hooguit één keer.
 
