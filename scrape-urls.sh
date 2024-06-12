@@ -85,10 +85,10 @@ pushd 2024-EP
     ../urls-from-html.py https://www.brunssum.nl/Verkiezingen/Uitslagen_Tweede_Kamer_verkiezingen_2023/Uitslagen_per_stembureau/17_Mobiel_Stembureau ".pdf" https://www.brunssum.nl | grep -v controle >> "$(stad 0899)"
 
     # C
-    ../urls-from-html.py https://www.coevorden.nl/verkiezingsuitslagen "pdf" https://www.coevorden.nl > "$(stad 0109)"
-    ../urls-from-html.py https://www.culemborg.nl/uitslagen "pdf" https://www.culemborg.nl > "$(stad 0216)"
+    ../urls-from-html.py https://www.coevorden.nl/uitslagen-europees-parlementsverkiezing-6-juni-2024 "pdf" https://www.coevorden.nl > "$(stad 0109)"
+    ../urls-from-html.py https://www.culemborg.nl/uitslagen-verkiezing-europees-parlement-2024 "pdf" https://www.culemborg.nl > "$(stad 0216)"
     ../urls-from-html.py https://www.castricum.nl/verkiezingen ".pdf" https://www.castricum.nl > "$(stad 0383)"
-    ../urls-from-html.py https://www.cranendonck.nl/uitslag-verkiezing-europees-parlement-2024 | grep -v docreader > "$(stad 1706)"
+    ../urls-from-html.py https://www.cranendonck.nl/uitslag-verkiezingen-europees-parlement-2024 | grep -v docreader > "$(stad 1706)"
     ../urls-from-html.py https://www.capelleaandenijssel.nl/processen-verbaal-verkiezing-europees-parlement-2024 > "$(stad 0502)"
 
     # D
