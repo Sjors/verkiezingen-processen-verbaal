@@ -1,0 +1,4 @@
+URL=https://www.beverwijk.nl/uitslag-verkiezing
+REGEX=cuatro\.sim-cdn\.nl/beverwijk/uploads/.*\.pdf
+PREFIX=https://www.beverwijk.nl/
+NAME=Beverwijk

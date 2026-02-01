@@ -1,0 +1,4 @@
+URL=https://www.nieuwkoop.nl/verkiezingsuitslagen-2025
+REGEX=nieuwkoop/.*\.pdf
+PREFIX=https://cuatro.sim-cdn.nl/
+NAME=Nieuwkoop

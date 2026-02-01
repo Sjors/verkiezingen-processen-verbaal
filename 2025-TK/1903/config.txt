@@ -1,0 +1,4 @@
+URL=https://www.eijsden-margraten.nl/verkiezingen
+REGEX=bestanden/docs/Verkiezingen/Tweede%20Kamerverkiezing%202025%20UITSLAG/.*\.pdf
+PREFIX=https://www.eijsden-margraten.nl/
+NAME=Eijsden-Margraten

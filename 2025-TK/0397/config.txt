@@ -1,0 +1,4 @@
+URL=https://www.heemstede.nl/verkiezingen/uitslagen
+REGEX=fileadmin/heemstede/documenten/Verkiezingen/.*\.pdf
+PREFIX=https://www.heemstede.nl
+NAME=Heemstede

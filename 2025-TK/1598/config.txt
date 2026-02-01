@@ -1,0 +1,4 @@
+URL=https://www.koggenland.nl/tweedekamerverkiezing-definitieve-uitslag-koggenland
+REGEX=https://cuatro\.sim-cdn\.nl/koggenland/uploads/.*\.pdf
+PREFIX=https://cuatro.sim-cdn.nl/
+NAME=Koggenland

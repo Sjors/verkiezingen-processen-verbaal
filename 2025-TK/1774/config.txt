@@ -1,0 +1,4 @@
+URL=https://dinkelland.nl/tweede-kamerverkiezingen-2025
+REGEX=dinkelland\.nl/sites/default/files/.*\.pdf
+PREFIX=https://www.dinkelland.nl/
+NAME=Dinkelland

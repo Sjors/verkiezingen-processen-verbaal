@@ -1,0 +1,4 @@
+URL=https://www.waddinxveen.nl/verkiezingen/processen-verbaal-en-andere-documenten-tk25/
+REGEX=wp-content/uploads/2025/10/.*\.pdf
+PREFIX=https://www.waddinxveen.nl
+NAME=Waddinxveen

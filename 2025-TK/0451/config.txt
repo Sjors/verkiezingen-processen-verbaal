@@ -1,0 +1,4 @@
+URL=https://www.uithoorn.nl/Home/Verkiezingen/Uitslagen_verkiezingen_2021_t_m_2025/Definitieve_uitslag_Tweede_Kamerverkiezingen_2025
+REGEX=Definitieve_uitslag_Tweede_Kamerverkiezingen_2025/.*\.pdf
+PREFIX=https://www.uithoorn.nl
+NAME=Uithoorn

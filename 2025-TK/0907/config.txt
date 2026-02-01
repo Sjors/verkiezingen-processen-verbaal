@@ -1,0 +1,4 @@
+URL=https://www.gennep.nl/uitslag-tweede-kamerverkiezing-2025
+REGEX=sites/default/files/2025-10/gennep.*\.pdf
+PREFIX=https://www.gennep.nl/
+NAME=Gennep

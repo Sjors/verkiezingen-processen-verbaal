@@ -1,0 +1,4 @@
+URL=https://www.bergen.nl/tweede-kamer-2025
+REGEX=bergen/uploads/.*\.pdf
+PREFIX=https://cuatro.sim-cdn.nl/
+NAME=Bergen (L)

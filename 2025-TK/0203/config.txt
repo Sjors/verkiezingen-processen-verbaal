@@ -1,0 +1,4 @@
+URL=https://www.barneveld.nl/bestuur-en-organisatie/verkiezingen/tweede-kamerverkiezing/uitslag-verkiezing
+REGEX=fileadmin/Barneveld/Projecten/Verkiezingen/2025_Tweede_Kamer/.*\.pdf
+PREFIX=https://www.barneveld.nl/
+NAME=Barneveld

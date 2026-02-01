@@ -1,0 +1,4 @@
+URL=https://www.leeuwarden.nl/uitslagen-en-processen-verbaal-tweede-kamerverkiezingen-2025/
+REGEX=wp-content/uploads/2025/10/.*\.pdf
+PREFIX=https://www.leeuwarden.nl/
+NAME=Leeuwarden

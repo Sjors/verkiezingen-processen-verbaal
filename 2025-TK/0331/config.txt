@@ -1,0 +1,4 @@
+URL=https://www.lopik.nl/uitslag-tweede-kamerverkiezing-2025
+REGEX=cuatro\.sim-cdn\.nl/lopik/uploads/.*\.pdf
+PREFIX=https://www.lopik.nl/
+NAME=Lopik

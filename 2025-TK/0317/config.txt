@@ -1,0 +1,4 @@
+URL=https://www.eemnes.nl/uitslag-verkiezing-tweede-kamer-2025
+REGEX=eemnes_.*_tk25.*\.pdf|eemnes_uitkomst_tk25\.pdf|eemnes_verklaring_aansluitvoorschriften\.pdf
+PREFIX=https://cuatro.sim-cdn.nl/eemnesbe64f5/uploads/
+NAME=Eemnes

@@ -1,0 +1,4 @@
+URL=https://www.hillegom.nl/tweede-kamerverkiezingen/proces-verbalen
+REGEX=fileadmin/user_upload/.*TK25.*\.pdf
+PREFIX=https://www.hillegom.nl
+NAME=Hillegom

@@ -1,0 +1,4 @@
+URL=https://www.kampen.nl/verkiezingsuitslag-tweede-kamer-2025
+REGEX=tk25pdf
+PREFIX=https://www.kampen.nl/
+NAME=Kampen

@@ -1,0 +1,4 @@
+URL=https://www.oldebroek.nl/Bestuur_en_organisatie/Verkiezingen/Uitslagen_verkiezingen/Processen_verbaal_Tweede_Kamerverkiezingen_2025
+REGEX=dsresource\?objectid=.*type=pdf
+PREFIX=https://www.oldebroek.nl/
+NAME=Oldebroek

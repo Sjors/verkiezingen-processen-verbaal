@@ -1,0 +1,4 @@
+URL=https://hethogeland.nl/bestuur-en-organisatie/verkiezingen/uitslag-tweede-kamerverkiezingen-2025-het-hogeland
+REGEX=fileadmin/Hogeland_bestanden/Documenten/verkiezingen/Tweedekamer-2025.*\.(pdf|csv)
+PREFIX=https://hethogeland.nl/
+NAME=Het Hogeland

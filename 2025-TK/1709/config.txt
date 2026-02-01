@@ -1,0 +1,4 @@
+URL=https://www.moerdijk.nl/verkiezingen-tweede-kamer-2025/voorlopige-uitslag-verkiezingen-tweede-kamer-2025/
+REGEX=app/uploads/2025/.*\.pdf
+PREFIX=https://www.moerdijk.nl/
+NAME=Moerdijk

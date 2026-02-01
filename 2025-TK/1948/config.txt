@@ -1,0 +1,4 @@
+URL=https://www.meierijstad.nl/Alle_onderwerpen/Bestuur_en_organisatie/Verkiezingen/Uitslag_Tweede_Kamerverkiezingen_2025/Alle_proces_verbalen_van_de_Tweede_Kamerverkiezingen/Proces_verbalen_stembureaus
+REGEX=dsresource\?objectid=.*type=pdf
+PREFIX=https://www.meierijstad.nl/
+NAME=Meierijstad

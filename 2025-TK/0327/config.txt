@@ -1,0 +1,4 @@
+URL=https://www.leusden.nl/verkiezingen/uitslagen/voorlopige-uitslag-tweede-kamerverkiezingen-2025
+REGEX=Verkiezingen_TK_2025/.*\.pdf
+PREFIX=https://www.leusden.nl
+NAME=Leusden

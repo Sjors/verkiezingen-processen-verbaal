@@ -1,0 +1,4 @@
+URL=https://www.woerden.nl/Verkiezingen/Tweede_Kamerverkiezing/Uitslag_Verkiezingen_2025
+REGEX=Documenten/Verkiezingen/.*\.pdf
+PREFIX=https://www.woerden.nl/
+NAME=Woerden

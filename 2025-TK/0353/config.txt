@@ -1,0 +1,4 @@
+URL=https://www.ijsselstein.nl/Bestuur_en_organisatie/Verkiezingen/Tweede_Kamerverkiezing_29_oktober_2025
+REGEX=sim-cdn\.nl/.*/uploads/.*\.pdf
+PREFIX=https://www.ijsselstein.nl
+NAME=IJsselstein

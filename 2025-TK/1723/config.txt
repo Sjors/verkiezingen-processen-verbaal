@@ -1,0 +1,4 @@
+URL=https://www.alphen-chaam.nl/verkiezingsuitslagen
+REGEX=^/fileadmin/.*\.pdf$|^https://www\.alphen-chaam\.nl/fileadmin/.*\.pdf$
+PREFIX=https://www.alphen-chaam.nl
+NAME=Alphen-Chaam

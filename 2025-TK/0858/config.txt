@@ -1,0 +1,4 @@
+URL=https://www.valkenswaard.nl/uitslag-tweede-kamerverkiezing-2025
+REGEX=valkenswaard/uploads/.*\.pdf
+PREFIX=https://cuatro.sim-cdn.nl/
+NAME=Valkenswaard

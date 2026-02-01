@@ -1,0 +1,4 @@
+URL=https://www.schagen.nl/tweede-kamerverkiezing-2025-0
+REGEX=sites/default/files/2025-.*\.pdf
+PREFIX=https://www.schagen.nl
+NAME=Schagen

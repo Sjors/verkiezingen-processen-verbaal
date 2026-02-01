@@ -1,0 +1,4 @@
+URL=https://www.noordwijk.nl/onderwerp/burgerzaken/verkiezingen/verkiezingen-informatie-en-uitslagen/uitkomst-tweede-kamerverkiezingen-2025/
+REGEX=wp-content/uploads/2025/10/.*\.pdf
+PREFIX=https://www.noordwijk.nl/
+NAME=Noordwijk

@@ -1,0 +1,4 @@
+URL=https://www.leudal.nl/uitslag-tweede-kamerverkiezingen-2025
+REGEX=leudal/uploads/.*\.pdf
+PREFIX=https://cuatro.sim-cdn.nl/
+NAME=Leudal

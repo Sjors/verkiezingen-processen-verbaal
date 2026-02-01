@@ -1,0 +1,4 @@
+URL=https://www.amstelveen.nl/definitieve-uitslag-tweede-kamerverkiezing-2025
+REGEX=sites/default/files/2025-10/.*\.pdf
+PREFIX=https://www.amstelveen.nl/
+NAME=Amstelveen

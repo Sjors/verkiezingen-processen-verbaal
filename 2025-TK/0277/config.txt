@@ -1,0 +1,4 @@
+URL=https://www.rozendaal.nl/actueel/voorlopige-uitslagen
+REGEX=openpub\.rozendaal\.nl/wp-content/uploads/.*\.pdf
+PREFIX=https://openpub.rozendaal.nl/
+NAME=Rozendaal

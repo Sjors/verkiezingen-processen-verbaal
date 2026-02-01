@@ -1,0 +1,4 @@
+URL=https://www.raalte.nl/uitslagen-tweede-kamerverkiezingen
+REGEX=tk25(?!digitaleuitkomstcsv)
+PREFIX=https://www.raalte.nl/
+NAME=Raalte

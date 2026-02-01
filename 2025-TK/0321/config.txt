@@ -1,0 +1,4 @@
+URL=https://www.houten.nl/gemeenteraad-en-college/verkiezingen/tweede-kamerverkiezing
+REGEX=fileadmin/user_upload/.*/Uitslagen_TK_verkiezingen/.*\.pdf
+PREFIX=https://www.houten.nl
+NAME=Houten

@@ -1,0 +1,4 @@
+URL=https://www.landgraaf.nl/processen-verbaal-tweede-kamerverkiezingen-29-oktober-2025
+REGEX=sim-cdn\.nl/landgraaf/uploads/landgraaf.*tk25.*\.pdf
+PREFIX=https://cuatro.
+NAME=Landgraaf

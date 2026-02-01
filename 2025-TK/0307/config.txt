@@ -1,0 +1,4 @@
+URL=https://www.amersfoort.nl/processen-verbaal
+REGEX=tk25-sb-.*\.pdf
+PREFIX=https://www.amersfoort.nl
+NAME=Amersfoort

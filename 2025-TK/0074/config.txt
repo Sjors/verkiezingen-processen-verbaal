@@ -1,0 +1,4 @@
+URL=https://www.heerenveen.nl/actueel/verkiezingen/uitslagen-tweede-kamerverkiezingen-2/
+REGEX=(Heerenveen_[0-9]+_.*TK25|5-Museum-Heerenveen).*\.pdf
+PREFIX=https://www.heerenveen.nl
+NAME=Heerenveen

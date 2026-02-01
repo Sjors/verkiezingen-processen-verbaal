@@ -1,0 +1,4 @@
+URL=https://www.venlo.nl/processen-verbaal
+REGEX=sites/default/files/2025-[0-9]{2}/venlo_.*_tk25.*\.pdf
+PREFIX=https://www.venlo.nl/
+NAME=Venlo

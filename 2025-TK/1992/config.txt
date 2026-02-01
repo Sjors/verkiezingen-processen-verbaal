@@ -1,0 +1,4 @@
+URL=https://www.voorneaanzee.nl/processen-verbaal-tweede-kamerverkiezing-2025
+REGEX=sim-cdn\.nl/.*/uploads/.*\.pdf
+PREFIX=
+NAME=Voorne aan Zee

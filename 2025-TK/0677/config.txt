@@ -1,0 +1,4 @@
+URL=https://www.gemeentehulst.nl/Verkiezingen/Tweede_Kamerverkiezingen_2025/Uitslagen
+REGEX=dsresource\?objectid=.*type=pdf
+PREFIX=https://www.gemeentehulst.nl/
+NAME=Hulst

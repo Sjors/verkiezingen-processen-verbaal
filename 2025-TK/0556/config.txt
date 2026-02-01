@@ -1,0 +1,4 @@
+URL=https://www.maassluis.nl/uitslag-tweede-kamerverkiezing-2025
+REGEX=sim-cdn\.nl/maassluis/uploads/maassluis.*_tk25.*\.pdf
+PREFIX=
+NAME=Maassluis

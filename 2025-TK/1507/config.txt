@@ -1,0 +1,4 @@
+URL=https://www.horstaandemaas.nl/uitslag-verkiezingen
+REGEX=file/proces-verbaal[^"']*
+PREFIX=https://www.horstaandemaas.nl/
+NAME=Horst aan de Maas

@@ -1,0 +1,4 @@
+URL=https://www.hardenberg.nl/vorige-verkiezingen/oude-uitslagen/tk-2025/stembureaus
+REGEX=fileadmin/Bestanden/Gemeente/Verkiezingen/2025_Tweede_Kamerverkiezingen/Processen-verbaal_woensdag_stembureaus/.*\.pdf
+PREFIX=https://www.hardenberg.nl/
+NAME=Hardenberg

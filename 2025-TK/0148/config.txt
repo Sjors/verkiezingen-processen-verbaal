@@ -1,0 +1,4 @@
+URL=https://www.dalfsen.nl/verkiezingen
+REGEX=tk25|TK25|tweede.*kamer.*2025|proces.*verbaal.*2025
+PREFIX=https://cuatro.sim-cdn.nl/dalfsen/uploads/
+NAME=Dalfsen

@@ -1,0 +1,4 @@
+URL=https://www.loonopzand.nl/organisatie-en-politiek/tweedekamerverkiezingen/uitslag-tweede-kamerverkiezing-2025
+REGEX=Verkiezingen_2025_Proces_Verbalen/.*\.pdf
+PREFIX=https://www.loonopzand.nl/
+NAME=Loon op Zand

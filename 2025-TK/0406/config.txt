@@ -1,0 +1,4 @@
+URL=https://www.huizen.nl/definitieve-uitslag-tweede-kamerverkiezing-in-huizen-2025
+REGEX=uploads/.*\.pdf
+PREFIX=https://cuatro.sim-cdn.nl/huizen/
+NAME=Huizen

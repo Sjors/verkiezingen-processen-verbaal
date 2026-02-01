@@ -1,0 +1,4 @@
+URL=https://www.gemeentemaasgouw.nl/verkiezingsuitslag
+REGEX=sim-cdn\.nl/maasgouw/uploads/.*\.pdf
+PREFIX=https://cuatro.
+NAME=Maasgouw

@@ -1,0 +1,4 @@
+URL=https://www.asten.nl/gemeentebestuur-en-organisatie/verkiezingen/tweede-kamer-verkiezingen/definitieve-verkiezingsuitslag-tweede-kamer-2025
+REGEX=/fileadmin/.*\.pdf
+PREFIX=https://www.asten.nl/
+NAME=Asten

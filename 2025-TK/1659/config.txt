@@ -1,0 +1,4 @@
+URL=https://www.laarbeek.nl/uitslag
+REGEX=file/.*pdf
+PREFIX=https://www.laarbeek.nl/
+NAME=Laarbeek

@@ -1,0 +1,4 @@
+URL=https://www.tynaarlo.nl/verkiezingen/uitslagen-verkiezingen
+REGEX=sites/default/files/.*\.pdf
+PREFIX=https://www.tynaarlo.nl
+NAME=Tynaarlo

@@ -1,0 +1,4 @@
+URL=https://www.gemeenteberkelland.nl/verkiezingen/uitslagen-2/
+REGEX=wp-content/uploads/2025/10/.*\.pdf
+PREFIX=https://www.gemeenteberkelland.nl/
+NAME=Berkelland

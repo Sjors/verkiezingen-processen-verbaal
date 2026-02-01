@@ -1,0 +1,4 @@
+URL=https://www.drechterland.nl/bestuur-en-organisatie/verkiezingen/verkiezingsuitslag/
+REGEX=wp-content/uploads/2025/10/.*\.pdf
+PREFIX=https://www.drechterland.nl
+NAME=Drechterland

@@ -1,0 +1,4 @@
+URL=https://www.lingewaard.nl/uitslagen-tweede-kamerverkiezing-2025
+REGEX=sim-cdn\.nl/lingewaard/uploads/lingewaard_.*tk25.*\.pdf
+PREFIX=https://cuatro.sim-cdn.nl/
+NAME=Lingewaard

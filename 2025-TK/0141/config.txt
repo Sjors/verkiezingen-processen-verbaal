@@ -1,0 +1,4 @@
+URL=https://www.almelo.nl/verkiezingen/uitslag-tweede-kamerverkiezing-almelo
+REGEX=sites/default/files/documents/almelo_.*tk25.*\.pdf
+PREFIX=https://www.almelo.nl/
+NAME=Almelo

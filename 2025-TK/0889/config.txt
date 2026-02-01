@@ -1,0 +1,4 @@
+URL=https://www.beesel.nl/verkiezingsuitslag
+REGEX=data/downloadables/.*(tk2025|TK25|ea6verklaring).*\.pdf
+PREFIX=https://www.beesel.nl
+NAME=Beesel

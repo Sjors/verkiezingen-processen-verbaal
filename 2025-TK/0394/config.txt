@@ -1,0 +1,4 @@
+URL=https://haarlemmermeergemeente.nl/verslagen-processen-verbaal-per-stembureau-per-partij
+REGEX=tk25
+PREFIX=https://haarlemmermeergemeente.nl
+NAME=Haarlemmermeer

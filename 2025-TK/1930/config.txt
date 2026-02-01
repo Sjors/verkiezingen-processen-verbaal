@@ -1,0 +1,3 @@
+# Uses Mijn Stembureau API
+# Download with: ./scripts/fetch-mijnstembureau.py https://stembureau-nissewaard.nl 2025-TK/1930
+NAME=Nissewaard

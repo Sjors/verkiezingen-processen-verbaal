@@ -1,0 +1,4 @@
+URL=https://www.geldrop-mierlo.nl/voorlopige-uitslag-tweede-kamerverkiezingen-2025
+REGEX=cuatro\.sim-cdn\.nl/geldropmierlo/uploads/.*\.pdf
+PREFIX=https://www.geldrop-mierlo.nl
+NAME=Geldrop-Mierlo

@@ -1,0 +1,4 @@
+URL=https://www.bladel.nl/uitslag-tweede-kamer-verkiezingen-29-oktober-2025
+REGEX=https://cuatro\.sim-cdn\.nl/bladel/uploads/[^"\?]+\.pdf
+PREFIX=https://cuatro.sim-cdn.nl/bladel/
+NAME=Bladel

@@ -1,0 +1,4 @@
+URL=https://www.heemskerk.nl/over-heemskerk/verkiezingen/tweede-kamerverkiezingen-2025
+REGEX=fileadmin/Heemskerk/PDF/Verkiezingen/Tweede_Kamerverkiezingen_2025/.*\.pdf
+PREFIX=https://www.heemskerk.nl/
+NAME=Heemskerk

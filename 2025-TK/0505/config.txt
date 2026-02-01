@@ -1,0 +1,4 @@
+URL=https://www.dordrecht.nl/Bestuur/Overzicht_Bestuur/Verkiezingen/Tweede_Kamer_verkiezingen_2025/Uitkomsten_Tweede_Kamerverkiezing
+REGEX=Uitkomsten_Tweede_Kamerverkiezing/.*\.pdf
+PREFIX=https://www.dordrecht.nl
+NAME=Dordrecht

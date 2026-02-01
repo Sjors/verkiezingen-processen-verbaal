@@ -1,0 +1,4 @@
+URL=https://www.tubbergen.nl/tweede-kamerverkiezingen-2025
+REGEX=tubbergen_.*_tk25.*\.pdf|tubbergen_.*_tk_.*\.pdf|tubbergen_.*_tk\.pdf|tubbergen_uitkomst_tk25\.pdf
+PREFIX=https://www.tubbergen.nl/
+NAME=Tubbergen

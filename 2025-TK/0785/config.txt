@@ -1,0 +1,4 @@
+URL=https://www.goirle.nl/verkiezingen/uitslagen-verkiezingen
+REGEX=fileadmin/Goirle/PDF-documenten/Bestuur_en_organisatie/verkiezingen_tweede_kamer_2025/.*\.pdf
+PREFIX=https://www.goirle.nl
+NAME=Goirle

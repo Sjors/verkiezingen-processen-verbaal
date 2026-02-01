@@ -1,0 +1,4 @@
+URL=https://www.lisse.nl/tweede-kamerverkiezingen/proces-verbalen
+REGEX=fileadmin/user_upload/.*\.pdf
+PREFIX=https://www.lisse.nl
+NAME=Lisse

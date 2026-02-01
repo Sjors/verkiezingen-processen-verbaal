@@ -1,0 +1,4 @@
+URL=https://www.derondevenen.nl/Bestuur_en_organisatie/Verkiezingen_2025/Uitslagen_Tweede_Kamerverkiezingen_2025:kAEpgBTTQ0Wotpm2ndnSvg/Processen_verbaal_van_de_stembureaus
+REGEX=DeRondeVenen.*\.pdf
+PREFIX=https://www.derondevenen.nl
+NAME=De Ronde Venen

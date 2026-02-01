@@ -1,0 +1,4 @@
+URL=https://www.steenwijkerland.nl/Over_Steenwijkerland/Verkiezingen/Uitslagen_verkiezingen/Uitslag_Tweede_Kamerverkiezing_2025
+REGEX=Steenwijkerland_.*TK25.*\.pdf|Steenwijkerland_verklaring_aansluitvoorschiften\.pdf
+PREFIX=https://www.steenwijkerland.nl/
+NAME=Steenwijkerland

@@ -1,0 +1,4 @@
+URL=https://www.stadskanaal.nl/verkiezingen/uitslagen-tweede-kamerverkiezing-29-oktober-2025
+REGEX=Stadskanaal_.*_TK25.*\.pdf|Stadskanaal_uitkomst_TK25\.pdf|Gemeente_Stadskanaal_TK25_tussentijdse_uitkomst\.pdf
+PREFIX=https://www.stadskanaal.nl/
+NAME=Stadskanaal

@@ -1,0 +1,4 @@
+URL=https://www.scherpenzeel.nl/uitslagen-verkiezing-tweede-kamer-2025
+REGEX=cuatro\.sim-cdn\.nl/scherpenzeel/uploads/scherpenzeel_.*\.pdf
+PREFIX=https://www.scherpenzeel.nl/
+NAME=Scherpenzeel

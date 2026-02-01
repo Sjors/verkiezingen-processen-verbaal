@@ -1,0 +1,4 @@
+URL=https://www.laren.nl/uitslag-verkiezing-tweede-kamer-2025
+REGEX=cuatro\.sim-cdn\.nl/larend4944f/uploads/.*\.pdf
+PREFIX=https://www.laren.nl/
+NAME=Laren (Noord-Holland)

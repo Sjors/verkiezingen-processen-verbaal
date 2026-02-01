@@ -1,0 +1,4 @@
+URL=https://www.ermelo.nl/verkiezing-tweede-kamer/uitslag-tweede-kamerverkiezing-2025
+REGEX=Uitslagen_TK_2025/.*\.pdf
+PREFIX=https://www.ermelo.nl
+NAME=Ermelo

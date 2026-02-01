@@ -1,0 +1,4 @@
+URL=https://www.gemeentewestland.nl/bestuur-en-organisatie/tweede-kamerverkiezing/
+REGEX=fileadmin/.*\.pdf
+PREFIX=https://www.gemeentewestland.nl/
+NAME=Westland

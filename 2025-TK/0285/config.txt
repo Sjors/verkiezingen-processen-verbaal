@@ -1,0 +1,4 @@
+URL=https://www.voorst.nl/verkiezingen/documenten-verkiezingsuitslag-tweede-kamer-29-oktober-2025
+REGEX=fileadmin/user_upload/Over_Voorst/Verkiezingen/2025_tweede_kamer/.*\.pdf
+PREFIX=https://www.voorst.nl/
+NAME=Voorst

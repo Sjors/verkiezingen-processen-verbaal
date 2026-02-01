@@ -1,0 +1,4 @@
+URL=https://www.debilt.nl/bestuur-en-organisatie/verkiezingen/uitslagen-tweede-kamerverkiezingen-2025
+REGEX=^/fileadmin/bestanden/Bestuur_en_organisatie/Verkiezingen/Tweede_Kamerverkiezingen_2025/Documenten/(Processen-verbaal|PV_Bijlagen_2_model_Na_31-2|Overig)/.*\.pdf
+PREFIX=https://www.debilt.nl/
+NAME=De Bilt

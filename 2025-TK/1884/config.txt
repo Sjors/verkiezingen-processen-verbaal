@@ -1,0 +1,4 @@
+URL=https://www.kaagenbraassem.nl/Bestuur_en_organisatie/Verkiezingen/Tweede_Kamerverkiezing_2025/Uitslag_verkiezingen
+REGEX=dsresource\?objectid=.*type=pdf
+PREFIX=https://www.kaagenbraassem.nl/
+NAME=Kaag en Braassem

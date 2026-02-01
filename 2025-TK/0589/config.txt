@@ -1,0 +1,4 @@
+URL=https://www.oudewater.nl/Verkiezingen/Tweede_Kamerverkiezing/Uitslag_Verkiezingen_2025
+REGEX=Documenten/Verkiezingen/.*\.pdf
+PREFIX=https://www.oudewater.nl/
+NAME=Oudewater

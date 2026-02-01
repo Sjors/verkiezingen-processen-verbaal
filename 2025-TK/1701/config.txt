@@ -1,0 +1,4 @@
+URL=https://www.gemeentewesterveld.nl/Alle_onderwerpen/Bestuur_en_organisatie/Verkiezingen/Tweede_Kamer_Verkiezingen/Uitslag_verkiezingen_29_oktober_2025
+REGEX=Alle_onderwerpen/Bestuur_en_organisatie/Verkiezingen/Tweede_Kamer_Verkiezingen/Uitslag_verkiezingen_29_oktober_2025/.*\.pdf
+PREFIX=https://www.gemeentewesterveld.nl
+NAME=Westerveld

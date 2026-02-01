@@ -1,0 +1,4 @@
+URL=https://wormerland.nl/verkiezingenwl/tweede-kamer-2025-uitslagen-verkiezingen
+REGEX=sites/default/files/documents/.*\.pdf
+PREFIX=https://wormerland.nl
+NAME=Wormerland

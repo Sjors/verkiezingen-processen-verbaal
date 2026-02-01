@@ -1,0 +1,4 @@
+URL=https://www.ridderkerk.nl/actueel/uitslag-verkiezingen-tweede-kamer-2025/
+REGEX=openpub\.ridderkerk\.nl/wp-content/uploads/sites/3/2025/.*\.pdf
+PREFIX=https://openpub.ridderkerk.nl/
+NAME=Ridderkerk

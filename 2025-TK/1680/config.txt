@@ -1,0 +1,4 @@
+URL=https://www.aaenhunze.nl/Alle_onderwerpen/Verkiezingen/Kiezersinformatie/Gemeenteraadsverkiezingen_2026:fP2T1G0tS7auX0HxXnkKIg/Uitslagen_Aa_en_Hunze
+REGEX=dsresource\?objectid=.*type=pdf
+PREFIX=https://www.aaenhunze.nl/
+NAME=Aa en Hunze

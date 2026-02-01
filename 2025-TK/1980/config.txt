@@ -1,0 +1,4 @@
+URL=https://www.dijkenwaard.nl/verkiezingen/tweede-kamerverkiezingen-2025/uitslag-tweede-kamerverkiezing-2025
+REGEX=fileadmin/bestanden/Gemeentebestuur/Verkiezingen/Tweede_Kamerverkiezingen_2025/.*\.pdf
+PREFIX=https://www.dijkenwaard.nl/
+NAME=Dijk en Waard

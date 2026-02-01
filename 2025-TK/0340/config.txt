@@ -1,0 +1,4 @@
+URL=https://www.rhenen.nl/praat-en-doe-mee/verkiezingen/uitslagen
+REGEX=/fileadmin/gemeente_rhenen/Verkiezingen/TK_2025/.*\.pdf
+PREFIX=https://www.rhenen.nl
+NAME=Rhenen

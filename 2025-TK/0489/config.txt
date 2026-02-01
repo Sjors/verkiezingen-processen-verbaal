@@ -1,0 +1,4 @@
+URL=https://www.barendrecht.nl/tweede-kamerverkiezing-2025/uitslag-tweede-kamerverkiezing-2025/
+REGEX=wp-content/uploads/2025/10/.*\.pdf
+PREFIX=https://www.barendrecht.nl
+NAME=Barendrecht

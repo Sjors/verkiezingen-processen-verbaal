@@ -1,0 +1,4 @@
+URL=https://www.eemsdelta.nl/uitslagen
+REGEX=sites/default/files/.*\.pdf
+PREFIX=https://www.eemsdelta.nl/
+NAME=Eemsdelta

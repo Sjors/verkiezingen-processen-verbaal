@@ -1,0 +1,4 @@
+URL=https://www.harderwijk.nl/verkiezingen/uitslagen-verkiezingen
+REGEX=fileadmin/Site_Harderwijk/documenten/verkiezingen/2025_tk/.*\.pdf
+PREFIX=https://www.harderwijk.nl/
+NAME=Harderwijk

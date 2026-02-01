@@ -1,0 +1,4 @@
+URL=https://www.noordenveld.nl/processen-verbaal-tweede-kamer-verkiezing-29-oktober-2025
+REGEX=sites/default/files/2025-.*\.pdf
+PREFIX=https://www.noordenveld.nl/
+NAME=Noordenveld

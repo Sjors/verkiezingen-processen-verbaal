@@ -1,0 +1,4 @@
+URL=https://www.zevenaar.nl/uitslag-verkiezingen-tweede-kamer-29-oktober-2025
+REGEX=pdf
+PREFIX=https://www.zevenaar.nl
+NAME=Zevenaar

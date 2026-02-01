@@ -1,0 +1,4 @@
+URL=https://www.gilzerijen.nl/verkiezingsuitslagen
+REGEX=Bestanden_GilzeRijen/Bestuur_en_organisatie/Verkiezingen/.*\.pdf
+PREFIX=https://www.gilzerijen.nl
+NAME=Gilze en Rijen

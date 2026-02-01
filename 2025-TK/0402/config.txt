@@ -1,0 +1,4 @@
+URL=https://hilversum.nl/verkiezingen-tweede-kamer/voorlopige-uitslagen-tweede-kamerverkiezing
+REGEX=sites/default/files/documents/.*\.pdf
+PREFIX=https://hilversum.nl
+NAME=Hilversum

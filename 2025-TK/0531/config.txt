@@ -1,0 +1,4 @@
+URL=https://www.h-i-ambacht.nl/Politiek_Bestuur/Totaaloverzicht_Politiek_en_Bestuur/Verkiezingen/Tweede_Kamerverkiezingen_2025/Uitkomsten_Tweede_Kamerverkiezingen_2025
+REGEX=Uitkomsten_Tweede_Kamerverkiezingen_2025/.*\.(pdf|org)
+PREFIX=https://www.h-i-ambacht.nl
+NAME=Hendrik-Ido-Ambacht

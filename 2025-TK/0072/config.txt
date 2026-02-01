@@ -1,0 +1,4 @@
+URL=https://www.harlingen.nl/tweede-kamerverkiezing-2025
+REGEX=gemeente_harlingen_.*\.pdf|verslag_controleprotocol_gemeentelijk_stembureau\.pdf
+PREFIX=https://cuatro.sim-cdn.nl/harlingen/uploads/
+NAME=Harlingen

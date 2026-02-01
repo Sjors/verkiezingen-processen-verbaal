@@ -1,0 +1,4 @@
+URL=https://www.halderberge.nl/uitslagen-tweede-kamer-verkiezingen-29-oktober-2025
+REGEX=cuatro\.sim-cdn\.nl/halderbergee22a8e/uploads/.*_TK25\.pdf
+PREFIX=https://
+NAME=Halderberge

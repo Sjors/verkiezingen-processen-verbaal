@@ -1,0 +1,4 @@
+URL=https://www.oss.nl/Tonen-op-pagina-standaard/Uitslag-Tweede-Kamerverkiezingen.htm
+REGEX=Tonen-op-pagina-standaard/Oss-(?!TK25-digitale-uitkomst).*\.htm
+PREFIX=https://www.oss.nl
+NAME=Oss

@@ -1,0 +1,4 @@
+URL=https://www.gouda.nl/bestuur-en-organisatie/tweede-kamerverkiezingen/processen-verbaal-tweede-kamerverkiezing/
+REGEX=wp-content/uploads/2025/.*\.pdf
+PREFIX=https://www.gouda.nl/
+NAME=Gouda

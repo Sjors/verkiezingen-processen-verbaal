@@ -1,0 +1,4 @@
+URL=https://www.enkhuizen.nl/bestuur-en-organisatie/verkiezingen/verkiezingsuitslag/
+REGEX=Enkhuizen_[0-9]+_.*_TK25.*\.pdf
+PREFIX=https://www.enkhuizen.nl/
+NAME=Enkhuizen

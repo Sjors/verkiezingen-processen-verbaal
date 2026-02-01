@@ -1,0 +1,4 @@
+URL=https://www.alphenaandenrijn.nl/Verkiezingen/Uitslagen_eerdere_verkiezingen/Uitslag_Tweede_Kamerverkiezing_2025
+REGEX=dsresource\?objectid=.*type=pdf
+PREFIX=https://www.alphenaandenrijn.nl/
+NAME=Alphen aan den Rijn

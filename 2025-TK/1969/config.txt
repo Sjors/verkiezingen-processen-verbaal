@@ -1,0 +1,4 @@
+URL=https://www.westerkwartier.nl/uitslagen-verkiezingen-tweede-kamer-2025
+REGEX=https://cuatro\.sim-cdn\.nl/westerkwartier/uploads/[^"\s]+\.pdf
+PREFIX=https://cuatro.sim-cdn.nl/
+NAME=Westerkwartier

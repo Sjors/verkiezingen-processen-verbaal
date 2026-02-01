@@ -1,0 +1,4 @@
+URL=https://vught.nl/uitslag-tweede-kamerverkiezing
+REGEX=file/[^"']*pdf
+PREFIX=https://vught.nl/
+NAME=Vught

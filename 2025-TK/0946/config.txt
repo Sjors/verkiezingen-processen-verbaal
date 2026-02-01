@@ -1,0 +1,4 @@
+URL=https://www.nederweert.nl/uitslag-tweede-kamerverkiezingen-dso
+REGEX=nederweert_[0-9]+_.*_tk25.*\.pdf
+PREFIX=
+NAME=Nederweert

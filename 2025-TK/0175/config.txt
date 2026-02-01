@@ -1,0 +1,4 @@
+URL=https://www.ommen.nl/tweede-kamerverkiezingen-2025/uitslagen-kennisgevingen/
+REGEX=wp-content/uploads/2025/10/.*\.pdf
+PREFIX=https://www.ommen.nl/
+NAME=Ommen

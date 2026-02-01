@@ -1,0 +1,4 @@
+URL=https://www.stedebroec.nl/bestuur-en-organisatie/verkiezingen/verkiezingsuitslag/
+REGEX=wp-content/uploads/2025/10/.*\.pdf
+PREFIX=https://www.stedebroec.nl
+NAME=Stede Broec

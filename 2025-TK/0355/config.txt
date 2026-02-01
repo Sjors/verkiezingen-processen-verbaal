@@ -1,0 +1,4 @@
+URL=https://www.zeist.nl/gemeente-bestuur-en-organisatie/verkiezingen/uitslag-tweede-kamerverkiezingen
+REGEX=fileadmin/bestanden/Open_gemeenten_nieuwe_bestandenboom/Gemeente__bestuur_en_organisatie/Verkiezingen/uitslag_per_stembureau_2025/.*\.pdf
+PREFIX=https://www.zeist.nl
+NAME=Zeist

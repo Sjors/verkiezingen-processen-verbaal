@@ -1,0 +1,4 @@
+URL=https://www.beekdaelen.nl/uitslagen-tweede-kamerverkiezingen-2025
+REGEX=tk25.*\.pdf|TK%2025\.pdf
+PREFIX=https://cuatro.sim-cdn.nl
+NAME=Beekdaelen

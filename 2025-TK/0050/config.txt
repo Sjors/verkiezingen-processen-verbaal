@@ -1,0 +1,4 @@
+URL=https://www.zeewolde.nl/verkiezingen/uitslagen-tweede-kamerverkiezing-2025
+REGEX=/fileadmin/Site_Zeewolde/documenten/verkiezingen/uitslagen/.*\.pdf
+PREFIX=https://www.zeewolde.nl
+NAME=Zeewolde

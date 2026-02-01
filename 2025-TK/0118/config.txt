@@ -1,0 +1,4 @@
+URL=https://www.hoogeveen.nl/verkiezingen/processen-verbaal-tweede-kamerverkiezing/
+REGEX=fileadmin/hoogeveen/PDF/Tweede_Kamerverkiezing_2025/.*\.pdf
+PREFIX=https://www.hoogeveen.nl/
+NAME=Hoogeveen

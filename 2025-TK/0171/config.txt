@@ -1,0 +1,4 @@
+URL=https://www.noordoostpolder.nl/verkiezingen
+REGEX=file/.*\.pdf
+PREFIX=https://www.noordoostpolder.nl/
+NAME=Noordoostpolder

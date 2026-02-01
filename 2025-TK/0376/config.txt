@@ -1,0 +1,4 @@
+URL=https://www.blaricum.nl/uitslag-verkiezing-tweede-kamer-2025
+REGEX=cuatro\.sim-cdn\.nl/blaricum8fbaa4/uploads/blaricum_.*tk25.*\.pdf
+PREFIX=
+NAME=Blaricum

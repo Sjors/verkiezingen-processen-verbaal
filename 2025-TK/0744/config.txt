@@ -1,0 +1,4 @@
+URL=https://www.baarle-nassau.nl/verkiezingsuitslagen
+REGEX=fileadmin/.*\.pdf
+PREFIX=https://www.baarle-nassau.nl
+NAME=Baarle-Nassau

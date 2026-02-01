@@ -1,0 +1,4 @@
+URL=https://www.goeree-overflakkee.nl/proces-verbalen-tweede-kamerverkiezing-2025
+REGEX=goereeoverflakkee/uploads/.*\.pdf
+PREFIX=https://cuatro.sim-cdn.nl/
+NAME=Goeree-Overflakkee

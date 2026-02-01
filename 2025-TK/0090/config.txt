@@ -1,0 +1,4 @@
+URL=https://www.smallingerland.nl/Onderwerpen/Verkiezingen/Uitslagen/Uitslag_Tweede_Kamerverkiezing_2025
+REGEX=Uitslag_Tweede_Kamerverkiezing_2025/(Processen_verbaal_van_de_stembureaus|De_bijlagen_2_van_het_proces_verbaal_van_het_GSB)/.*\.org
+PREFIX=https://www.smallingerland.nl
+NAME=Smallingerland

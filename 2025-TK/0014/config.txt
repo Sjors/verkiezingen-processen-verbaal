@@ -1,0 +1,4 @@
+URL=https://documenten.groningen.nl/TK25/1-%20Processen-verbaal%20van%20de%20stembureaus/
+REGEX=\.pdf
+PREFIX=https://documenten.groningen.nl/TK25/1-%20Processen-verbaal%20van%20de%20stembureaus/
+NAME=Groningen

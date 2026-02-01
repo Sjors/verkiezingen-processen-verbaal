@@ -1,0 +1,4 @@
+URL=https://www.lansingerland.nl/politiek-en-organisatie/verkiezingen/tweede-kamerverkiezing-2025/processen-verbaal-tweede-kamerverkiezing-2025/
+REGEX=wp-content/uploads/2025.*TK25.*\.(pdf|csv)
+PREFIX=
+NAME=Lansingerland

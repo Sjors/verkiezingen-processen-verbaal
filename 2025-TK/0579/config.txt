@@ -1,0 +1,4 @@
+URL=https://www.oegstgeest.nl/bestuur/tweede-kamerverkiezingen-2025/uitkomst-tweede-kamerverkiezingen-gemeente-oegstgeest
+REGEX=fileadmin/.*\.pdf
+PREFIX=https://www.oegstgeest.nl/
+NAME=Oegstgeest

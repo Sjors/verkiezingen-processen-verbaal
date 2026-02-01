@@ -1,0 +1,4 @@
+URL=https://www.gemeentelandvancuijk.nl/processen-verbaal-verkiezingen-tweede-kamer-2025
+REGEX=data/downloadables/.*\.pdf
+PREFIX=https://www.gemeentelandvancuijk.nl
+NAME=Land van Cuijk

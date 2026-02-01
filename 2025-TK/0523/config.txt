@@ -1,0 +1,4 @@
+URL=https://www.hardinxveld-giessendam.nl/Bestuur/Gemeenteraad/Verkiezingen/Tweede_Kamerverkiezingen_2025/Processen_verbaal_Tweede_Kamerverkiezing_2023_Hardinxveld_Giessendam
+REGEX=Bestuur/Gemeenteraad/Verkiezingen/Tweede_Kamerverkiezingen_2025/Processen_verbaal_Tweede_Kamerverkiezing_2023_Hardinxveld_Giessendam/.*\.pdf
+PREFIX=https://www.hardinxveld-giessendam.nl/
+NAME=Hardinxveld-Giessendam

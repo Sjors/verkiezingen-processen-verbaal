@@ -1,0 +1,4 @@
+URL=https://www.rijswijk.nl/hoe-worden-de-stemmen-geteld
+REGEX=sites/default/files/2025-..*/.*\.pdf
+PREFIX=https://www.rijswijk.nl/
+NAME=Rijswijk (Zuid-Holland)

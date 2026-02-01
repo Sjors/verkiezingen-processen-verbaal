@@ -1,0 +1,4 @@
+URL=https://uitslagen.stembureausinrotterdam.nl/tweede_kamerverkiezing__2025/documenten
+REGEX=uploads/documents/.*\.pdf
+PREFIX=https://uitslagen.stembureausinrotterdam.nl
+NAME=Rotterdam

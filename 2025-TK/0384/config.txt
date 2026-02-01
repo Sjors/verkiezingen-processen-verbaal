@@ -1,0 +1,4 @@
+URL=https://www.diemen.nl/Onderwerpen/Verkiezingen/Uitslag_Tweede_Kamerverkiezing_2025/Definitieve_einduitslag_Tweede_Kamerverkiezingen
+REGEX=\.pdf
+PREFIX=https://www.diemen.nl
+NAME=Diemen

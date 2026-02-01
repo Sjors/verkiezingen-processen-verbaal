@@ -1,0 +1,4 @@
+URL=https://www.gemeentemaastricht.nl/verkiezingen/uitslagen-tweede-kamerverkiezing-2025
+REGEX=sites/default/files/2025-(10|11)/.*\.pdf
+PREFIX=https://www.gemeentemaastricht.nl/
+NAME=Maastricht

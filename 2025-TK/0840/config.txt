@@ -1,0 +1,4 @@
+URL=https://www.rucphen.nl/verkiezingen/Uitslag-verkiezingen
+REGEX=Internet_Docs/Verkiezingen/.*\.pdf
+PREFIX=https://www.rucphen.nl
+NAME=Rucphen

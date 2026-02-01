@@ -1,0 +1,4 @@
+URL=https://www.ooststellingwerf.nl/verkiezingen/uitslag
+REGEX=ooststellingwerf/uploads/.*\.pdf
+PREFIX=https://cuatro.sim-cdn.nl/
+NAME=Ooststellingwerf

@@ -1,0 +1,4 @@
+URL=https://www.statiagovernment.com/nieuwsoverzicht/artikel/sol-confirms-election-results-after-documentation-review
+REGEX=Proces-verbaal.*\.PDF
+PREFIX=https://www.statiagovernment.com/
+NAME=Sint Eustatius

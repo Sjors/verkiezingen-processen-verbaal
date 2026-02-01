@@ -1,0 +1,4 @@
+URL=https://www.breda.nl/uitslag-verkiezing-tweede-kamer
+REGEX=sites/default/files/.*\.pdf
+PREFIX=https://www.breda.nl
+NAME=Breda

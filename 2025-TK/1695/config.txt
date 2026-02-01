@@ -1,0 +1,4 @@
+URL=https://www.noord-beveland.nl/uitslag-tweede-kamerverkiezing-2025
+REGEX=sites/noord_beveland/files/2025-1[01]/.*\.pdf
+PREFIX=https://www.noord-beveland.nl/
+NAME=Noord-Beveland

@@ -1,0 +1,4 @@
+URL=https://www.hofvantwente.nl/tweede-kamerverkiezingen/
+REGEX=hofvantwente\.nl/wp-content/uploads/2025/10/HofvanTwente.*TK25.*\.pdf
+PREFIX=
+NAME=Hof van Twente

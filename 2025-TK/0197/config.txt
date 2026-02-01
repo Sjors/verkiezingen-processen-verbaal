@@ -1,0 +1,4 @@
+URL=https://www.aalten.nl/uitslag-verkiezing-tweede-kamer-2025
+REGEX=(proces-verbaal|stembureau).*\.pdf
+PREFIX=https://www.aalten.nl
+NAME=Aalten

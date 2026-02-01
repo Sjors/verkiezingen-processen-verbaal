@@ -1,0 +1,4 @@
+URL=https://www.stichtsevecht.nl/gemeenteraad-college-en-organisatie/tweede-kamerverkiezingen/uitkomst-tweede-kamerverkiezingen-2025
+REGEX=fileadmin/.*\.pdf
+PREFIX=https://www.stichtsevecht.nl/
+NAME=Stichtse Vecht

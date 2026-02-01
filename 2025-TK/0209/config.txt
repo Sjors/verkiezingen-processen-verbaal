@@ -1,0 +1,4 @@
+URL=https://www.beuningen.nl/uitslag-verkiezing
+REGEX=Beuningen_[0-9]+_.*_TK25.*\.pdf
+PREFIX=
+NAME=Beuningen

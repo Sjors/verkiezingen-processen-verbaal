@@ -1,0 +1,4 @@
+URL=https://www.capelleaandenijssel.nl/processen-verbaal-verkiezing-tweede-kamer-2025
+REGEX=cuatro\.sim-cdn\.nl/capelleaandenijssel/uploads/.*\.pdf
+PREFIX=
+NAME=Capelle aan den IJssel

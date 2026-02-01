@@ -1,0 +1,4 @@
+URL=https://www.noardeast-fryslan.nl/processen-verbaal-tweede-kamerverkiezingen-2025
+REGEX=sites/default/files/2025-10/.*\.pdf
+PREFIX=https://www.noardeast-fryslan.nl/
+NAME=Noardeast-Fryslân

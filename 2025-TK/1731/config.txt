@@ -1,0 +1,4 @@
+URL=https://www.middendrenthe.nl/verkiezingen/uitslag
+REGEX=fileadmin/Verkiezingen/Tweede_Kamerverkiezing_2025/.*\.pdf
+PREFIX=https://www.middendrenthe.nl
+NAME=Midden-Drenthe

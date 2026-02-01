@@ -1,0 +1,4 @@
+URL=https://www.hilvarenbeek.nl/verkiezingen/publicaties-1
+REGEX=fileadmin/.*(proces-verbaal|[Pp][Vv]_|[Cc]orrigendum|[Cc]oorigendum).*\.pdf
+PREFIX=https://www.hilvarenbeek.nl/
+NAME=Hilvarenbeek

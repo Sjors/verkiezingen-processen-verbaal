@@ -1,0 +1,4 @@
+URL=https://www.hengelo.nl/verkiezingsuitslagen
+REGEX=Verkiezingen/TK2025/.*\.pdf
+PREFIX=https://www.hengelo.nl
+NAME=Hengelo (Overijssel)

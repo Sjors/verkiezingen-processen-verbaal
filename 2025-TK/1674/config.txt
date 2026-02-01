@@ -1,0 +1,4 @@
+URL=https://www.roosendaal.nl/uitslag-tweede-kamerverkiezing-2/
+REGEX=tk-2025.*\.pdf
+PREFIX=https://www.roosendaal.nl/
+NAME=Roosendaal

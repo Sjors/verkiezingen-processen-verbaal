@@ -1,0 +1,4 @@
+URL=https://www.veldhoven.nl/inwoners-en-ondernemers/verkiezingen/tweede-kamerverkiezingen-2025/uitslag
+REGEX=data/downloadables/[^"']+\.pdf
+PREFIX=https://www.veldhoven.nl/
+NAME=Veldhoven

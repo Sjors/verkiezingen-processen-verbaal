@@ -1,0 +1,4 @@
+URL=https://www.terschelling.nl/uitslagen-tweede-kamerverkiezing-2025
+REGEX=cuatro\.sim-cdn\.nl/terschelling/uploads/.*\.pdf
+PREFIX=https://
+NAME=Terschelling

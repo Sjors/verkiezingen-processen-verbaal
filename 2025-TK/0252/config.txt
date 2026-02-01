@@ -1,0 +1,4 @@
+URL=https://www.heumen.nl/uitslag-tweede-kamerverkiezingen-2025
+REGEX=sim-cdn\.nl/heumen/uploads/.*\.(pdf|PDF|csv)
+PREFIX=
+NAME=Heumen

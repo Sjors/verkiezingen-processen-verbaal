@@ -1,0 +1,4 @@
+URL=https://www.eersel.nl/uitkomsten-verkiezing
+REGEX=cuatro\.sim-cdn\.nl/.*\.pdf
+PREFIX=https://www.eersel.nl
+NAME=Eersel

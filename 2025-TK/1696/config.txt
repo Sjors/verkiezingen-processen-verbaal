@@ -1,0 +1,4 @@
+URL=https://www.wijdemeren.nl/nl/Verkiezingen/Uitkomst-Tweede-Kamerverkiezingen-2025.html
+REGEX=Uitkomst-Tweede-Kamerverkiezingen-2025/.*\.pdf
+PREFIX=https://www.wijdemeren.nl
+NAME=Wijdemeren

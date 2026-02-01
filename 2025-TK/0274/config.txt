@@ -1,0 +1,4 @@
+URL=https://www.renkum.nl/Bestuur_en_organisatie/Verkiezingsuitslagen/Uitslag_Tweede_Kamerverkiezing
+REGEX=dsresource\?objectid=.*type=(org|pdf)
+PREFIX=https://www.renkum.nl/
+NAME=Renkum

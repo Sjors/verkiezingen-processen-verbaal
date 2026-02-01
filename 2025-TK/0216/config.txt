@@ -1,0 +1,4 @@
+URL=https://www.culemborg.nl/verkiezingen
+REGEX=file/.*pdf
+PREFIX=https://www.culemborg.nl/
+NAME=Culemborg

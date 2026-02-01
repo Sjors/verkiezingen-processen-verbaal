@@ -1,0 +1,4 @@
+URL=https://drimmelen.nl/uitslagen-tweede-kamerverkiezingen-2025
+REGEX=Stembureau.*\.pdf|Proces%20verbaal.*\.pdf|Drimmelen_.*\.pdf
+PREFIX=https://drimmelen.nl/
+NAME=Drimmelen

@@ -1,0 +1,3 @@
+# Uses Mijn Stembureau API
+# Download with: ./scripts/fetch-mijnstembureau.py https://mijnstembureau-oosterhout.nl 2025-TK/0826
+NAME=Oosterhout

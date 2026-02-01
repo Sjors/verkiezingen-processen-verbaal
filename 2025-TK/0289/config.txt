@@ -1,0 +1,4 @@
+URL=https://www.wageningen.nl/verkiezingen/voorlopige-uitslagen/
+REGEX=wp-content/uploads/2025/.*\.pdf
+PREFIX=https://www.wageningen.nl/
+NAME=Wageningen

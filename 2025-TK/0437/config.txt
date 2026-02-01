@@ -1,0 +1,4 @@
+URL=https://www.ouder-amstel.nl/Home/Verkiezingen/Uitslagen_verkiezingen_2021_t_m_2025/Definitieve_uitslag_Tweede_Kamerverkiezing_2025
+REGEX=Ouder_Amstel.*TK25.*\.(pdf|org)
+PREFIX=https://www.ouder-amstel.nl
+NAME=Ouder-Amstel

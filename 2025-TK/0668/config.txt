@@ -1,0 +1,4 @@
+URL=https://www.westmaasenwaal.nl/voorlopige-uitslag-tweede-kamerverkiezingen
+REGEX=westmaasenwaal_[0-9]+_.*_tk25.*\.pdf
+PREFIX=
+NAME=West Maas en Waal

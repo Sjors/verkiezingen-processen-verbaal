@@ -1,0 +1,4 @@
+URL=https://www.bodegraven-reeuwijk.nl/uitslag-tweede-kamerverkiezingen-2025
+REGEX=file/(?!.*csv).*
+PREFIX=https://www.bodegraven-reeuwijk.nl/
+NAME=Bodegraven-Reeuwijk

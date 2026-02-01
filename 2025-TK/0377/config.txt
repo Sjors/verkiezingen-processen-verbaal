@@ -1,0 +1,4 @@
+URL=https://www.bloemendaal.nl/verkiezingen/uitslagen
+REGEX=fileadmin/Bloemendaal/Documenten/Tweede_Kamerverkiezing_2025/.*\.pdf
+PREFIX=https://www.bloemendaal.nl/
+NAME=Bloemendaal

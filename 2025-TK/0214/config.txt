@@ -1,0 +1,4 @@
+URL=https://www.buren.nl/verkiezingen/
+REGEX=wp-content/uploads/2025/10/.*\.pdf
+PREFIX=https://www.buren.nl
+NAME=Buren

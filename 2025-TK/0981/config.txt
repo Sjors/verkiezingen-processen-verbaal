@@ -1,0 +1,4 @@
+URL=https://www.vaals.nl/verkiezingen/tweedekamerverkiezingen2025/uitslag-tweede-kamerverkiezing-2025
+REGEX=bijlage-2-stembureau-.*-tk25-vaals\.pdf
+PREFIX=https://www.vaals.nl
+NAME=Vaals

@@ -1,0 +1,5 @@
+# Manual URL collection from multiple pages:
+# - https://www.olst-wijhe.nl/bestuur/verkiezingen/uitslagen-vorige-verkiezingen/definitieve-uitslag-tweede-kamerverkiezingen-2025/proces-verbaal-stembureaus
+# - https://www.olst-wijhe.nl/bestuur/verkiezingen/uitslagen-vorige-verkiezingen/definitieve-uitslag-tweede-kamerverkiezingen-2025/proces-verbaal-centrale-telling-gemeentelijk-stembureau
+# - https://www.olst-wijhe.nl/bestuur/verkiezingen/uitslagen-vorige-verkiezingen/definitieve-uitslag-tweede-kamerverkiezingen-2025/overige-documenten
+NAME=Olst-Wijhe

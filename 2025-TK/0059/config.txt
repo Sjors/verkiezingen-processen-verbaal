@@ -1,0 +1,4 @@
+URL=https://www.achtkarspelen.nl/uitslagen-vorige-verkiezingen
+REGEX=uitslag_per_stembureau_tk2025_achtkarspelen\.pdf
+PREFIX=https://cuatro.sim-cdn.nl/
+NAME=Achtkarspelen

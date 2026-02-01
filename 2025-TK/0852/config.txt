@@ -1,0 +1,4 @@
+URL=https://www.waterland.nl/uitslagen-tweede-kamerverkiezingen-2025
+REGEX=file/[^"']*pdf
+PREFIX=https://www.waterland.nl/
+NAME=Waterland

@@ -1,0 +1,4 @@
+URL=https://www.gulpen-wittem.nl/onderwerpen/verkiezingsinfo-voor-kiezers/uitslag-verkiezingen
+REGEX=tk(25|2025).*\.pdf
+PREFIX=https://www.gulpen-wittem.nl
+NAME=Gulpen-Wittem

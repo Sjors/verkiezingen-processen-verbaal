@@ -1,0 +1,4 @@
+URL=https://www.vijfheerenlanden.nl/uitslag-tweede-kamerverkiezing-2025
+REGEX=data/downloadables/.*\.pdf
+PREFIX=https://www.vijfheerenlanden.nl/
+NAME=Vijfheerenlanden

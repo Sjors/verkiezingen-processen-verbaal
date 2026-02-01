@@ -1,0 +1,4 @@
+URL=https://www.alblasserdam.nl/Bestuur_Organisatie/Alle_onderwerpen/Verkiezingen/Stemmen_met_een_beperking/Uitkomsten_Tweede_Kamerverkiezing
+REGEX=Uitkomsten_Tweede_Kamerverkiezing/.*\.pdf
+PREFIX=https://www.alblasserdam.nl
+NAME=Alblasserdam

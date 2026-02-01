@@ -1,0 +1,4 @@
+URL=https://www.renswoude.nl/verkiezingen
+REGEX=uploads/(?:verklaring_onderzoek_aansluitvoorschriften|na_31-1|n_10-1_[^"\?]+)\.pdf
+PREFIX=https://cuatro.sim-cdn.nl/renswoude/
+NAME=Renswoude

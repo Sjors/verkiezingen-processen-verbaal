@@ -1,0 +1,4 @@
+URL=https://www.delft.nl/tweede-kamerverkiezingen
+REGEX=media\.delft\.nl/pdf/Verkiezingen/.*\.pdf
+PREFIX=https://media.delft.nl/
+NAME=Delft

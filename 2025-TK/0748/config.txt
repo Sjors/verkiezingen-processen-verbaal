@@ -1,0 +1,4 @@
+URL=https://www.bergenopzoom.nl/uitslag-tweede-kamerverkiezingen-2025
+REGEX=cuatro\.sim-cdn\.nl/bergenopzoom/uploads/.*\.pdf
+PREFIX=https://www.bergenopzoom.nl/
+NAME=Bergen op Zoom

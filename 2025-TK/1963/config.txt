@@ -1,0 +1,4 @@
+URL=https://www.gemeentehw.nl/tweede-kamerverkiezingen-2025/processen-verbaal-en-formulieren/
+REGEX=wp-content/uploads/2025/.*\.pdf
+PREFIX=https://www.gemeentehw.nl
+NAME=Hoeksche Waard

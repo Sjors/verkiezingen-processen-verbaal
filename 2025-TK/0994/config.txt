@@ -1,0 +1,4 @@
+URL=https://www.valkenburg.nl/voor-inwoners-en-ondernemers/verkiezingen/tweede-kamerverkiezing-2025/Uitslag-Tweede-Kamerverkiezing-2025
+REGEX=data/downloadables/.*\.pdf
+PREFIX=https://www.valkenburg.nl/
+NAME=Valkenburg aan de Geul

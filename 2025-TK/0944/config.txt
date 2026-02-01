@@ -1,0 +1,4 @@
+URL=https://www.mookenmiddelaar.nl/uitslagen-tweede-kamerverkiezing-mook-en-middelaar-0
+REGEX=mookenmiddelaar/uploads/(stembureau_|model_na31-1|word_document_uitslagen2025_0|uitslagen_toegankelijk_0).*\.pdf
+PREFIX=https://cuatro.sim-cdn.nl/
+NAME=Mook en Middelaar

@@ -1,0 +1,3 @@
+# Uses Mijn Stembureau API
+# Download with: ./scripts/fetch-mijnstembureau.py https://mijnstembureau-veendam.nl 2025-TK/0047
+NAME=Veendam

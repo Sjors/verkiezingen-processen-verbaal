@@ -1,0 +1,4 @@
+URL=https://www.boxtel.nl/verkiezingen/uitslagen
+REGEX=sites/default/files/.*\.pdf
+PREFIX=https://www.boxtel.nl/
+NAME=Boxtel

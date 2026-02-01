@@ -1,0 +1,4 @@
+URL=https://www.cranendonck.nl/uitslag-tweede-kamerverkiezingen-2025
+REGEX=cranendonck/uploads/.*_tk25.*\.pdf
+PREFIX=https://cuatro.sim-cdn.nl/
+NAME=Cranendonck

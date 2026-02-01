@@ -1,0 +1,4 @@
+URL=https://www.overbetuwe.nl/verkiezingen/uitslagen
+REGEX=overbetuwe808b1f/uploads/.*\.pdf
+PREFIX=https://cuatro.sim-cdn.nl/
+NAME=Overbetuwe

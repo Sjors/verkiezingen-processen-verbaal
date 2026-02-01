@@ -1,0 +1,4 @@
+URL=https://archief07.archiefweb.eu/archives/archiefweb/20251104143810/https://www.borger-odoorn.nl/uitslag-tweede-kamerverkiezing-2025
+REGEX=file/(?!osv4-3).*
+PREFIX=https://archief07.archiefweb.eu/archives/archiefweb/20251104143810/https://www.borger-odoorn.nl/
+NAME=Borger-Odoorn

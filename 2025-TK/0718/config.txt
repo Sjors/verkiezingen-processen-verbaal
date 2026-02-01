@@ -1,0 +1,4 @@
+URL=https://www.vlissingen.nl/uitslag-tweede-kamerverkiezing-29-oktober-2025
+REGEX=sim-cdn\.nl/vlissingenebee90/uploads/.*\.pdf
+PREFIX=https://www.vlissingen.nl
+NAME=Vlissingen

@@ -1,0 +1,4 @@
+URL=https://www.teylingen.nl/tweede-kamerverkiezingen/proces-verbalen
+REGEX=Proces-ver[bh]aal_stembureau_.*\.pdf
+PREFIX=https://www.teylingen.nl
+NAME=Teylingen

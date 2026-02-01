@@ -1,0 +1,4 @@
+URL=https://www.haaksbergen.nl/verkiezingen/Tweede-Kamerverkiezingen/Officiele-publicaties-Tweede-Kamerverkiezingen-2025.html
+REGEX=TK2025-.*\.pdf
+PREFIX=https://www.haaksbergen.nl
+NAME=Haaksbergen

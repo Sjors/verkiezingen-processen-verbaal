@@ -1,0 +1,4 @@
+URL=https://www.dewolden.nl/verkiezingen/processen-verbaal-tweede-kamer-verkiezing-2025/
+REGEX=fileadmin/de_wolden/PDF/Verkiezingen_2025/.*\.pdf
+PREFIX=https://www.dewolden.nl/
+NAME=De Wolden

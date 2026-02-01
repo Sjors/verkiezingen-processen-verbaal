@@ -1,0 +1,4 @@
+URL=https://www.opsterland.nl/uitslag-tweede-kamerverkiezingen-2025
+REGEX=sim-cdn\.nl/opsterland/uploads/opsterland.*tk25.*\.pdf
+PREFIX=
+NAME=Opsterland

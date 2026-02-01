@@ -1,0 +1,4 @@
+URL=https://www.molenlanden.nl/tweede-kamerverkiezing-0
+REGEX=sites/default/files/2025-1[01]/.*\.pdf
+PREFIX=https://www.molenlanden.nl/
+NAME=Molenlanden

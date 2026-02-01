@@ -1,0 +1,4 @@
+URL=https://www.doesburg.nl/publicaties-tweede-kamerverkiezingen-2025
+REGEX=cuatro\.sim-cdn\.nl/doesburg/uploads/.*\.pdf
+PREFIX=https://cuatro.sim-cdn.nl/
+NAME=Doesburg

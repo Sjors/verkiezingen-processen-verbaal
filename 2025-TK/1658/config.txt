@@ -1,0 +1,4 @@
+URL=https://www.heeze-leende.nl/uitslag-tweede-kamerverkiezingen-2025
+REGEX=heeze-leende_.*tk25.*\.pdf|heeze-leende_.*tk2025.*\.pdf
+PREFIX=https://www.heeze-leende.nl/
+NAME=Heeze-Leende

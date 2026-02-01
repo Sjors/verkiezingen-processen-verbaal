@@ -1,0 +1,4 @@
+URL=https://www.pijnacker-nootdorp.nl/politiek-en-organisatie/tweede-kamerverkiezingen/uitslagen-tweede-kamerverkiezingen-29-oktober-2025/
+REGEX=wp-content/uploads/2025/.*(PV-|Corrigendum|Bijlage-2-bij-corrigendum).*\.pdf
+PREFIX=https://www.pijnacker-nootdorp.nl/
+NAME=Pijnacker-Nootdorp

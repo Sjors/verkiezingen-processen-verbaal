@@ -1,0 +1,4 @@
+URL=https://www.eindhoven.nl/bestuur-en-beleid/verkiezingen/tweede-kamerverkiezing-2025/uitslag
+REGEX=sites/default/files/2025-10/.*\.pdf
+PREFIX=https://www.eindhoven.nl
+NAME=Eindhoven

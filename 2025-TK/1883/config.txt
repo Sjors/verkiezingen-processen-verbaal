@@ -1,0 +1,4 @@
+URL=https://sittard-geleen.nl/de-gemeente/verkiezingen/uitslag-sittard-geleen/
+REGEX=wp-content/uploads/2025/.*\.pdf
+PREFIX=https://sittard-geleen.nl/
+NAME=Sittard-Geleen

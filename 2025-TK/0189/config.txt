@@ -1,0 +1,4 @@
+URL=https://www.wierden.nl/uitkomsten-tweede-kamerverkiezing-2025
+REGEX=sim-cdn\.nl/wierden/uploads/[Ww]ierden.*tk25.*\.pdf
+PREFIX=https://cuatro.
+NAME=Wierden

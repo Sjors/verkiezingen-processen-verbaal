@@ -1,0 +1,4 @@
+URL=https://www.hoorn.nl/pv-verkiezingen
+REGEX=Processen%20verbaal%202025.*\.(pdf|csv)
+PREFIX=https://www.hoorn.nl
+NAME=Hoorn

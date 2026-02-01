@@ -1,0 +1,4 @@
+URL=https://www.nieuwegein.nl/verkiezingen
+REGEX=fileadmin/gemeente_nieuwegein/Verkiezingen/TK25/.*\.pdf
+PREFIX=https://www.nieuwegein.nl
+NAME=Nieuwegein

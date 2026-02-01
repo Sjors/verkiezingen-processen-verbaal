@@ -1,0 +1,4 @@
+URL=https://www.oostgelre.nl/uitslag-tweede-kamerverkiezingen-29-oktober-2025
+REGEX=file/.*pdf
+PREFIX=https://www.oostgelre.nl/
+NAME=Oost Gelre

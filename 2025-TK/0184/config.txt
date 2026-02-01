@@ -1,0 +1,4 @@
+URL=https://www.urk.nl/uitslag-tweede-kamer-verkiezing
+REGEX=\.pdf
+PREFIX=https://www.urk.nl
+NAME=Urk

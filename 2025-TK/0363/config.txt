@@ -1,0 +1,4 @@
+URL=https://api.data.amsterdam.nl/v1/verkiezingen/processenverbaal/?verkiezingsjaar=2025&page_size=10000&documentnaam%5Blike%5D=%2A
+REGEX=https://pv-verkiezingen\.amsterdam\.nl/verkiezingen/procesverbalen/2025/.*\.pdf
+PREFIX=https://pv-verkiezingen.amsterdam.nl
+NAME=Amsterdam

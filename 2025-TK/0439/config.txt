@@ -1,0 +1,4 @@
+URL=https://purmerend.nl/bestuur-en-organisatie/verkiezingen/tweede-kamerverkiezing-2025/uitslagen-tweede-kamerverkiezingen
+REGEX=sites/default/files/2025-10/.*\.pdf
+PREFIX=https://purmerend.nl
+NAME=Purmerend

@@ -1,0 +1,4 @@
+URL=https://www.uitgeest.nl/verkiezingen/uitslag-tweede-kamerverkiezing
+REGEX=fileadmin/Uitgeest/documenten-per-onderwerp/verkiezingen/procesverbalen/.*\.pdf
+PREFIX=https://www.uitgeest.nl/
+NAME=Uitgeest

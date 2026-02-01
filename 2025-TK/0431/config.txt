@@ -1,0 +1,4 @@
+URL=https://www.oostzaan.nl/verkiezingenoz/uitslagen-tweede-kamerverkiezingen-2025
+REGEX=sites/default/files/.*\.pdf
+PREFIX=https://www.oostzaan.nl
+NAME=Oostzaan

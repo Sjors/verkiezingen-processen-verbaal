@@ -1,0 +1,4 @@
+URL=https://www.kapelle.nl/verkiezingsuitslag-tweede-kamer-oktober-2025
+REGEX=sites/kapelle/files/2025-1[01]/.*\.pdf
+PREFIX=https://www.kapelle.nl/
+NAME=Kapelle

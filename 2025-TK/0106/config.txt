@@ -1,0 +1,6 @@
+# Uses Stack Storage - requires manual download
+# Stack links:
+# - Lijstniveau: https://technischbeheerassen.stackstorage.com/s/NyaoupbN7yT25IyG
+# - Persoonsniveau: https://technischbeheerassen.stackstorage.com/s/mWxw8ESqtXcqKhR8
+# - GSB (centrale stemopneming): https://technischbeheerassen.stackstorage.com/s/hAxvtpJ7hM64oNGp
+NAME=Assen

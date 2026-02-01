@@ -1,0 +1,4 @@
+URL=https://www.helmond.nl/1/verkiezingen/tweede-kamerverkiezingen-uitslag
+REGEX=Media%20Helmond\.nl/.*TK25.*\.pdf|Media%20Helmond\.nl/.*Helmond_verklaring_aansluitvoorschriften\.pdf|Helmond_uitkomst_TK25.*\.pdf|Helmond_nieuwe_zitting_GSB\.pdf
+PREFIX=https://www.helmond.nl/
+NAME=Helmond

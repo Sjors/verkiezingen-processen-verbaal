@@ -1,0 +1,4 @@
+URL=https://www.veere.nl/uitslagen-tweede-kamerverkiezingen-2025
+REGEX=cuatro\.sim-cdn\.nl/veere/uploads/.*\.pdf
+PREFIX=https://
+NAME=Veere

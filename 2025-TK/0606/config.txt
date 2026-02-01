@@ -1,0 +1,4 @@
+URL=https://www.schiedam.nl/a-tot-z/uitslagen-2025
+REGEX=Schiedam_[0-9]+_.*_TK25.*\.pdf
+PREFIX=https://www.schiedam.nl
+NAME=Schiedam

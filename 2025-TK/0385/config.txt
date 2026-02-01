@@ -1,0 +1,4 @@
+URL=https://www.edam-volendam.nl/uitslag-verkiezingen-tweede-kamer-2025
+REGEX=sites/default/files/2025-.*\.pdf
+PREFIX=https://www.edam-volendam.nl/
+NAME=Edam-Volendam

@@ -1,0 +1,4 @@
+URL=https://www.woensdrecht.nl/uitslagen-verkiezingen-tweede-kamer-2025
+REGEX=cuatro\.sim-cdn\.nl/woensdrecht/uploads/.*\.pdf
+PREFIX=https://www.woensdrecht.nl/
+NAME=Woensdrecht

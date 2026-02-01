@@ -1,0 +1,4 @@
+URL=https://www.montfoort.nl/Alle_onderwerpen/Bestuur_en_organisatie/Verkiezingen/Uitslag_verkiezingen
+REGEX=dsresource\?objectid=.*type=pdf
+PREFIX=https://www.montfoort.nl/
+NAME=Montfoort

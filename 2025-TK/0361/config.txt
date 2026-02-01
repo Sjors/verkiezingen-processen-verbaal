@@ -1,0 +1,4 @@
+URL=https://www.alkmaar.nl/verkiezingsuitslagen/
+REGEX=Alkmaar_.*_TK.*\.pdf
+PREFIX=https://www.alkmaar.nl/
+NAME=Alkmaar

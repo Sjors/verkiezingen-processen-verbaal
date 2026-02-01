@@ -1,0 +1,4 @@
+URL=https://www.vlaardingen.nl/Bestuur/Verkiezingen/Tweede_Kamerverkiezing_2025/Uitslag_Tweede_Kamerverkiezing_2025
+REGEX=dsresource\?objectid=.*type=pdf
+PREFIX=https://www.vlaardingen.nl/
+NAME=Vlaardingen

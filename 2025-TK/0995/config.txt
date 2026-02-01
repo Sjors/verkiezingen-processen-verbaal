@@ -1,0 +1,4 @@
+URL=https://www.lelystad.nl/verkiezingsuitslag2025
+REGEX=Documenten/Verkiezingen%202025/.*\.pdf
+PREFIX=https://www.lelystad.nl
+NAME=Lelystad

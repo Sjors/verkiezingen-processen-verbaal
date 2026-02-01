@@ -1,0 +1,4 @@
+URL=https://www.deurne.nl/uitslag-verkiezingen
+REGEX=deurne/uploads/[^"']+\.pdf
+PREFIX=https://cuatro.sim-cdn.nl/
+NAME=Deurne

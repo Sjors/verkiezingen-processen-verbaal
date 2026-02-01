@@ -1,0 +1,4 @@
+URL=https://www.pekela.nl/Homepage/Verkiezingen:MZqjzXiySD-jrRh2YZ_6KA/Tweede_Kamerverkiezingen:AyZJBLrVRp2TeGkzPMwtNw/Processen_verbaal_Tweede_Kamerverkiezingen_2025
+REGEX=dsresource\?objectid=.*type=pdf
+PREFIX=https://www.pekela.nl/
+NAME=Pekela

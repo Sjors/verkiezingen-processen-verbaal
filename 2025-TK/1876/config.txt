@@ -1,0 +1,4 @@
+URL=https://www.bronckhorst.nl/openbare-kennisgevingen-tweede-kamerverkiezingen-2025
+REGEX=uploads/bronckhorst_.*_tk25.*\.pdf
+PREFIX=https://cuatro.sim-cdn.nl/bronckhorst82e5ef/
+NAME=Bronckhorst

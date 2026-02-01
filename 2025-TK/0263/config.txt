@@ -1,0 +1,4 @@
+URL=https://www.maasdriel.nl/bestuur-en-organisatie/verkiezingen/tweede-kamerverkiezingen-2025/uitslag
+REGEX=data/downloadables/.*\.pdf
+PREFIX=https://www.maasdriel.nl
+NAME=Maasdriel

@@ -1,0 +1,4 @@
+URL=https://www.westerwolde.nl/verkiezingsuitslagen-tweede-kamer-bekijken
+REGEX=sites/default/files/2025-.*\.(pdf|csv)
+PREFIX=https://www.westerwolde.nl/
+NAME=Westerwolde

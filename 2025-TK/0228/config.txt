@@ -1,0 +1,4 @@
+URL=https://www.ede.nl/bestuur-en-organisatie/verkiezingen-tweede-kamer-2025
+REGEX=Ede_.*_TK25.*\.pdf|Ede_uitkomst_TK25_.*\.pdf|Ede_verklaring_aansluitvoorschriften\.pdf|Ede_nieuwe_zitting_GSB\.pdf
+PREFIX=https://www.ede.nl/
+NAME=Ede

@@ -1,0 +1,4 @@
+URL=https://zutphen.nl/verkiezingen/uitslagen
+REGEX=\.pdf
+PREFIX=https://zutphen.nl
+NAME=Zutphen

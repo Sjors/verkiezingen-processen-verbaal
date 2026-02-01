@@ -1,0 +1,4 @@
+URL=https://www.aalsmeer.nl/definitieve-uitslag-tweede-kamerverkiezing-2025
+REGEX=sites/aalsmeer/files/.*\.pdf
+PREFIX=https://www.aalsmeer.nl/
+NAME=Aalsmeer

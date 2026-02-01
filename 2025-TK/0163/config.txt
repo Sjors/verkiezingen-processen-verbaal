@@ -1,0 +1,4 @@
+URL=https://www.hellendoorn.nl/verkiezingen/uitslag-verkiezingen-tweede-kamer-2025/
+REGEX=wp-content/uploads/2025/10/.*\.pdf
+PREFIX=https://www.hellendoorn.nl
+NAME=Hellendoorn

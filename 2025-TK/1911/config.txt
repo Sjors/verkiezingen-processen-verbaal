@@ -1,0 +1,4 @@
+URL=https://www.hollandskroon.nl/verkiezingen-en-uitslagen/uitslagen-tweede-kamerverkiezingen-2025/
+REGEX=wp-content/uploads/2025/.*\.pdf
+PREFIX=https://www.hollandskroon.nl/
+NAME=Hollands Kroon

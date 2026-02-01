@@ -1,0 +1,4 @@
+URL=https://www.druten.nl/verkiezingen-uitslag
+REGEX=data/downloadables/.*\.pdf
+PREFIX=https://www.druten.nl
+NAME=Druten

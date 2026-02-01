@@ -1,0 +1,4 @@
+URL=https://www.ameland.nl/verkiezing-tweede-kamer-29-oktober-2025
+REGEX=sim-cdn\.nl/ameland/uploads/.*\.pdf
+PREFIX=https://cuatro.
+NAME=Ameland

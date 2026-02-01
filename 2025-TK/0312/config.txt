@@ -1,0 +1,4 @@
+URL=https://www.bunnik.nl/onze-gemeente/verkiezingen/tweede-kamerverkiezing/uitslagen
+REGEX=fileadmin/bestanden/Verkiezingen/TK2025/.*\.pdf
+PREFIX=https://www.bunnik.nl
+NAME=Bunnik

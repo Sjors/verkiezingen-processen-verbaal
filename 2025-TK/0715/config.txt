@@ -1,0 +1,4 @@
+URL=https://www.terneuzen.nl/onze-gemeente/verkiezing-2e-kamer-29-oktober-2025/
+REGEX=Verkiezingen/Processen_verbaal_stembureau_s/.*\.pdf|app/uploads/2025/12/.*\.pdf
+PREFIX=https://www.terneuzen.nl/
+NAME=Terneuzen

@@ -1,0 +1,4 @@
+URL=https://www.wassenaar.nl/voorlopige-uitslag-tweede-kamerverkiezingen-2025
+REGEX=cuatro\.sim-cdn\.nl/wassenaar/uploads/(n_10-2_bureau_.*\.pdf|bijlage_2_bureau_.*\.pdf|proces_verbaal_gemeentelijk_stembureau\.pdf)
+PREFIX=https://www.wassenaar.nl/
+NAME=Wassenaar

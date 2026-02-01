@@ -1,0 +1,4 @@
+URL=https://verkiezingen.sudwestfryslan.nl/v2/gegevens.php?verkiezing=TK2025
+REGEX=verkiezingen/TK2025/.*\.pdf
+PREFIX=https://verkiezingen.sudwestfryslan.nl/v2/
+NAME=Súdwest-Fryslân

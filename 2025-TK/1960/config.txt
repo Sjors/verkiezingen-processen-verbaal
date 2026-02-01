@@ -1,0 +1,4 @@
+URL=https://www.westbetuwe.nl/processen-verbaal-verkiezing-tweede-kamer
+REGEX=file/.*pdf
+PREFIX=https://www.westbetuwe.nl/
+NAME=West Betuwe

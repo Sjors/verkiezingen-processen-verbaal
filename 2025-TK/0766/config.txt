@@ -1,0 +1,4 @@
+URL=https://www.dongen.nl/verkiezingen
+REGEX=VK-TK25/.*\.pdf
+PREFIX=https://www.dongen.nl
+NAME=Dongen

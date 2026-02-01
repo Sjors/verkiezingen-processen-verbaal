@@ -1,0 +1,4 @@
+URL=https://gemeente.leiden.nl/verkiezingen/verslagen-verkiezingen/
+REGEX=wp-content/uploads/2025/.*\.pdf
+PREFIX=https://gemeente.leiden.nl
+NAME=Leiden

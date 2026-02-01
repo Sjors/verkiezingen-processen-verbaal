@@ -1,0 +1,4 @@
+URL=https://www.voerendaal.nl/verkiezingen/uitslag-verkiezingen-2025-tweede-kamer
+REGEX=fileadmin/Gemeente_Voerendaal.*TK25.*\.pdf
+PREFIX=https://www.voerendaal.nl/
+NAME=Voerendaal

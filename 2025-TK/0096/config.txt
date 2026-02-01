@@ -1,0 +1,4 @@
+URL=https://www.vlieland.nl/uitslag-TK25
+REGEX=cuatro\.sim-cdn\.nl/vlieland/uploads/.*\.pdf
+PREFIX=
+NAME=Vlieland

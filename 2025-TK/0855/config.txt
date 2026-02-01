@@ -1,0 +1,4 @@
+URL=https://www.tilburg.nl/gemeente/bestuur/verkiezingen/uitslagen-en-het-proces-verbaal-per-stembureau-tweede-kamer-verkiezingen-2025/
+REGEX=Proces_verbaal.*\.pdf
+PREFIX=https://www.tilburg.nl
+NAME=Tilburg

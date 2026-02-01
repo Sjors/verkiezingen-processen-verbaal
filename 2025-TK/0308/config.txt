@@ -1,0 +1,4 @@
+URL=https://www.baarn.nl/uitslagen-tweede-kamerverkiezing-gemeente-baarn
+REGEX=cuatro\.sim-cdn\.nl/baarn/uploads/0308_pv_.*\.pdf
+PREFIX=https://www.baarn.nl/
+NAME=Baarn

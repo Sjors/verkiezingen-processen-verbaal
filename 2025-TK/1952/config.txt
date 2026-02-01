@@ -1,0 +1,4 @@
+URL=https://www.midden-groningen.nl/uitslagen
+REGEX=\.pdf
+PREFIX=https://www.midden-groningen.nl
+NAME=Midden-Groningen

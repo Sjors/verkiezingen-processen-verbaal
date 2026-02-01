@@ -1,0 +1,4 @@
+URL=https://www.dantumadiel.frl/voorlopige-uitslagen-tweede-kamerverkiezing-2025
+REGEX=sites/default/files/2025-.*\.pdf
+PREFIX=https://www.dantumadiel.frl
+NAME=Dantumadiel

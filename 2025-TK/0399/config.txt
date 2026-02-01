@@ -1,0 +1,4 @@
+URL=https://www.heiloo.nl/verkiezingen/uitslag-tweede-kamerverkiezing
+REGEX=procesverbalen/.*\.pdf
+PREFIX=https://www.heiloo.nl
+NAME=Heiloo

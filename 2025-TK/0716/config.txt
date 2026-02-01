@@ -1,0 +1,4 @@
+URL=https://www.tholen.nl/verkiezingen/uitslagen-tweede-kamerverkiezing-2025
+REGEX=Tholen_.*_TK25.*\.pdf|Tholen_.*_TK_.*\.pdf|Tholen_uitkomst_TK25\.pdf|Voorlopige_uitslag_TK2025.*\.pdf|Ea_6_verklaring_onderzoek__aansluitvoorwaarden_Tholen\.pdf
+PREFIX=https://www.tholen.nl/
+NAME=Tholen

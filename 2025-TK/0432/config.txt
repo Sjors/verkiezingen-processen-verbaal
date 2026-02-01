@@ -1,0 +1,4 @@
+URL=https://www.opmeer.nl/uitslagen
+REGEX=opmeer_.*_tk25.*\.pdf|opmeer_.*_tk2025.*\.pdf|opmeer_verklaring_aansluitvoorschriften\.pdf
+PREFIX=https://cuatro.sim-cdn.nl/opmeer/uploads/
+NAME=Opmeer

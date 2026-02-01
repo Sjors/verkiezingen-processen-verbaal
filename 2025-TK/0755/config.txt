@@ -1,0 +1,4 @@
+URL=https://www.boekel.nl/bestuur-en-organisatie/verkiezingen/tweede-kamerverkiezing-2025/uitslag
+REGEX=data/downloadables/.*\.pdf
+PREFIX=https://www.boekel.nl/
+NAME=Boekel

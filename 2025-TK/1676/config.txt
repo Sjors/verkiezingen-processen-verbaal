@@ -1,0 +1,4 @@
+URL=https://www.schouwen-duiveland.nl/verkiezingen/tweede-kamerverkiezingen/proces-verbaal/proces-verbaal-stembureaus
+REGEX=fileadmin/Schouwen-Duiveland/Afbeeldingen/Verkiezingen_PV/.*\.pdf
+PREFIX=https://www.schouwen-duiveland.nl
+NAME=Schouwen-Duiveland

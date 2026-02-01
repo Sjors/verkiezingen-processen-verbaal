@@ -1,0 +1,4 @@
+URL=https://www.dronten.nl/direct-regelen/thema/subthema/openbare-kennisgevingen-voor-vervroegde-tweede-kamerverkiezingen-2025
+REGEX=wp-content/uploads/2022/01/Dronten_.*_TK25.*\.pdf
+PREFIX=https://openpdc.dronten.nl/
+NAME=Dronten
