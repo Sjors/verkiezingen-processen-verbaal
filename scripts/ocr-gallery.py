@@ -13,6 +13,19 @@ def list_images(image_dir: Path) -> list[Path]:
     return sorted([p for p in image_dir.iterdir() if p.suffix.lower() in exts])
 
 
+def find_color_dir(image_dir: Path) -> Path | None:
+    parent = image_dir.parent
+    prefix = image_dir.name.split("-prep")[0]
+    candidates = [parent / prefix, parent / f"{prefix}-jpg", parent / f"{prefix}-png"]
+    for candidate in candidates:
+        if candidate.is_dir():
+            return candidate
+    for candidate in parent.iterdir():
+        if candidate.is_dir() and candidate.name.startswith(prefix) and "prep" not in candidate.name:
+            return candidate
+    return None
+
+
 def main() -> None:
     parser = argparse.ArgumentParser(description="Render an OCR gallery as Markdown.")
     parser.add_argument("--image-dir", required=True, help="Directory of images")
@@ -132,6 +145,8 @@ def main() -> None:
     images = list_images(image_dir)
     if not images:
         raise SystemExit(f"No images found in {image_dir}")
+
+    color_dir = find_color_dir(image_dir)
 
     if not args.ocr_json:
         default_print = image_dir.with_name(f"{image_dir.name}-trocr-printed.json")
@@ -385,6 +400,7 @@ def main() -> None:
         row_index = 0
         for row in rows:
             img = row[0]
+            display_img = img
             blank = is_blank_image(img)
             if len(row) == 4:
                 lines_print = row[1]
@@ -412,6 +428,10 @@ def main() -> None:
                         args.parseq_bias,
                     )
                     if parseq_choice:
+                        if color_dir is not None:
+                            candidate = color_dir / img.name
+                            if candidate.exists():
+                                display_img = candidate
                         display_text = parseq_choice[0]
                         conf_str = square_conf(format_conf(parseq_choice[1]))
                         label = f"{display_text} {conf_str}" if conf_str else display_text
@@ -470,13 +490,17 @@ def main() -> None:
                     args.parseq_bias,
                 )
                 if parseq_choice:
+                    if color_dir is not None:
+                        candidate = color_dir / img.name
+                        if candidate.exists():
+                            display_img = candidate
                     display_text = parseq_choice[0]
                     conf_str = square_conf(format_conf(parseq_choice[1]))
                 else:
                     conf_str = bracket_conf(format_conf(display_conf))
                 label = f"{display_text} {conf_str}" if conf_str else f"{display_text}"
                 meta = format_meta(display_text, conf_str)
-            cell = f"![{label}]({relpath(img)})<br>{meta}"
+            cell = f"![{label}]({relpath(display_img)})<br>{meta}"
             row_cells.append(cell)
             if len(row_cells) == cols:
                 row_index += 1
