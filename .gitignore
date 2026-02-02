@@ -22,3 +22,11 @@ tmp
 
 # macOS
 .DS_Store
+
+# Python virtual environments
+.venv/
+.venv-ocr/
+*/__pycache__
+
+# OCR
+gallery.md
