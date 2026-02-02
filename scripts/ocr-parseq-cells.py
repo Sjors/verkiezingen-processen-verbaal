@@ -30,6 +30,19 @@ def list_images(image_dir: Path) -> List[Path]:
     return sorted([p for p in image_dir.iterdir() if p.suffix.lower() in exts])
 
 
+def find_color_dir(image_dir: Path) -> Path | None:
+    parent = image_dir.parent
+    prefix = image_dir.name.split("-prep")[0]
+    candidates = [parent / prefix, parent / f"{prefix}-jpg", parent / f"{prefix}-png"]
+    for candidate in candidates:
+        if candidate.is_dir():
+            return candidate
+    for candidate in parent.iterdir():
+        if candidate.is_dir() and candidate.name.startswith(prefix) and "prep" not in candidate.name:
+            return candidate
+    return None
+
+
 def pick_device(requested: str | None) -> str:
     if requested:
         return requested
@@ -215,6 +228,8 @@ def main() -> None:
     if not images:
         raise SystemExit(f"No images found in {image_dir}")
 
+    color_dir = find_color_dir(image_dir)
+
     device = pick_device(args.device)
     model = torch.hub.load("baudm/parseq", args.model, pretrained=True)
     model.to(device)
@@ -232,7 +247,12 @@ def main() -> None:
 
     pages = []
     for idx, path in enumerate(images):
-        image = Image.open(path).convert("RGB")
+        source_path = path
+        if color_dir is not None:
+            color_path = color_dir / path.name
+            if color_path.exists():
+                source_path = color_path
+        image = Image.open(source_path).convert("RGB")
         if args.empty_threshold > 0:
             ratio = empty_ratio(image, args.empty_dark, args.empty_trim)
             if ratio < args.empty_threshold:

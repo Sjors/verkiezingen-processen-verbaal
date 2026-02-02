@@ -155,7 +155,7 @@ def main() -> None:
     parser.add_argument(
         "--empty-threshold",
         type=float,
-        default=0.0,
+        default=0.01,
         help="Dark pixel ratio below which a cell is treated as empty (0 disables)",
     )
     parser.add_argument(

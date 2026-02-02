@@ -306,8 +306,11 @@ def main() -> None:
         parseq_lines: list[dict],
         base_conf: float,
         blank: bool,
+        skipped: bool,
     ) -> tuple[str, float] | None:
         if not parseq_lines:
+            return None
+        if skipped:
             return None
         if blank or base_conf > args.parseq_threshold:
             return None
@@ -355,7 +358,12 @@ def main() -> None:
                     print_digit, print_conf = best_digit_from_lines(lines_print)
                     hand_digit, hand_conf = best_digit_from_lines(lines_hand)
                     base_conf = max(print_conf, hand_conf)
-                    parseq_choice = parseq_fallback(parseq_lines, base_conf, blank)
+                    parseq_choice = parseq_fallback(
+                        parseq_lines,
+                        base_conf,
+                        blank,
+                        print_skipped and hand_skipped,
+                    )
                     if parseq_choice:
                         display_text = parseq_choice[0]
                         conf_str = square_conf(format_conf(parseq_choice[1]))
@@ -406,7 +414,12 @@ def main() -> None:
                     display_conf = 0.0
                 else:
                     display_text, display_conf = best_digit_from_lines(lines)
-                parseq_choice = parseq_fallback(parseq_lines, display_conf, blank)
+                parseq_choice = parseq_fallback(
+                    parseq_lines,
+                    display_conf,
+                    blank,
+                    is_skipped(lines),
+                )
                 if parseq_choice:
                     display_text = parseq_choice[0]
                     conf_str = square_conf(format_conf(parseq_choice[1]))

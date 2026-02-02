@@ -101,6 +101,152 @@ def crop_cell(
     return image.crop((cx1, cy1, cx2, cy2))
 
 
+def crop_cell_bounds(
+    image: Image.Image,
+    row_bounds: Tuple[int, int],
+    col_bounds: Tuple[int, int],
+    pad: float,
+    row_inner: float,
+    col_inner: float,
+) -> Tuple[int, int, int, int]:
+    y1, y2 = row_bounds
+    x1, x2 = col_bounds
+    row_h = max(1, y2 - y1)
+    col_w = max(1, x2 - x1)
+    inner_row = int(row_h * row_inner)
+    inner_col = int(col_w * col_inner)
+    y1 = y1 + inner_row
+    y2 = y2 - inner_row
+    x1 = x1 + inner_col
+    x2 = x2 - inner_col
+    row_pad = int(row_h * pad)
+    col_pad = int(col_w * pad)
+    cx1 = max(0, x1 - col_pad)
+    cx2 = min(image.width, x2 + col_pad)
+    cy1 = max(0, y1 - row_pad)
+    cy2 = min(image.height, y2 + row_pad)
+    return cx1, cy1, cx2, cy2
+
+
+def color_dir_from_out(out_dir: Path) -> Path:
+    name = out_dir.name
+    if "-prep" in name:
+        prefix = name.split("-prep")[0]
+        return out_dir.with_name(f"{prefix}-color")
+    return out_dir.with_name(f"{name}-color")
+
+
+def detect_fullwidth_bars(
+    region: np.ndarray,
+    min_height_px: int,
+    coverage_thresh: float = 0.85,
+    min_len_px: int = 6,
+) -> List[Tuple[int, int]]:
+    med = float(np.median(region))
+    mad = float(np.median(np.abs(region - med)))
+    robust_std = 1.4826 * mad
+    thresh = med - max(10.0, 1.1 * robust_std)
+    dark = (region < thresh).astype(np.uint8) * 255
+    kernel = np.ones((1, 31), np.uint8)
+    dark = cv2.morphologyEx(dark, cv2.MORPH_CLOSE, kernel)
+    row_cov = dark.mean(axis=1) / 255.0
+    mask = row_cov >= coverage_thresh
+
+    mask_img = (mask.astype(np.uint8) * 255).reshape(-1, 1)
+    k = max(3, int(round(min_height_px * 1.5)))
+    kernel_v = np.ones((k, 1), np.uint8)
+    mask_img = cv2.morphologyEx(mask_img, cv2.MORPH_CLOSE, kernel_v)
+    mask = mask_img[:, 0] > 0
+
+    segments: List[Tuple[int, int]] = []
+    start = None
+    for i, flag in enumerate(mask):
+        if flag and start is None:
+            start = i
+        elif not flag and start is not None:
+            end = i
+            if end - start >= max(min_len_px, min_height_px):
+                segments.append((start, end))
+            start = None
+    if start is not None:
+        end = len(mask)
+        if end - start >= max(min_len_px, min_height_px):
+            segments.append((start, end))
+    return segments
+
+
+def find_bar_ranges(
+    image: Image.Image,
+    grid_bbox: List[int] | None,
+) -> List[Tuple[int, int]]:
+    rgb = np.array(image.convert("RGB"))
+    gray = cv2.cvtColor(rgb, cv2.COLOR_RGB2GRAY)
+
+    bg = cv2.medianBlur(gray, 31)
+    corr = cv2.addWeighted(gray, 1.8, bg, -0.8, 128)
+    corr = np.clip(corr, 0, 255).astype("uint8")
+    corr = cv2.normalize(corr, None, 0, 255, cv2.NORM_MINMAX)
+
+    if grid_bbox:
+        bx1, by1, bx2, by2 = [int(v) for v in grid_bbox]
+    else:
+        bx1, by1, bx2, by2 = 0, 0, 0, 0
+
+    x1 = bx1 if bx2 > bx1 else 0
+    x2 = bx2 if bx2 > bx1 else gray.shape[1] - 1
+    y1 = by1 if by2 > by1 else 0
+    y2 = by2 if by2 > by1 else gray.shape[0] - 1
+
+    mm_to_px = gray.shape[0] / 297.0
+    min_height_px = max(3, int(round(mm_to_px * 1.0)))
+    region = corr[y1:y2, x1:x2]
+    fullwidth = detect_fullwidth_bars(region, min_height_px)
+    sep_ranges = [(y1 + s, y1 + e) for s, e in fullwidth]
+    sep_ranges = sorted(sep_ranges)
+    merged: List[Tuple[int, int]] = []
+    merge_gap = max(2, int(round(min_height_px * 0.6)))
+    for s, e in sep_ranges:
+        if not merged:
+            merged.append((s, e))
+            continue
+        ps, pe = merged[-1]
+        if s <= pe + merge_gap:
+            merged[-1] = (ps, max(pe, e))
+        else:
+            merged.append((s, e))
+    sep_ranges = merged
+
+    cleaned: List[Tuple[int, int]] = []
+    for sy1, sy2 in sep_ranges:
+        y0 = max(y1, sy1)
+        y3 = min(y2, sy2)
+        if y3 <= y0:
+            continue
+        cleaned.append((y0, y3))
+    return cleaned
+
+
+def apply_bar_whitening(
+    crop: Image.Image,
+    crop_y1: int,
+    crop_y2: int,
+    bar_ranges: List[Tuple[int, int]],
+) -> Image.Image:
+    if not bar_ranges:
+        return crop
+    arr = np.array(crop)
+    height = arr.shape[0]
+    for sy1, sy2 in bar_ranges:
+        if sy2 <= crop_y1 or sy1 >= crop_y2:
+            continue
+        y0 = max(0, sy1 - crop_y1)
+        y3 = min(height, sy2 - crop_y1)
+        if y3 <= y0:
+            continue
+        arr[y0:y3, ...] = 255
+    return Image.fromarray(arr, mode=crop.mode)
+
+
 def hue_distance(h: np.ndarray, center: int) -> np.ndarray:
     diff = np.abs(h.astype(np.int16) - center)
     return np.minimum(diff, 180 - diff)
@@ -255,23 +401,10 @@ def main() -> None:
     parser.add_argument("--pad", type=float, default=0.25, help="Padding fraction for crops")
     parser.add_argument("--row-inner", type=float, default=0.04, help="Trim fraction from row bounds")
     parser.add_argument("--col-inner", type=float, default=0.05, help="Trim fraction from column bounds")
-    parser.add_argument(
-        "--preprocess",
-        choices=["none", "auto", "blue", "black"],
-        default="none",
-        help="Preprocess crops to isolate pen ink",
-    )
     parser.add_argument("--hue-tol", type=int, default=18, help="Hue tolerance for color masking")
     parser.add_argument("--sat-min", type=int, default=40, help="Minimum saturation for color masking")
     parser.add_argument("--val-max", type=int, default=230, help="Maximum value for color masking")
     parser.add_argument("--dark-max", type=int, default=120, help="Maximum value for dark ink masking")
-    parser.add_argument("--remove-grid", action="store_true", help="Attempt to remove grid lines")
-    parser.add_argument(
-        "--preprocess-style",
-        choices=["mask", "enhance"],
-        default="enhance",
-        help="Output style for preprocessing",
-    )
     parser.add_argument(
         "--ink-darken",
         type=int,
@@ -283,13 +416,6 @@ def main() -> None:
         type=int,
         default=40,
         help="How much to lighten grid lines in enhance mode",
-    )
-    parser.add_argument("--grid-erase", action="store_true", help="Erase grid lines to white")
-    parser.add_argument(
-        "--empty-threshold",
-        type=float,
-        default=0.0,
-        help="Deprecated. Use ocr-trocr-cells.py --empty-threshold to skip OCR",
     )
     parser.add_argument(
         "--page",
@@ -311,10 +437,11 @@ def main() -> None:
     image = Image.open(args.image).convert("RGB")
     out_dir = Path(args.out_dir)
     out_dir.mkdir(parents=True, exist_ok=True)
+    color_dir = color_dir_from_out(out_dir)
+    color_dir.mkdir(parents=True, exist_ok=True)
 
-    hue_center = None
-    if args.preprocess == "auto":
-        hue_center = detect_pen_hue(image, args.sat_min, args.val_max)
+    bar_ranges = find_bar_ranges(image, grid.get("table_bbox_px"))
+    hue_center = detect_pen_hue(image, args.sat_min, args.val_max)
 
     page = next((p for p in vision if p.get("page") == args.page), None)
     if not page:
@@ -334,7 +461,7 @@ def main() -> None:
         if not row_bounds:
             continue
         for col_idx, col_bounds in enumerate(digit_cols, start=1):
-            crop = crop_cell(
+            cx1, cy1, cx2, cy2 = crop_cell_bounds(
                 image,
                 row_bounds,
                 col_bounds,
@@ -342,22 +469,25 @@ def main() -> None:
                 args.row_inner,
                 args.col_inner,
             )
-            if args.preprocess != "none":
-                crop = preprocess_crop(
-                    crop,
-                    args.preprocess,
-                    hue_center,
-                    args.hue_tol,
-                    args.sat_min,
-                    args.val_max,
-                    args.dark_max,
-                    args.remove_grid,
-                    args.preprocess_style,
-                    args.ink_darken,
-                    args.grid_fade,
-                    args.grid_erase,
-                )
+            crop_color = image.crop((cx1, cy1, cx2, cy2))
             filename = f"list-{row['list_number']:02d}-col-{col_idx}.png"
+            if color_dir:
+                crop_color.save(color_dir / filename)
+            crop = apply_bar_whitening(crop_color, cy1, cy2, bar_ranges)
+            crop = preprocess_crop(
+                crop,
+                "auto",
+                hue_center,
+                args.hue_tol,
+                args.sat_min,
+                args.val_max,
+                args.dark_max,
+                True,
+                "enhance",
+                args.ink_darken,
+                args.grid_fade,
+                True,
+            )
             crop.save(out_dir / filename)
             mapping.append(
                 {
@@ -383,7 +513,7 @@ def main() -> None:
         if not row_bounds:
             continue
         for col_idx, col_bounds in enumerate(digit_cols, start=1):
-            crop = crop_cell(
+            cx1, cy1, cx2, cy2 = crop_cell_bounds(
                 image,
                 row_bounds,
                 col_bounds,
@@ -391,22 +521,25 @@ def main() -> None:
                 args.row_inner,
                 args.col_inner,
             )
-            if args.preprocess != "none":
-                crop = preprocess_crop(
-                    crop,
-                    args.preprocess,
-                    hue_center,
-                    args.hue_tol,
-                    args.sat_min,
-                    args.val_max,
-                    args.dark_max,
-                    args.remove_grid,
-                    args.preprocess_style,
-                    args.ink_darken,
-                    args.grid_fade,
-                    args.grid_erase,
-                )
+            crop_color = image.crop((cx1, cy1, cx2, cy2))
             filename = f"total-{key}-col-{col_idx}.png"
+            if color_dir:
+                crop_color.save(color_dir / filename)
+            crop = apply_bar_whitening(crop_color, cy1, cy2, bar_ranges)
+            crop = preprocess_crop(
+                crop,
+                "auto",
+                hue_center,
+                args.hue_tol,
+                args.sat_min,
+                args.val_max,
+                args.dark_max,
+                True,
+                "enhance",
+                args.ink_darken,
+                args.grid_fade,
+                True,
+            )
             crop.save(out_dir / filename)
             mapping.append(
                 {

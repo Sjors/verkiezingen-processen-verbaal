@@ -86,10 +86,6 @@ For single-image OCR output, the Vision JSON page number is always 1:
   --pad 0.18 \
   --row-inner 0.04 \
   --col-inner 0.05 \
-  --preprocess auto \
-  --remove-grid \
-  --preprocess-style enhance \
-  --grid-erase \
   --page 1
 ```
 
@@ -123,7 +119,7 @@ Most useful parameters:
 - --ms-min-conf: filter low-confidence predictions for Microsoft OCR.
 - --ambiguous-min-conf: minimum confidence for ambiguous glyph mappings (e.g., I→1).
 - --device: cpu|mps|cuda.
-- --empty-threshold: skip OCR when the tile has almost no ink (default 0 = disabled).
+- --empty-threshold: skip OCR when the tile has almost no ink (default 0.01; set to 0 to disable).
   Use this in ocr-trocr-cells.py; crop-grid-cells.py no longer blanks images.
 - --empty-trim: trim fraction per side for empty checks (default 0.13, for pad 0.18).
 
@@ -173,3 +169,4 @@ The gallery always displays the first digit from OCR output.
 - --parseq-empty-conf: minimum PARSeq confidence to accept an explicit no-digit result (default 0.9).
 - --parseq-min-conf: minimum PARSeq confidence to accept a digit (default 0.5).
 - --parseq-beam-size: beam size for PARSeq decoding (default 20).
+- PARSeq uses original color crops when available (auto-created next to the prep dir).
