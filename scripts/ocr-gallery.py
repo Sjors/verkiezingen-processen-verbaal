@@ -26,11 +26,6 @@ def main() -> None:
         help="OCR JSON for the handwritten model (right side in combined display)",
     )
     parser.add_argument(
-        "--run-ocr",
-        action="store_true",
-        help="Run TrOCR for printed + handwritten models before rendering",
-    )
-    parser.add_argument(
         "--printed-model",
         default="microsoft/trocr-large-printed",
         help="Printed TrOCR model id",
@@ -41,10 +36,10 @@ def main() -> None:
         help="Handwritten TrOCR model id",
     )
     parser.add_argument(
-        "--num-beams",
+        "--ms-num-beams",
         type=int,
         default=20,
-        help="Beam search width when running OCR",
+        help="Beam search width when running Microsoft OCR",
     )
     parser.add_argument(
         "--length-penalty",
@@ -59,10 +54,10 @@ def main() -> None:
         help="Maximum new tokens when running OCR",
     )
     parser.add_argument(
-        "--min-conf",
+        "--ms-min-conf",
         type=float,
         default=0.1,
-        help="Minimum confidence to accept a digit when running OCR",
+        help="Minimum confidence to accept a digit when running Microsoft OCR",
     )
     parser.add_argument(
         "--ambiguous-min-conf",
@@ -101,10 +96,35 @@ def main() -> None:
     )
     parser.add_argument("--out", default="gallery.md", help="Output Markdown file")
     parser.add_argument("--cols", type=int, default=5, help="Number of columns in the table")
+    parser.add_argument("--parseq-json", help="PARSeq OCR JSON output")
     parser.add_argument(
-        "--digits-only",
-        action="store_true",
-        help="Show only the first digit from OCR text",
+        "--parseq-model",
+        default="parseq",
+        help="PARSeq torch.hub entry (parseq, parseq_tiny, parseq_patch16_224)",
+    )
+    parser.add_argument(
+        "--parseq-beam-size",
+        type=int,
+        default=20,
+        help="Beam size for PARSeq decoding",
+    )
+    parser.add_argument(
+        "--parseq-threshold",
+        type=float,
+        default=0.6,
+        help="Use PARSeq when confidence is at or below this threshold",
+    )
+    parser.add_argument(
+        "--parseq-empty-conf",
+        type=float,
+        default=0.9,
+        help="Minimum PARSeq confidence to accept an explicit no-digit result",
+    )
+    parser.add_argument(
+        "--parseq-min-conf",
+        type=float,
+        default=0.4,
+        help="Minimum PARSeq confidence to accept a digit",
     )
     args = parser.parse_args()
 
@@ -122,9 +142,7 @@ def main() -> None:
         ocr_print_path = None
         ocr_hand_path = None
 
-    if args.run_ocr:
-        if args.ocr_json:
-            raise SystemExit("--run-ocr is only supported with printed/handwritten outputs")
+    if not args.ocr_json:
         script_path = Path(__file__).resolve().parent / "ocr-trocr-cells.py"
 
         def run_trocr(model_id: str, out_path: Path) -> None:
@@ -138,13 +156,13 @@ def main() -> None:
                 "--model",
                 model_id,
                 "--num-beams",
-                str(args.num_beams),
+                str(args.ms_num_beams),
                 "--length-penalty",
                 str(args.length_penalty),
                 "--max-new-tokens",
                 str(args.max_new_tokens),
                 "--min-conf",
-                str(args.min_conf),
+                str(args.ms_min_conf),
                 "--ambiguous-min-conf",
                 str(args.ambiguous_min_conf),
                 "--empty-threshold",
@@ -160,8 +178,38 @@ def main() -> None:
 
         run_trocr(args.printed_model, ocr_print_path)
         run_trocr(args.hand_model, ocr_hand_path)
-    elif not args.ocr_json and (not ocr_print_path.exists() or not ocr_hand_path.exists()):
-        raise SystemExit("Missing OCR outputs. Provide --run-ocr or --ocr-json-print/--ocr-json-hand.")
+
+    parseq_path = Path(args.parseq_json) if args.parseq_json else image_dir.with_name(
+        f"{image_dir.name}-parseq.json"
+    )
+
+    if not args.parseq_json:
+        script_path = Path(__file__).resolve().parent / "ocr-parseq-cells.py"
+        cmd = [
+            sys.executable,
+            str(script_path),
+            "--image-dir",
+            str(image_dir),
+            "--out",
+            str(parseq_path),
+            "--model",
+            args.parseq_model,
+            "--beam-size",
+            str(args.parseq_beam_size),
+            "--parseq-min-conf",
+            str(args.parseq_min_conf),
+        ]
+        if args.use_fast_processor:
+            cmd.append("--use-fast-processor")
+        if args.device:
+            cmd.extend(["--device", args.device])
+        subprocess.run(cmd, check=True)
+    elif parseq_path and not parseq_path.exists():
+        raise SystemExit(f"Missing PARSeq output at {parseq_path}")
+
+    parseq_data = None
+    if parseq_path and parseq_path.exists():
+        parseq_data = json.loads(parseq_path.read_text(encoding="utf-8"))
 
     ocr_data = None
     ocr_print = None
@@ -174,13 +222,14 @@ def main() -> None:
 
     rows = []
     for idx, img in enumerate(images):
+        parseq_lines = parseq_data[idx].get("lines", []) if parseq_data and idx < len(parseq_data) else []
         if ocr_print is not None and ocr_hand is not None:
             lines_print = ocr_print[idx].get("lines", []) if idx < len(ocr_print) else []
             lines_hand = ocr_hand[idx].get("lines", []) if idx < len(ocr_hand) else []
-            rows.append((img, lines_print, lines_hand))
+            rows.append((img, lines_print, lines_hand, parseq_lines))
         else:
             lines = ocr_data[idx].get("lines", []) if ocr_data and idx < len(ocr_data) else []
-            rows.append((img, lines))
+            rows.append((img, lines, parseq_lines))
 
     out_path = Path(args.out)
     out_path.parent.mkdir(parents=True, exist_ok=True)
@@ -235,6 +284,9 @@ def main() -> None:
     def bracket_conf(conf_text: str) -> str:
         return f"({conf_text})" if conf_text else ""
 
+    def square_conf(conf_text: str) -> str:
+        return f"[{conf_text}]" if conf_text else ""
+
     def format_meta(value_text: str, conf_text: str) -> str:
         if not conf_text:
             return f"<div>{value_text}</div>"
@@ -250,6 +302,34 @@ def main() -> None:
             return f"**{text}**"
         return text
 
+    def parseq_fallback(
+        parseq_lines: list[dict],
+        base_conf: float,
+        blank: bool,
+    ) -> tuple[str, float] | None:
+        if not parseq_lines:
+            return None
+        if blank or base_conf > args.parseq_threshold:
+            return None
+        if is_skipped(parseq_lines):
+            return None
+        parseq_digit, parseq_conf = best_digit_from_lines(parseq_lines)
+        if parseq_digit not in {"", "-"} and parseq_conf > 0.0:
+            if parseq_conf < args.parseq_min_conf:
+                return None
+            if parseq_conf < base_conf:
+                return None
+            return parseq_digit, parseq_conf
+        raw_text = parseq_lines[0].get("raw_text", "") if parseq_lines else ""
+        raw_conf = float(parseq_lines[0].get("raw_confidence", 0.0) or 0.0) if parseq_lines else 0.0
+        if raw_conf <= 0.0 and not raw_text:
+            return None
+        if raw_conf < base_conf:
+            return None
+        if raw_conf < args.parseq_empty_conf:
+            return None
+        return "-", raw_conf
+
     cols = max(1, args.cols)
     with out_path.open("w", encoding="utf-8") as f:
         header_cells = ["#"] + [str(i) for i in range(1, cols + 1)]
@@ -260,30 +340,32 @@ def main() -> None:
         row_index = 0
         for row in rows:
             img = row[0]
-            if len(row) == 3:
+            blank = is_blank_image(img)
+            if len(row) == 4:
                 lines_print = row[1]
                 lines_hand = row[2]
-                if is_blank_image(img):
+                parseq_lines = row[3]
+                if blank:
                     display_text = blank_html
                     label = blank_html
                     meta = f"<div>{blank_html}</div>"
                 else:
                     print_skipped = is_skipped(lines_print)
                     hand_skipped = is_skipped(lines_hand)
-                    if print_skipped and hand_skipped:
+                    print_digit, print_conf = best_digit_from_lines(lines_print)
+                    hand_digit, hand_conf = best_digit_from_lines(lines_hand)
+                    base_conf = max(print_conf, hand_conf)
+                    parseq_choice = parseq_fallback(parseq_lines, base_conf, blank)
+                    if parseq_choice:
+                        display_text = parseq_choice[0]
+                        conf_str = square_conf(format_conf(parseq_choice[1]))
+                        label = f"{display_text} {conf_str}" if conf_str else display_text
+                        meta = format_meta(display_text, conf_str)
+                    elif print_skipped and hand_skipped:
                         display_text = blank_html
                         label = blank_html
                         meta = f"<div>{blank_html}</div>"
-                        cell = f"![{label}]({relpath(img)})<br>{meta}"
-                        row_cells.append(cell)
-                        if len(row_cells) == cols:
-                            row_index += 1
-                            f.write("| " + " | ".join([str(row_index)] + row_cells) + " |\n")
-                            row_cells = []
-                        continue
-                    print_digit, print_conf = best_digit_from_lines(lines_print)
-                    hand_digit, hand_conf = best_digit_from_lines(lines_hand)
-                    if print_skipped and not hand_skipped:
+                    elif print_skipped and not hand_skipped:
                         display_text = hand_digit if hand_digit != "-" else blank_html
                         conf_str = bracket_conf(format_conf(hand_conf))
                         label = f"{display_text} {conf_str}" if conf_str else display_text
@@ -295,7 +377,6 @@ def main() -> None:
                         meta = format_meta(display_text, conf_str)
                     elif print_digit == hand_digit:
                         display_text = print_digit
-                        label = print_digit
                         best_conf = max(print_conf, hand_conf)
                         conf_str = bracket_conf(format_conf(best_conf))
                         label = f"{display_text} {conf_str}" if conf_str else display_text
@@ -319,31 +400,18 @@ def main() -> None:
                         meta = format_meta(display_text, conf_text)
             else:
                 lines = row[1]
-                if args.digits_only:
-                    if is_blank_image(img) or is_skipped(lines):
-                        display_text = blank_html
-                        display_conf = 0.0
-                    else:
-                        display_text, display_conf = best_digit_from_lines(lines)
+                parseq_lines = row[2]
+                if blank or is_skipped(lines):
+                    display_text = blank_html
+                    display_conf = 0.0
                 else:
-                    if lines:
-                        line = max(lines, key=lambda item: float(item.get("confidence", 0.0)))
-                    else:
-                        line = {}
-                    text = line.get("text", "")
-                    conf = float(line.get("confidence", 0.0) or 0.0)
-                    raw_text = line.get("raw_text", "")
-                    raw_conf = float(line.get("raw_confidence", conf) or 0.0)
-                    if text:
-                        display_text = text
-                        display_conf = conf
-                    elif raw_text:
-                        display_text = raw_text
-                        display_conf = raw_conf
-                    else:
-                        display_text = "-"
-                        display_conf = 0.0
-                conf_str = bracket_conf(format_conf(display_conf))
+                    display_text, display_conf = best_digit_from_lines(lines)
+                parseq_choice = parseq_fallback(parseq_lines, display_conf, blank)
+                if parseq_choice:
+                    display_text = parseq_choice[0]
+                    conf_str = square_conf(format_conf(parseq_choice[1]))
+                else:
+                    conf_str = bracket_conf(format_conf(display_conf))
                 label = f"{display_text} {conf_str}" if conf_str else f"{display_text}"
                 meta = format_meta(display_text, conf_str)
             cell = f"![{label}]({relpath(img)})<br>{meta}"

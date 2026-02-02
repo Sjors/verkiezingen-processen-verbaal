@@ -7,6 +7,18 @@ The gallery output is a Markdown table of the crops with the recognized digit an
 
 Use the TrOCR script to produce Vision-like JSON, then render a gallery.
 
+Activate the Python venv once per shell:
+
+```bash
+source .venv/bin/activate
+```
+
+With the venv active, you can run the scripts directly (they are executable):
+
+```bash
+./scripts/ocr-gallery.py --help
+```
+
 ```bash
 ./.venv/bin/python scripts/ocr-trocr-cells.py \
   --image-dir tmp/ocr/0307-adventkerk-28_0-cells-prep5 \
@@ -18,10 +30,11 @@ Use the TrOCR script to produce Vision-like JSON, then render a gallery.
   --use-fast-processor \
   --device mps
 
-./.venv/bin/python scripts/ocr-gallery.py \
+./scripts/ocr-gallery.py \
   --image-dir tmp/ocr/0307-adventkerk-28_0-cells-prep5 \
-  --ocr-json tmp/ocr/0307-adventkerk-28_0-cells-prep5-trocr.json \
-  --digits-only
+  --ocr-json tmp/ocr/0307-adventkerk-28_0-cells-prep5-trocr.json
+
+PARSeq runs by default unless you supply --parseq-json.
 ```
 
 The gallery writes to gallery.md by default (no --out required).
@@ -83,12 +96,10 @@ For single-image OCR output, the Vision JSON page number is always 1:
 4) Generate the gallery from the JPEG-based crops:
 
 ```bash
-./.venv/bin/python scripts/ocr-gallery.py \
+./scripts/ocr-gallery.py \
   --image-dir tmp/ocr/BIJLAGE-cells-prep5 \
-  --run-ocr \
-  --num-beams 20 \
-  --max-new-tokens 1 \
-  --digits-only
+  --ms-num-beams 20 \
+  --max-new-tokens 1
 ```
 
 If you OCR a full PDF instead of a single image, pass the real PDF page number to
@@ -105,11 +116,11 @@ Available Hugging Face model ids (large variants only):
 
 Most useful parameters:
 
-- --num-beams: beam search width (higher may improve accuracy, slower).
+- --ms-num-beams: beam search width for Microsoft OCR (higher may improve accuracy, slower).
 - --length-penalty: adjust preference for longer/shorter outputs.
 - --max-new-tokens: limit output length (defaults to 2 for single digits).
 - --use-fast-processor: use the fast image processor backend.
-- --min-conf: filter low-confidence predictions.
+- --ms-min-conf: filter low-confidence predictions for Microsoft OCR.
 - --ambiguous-min-conf: minimum confidence for ambiguous glyph mappings (e.g., I→1).
 - --device: cpu|mps|cuda.
 - --empty-threshold: skip OCR when the tile has almost no ink (default 0 = disabled).
@@ -129,19 +140,16 @@ swift scripts/ocr-vision.swift \
   --no-language-correction \
   --min-text-height 0.01
 
-./.venv/bin/python scripts/ocr-gallery.py \
+./scripts/ocr-gallery.py \
   --image-dir tmp/ocr/0307-adventkerk-28_0-cells-prep5 \
-  --ocr-json tmp/ocr/0307-adventkerk-28_0-cells-prep5-vision.json \
-  --digits-only
+  --ocr-json tmp/ocr/0307-adventkerk-28_0-cells-prep5-vision.json
 
 To compare printed vs handwritten models in one gallery:
 
-./.venv/bin/python scripts/ocr-gallery.py \
+./scripts/ocr-gallery.py \
   --image-dir tmp/ocr/0307-adventkerk-28_0-cells-prep5 \
-  --run-ocr \
-  --num-beams 20 \
-  --max-new-tokens 1 \
-  --digits-only
+  --ms-num-beams 20 \
+  --max-new-tokens 1
 
 The combined view shows: left = printed model, right = handwritten model.
 The higher-confidence value is bolded.
@@ -158,6 +166,10 @@ Vision tweaks:
 
 ## Gallery tweaks
 
-- --digits-only: show only the first digit from OCR output.
+The gallery always displays the first digit from OCR output.
 - --cols: number of columns in the table (default 5).
 - --out: output file path (default gallery.md).
+- --parseq-threshold: use PARSeq at or below this confidence (default 0.6).
+- --parseq-empty-conf: minimum PARSeq confidence to accept an explicit no-digit result (default 0.9).
+- --parseq-min-conf: minimum PARSeq confidence to accept a digit (default 0.5).
+- --parseq-beam-size: beam size for PARSeq decoding (default 20).

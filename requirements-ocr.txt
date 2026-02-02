@@ -9,3 +9,7 @@ torchvision==0.17.2
 transformers==4.38.2
 sentencepiece
 easyocr
+timm
+pytorch-lightning
+nltk
+lmdb
