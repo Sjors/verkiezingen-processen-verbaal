@@ -43,6 +43,8 @@ def find_color_dir(image_dir: Path) -> Path | None:
     return None
 
 
+
+
 def pick_device(requested: str | None) -> str:
     if requested:
         return requested

@@ -26,7 +26,6 @@ With the venv active, you can run the scripts directly (they are executable):
   --model microsoft/trocr-large-printed \
   --num-beams 48 \
   --length-penalty 0.0 \
-  --max-new-tokens 1 \
   --use-fast-processor \
   --device mps
 
@@ -95,7 +94,6 @@ For single-image OCR output, the Vision JSON page number is always 1:
 ./scripts/ocr-gallery.py \
   --image-dir tmp/ocr/BIJLAGE-cells-prep5 \
   --ms-num-beams 20 \
-  --max-new-tokens 1
 ```
 
 If you OCR a full PDF instead of a single image, pass the real PDF page number to
@@ -114,7 +112,6 @@ Most useful parameters:
 
 - --ms-num-beams: beam search width for Microsoft OCR (higher may improve accuracy, slower).
 - --length-penalty: adjust preference for longer/shorter outputs.
-- --max-new-tokens: limit output length (defaults to 2 for single digits).
 - --use-fast-processor: use the fast image processor backend.
 - --ms-min-conf: filter low-confidence predictions for Microsoft OCR.
 - --ambiguous-min-conf: minimum confidence for ambiguous glyph mappings (e.g., I→1).
@@ -150,7 +147,7 @@ To compare printed vs handwritten models in one gallery:
 The combined view shows: left = printed model, right = handwritten model.
 The higher-confidence value is bolded.
 
-`max-new-tokens` limits the length of the generated string; it does not list candidates.
+`max-new-tokens` limits TrOCR output length; it does not affect PARSeq and does not list candidates.
 ```
 
 Vision tweaks:
@@ -169,4 +166,7 @@ The gallery always displays the first digit from OCR output.
 - --parseq-empty-conf: minimum PARSeq confidence to accept an explicit no-digit result (default 0.9).
 - --parseq-min-conf: minimum PARSeq confidence to accept a digit (default 0.5).
 - --parseq-beam-size: beam size for PARSeq decoding (default 20).
+- --parseq-bias: confidence bias added when preferring PARSeq over base OCR (default 0.2).
+- PARSeq decoding in the gallery uses up to 3 characters per cell.
+- If the two Microsoft models disagree, their base confidence is reduced by 0.2 for PARSeq comparisons.
 - PARSeq uses original color crops when available (auto-created next to the prep dir).

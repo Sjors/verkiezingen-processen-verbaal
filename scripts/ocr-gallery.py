@@ -48,12 +48,6 @@ def main() -> None:
         help="Length penalty when running OCR",
     )
     parser.add_argument(
-        "--max-new-tokens",
-        type=int,
-        default=1,
-        help="Maximum new tokens when running OCR",
-    )
-    parser.add_argument(
         "--ms-min-conf",
         type=float,
         default=0.1,
@@ -111,7 +105,7 @@ def main() -> None:
     parser.add_argument(
         "--parseq-threshold",
         type=float,
-        default=0.6,
+        default=0.7,
         help="Use PARSeq when confidence is at or below this threshold",
     )
     parser.add_argument(
@@ -125,6 +119,12 @@ def main() -> None:
         type=float,
         default=0.4,
         help="Minimum PARSeq confidence to accept a digit",
+    )
+    parser.add_argument(
+        "--parseq-bias",
+        type=float,
+        default=0.2,
+        help="Confidence bias added when preferring PARSeq over base OCR",
     )
     args = parser.parse_args()
 
@@ -159,8 +159,6 @@ def main() -> None:
                 str(args.ms_num_beams),
                 "--length-penalty",
                 str(args.length_penalty),
-                "--max-new-tokens",
-                str(args.max_new_tokens),
                 "--min-conf",
                 str(args.ms_min_conf),
                 "--ambiguous-min-conf",
@@ -185,6 +183,7 @@ def main() -> None:
 
     if not args.parseq_json:
         script_path = Path(__file__).resolve().parent / "ocr-parseq-cells.py"
+        parseq_beam_max_steps = 3
         cmd = [
             sys.executable,
             str(script_path),
@@ -196,6 +195,8 @@ def main() -> None:
             args.parseq_model,
             "--beam-size",
             str(args.parseq_beam_size),
+            "--beam-max-steps",
+            str(parseq_beam_max_steps),
             "--parseq-min-conf",
             str(args.parseq_min_conf),
         ]
@@ -278,8 +279,43 @@ def main() -> None:
                     best_digit = digit
         return best_digit, best_conf
 
+    def parseq_digit_from_text(text: str) -> str:
+        cleaned = text.strip()
+        if not cleaned:
+            return ""
+        if len(cleaned) > 3:
+            return ""
+        if len(cleaned) == 1 and cleaned.isdigit():
+            return cleaned
+        if cleaned[0] in {"[", "|"}:
+            if len(cleaned) == 2 and cleaned[1].isdigit():
+                return cleaned[1]
+            if len(cleaned) == 3 and cleaned[1].isdigit() and cleaned[2] in {"]", "|"}:
+                return cleaned[1]
+        return ""
+
+    def parseq_digit_from_lines(lines: list[dict]) -> tuple[str, float]:
+        best_digit = ""
+        best_conf = 0.0
+        for line in lines:
+            text = line.get("text", "")
+            conf = float(line.get("confidence", 0.0) or 0.0)
+            raw_text = line.get("raw_text", "")
+            raw_conf = float(line.get("raw_confidence", conf) or 0.0)
+            candidates = []
+            if text:
+                candidates.append((text, conf))
+            if raw_text and raw_text != text:
+                candidates.append((raw_text, raw_conf))
+            for cand_text, cand_conf in candidates:
+                digit = parseq_digit_from_text(cand_text)
+                if digit and cand_conf > best_conf:
+                    best_conf = cand_conf
+                    best_digit = digit
+        return best_digit, best_conf
+
     def format_conf(conf: float) -> str:
-        return f"{conf:.1f}" if conf > 0.0 else ""
+        return f"{conf:.2f}" if conf > 0.0 else ""
 
     def bracket_conf(conf_text: str) -> str:
         return f"({conf_text})" if conf_text else ""
@@ -307,27 +343,33 @@ def main() -> None:
         base_conf: float,
         blank: bool,
         skipped: bool,
+        bypass_threshold: bool,
+        parseq_bias: float,
     ) -> tuple[str, float] | None:
         if not parseq_lines:
             return None
         if skipped:
             return None
-        if blank or base_conf > args.parseq_threshold:
+        if blank:
             return None
         if is_skipped(parseq_lines):
             return None
-        parseq_digit, parseq_conf = best_digit_from_lines(parseq_lines)
+        if not bypass_threshold and base_conf > args.parseq_threshold:
+            return None
+        parseq_digit, parseq_conf = parseq_digit_from_lines(parseq_lines)
         if parseq_digit not in {"", "-"} and parseq_conf > 0.0:
             if parseq_conf < args.parseq_min_conf:
                 return None
-            if parseq_conf < base_conf:
+            if parseq_conf + parseq_bias < base_conf:
                 return None
             return parseq_digit, parseq_conf
         raw_text = parseq_lines[0].get("raw_text", "") if parseq_lines else ""
         raw_conf = float(parseq_lines[0].get("raw_confidence", 0.0) or 0.0) if parseq_lines else 0.0
         if raw_conf <= 0.0 and not raw_text:
             return None
-        if raw_conf < base_conf:
+        if any(char.isdigit() for char in raw_text):
+            return None
+        if raw_conf + parseq_bias < base_conf:
             return None
         if raw_conf < args.parseq_empty_conf:
             return None
@@ -358,11 +400,16 @@ def main() -> None:
                     print_digit, print_conf = best_digit_from_lines(lines_print)
                     hand_digit, hand_conf = best_digit_from_lines(lines_hand)
                     base_conf = max(print_conf, hand_conf)
+                    if not print_skipped and not hand_skipped and print_digit != hand_digit:
+                        base_conf = max(0.0, base_conf - 0.2)
+                    bypass_threshold = print_digit in {"1", "7"} or hand_digit in {"1", "7"}
                     parseq_choice = parseq_fallback(
                         parseq_lines,
                         base_conf,
                         blank,
                         print_skipped and hand_skipped,
+                        bypass_threshold,
+                        args.parseq_bias,
                     )
                     if parseq_choice:
                         display_text = parseq_choice[0]
@@ -419,6 +466,8 @@ def main() -> None:
                     display_conf,
                     blank,
                     is_skipped(lines),
+                    display_text in {"1", "7"},
+                    args.parseq_bias,
                 )
                 if parseq_choice:
                     display_text = parseq_choice[0]
