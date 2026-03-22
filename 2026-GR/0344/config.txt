@@ -1,0 +1,4 @@
+URL=https://www.utrecht.nl/bestuur-en-organisatie/verkiezingen
+REGEX=processen-verbaal-gemeenteraad/.*\.pdf
+PREFIX=https://www.utrecht.nl
+NAME=Utrecht

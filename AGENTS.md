@@ -184,7 +184,16 @@ For each municipality:
    - Large drops (>50%) may indicate missing files or wrong regex
    - File naming conventions may differ between years
 
-5. **Update README.md with stembureau counts**
+5. **Cross-verify against official counting data (osv4-3)**
+   Many municipalities publish a "tellingsbestand" CSV (osv4-3 format) on their open data portal. This file lists every stembureau with vote counts per candidate. Use it to verify completeness:
+   - Download the CSV (look for `osv4-3-telling-*.csv` on the municipality's open data site)
+   - Extract the stembureau numbers from the `"Gebiednummer"` row
+   - Compare against the stembureau numbers in the downloaded PV filenames
+   - They should match exactly (PDF count = stembureaus in CSV + summary PVs)
+
+   This is optional but recommended, especially for large municipalities.
+
+6. **Update README.md with stembureau counts**
    Create or update `README.md` in the municipality folder:
    ```markdown
    # {name}
@@ -199,13 +208,13 @@ For each municipality:
    ```
       Omit rows with a count of 0 (it means that election was not downloaded).
 
-6. **Verify and clear tracking**
+7. **Verify and clear tracking**
    - Check the downloaded PDFs are correct proces-verbaal documents
    - If only summary PDFs are found (no per-stembureau PVs), treat as partial: keep the TODO.md entry and `.todo`, and remove any `SHA256SUMS` created by the partial fetch
    - Remove the municipality from TODO.md (if present)
    - Remove `2025-TK/{code}/.todo` on success with `rm 2025-TK/{code}/.todo`
 
-7. **Commit** (only when requested by user)
+8. **Commit** (only when requested by user)
    ```bash
    git add 2025-TK/{code} && git commit -m "{code} {name}"
    ```
