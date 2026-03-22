@@ -1,0 +1,4 @@
+URL=https://uitslagen.stembureausinrotterdam.nl/gemeenteraadsverkiezing26
+REGEX=uploads/.*\.pdf
+PREFIX=https://uitslagen.stembureausinrotterdam.nl
+NAME=Rotterdam
