@@ -1,0 +1,4 @@
+URL=https://www.arnhem.nl/alle-onderwerpen/verkiezingen/telling-en-processen-verbaal-gemeenteraadsverkiezingen-2026/
+REGEX=wp-content/uploads/2026/03/.*\.pdf
+PREFIX=https://www.arnhem.nl/
+NAME=Arnhem
