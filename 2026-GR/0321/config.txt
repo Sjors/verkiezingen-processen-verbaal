@@ -1,0 +1,4 @@
+URL=https://www.houten.nl/gemeenteraad-en-college/verkiezingen/uitslag-gemeenteraadsverkiezing
+REGEX=fileadmin/.*\.pdf
+PREFIX=https://www.houten.nl/
+NAME=Houten
