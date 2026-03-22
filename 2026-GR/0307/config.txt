@@ -1,0 +1,5 @@
+URL=https://www.amersfoort.nl/verkiezingsuitslagen
+URL2=https://www.amersfoort.nl/cso-uitslagen-gemeenteraadsverkiezing-2026
+REGEX=sites/default/files/2026-03/.*\.pdf
+PREFIX=https://www.amersfoort.nl/
+NAME=Amersfoort
