@@ -1,0 +1,4 @@
+URL=https://www.stichtsevecht.nl/gemeenteraad-college-en-organisatie/gemeenteraadsverkiezingen/voorlopige-uitslagen-gemeenteraadsverkiezingen
+REGEX=fileadmin/.*/Gemeenteraadsverkiezingen_2026/.*\.pdf
+PREFIX=https://www.stichtsevecht.nl/
+NAME=Stichtse Vecht

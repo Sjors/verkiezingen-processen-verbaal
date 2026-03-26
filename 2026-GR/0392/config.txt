@@ -1,0 +1,6 @@
+# Uses Pleio platform (GraphQL API, not HTML scraping)
+# URL list generated via Pleio GraphQL API
+URL=https://haarlem.pleio.nl/groups/view/7b769524-7339-4ae6-ab49-c10b7c20abed/verkiezingen/files/a32fb3ef-86c7-4247-85c5-ece68d79e1cb
+REGEX=\.pdf
+PREFIX=https://haarlem.pleio.nl
+NAME=Haarlem

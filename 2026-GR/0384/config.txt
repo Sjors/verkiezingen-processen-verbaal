@@ -1,0 +1,4 @@
+URL=https://www.diemen.nl/Onderwerpen/Gemeenteraadsverkiezingen/Uitslag_Gemeenteraadsverkiezingen_2026/Einduitslag_Gemeenteraadsverkiezingen
+REGEX=Processen_verbaal/.*\.org
+PREFIX=https://www.diemen.nl
+NAME=Diemen

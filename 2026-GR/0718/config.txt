@@ -1,0 +1,4 @@
+URL=https://www.vlissingen.nl/gemeenteraadsverkiezing-18-maart-2026?origin=/verkiezingen
+REGEX=vlissingenebee90/uploads/.*(PV|corrigendum|Proces).*\.pdf
+PREFIX=https://www.vlissingen.nl
+NAME=Vlissingen

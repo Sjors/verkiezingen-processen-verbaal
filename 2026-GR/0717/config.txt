@@ -1,0 +1,4 @@
+URL=https://www.veere.nl/uitslagen-gemeenteraadsverkiezingen-2026
+REGEX=cuatro\.sim-cdn\.nl/veere/uploads/.*\.pdf
+PREFIX=https://
+NAME=Veere

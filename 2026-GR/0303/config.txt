@@ -1,0 +1,4 @@
+URL=https://www.dronten.nl/direct-regelen/burgerzaken/verkiezingen/openbare-kennisgevingen-voor-de-gemeenteraadsverkiezingen-2026
+REGEX=Dronten_.*_GR26.*\.pdf
+NAME=Dronten
+PREFIX=

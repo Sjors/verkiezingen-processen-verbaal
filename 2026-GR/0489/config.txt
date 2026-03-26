@@ -1,0 +1,4 @@
+URL=https://www.barendrecht.nl/gemeenteraadsverkiezingen-2026/uitslag-gemeenteraadsverkiezingen-2026/
+REGEX=wp-content/uploads/2026/03/.*\.pdf
+PREFIX=https://www.barendrecht.nl
+NAME=Barendrecht

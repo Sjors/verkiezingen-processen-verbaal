@@ -1,0 +1,4 @@
+URL=https://www.borne.nl/stemmen-tellen-en-uitslagen-gemeenteraadsverkiezing
+REGEX=file/.*pdf
+PREFIX=https://www.borne.nl/
+NAME=Borne

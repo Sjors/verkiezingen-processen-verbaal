@@ -1,0 +1,4 @@
+URL=https://www.borsele.nl/openbaarmaking-processen-verbaal-verkiezingen
+REGEX=sites/borsele/files/[^"]*\.pdf
+PREFIX=https://www.borsele.nl
+NAME=Borsele

@@ -1,0 +1,4 @@
+URL=https://www.gemeentelelystad.nl/4/verkiezingen/verkiezingsuitslagen/Uitslag-gemeenteraadsverkiezing-2026.html
+REGEX=/Documenten/Verkiezingen%202026/.*\.(pdf|csv)
+PREFIX=https://www.gemeentelelystad.nl/
+NAME=Lelystad

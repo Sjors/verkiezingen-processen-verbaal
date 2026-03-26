@@ -1,0 +1,4 @@
+URL=https://www.landgraaf.nl/processen-verbaal-gemeenteraadsverkiezingen-2026
+REGEX=cuatro\.sim-cdn\.nl/landgraaf/uploads/.*landgraaf.*pdf
+PREFIX=
+NAME=Landgraaf

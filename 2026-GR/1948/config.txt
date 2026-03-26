@@ -1,0 +1,4 @@
+URL=https://www.meierijstad.nl/Alle_onderwerpen/Bestuur_en_organisatie/Verkiezingen/Gemeenteraadsverkiezing_18_maart_2026/Uitslag_Gemeenteraadsverkiezingen_2026
+REGEX=dsresource\?objectid=.*type=pdf
+PREFIX=https://www.meierijstad.nl
+NAME=Meierijstad

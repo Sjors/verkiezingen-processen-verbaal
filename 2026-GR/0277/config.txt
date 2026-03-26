@@ -1,0 +1,4 @@
+URL=https://www.rozendaal.nl/verkiezingen/
+REGEX=www\.rozendaal\.nl/wp-content/uploads/2026/.*\.pdf
+PREFIX=https://
+NAME=Rozendaal

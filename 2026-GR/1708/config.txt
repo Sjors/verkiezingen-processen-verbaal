@@ -1,0 +1,8 @@
+# 2026 publication is split across multiple pages:
+# - Woensdag 18 maart 2026 (eerste telling)
+# - Donderdag 19 maart 2026 (GSB / Na 31-2)
+# - Verklaring onderzoek aansluitvoorschriften
+URL=https://www.steenwijkerland.nl/Over_Steenwijkerland/Verkiezingen/Uitslagen_verkiezingen/Uitslag_gemeenteraadsverkiezing_2026/Processen_verbaal_van_de_stembureaus/Donderdag_19_maart_2026
+REGEX=Steenwijkerland_.*GR26.*\.pdf
+PREFIX=https://www.steenwijkerland.nl/
+NAME=Steenwijkerland

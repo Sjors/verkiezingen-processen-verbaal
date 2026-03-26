@@ -1,0 +1,4 @@
+URL=https://documenten.groningen.nl/Verkiezingen/GR26/Processen-verbaalvandestembureaus
+REGEX=\.pdf
+PREFIX=https://documenten.groningen.nl/Verkiezingen/GR26/Processen-verbaalvandestembureaus/
+NAME=Groningen

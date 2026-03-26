@@ -1,0 +1,4 @@
+# Uses Mijn Stembureau API
+URL=https://mijnstembureau-alphen-chaam.nl
+# Download with: ./scripts/scrapers/mijnstembureau.py https://mijnstembureau-alphen-chaam.nl 2026-GR/1723
+NAME=Alphen-Chaam

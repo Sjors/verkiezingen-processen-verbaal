@@ -1,0 +1,4 @@
+URL=https://www.lansingerland.nl/GR2026
+REGEX=.*\.pdf
+NAME=Lansingerland
+PREFIX=https://www.lansingerland.nl

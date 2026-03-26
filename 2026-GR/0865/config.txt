@@ -1,0 +1,4 @@
+URL=https://www.vught.nl/uitslagen
+REGEX=file/vught\w+gr26$|file/verklaring[^\s"]*pdf
+PREFIX=https://vught.nl/
+NAME=Vught

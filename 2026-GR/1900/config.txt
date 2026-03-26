@@ -1,0 +1,4 @@
+URL=https://verkiezingen.sudwestfryslan.nl/v2/gegevens.php?verkiezing=GR2026
+REGEX=verkiezingen/GR2026/.*\.pdf
+PREFIX=https://verkiezingen.sudwestfryslan.nl/v2/
+NAME=Súdwest-Fryslân

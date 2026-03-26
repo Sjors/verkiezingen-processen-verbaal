@@ -1,0 +1,4 @@
+URL=https://apeldoorn.mediafiler.net/apeldoorn/start/verkiesings-proces-verbaal/ab97?fc=browse&absr=1&amax=100
+REGEX=\.pdf
+PREFIX=https://apeldoorn.mediafiler.net/download?fn=
+NAME=Apeldoorn

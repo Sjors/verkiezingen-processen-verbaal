@@ -1,0 +1,4 @@
+URL=https://www.bergendal.nl/uitslag-gemeenteraadsverkiezingen-2026
+REGEX=cuatro\.sim-cdn\.nl/bergendal/uploads/.*\.pdf
+NAME=Berg en Dal
+PREFIX=

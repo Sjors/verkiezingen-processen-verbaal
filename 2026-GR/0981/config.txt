@@ -1,0 +1,4 @@
+URL=https://www.vaals.nl/inwoners/verkiezingen/gemeenteraadsverkiezingen-2026/processen-verbaal-gemeenteraadsverkiezing-2026
+REGEX=data/downloadables/[^"]*\.pdf
+PREFIX=https://www.vaals.nl
+NAME=Vaals

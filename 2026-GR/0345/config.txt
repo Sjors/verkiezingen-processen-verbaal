@@ -1,0 +1,4 @@
+URL=https://www.veenendaal.nl/inwonerszaken/verkiezingen/gemeenteraadsverkiezing-2026/uitslag-gemeenteraadsverkiezing-2026
+REGEX=\.pdf
+PREFIX=https://www.veenendaal.nl/
+NAME=Veenendaal

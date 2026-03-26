@@ -1,0 +1,4 @@
+URL=https://www.dalfsen.nl/processenverbaal
+REGEX=https://cuatro\.sim-cdn\.nl/dalfsen/uploads/.*\.pdf.*
+PREFIX=
+NAME=Dalfsen

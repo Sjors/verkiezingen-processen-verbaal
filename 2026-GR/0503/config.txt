@@ -1,0 +1,4 @@
+URL=https://www.delft.nl/verkiezingen
+REGEX=Stembureau-\d+.*\.pdf|Proces-verbaal.*\.pdf
+PREFIX=https://media.delft.nl/pdf/Verkiezingen/
+NAME=Delft

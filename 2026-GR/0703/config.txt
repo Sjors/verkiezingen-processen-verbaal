@@ -1,0 +1,4 @@
+URL=https://www.reimerswaal.nl/uitslag-gemeenteraadsverkiezingen-2026
+REGEX=sites/reimerswaal/files/2026-03/.*gr26.*\.pdf
+PREFIX=https://www.reimerswaal.nl
+NAME=Reimerswaal

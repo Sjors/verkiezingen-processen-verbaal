@@ -1,0 +1,4 @@
+URL=https://www.loonopzand.nl/organisatie-en-politiek/gemeenteraadsverkiezingen-2026/uitslag-gemeenteraadsverkiezingen-2026
+REGEX=fileadmin/redacteuren/internet/Actuele-onderwerpen/Gemeenteraadsverkiezingen_2026/.*\.pdf
+PREFIX=https://www.loonopzand.nl
+NAME=Loon op Zand

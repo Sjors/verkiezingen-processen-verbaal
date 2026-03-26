@@ -1,0 +1,4 @@
+URL=https://www.westerkwartier.nl/uitslagen-verkiezingen-gemeenteraad-2026
+REGEX=westerkwartier_.*_gr26\.pdf
+PREFIX=https://cuatro.sim-cdn.nl/westerkwartier/uploads/
+NAME=Westerkwartier

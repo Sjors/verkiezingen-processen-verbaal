@@ -1,0 +1,4 @@
+URL=https://www.tilburg.nl/gemeente/bestuur/verkiezingen/uitslagen-en-processen-verbaal-per-stembureau-gemeenteraadsverkiezingen-2026/
+REGEX=fileadmin/files/Gemeente/bestuur/verkiezingen/.*\.pdf
+PREFIX=https://www.tilburg.nl
+NAME=Tilburg

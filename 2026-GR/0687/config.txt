@@ -1,0 +1,4 @@
+URL=https://www.middelburg.nl/processen-verbaal-verkiezing
+REGEX=sim-cdn\.nl/middelburg/uploads/.*\.pdf
+PREFIX=https://cuatro.
+NAME=Middelburg (Zeeland)

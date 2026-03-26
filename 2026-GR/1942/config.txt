@@ -1,0 +1,4 @@
+URL=https://gooisemeren.nl/gemeenteraadsverkiezingen-18-maart-2026/uitslag-gemeenteraadsverkiezingen-18-maart-2026/
+REGEX=fileadmin/verkiezingen/gemeenteraadsverkiezingen-2026/.*\.(pdf|csv)
+PREFIX=https://gooisemeren.nl
+NAME=Gooise Meren

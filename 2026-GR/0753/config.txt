@@ -1,0 +1,4 @@
+URL=https://www.gemeentebest.nl/gemeenteraadsverkiezingen
+REGEX=data/downloadables.*\.pdf
+PREFIX=https://www.gemeentebest.nl
+NAME=Best

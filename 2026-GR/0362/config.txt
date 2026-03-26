@@ -1,0 +1,4 @@
+URL=https://www.amstelveen.nl/uitslag-gemeenteraadsverkiezing-2026
+REGEX=.*\.pdf.*
+NAME=Amstelveen
+PREFIX=

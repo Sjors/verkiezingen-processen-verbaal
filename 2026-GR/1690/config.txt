@@ -1,0 +1,4 @@
+URL=https://www.dewolden.nl/verkiezingen/processen-verbaal-gemeenteraadsverkiezingen-2026/
+REGEX=fileadmin/de_wolden/PDF/Gemeenteraadsverkiezingen_2026/.*\.pdf
+PREFIX=https://www.dewolden.nl
+NAME=De Wolden

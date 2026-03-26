@@ -1,0 +1,4 @@
+URL=https://www.oss.nl/Tonen-op-pagina-standaard/uitslagen.htm
+REGEX=/Tonen-op-pagina-standaard/Oss_.*\.htm
+PREFIX=https://www.oss.nl
+NAME=Oss

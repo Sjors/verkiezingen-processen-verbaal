@@ -1,0 +1,4 @@
+URL=https://www.urk.nl/uitslagen-verkiezingen-2026
+REGEX=cuatro\.sim-cdn\.nl/urk/uploads/.*\.pdf
+PREFIX=https://www.urk.nl
+NAME=Urk

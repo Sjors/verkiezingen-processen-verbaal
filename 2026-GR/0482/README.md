@@ -1,0 +1,11 @@
+# Alblasserdam
+
+## Stembureaus per verkiezing
+
+| Verkiezing | Stembureaus |
+|------------|-------------|
+| 2023-TK    | 14          |
+| 2025-TK    | 10          |
+| 2026-GR    | 12          |
+
+2025-TK bevat daarnaast GSB-documenten en aanpassingen.

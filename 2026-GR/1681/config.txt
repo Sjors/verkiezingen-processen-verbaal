@@ -1,0 +1,4 @@
+URL=https://www.borger-odoorn.nl/uitslagen-gemeenteraadsverkiezingen-2026
+REGEX=file/(?!osv4-3).*
+PREFIX=https://www.borger-odoorn.nl/
+NAME=Borger-Odoorn

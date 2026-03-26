@@ -1,0 +1,4 @@
+# Uses Mijn Stembureau API
+URL=https://mijnstembureau-enschede.nl
+# Download with: ./scripts/scrapers/mijnstembureau.py https://mijnstembureau-enschede.nl 2026-GR/0153 --election 2026
+NAME=Enschede

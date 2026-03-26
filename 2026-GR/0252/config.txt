@@ -1,0 +1,4 @@
+URL=https://www.heumen.nl/uitslag-verkiezingen
+REGEX=cuatro\.sim-cdn\.nl/heumen/uploads/0252_pv_.*\.pdf.*
+PREFIX=
+NAME=Heumen

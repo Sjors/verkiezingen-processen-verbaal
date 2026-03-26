@@ -1,0 +1,4 @@
+URL=https://www.noordwijk.nl/uitkomst-verkiezingen-gemeenteraad-2026/
+REGEX=app/uploads/2026/03/.*\.pdf
+PREFIX=https://www.noordwijk.nl/
+NAME=Noordwijk

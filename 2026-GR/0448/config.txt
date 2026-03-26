@@ -1,0 +1,4 @@
+URL=https://www.texel.nl/bestuur-en-organisatie/gemeenteraadsverkiezingen/uitslagen-gemeenteraadsverkiezingen/
+REGEX=wp-content/uploads/2026/03/Texel.*\.pdf
+PREFIX=https://www.texel.nl/
+NAME=Texel

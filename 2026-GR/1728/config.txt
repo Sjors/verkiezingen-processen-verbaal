@@ -1,0 +1,4 @@
+URL=https://www.bladel.nl/uitslag-gemeenteraadsverkiezingen-2026
+REGEX=https://cuatro\.sim-cdn\.nl/bladel/uploads/[^"\?]+\.pdf
+PREFIX=
+NAME=Bladel

@@ -1,0 +1,4 @@
+URL=https://www.medemblik.nl/raad-en-bestuur/verkiezingen-gemeenteraad-2026/uitslag-gemeenteraadsverkiezingen-2026/alle-uitslagen-per-stembureau-processen-verbaal
+REGEX=fileadmin/.*/Verkiezingen_Gemeenteraad_2026/Processen-verbaal/.*\.(pdf|csv)
+PREFIX=https://www.medemblik.nl/
+NAME=Medemblik

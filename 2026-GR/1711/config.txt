@@ -1,0 +1,4 @@
+URL=https://www.echt-susteren.nl/verkiezingsuitslag
+REGEX=cuatro\.sim-cdn\.nl/echtsusteren.*/uploads/.*\.pdf
+PREFIX=https://www.echt-susteren.nl
+NAME=Echt-Susteren

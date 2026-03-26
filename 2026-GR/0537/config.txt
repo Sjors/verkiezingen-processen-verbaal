@@ -1,0 +1,4 @@
+URL=https://www.katwijk.nl/gemeente-en-burgerzaken/verkiezingen/uitslagen
+REGEX=fileadmin/.*(?:Katwijk_.*GR26|stembureau.*GR26|GSB.*GR26).*\.pdf
+PREFIX=https://www.katwijk.nl/
+NAME=Katwijk

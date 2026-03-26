@@ -1,0 +1,4 @@
+URL=https://www.krimpenerwaard.nl/voorlopige-uitslag-stembureau-en-tellingen
+REGEX=\.pdf
+PREFIX=https://www.krimpenerwaard.nl/
+NAME=Krimpenerwaard

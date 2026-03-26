@@ -1,0 +1,5 @@
+URL=https://www.rheden.nl/Organisatie_en_bestuur/Verkiezingen/Verkiezingsuitslag/Proces_verbalen
+REGEX=/Bibliotheek.*\.(org|pdf)
+PREFIX=https://www.rheden.nl
+NAME=Rheden
+BLACKLIST_PATTERN=\.csv|\.xlsx

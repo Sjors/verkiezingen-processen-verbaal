@@ -1,0 +1,4 @@
+URL=https://purmerend.nl/bestuur-en-organisatie/verkiezingen/gemeenteraadsverkiezingen/uitslagen-gemeenteraadsverkiezingen-0
+REGEX=sites/default/files/2026-[0-9][0-9]/.*\.pdf
+PREFIX=https://purmerend.nl
+NAME=Purmerend

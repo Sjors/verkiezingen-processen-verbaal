@@ -1,0 +1,4 @@
+URL=https://www.stedebroec.nl/bestuur-en-organisatie/verkiezingen/verkiezingsuitslag-gemeenteraadsverkiezingen-2026/
+REGEX=wp-content/uploads/.*Stede-Broec.*pdf
+PREFIX=
+NAME=Stede Broec

@@ -1,0 +1,4 @@
+URL=https://www.soest.nl/verkiezingen/voorlopige-uitslag-gemeenteraadsverkiezingen
+REGEX=Gemeenteraadsverkiezingen/Stembureau_[^/]+\.pdf
+PREFIX=https://www.soest.nl/
+NAME=Soest

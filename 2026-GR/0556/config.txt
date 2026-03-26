@@ -1,0 +1,4 @@
+URL=https://www.maassluis.nl/voorlopige-uitslag-gemeenteraadsverkiezing-18-maart-2026
+REGEX=sim-cdn\.nl/maassluis/uploads/[Mm]aassluis.*[_.][Gg][Rr]26.*\.pdf
+PREFIX=
+NAME=Maassluis

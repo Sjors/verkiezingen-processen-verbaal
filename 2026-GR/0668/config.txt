@@ -1,0 +1,4 @@
+URL=https://www.westmaasenwaal.nl/voorlopige-uitslag-gemeenteraadsverkiezingen-2026
+REGEX=cuatro\.sim-cdn\.nl/westmaasenwaal/uploads/.*\.pdf
+PREFIX=
+NAME=West Maas en Waal

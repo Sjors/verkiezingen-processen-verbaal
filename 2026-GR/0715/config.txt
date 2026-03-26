@@ -1,0 +1,4 @@
+URL=https://www.terneuzen.nl/onze-gemeente/verkiezingen-gemeenteraad-18-maart/processen-verbaal-stembureaus/
+REGEX=app/uploads/.*/Terneuzen_.*\.pdf
+PREFIX=
+NAME=Terneuzen

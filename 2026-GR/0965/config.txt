@@ -1,0 +1,4 @@
+URL=https://www.simpelveld.nl/uitslag-gemeenteraadsverkiezingen-2026-gemeente-simpelveld
+REGEX=cuatro\.sim-cdn\.nl/simpelveld/uploads/.*\.pdf
+PREFIX=
+NAME=Simpelveld

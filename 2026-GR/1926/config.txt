@@ -1,0 +1,4 @@
+URL=https://www.pijnacker-nootdorp.nl/politiek-en-organisatie/gemeenteraadsverkiezingen-2026/uitslagen-gemeenteraadsverkiezingen-2026/
+REGEX=wp-content/uploads/2026/03/.*\.(pdf|csv)
+PREFIX=https://www.pijnacker-nootdorp.nl/
+NAME=Pijnacker-Nootdorp

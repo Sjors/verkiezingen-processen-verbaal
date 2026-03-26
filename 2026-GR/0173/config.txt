@@ -1,0 +1,4 @@
+URL=https://www.oldenzaal.nl/verkiezingsuitslag
+REGEX=/file/(?:oldenzaal.*gr26|verslag-controleprotocol-gsb-gr-2026pdf)
+PREFIX=https://www.oldenzaal.nl
+NAME=Oldenzaal

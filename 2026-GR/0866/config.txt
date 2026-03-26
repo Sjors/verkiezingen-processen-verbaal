@@ -1,0 +1,4 @@
+URL=https://www.waalre.nl/inwoners-en-ondernemers/informatie-voor-kiezers
+REGEX=/data/downloadables/.*/.*\.pdf
+PREFIX=https://www.waalre.nl
+NAME=Waalre

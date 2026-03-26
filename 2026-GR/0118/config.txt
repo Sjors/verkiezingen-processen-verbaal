@@ -1,0 +1,4 @@
+URL=https://www.hoogeveen.nl/verkiezingen/processen-verbaal-gemeenteraadsverkiezingen/
+REGEX=fileadmin/hoogeveen/PDF/Gemeenteraadsverkiezingen_2026/.*\.pdf
+PREFIX=https://www.hoogeveen.nl/
+NAME=Hoogeveen

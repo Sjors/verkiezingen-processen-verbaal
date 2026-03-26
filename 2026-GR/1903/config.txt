@@ -1,0 +1,4 @@
+URL=https://www.eijsden-margraten.nl/verkiezingen
+REGEX=bestanden/docs/Verkiezingen/Gemeenteraadsverkiezing.*2026.*\.pdf
+PREFIX=https://www.eijsden-margraten.nl/
+NAME=Eijsden-Margraten

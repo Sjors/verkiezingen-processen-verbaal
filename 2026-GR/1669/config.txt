@@ -1,0 +1,4 @@
+URL=https://www.roerdalen.nl/uitslagen-verkiezingen
+REGEX=.*\.pdf
+PREFIX=
+NAME=Roerdalen

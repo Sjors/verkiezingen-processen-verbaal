@@ -1,0 +1,4 @@
+URL=https://www.heusden.nl/organisatie-bestuur/verkiezingen
+REGEX=fileadmin/.*[Pp]rocessen_verbaal.*\.[Pp][Dd][Ff]
+PREFIX=https://www.heusden.nl
+NAME=Heusden

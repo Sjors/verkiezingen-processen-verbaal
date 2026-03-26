@@ -1,0 +1,4 @@
+URL=https://www.harlingen.nl/voorlopige-verkiezingsuitslag-gemeenteraadsverkiezingen
+REGEX=cuatro\.sim-cdn\.nl/harlingen/uploads/.*\.pdf
+PREFIX=https://www.harlingen.nl
+NAME=Harlingen

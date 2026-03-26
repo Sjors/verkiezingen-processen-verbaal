@@ -1,0 +1,4 @@
+URL=https://www.nieuwegein.nl/verkiezingen
+REGEX=^/fileadmin/gemeente_nieuwegein/Verkiezingen/GR26/.*\.pdf.*
+PREFIX=https://www.nieuwegein.nl
+NAME=Nieuwegein

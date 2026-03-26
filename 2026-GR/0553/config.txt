@@ -1,0 +1,4 @@
+URL=https://lisse.nl/actueel/gemeenteraadsverkiezingen-2026/proces-verbalen/
+REGEX=wp-content/uploads/sites/3/2026/03/.*GR26.*\.pdf
+PREFIX=https://lisse.nl
+NAME=Lisse

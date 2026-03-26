@@ -1,0 +1,4 @@
+URL=https://www.wijchen.nl/uitslag
+REGEX=/data/downloadables/.*\.pdf
+PREFIX=https://www.wijchen.nl
+NAME=Wijchen

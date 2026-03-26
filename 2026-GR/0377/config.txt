@@ -1,0 +1,4 @@
+URL=https://www.bloemendaal.nl/verkiezingen/uitslagen
+REGEX=fileadmin/Bloemendaal/Documenten/Gemeenteraadsverkiezingen_2026/.*\.pdf
+PREFIX=https://www.bloemendaal.nl/
+NAME=Bloemendaal

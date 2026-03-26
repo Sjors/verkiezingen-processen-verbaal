@@ -1,0 +1,4 @@
+URL=https://www.hellendoorn.nl/verkiezingen/uitslag-gemeenteraadsverkiezingen/
+REGEX=Hellendoorn_.*_GR26.*\.pdf
+NAME=Hellendoorn
+PREFIX=

@@ -1,0 +1,4 @@
+URL=https://www.leeuwarden.nl/uitslagen-gemeenteraadsverkiezing-2026/
+REGEX=wp-content/uploads/2026/03/Leeuwarden_.*GR26.*\.pdf
+PREFIX=https://www.leeuwarden.nl/
+NAME=Leeuwarden

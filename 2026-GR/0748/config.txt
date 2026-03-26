@@ -1,0 +1,4 @@
+URL=https://www.bergenopzoom.nl/uitslag-gemeenteraadsverkiezingen-2026
+REGEX=cuatro\.sim-cdn\.nl/bergenopzoom/uploads/.*\.pdf
+PREFIX=https://
+NAME=Bergen op Zoom

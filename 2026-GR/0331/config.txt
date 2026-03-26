@@ -1,0 +1,4 @@
+URL=https://www.lopik.nl/processen-verbaal
+REGEX=uploads/.*\.pdf
+PREFIX=https://cuatro.sim-cdn.nl/lopik/
+NAME=Lopik

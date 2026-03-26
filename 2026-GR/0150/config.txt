@@ -1,0 +1,4 @@
+URL=https://www.deventer.nl/bestuur-en-organisatie/verkiezingen/verkiezingsuitslag-deventer
+REGEX=fileadmin/deventer_website/Bestuur-organisatie/Verkiezingen/GR26/.*\.pdf
+PREFIX=https://www.deventer.nl/
+NAME=Deventer

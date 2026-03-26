@@ -1,0 +1,4 @@
+URL=https://www.gemeentelandvancuijk.nl/processen-verbaal-verkiezingen-gemeenteraad-2026
+REGEX=data/downloadables/.*\.pdf
+PREFIX=https://www.gemeentelandvancuijk.nl
+NAME=Land van Cuijk

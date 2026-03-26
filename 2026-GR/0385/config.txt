@@ -1,0 +1,4 @@
+URL=https://www.edam-volendam.nl/uitslag-verkiezingen-gemeenteraad-2026
+REGEX=sites/default/files/2026-03/.*\.pdf
+PREFIX=https://www.edam-volendam.nl/
+NAME=Edam-Volendam

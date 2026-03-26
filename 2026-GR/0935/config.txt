@@ -1,0 +1,4 @@
+URL=https://www.gemeentemaastricht.nl/gemeenteraadsverkiezingen-2026/voorlopige-uitslag-gemeenteraadsverkiezing-2026
+REGEX=sites/default/files/2026-03/.*\.pdf
+PREFIX=https://www.gemeentemaastricht.nl
+NAME=Maastricht

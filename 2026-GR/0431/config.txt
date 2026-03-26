@@ -1,0 +1,4 @@
+URL=https://oostzaan.nl/verkiezingenoz/uitslagen-verkiezingen
+REGEX=sites/default/files/.*\.pdf
+PREFIX=https://oostzaan.nl
+NAME=Oostzaan

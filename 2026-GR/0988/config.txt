@@ -1,0 +1,4 @@
+URL=https://www.weert.nl/verkiezingen
+REGEX=Downloads/Verkiezingen/Gemeenteraad.*2026/Uitslag/.*\.pdf
+PREFIX=https://www.weert.nl
+NAME=Weert

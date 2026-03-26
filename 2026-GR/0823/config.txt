@@ -1,0 +1,4 @@
+URL=https://www.oirschot.nl/stemmen-per-kandidaat-geteld
+REGEX=sim-cdn\.nl/oirschot/uploads/.*(?:gr26|gemeenteraadsverkiezingen_2026).*\.pdf
+PREFIX=https://cuatro.sim-cdn.nl/oirschot/uploads/
+NAME=Oirschot

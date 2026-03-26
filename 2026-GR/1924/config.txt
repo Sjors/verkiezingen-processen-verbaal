@@ -1,0 +1,4 @@
+URL=https://www.goeree-overflakkee.nl/uitslag-gemeenteraadsverkiezingen
+REGEX=cuatro\.sim-cdn\.nl/goereeoverflakkee/uploads/.*\.(pdf|csv)
+PREFIX=https://
+NAME=Goeree-Overflakkee

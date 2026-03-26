@@ -1,0 +1,4 @@
+URL=https://www.heeze-leende.nl/uitslag-gemeenteraadsverkiezing-2026
+REGEX=.*\.pdf
+PREFIX=https://www.heeze-leende.nl
+NAME=Heeze-Leende

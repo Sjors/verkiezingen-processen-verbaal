@@ -1,0 +1,4 @@
+URL=https://www.almelo.nl/verkiezingen/voorlopige-uitslag-gemeenteraadsverkiezingen
+REGEX=/sites/default/files/documents/.*\.pdf
+PREFIX=https://www.almelo.nl
+NAME=Almelo

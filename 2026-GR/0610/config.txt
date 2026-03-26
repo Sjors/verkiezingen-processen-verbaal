@@ -1,0 +1,4 @@
+URL=https://www.sliedrecht.nl/Bestuur_politiek/Verkiezingen/Gemeenteraadsverkiezing_2026/Uitslagen_Gemeenteraadsverkiezing_2026
+REGEX=/Bestuur_politiek/Verkiezingen/Gemeenteraadsverkiezing_2026/Uitslagen_Gemeenteraadsverkiezing_2026/Sliedrecht_.*\.org
+PREFIX=https://www.sliedrecht.nl
+NAME=Sliedrecht

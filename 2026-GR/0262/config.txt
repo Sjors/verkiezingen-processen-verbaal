@@ -1,0 +1,4 @@
+URL=https://www.lochem.nl/verkiezingen/verkiezingen-archief
+REGEX=fileadmin/open-data/verkiezingen/2026/raad/.*\.pdf
+PREFIX=https://www.lochem.nl/
+NAME=Lochem

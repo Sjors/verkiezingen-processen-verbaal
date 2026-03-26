@@ -1,0 +1,4 @@
+URL=https://www.roosendaal.nl/uitslag-gemeenteraadsverkiezing/
+REGEX=app/uploads/2026/03/GR-2026-.*\.pdf
+PREFIX=https://www.roosendaal.nl
+NAME=Roosendaal

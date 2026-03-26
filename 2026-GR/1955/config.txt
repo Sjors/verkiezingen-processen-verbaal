@@ -1,0 +1,4 @@
+URL=https://www.montferland.info/openbaarmaking-processen-verbaal-verkiezingen
+REGEX=sites/default/files/2026-03/montferland.*\.pdf
+PREFIX=https://www.montferland.info/
+NAME=Montferland

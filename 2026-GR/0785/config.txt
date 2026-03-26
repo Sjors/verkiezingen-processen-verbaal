@@ -1,0 +1,4 @@
+URL=https://www.goirle.nl/bestuur-en-organisatie/uitslagen-gemeenteraadsverkiezingen
+REGEX=/fileadmin/Goirle/PDF-documenten/Bestuur_en_organisatie/verkiezing_gemeenteraad/PV_gemeenteraadsverkiezing_2026/.*\.pdf
+PREFIX=https://www.goirle.nl
+NAME=Goirle

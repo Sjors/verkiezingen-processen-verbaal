@@ -1,0 +1,4 @@
+URL=https://www.leiderdorp.nl/bestuur-organisatie/verkiezingen/gemeenteraadsverkiezingen
+REGEX=fileadmin/.*(PV_N|NA31|N10).*\.pdf
+PREFIX=https://www.leiderdorp.nl
+NAME=Leiderdorp

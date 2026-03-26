@@ -1,0 +1,4 @@
+URL=https://www.eemnes.nl/uitslag-gemeenteraadsverkiezingen-2026-in-eemnes
+REGEX=eemnesbe64f5/uploads/Eemnes.*\.pdf
+PREFIX=
+NAME=Eemnes

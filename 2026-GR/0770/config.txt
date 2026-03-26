@@ -1,0 +1,4 @@
+URL=https://www.eersel.nl/uitslagen
+REGEX=cuatro\.sim-cdn\.nl/.*\.pdf
+PREFIX=https://www.eersel.nl
+NAME=Eersel

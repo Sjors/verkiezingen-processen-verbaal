@@ -1,0 +1,4 @@
+URL=https://wormerland.nl/verkiezingenwl/uitslagen-verkiezingen
+REGEX=sites/default/files/documents/.*\.pdf
+PREFIX=https://wormerland.nl
+NAME=Wormerland

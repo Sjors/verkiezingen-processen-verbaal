@@ -1,0 +1,4 @@
+URL=https://www.schouwen-duiveland.nl/verkiezingen/gemeenteraadsverkiezingen/proces-verbaal
+REGEX=.*\.pdf
+PREFIX=https://www.schouwen-duiveland.nl
+NAME=Schouwen-Duiveland

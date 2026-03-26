@@ -1,0 +1,4 @@
+URL=https://www.noordoostpolder.nl/uitslag-gemeenteraadsverkiezingen
+REGEX=file/noordoostpolder.*gr26.*
+PREFIX=https://www.noordoostpolder.nl
+NAME=Noordoostpolder

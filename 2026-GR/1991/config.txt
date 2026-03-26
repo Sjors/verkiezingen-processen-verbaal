@@ -1,0 +1,4 @@
+URL=https://www.gemeentemaashorst.nl/bestuur-en-organisatie/verkiezingen/verkiezingen-gemeenteraad/uitslag-gemeenteraadsverkiezingen-maashorst/
+REGEX=data/downloadables/.*\.pdf
+PREFIX=https://www.gemeentemaashorst.nl
+NAME=Maashorst

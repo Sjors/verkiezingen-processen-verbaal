@@ -1,0 +1,4 @@
+PREFIX=https://www.elburg.nl
+NAME=Elburg
+URL=https://www.elburg.nl/Bestuur_en_organisatie/Verkiezingen/Uitslag_Gemeenteraadsverkiezing_Elburg_2026
+REGEX=dsresource\?objectid=.*type=org

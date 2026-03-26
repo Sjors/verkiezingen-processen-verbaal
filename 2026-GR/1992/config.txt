@@ -1,0 +1,4 @@
+URL=https://www.voorneaanzee.nl/processen-verbaal-gemeenteraadsverkiezingen-2026
+REGEX=cuatro\.sim-cdn\.nl/voorneaanzee.*voorne_aan_zee.*\.pdf
+NAME=Voorne aan Zee
+PREFIX=https://

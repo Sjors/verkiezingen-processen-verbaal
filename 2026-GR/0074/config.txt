@@ -1,0 +1,4 @@
+URL=https://www.heerenveen.nl/actueel/verkiezingen/uitslagen-gemeenteraadsverkiezingen-2026/
+REGEX=(Heerenveen_[0-9]+_.*GR26|roces.*verbaal.*stembureau).*\.pdf
+PREFIX=https://www.heerenveen.nl
+NAME=Heerenveen

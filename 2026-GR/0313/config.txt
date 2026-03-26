@@ -1,0 +1,4 @@
+URL=https://www.bunschoten.nl/uitslag-gemeenteraadsverkiezingen
+REGEX=cuatro\.sim-cdn\.nl/bunschoten/uploads/bunschoten_.*_gr26.*\.pdf
+PREFIX=
+NAME=Bunschoten

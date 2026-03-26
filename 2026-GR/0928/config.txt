@@ -1,0 +1,4 @@
+URL=https://www.kerkrade.nl/processen-verbaal-gemeenteraadsverkiezing-2026
+REGEX=gr26.*\.pdf
+PREFIX=https://cuatro.sim-cdn.nl/kerkrade/uploads/
+NAME=Kerkrade

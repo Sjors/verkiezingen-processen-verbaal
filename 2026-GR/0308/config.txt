@@ -1,0 +1,4 @@
+URL=https://www.baarn.nl/voorlopige-uitslagen-gemeenteraadsverkiezing-gemeente-baarn
+REGEX=cuatro\.sim-cdn\.nl/baarn/uploads/0308_pv_.*\.pdf
+NAME=Baarn
+PREFIX=

@@ -1,0 +1,4 @@
+URL=https://www.heemstede.nl/verkiezingen/uitslagen
+REGEX=Heemstede_.*_GR26\.pdf
+PREFIX=https://www.heemstede.nl
+NAME=Heemstede

@@ -1,0 +1,4 @@
+URL=https://www.s-hertogenbosch.nl/uitslagen/
+REGEX=wp-content/uploads/.*\.pdf
+PREFIX=
+NAME='s-Hertogenbosch

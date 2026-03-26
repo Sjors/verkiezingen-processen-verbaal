@@ -1,0 +1,4 @@
+URL=https://www.renswoude.nl/verkiezingen-proces-verbaal
+REGEX=cuatro\.sim-cdn\.nl/renswoude/uploads/.*\.pdf.*
+PREFIX=
+NAME=Renswoude

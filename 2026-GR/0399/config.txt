@@ -1,0 +1,4 @@
+URL=https://www.heiloo.nl/verkiezingen/uitslag-gemeenteraad-verkiezing/
+REGEX=fileadmin/.*\.pdf
+PREFIX=https://www.heiloo.nl
+NAME=Heiloo

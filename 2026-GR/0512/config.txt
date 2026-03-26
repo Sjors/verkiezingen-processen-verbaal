@@ -1,0 +1,5 @@
+URL=https://www.gorinchem.nl/bestuur-organisatie/gemeenteraadsverkiezingen-2026/documenten-gemeenteraadsverkiezingen-2026/
+REGEX=.*\.pdf
+NAME=Gorinchem
+PREFIX=https://www.gorinchem.nl
+PREFIX=https://www.gorinchem.nl

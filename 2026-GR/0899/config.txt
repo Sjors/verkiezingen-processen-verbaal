@@ -1,0 +1,4 @@
+URL=https://www.brunssum.nl/Bestuur_en_Organisatie/Verkiezingen/Gemeenteraadsverkiezingen_2026
+REGEX=.*\.pdf
+NAME=Brunssum
+PREFIX=https://www.brunssum.nl

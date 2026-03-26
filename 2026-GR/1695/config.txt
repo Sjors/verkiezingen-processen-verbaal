@@ -1,0 +1,4 @@
+URL=https://www.noord-beveland.nl/voorlopige-uitslag-gemeenteraadsverkiezingen-2026
+REGEX=sites/noord_beveland/files/2026-03/pv-.*\.pdf
+PREFIX=https://www.noord-beveland.nl/
+NAME=Noord-Beveland

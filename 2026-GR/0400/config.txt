@@ -1,0 +1,5 @@
+URL=https://denhelder.nl/Onderwerpen/Actueel/Gemeenteraadsverkiezingen_18_maart_2026/Uitslagen_gemeenteraadsverkiezingen_2026
+REGEX=dsresource\?objectid=.*type=org.*
+PREFIX=https://denhelder.nl
+NAME=Den Helder
+BLACKLIST_PATTERN=\.csv|\.xlsx

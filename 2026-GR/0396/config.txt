@@ -1,0 +1,4 @@
+URL=https://www.heemskerk.nl/over-heemskerk/verkiezingen/gemeenteraadsverkiezingen-2026
+REGEX=fileadmin/Heemskerk/PDF/Verkiezingen/Gemeenteraadsverkiezingen_2026/.*\.pdf
+PREFIX=https://www.heemskerk.nl/
+NAME=Heemskerk

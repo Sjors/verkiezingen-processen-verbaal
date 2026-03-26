@@ -1,0 +1,4 @@
+URL=https://www.molenlanden.nl/voorlopige-uitslag-2026
+REGEX=sites/default/files/.*\.pdf
+NAME=Molenlanden
+PREFIX=https://www.molenlanden.nl

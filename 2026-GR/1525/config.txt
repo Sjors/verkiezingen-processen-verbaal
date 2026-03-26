@@ -1,0 +1,4 @@
+URL=https://teylingen.nl/actueel/gemeenteraadsverkiezingen-2026/proces-verbalen/
+REGEX=Tey_.*_GR26.*\.pdf
+PREFIX=
+NAME=Teylingen

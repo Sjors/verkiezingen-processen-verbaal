@@ -1,0 +1,4 @@
+URL=https://www.gennep.nl/uitslag-gemeenteraadsverkiezingen-2026
+REGEX=sites/default/files/2026-03/gennep.*\.pdf
+PREFIX=https://www.gennep.nl
+NAME=Gennep

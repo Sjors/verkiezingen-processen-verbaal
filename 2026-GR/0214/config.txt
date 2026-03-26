@@ -1,0 +1,4 @@
+URL=https://www.buren.nl/direct-regelen/inwonerszaken/verkiezingen/processen-verbaal-verkiezingen/
+REGEX=wp-content/uploads/2026/03/.*\.pdf
+PREFIX=https://www.buren.nl
+NAME=Buren

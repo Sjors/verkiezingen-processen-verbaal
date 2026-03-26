@@ -1,0 +1,6 @@
+URL=https://www.venray.nl/uitslag-gemeenteraadsverkiezingen-2026
+REGEX=/file/proces-verbaal-(gemeentelijk-stembureau|stembureau-[0-9]+).*
+PREFIX=https://www.venray.nl
+NAME=Venray
+# Extra zitting documents from 24 March 2026 are listed manually in 0984 Venray.txt
+# because fetch-pv.py supports a single source page.

@@ -1,0 +1,4 @@
+URL=https://www.haaksbergen.nl/verkiezingen/Gemeenteraadsverkiezingen/Officiele-publicaties.html
+REGEX=.*\.pdf
+PREFIX=https://www.haaksbergen.nl
+NAME=Haaksbergen

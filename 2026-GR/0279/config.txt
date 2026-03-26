@@ -1,0 +1,4 @@
+URL=https://www.scherpenzeel.nl/voorlopige-uitslag-gemeenteraadsverkiezing-2026
+REGEX=.*\.pdf.*
+PREFIX=
+NAME=Scherpenzeel

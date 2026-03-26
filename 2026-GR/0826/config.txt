@@ -1,0 +1,4 @@
+# Uses Mijn Stembureau API
+URL=https://mijnstembureau-oosterhout.nl
+# Download with: ./scripts/scrapers/mijnstembureau.py https://mijnstembureau-oosterhout.nl 2026-GR/0826
+NAME=Oosterhout

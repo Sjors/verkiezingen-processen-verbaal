@@ -1,0 +1,4 @@
+URL=https://www.woudenberg.nl/verkiezingen/gemeenteraadsverkiezingen-2026
+REGEX=fileadmin/.*Gemeenteraadsverkiezingen_2026_uitslagen/Model_N[aA]?_.*\.pdf
+PREFIX=https://www.woudenberg.nl
+NAME=Woudenberg

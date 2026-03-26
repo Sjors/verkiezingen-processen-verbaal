@@ -1,0 +1,4 @@
+URL=https://www.ede.nl/bestuur-en-organisatie/gemeenteraadsverkiezingen-2026
+REGEX=fileadmin.*/Uitslagen_GR2026/.*\.pdf
+PREFIX=https://www.ede.nl
+NAME=Ede

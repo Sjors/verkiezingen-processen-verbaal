@@ -1,0 +1,4 @@
+URL=https://www.zoeterwoude.nl/gemeenteraad-en-bestuur/verkiezingen/uitslagen
+REGEX=2026_gemeenteraadsverkiezingen/.*\.pdf
+PREFIX=https://www.zoeterwoude.nl/
+NAME=Zoeterwoude

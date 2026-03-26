@@ -1,0 +1,4 @@
+URL=https://www.kampen.nl/verkiezingsuitslag-gemeenteraad-2026
+REGEX=/file/kampen.*(?:gr26|csv)
+PREFIX=https://www.kampen.nl/
+NAME=Kampen

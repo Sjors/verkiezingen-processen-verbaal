@@ -1,0 +1,4 @@
+URL=https://www.zuidplas.nl/gemeenteraadsverkiezingen-de-voorlopige-uitslag-in-proces-verbaal
+REGEX=cuatro\.sim-cdn\.nl/zuidplas/uploads/.*\.pdf
+PREFIX=https://cuatro.sim-cdn.nl/
+NAME=Zuidplas

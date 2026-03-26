@@ -1,0 +1,4 @@
+URL=https://www.valkenswaard.nl/uitslag-gemeenteraadsverkiezing-2026-0
+REGEX=.*sim-cdn.*valkenswaard.*\.pdf.*
+PREFIX=
+NAME=Valkenswaard

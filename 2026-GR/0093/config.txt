@@ -1,0 +1,4 @@
+URL=https://www.terschelling.nl/processen-verbaal-gemeenteraadsverkiezingen
+REGEX=cuatro\.sim-cdn\.nl/terschelling/uploads/.*\.pdf
+PREFIX=https://
+NAME=Terschelling

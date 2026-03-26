@@ -1,0 +1,4 @@
+URL=https://www.gemeentehw.nl/gemeenteraadsverkiezing-2026/processen-verbaal/
+REGEX=wp-content/uploads/2026/03/.*\.pdf
+PREFIX=
+NAME=Hoeksche Waard

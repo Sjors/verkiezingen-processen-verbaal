@@ -1,0 +1,4 @@
+URL=https://www.eindhoven.nl/bestuur-en-beleid/gemeenteraadsverkiezing-2026/uitslag
+REGEX=sites/default/files/2026-03/.*\.pdf
+PREFIX=https://www.eindhoven.nl
+NAME=Eindhoven

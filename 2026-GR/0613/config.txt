@@ -1,0 +1,4 @@
+URL=https://www.albrandswaard.nl/home/verkiezingen/documenten-verkiezingenuitslag/
+REGEX=Albrandswaard.*GR26.*\.pdf
+PREFIX=https://www.albrandswaard.nl/
+NAME=Albrandswaard

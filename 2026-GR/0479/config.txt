@@ -1,0 +1,4 @@
+# Uses Mijn Stembureau API
+URL=https://mijnstembureau-zaanstad.nl
+# Download with: ./scripts/scrapers/mijnstembureau.py https://mijnstembureau-zaanstad.nl 2026-GR/0479 --election 2026
+NAME=Zaanstad

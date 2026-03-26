@@ -1,0 +1,4 @@
+URL=https://www.alblasserdam.nl/Bestuur_Organisatie/Alle_onderwerpen/Verkiezingen/Gemeenteraadsverkiezing_2026/Uitslagen_Gemeenteraadsverkiezing_2026
+REGEX=Uitslagen_Gemeenteraadsverkiezing_2026/(Alblasserdam_|Uitslag_Alblasserdam).*\.org
+PREFIX=https://www.alblasserdam.nl
+NAME=Alblasserdam

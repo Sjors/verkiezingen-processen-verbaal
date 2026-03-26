@@ -1,0 +1,4 @@
+URL=https://www.halderberge.nl/uitslagen-gemeenteraadsverkiezingen-18-maart-2026
+REGEX=cuatro\.sim-cdn\.nl/halderbergee22a8e/uploads/.*_gr26\.pdf
+PREFIX=https://
+NAME=Halderberge

@@ -1,0 +1,4 @@
+URL=https://www.middendrenthe.nl/verkiezingen/gemeenteraadsverkiezing/uitslag-gemeenteraadsverkiezing
+REGEX=^/fileadmin/Verkiezingen/Gemeenteraadsverkiezing_2026/.*\.pdf
+PREFIX=https://www.middendrenthe.nl
+NAME=Midden-Drenthe

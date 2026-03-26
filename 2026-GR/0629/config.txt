@@ -1,0 +1,4 @@
+URL=https://www.wassenaar.nl/voorlopige-uitslag-van-de-gemeenteraadsverkiezingen
+REGEX=cuatro\.sim-cdn\.nl/wassenaar/uploads/(n10-2_stembureau_.*\.pdf|bijlage_1_stembureau_.*\.pdf|proces_verbaal_gemeentelijk_stembureau.*\.pdf)
+PREFIX=https://www.wassenaar.nl/
+NAME=Wassenaar

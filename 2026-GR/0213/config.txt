@@ -1,0 +1,4 @@
+URL=https://www.brummen.nl/verkiezingen/uitslagen-verkiezingen-gemeenteraad-18-maart-2026
+REGEX=fileadmin/.*\.pdf
+PREFIX=https://www.brummen.nl
+NAME=Brummen

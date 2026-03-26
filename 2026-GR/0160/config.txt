@@ -1,0 +1,4 @@
+URL=https://www.hardenberg.nl/verkiezingen/uitslagen/processen-verbaal
+REGEX=fileadmin/Bestanden/Gemeente/Verkiezingen/2026_Gemeenteraadsverkiezingen/Uitslagen/.*\.pdf
+PREFIX=https://www.hardenberg.nl
+NAME=Hardenberg

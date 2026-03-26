@@ -1,0 +1,5 @@
+URL=https://www.wijkbijduurstede.nl/verkiezingen/uitslagen-tweede-kamerverkiezing-2025
+URL=https://www.wijkbijduurstede.nl/verkiezingen
+REGEX=fileadmin/wijk_bij_duurstede/Verkiezingen/GR_2026/.*\.pdf
+PREFIX=https://www.wijkbijduurstede.nl
+NAME=Wijk bij Duurstede

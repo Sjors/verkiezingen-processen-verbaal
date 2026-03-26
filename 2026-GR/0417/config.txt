@@ -1,0 +1,4 @@
+URL=https://www.laren.nl/uitslag-gemeenteraadsverkiezingen-2026-in-laren
+REGEX=cuatro\.sim-cdn\.nl/larend4944f/uploads/.*\.pdf
+PREFIX=
+NAME=Laren

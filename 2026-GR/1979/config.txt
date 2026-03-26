@@ -1,0 +1,4 @@
+URL=https://www.eemsdelta.nl/uitslag-gemeenteraadsverkiezing-2026-en-fout-telling-melden
+REGEX=sites/default/files/.*\.pdf
+PREFIX=https://www.eemsdelta.nl/
+NAME=Eemsdelta

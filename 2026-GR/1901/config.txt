@@ -1,0 +1,4 @@
+URL=https://www.bodegraven-reeuwijk.nl/uitslag-gemeenteraadsverkiezingen-2026
+REGEX=file/(?!.*csv).*
+PREFIX=https://www.bodegraven-reeuwijk.nl/
+NAME=Bodegraven-Reeuwijk

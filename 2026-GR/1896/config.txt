@@ -1,0 +1,4 @@
+URL=https://www.zwartewaterland.nl/uitslagen
+REGEX=cuatro\.sim-cdn\.nl/zwartewaterland/uploads/.*\.pdf
+PREFIX=https://
+NAME=Zwartewaterland

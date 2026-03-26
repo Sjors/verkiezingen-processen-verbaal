@@ -1,0 +1,4 @@
+URL=https://www.almere.nl/bestuur-en-organisatie/verkiezingen/processen-verbaal-gemeenteraadsverkiezingen-2026
+REGEX=fileadmin/.*\.pdf
+PREFIX=https://www.almere.nl
+NAME=Almere

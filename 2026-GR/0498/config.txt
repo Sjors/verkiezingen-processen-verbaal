@@ -1,0 +1,4 @@
+URL=https://www.drechterland.nl/bestuur-en-organisatie/verkiezingen/verkiezingsuitslag-gemeenteraadsverkiezingen-2026/
+REGEX=Drechterland_(stembureau-|)\d+.*_GR26.*\.pdf
+PREFIX=https://www.drechterland.nl/wp-content/uploads/2026/03/
+NAME=Drechterland

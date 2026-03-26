@@ -1,0 +1,4 @@
+URL=https://www.reuseldemierden.nl/uitslag-gemeenteraadsverkiezingen-2026
+REGEX=cuatro\.sim-cdn\.nl/reuseldemierden/uploads/.*\.pdf
+PREFIX=https://
+NAME=Reusel-De Mierden

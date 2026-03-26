@@ -1,0 +1,4 @@
+URL=https://www.enkhuizen.nl/bestuur-en-organisatie/verkiezingen/verkiezingsuitslag-gemeenteraadsverkiezingen-2026/
+REGEX=Enkhuizen_\d+.*_GR26.*\.pdf
+PREFIX=
+NAME=Enkhuizen

@@ -1,0 +1,4 @@
+URL=https://www.zevenaar.nl/voorlopige-uitslag-gemeenteraadsverkiezingen-18-maart-2026
+REGEX=/file/0299.*pdf
+PREFIX=https://www.zevenaar.nl
+NAME=Zevenaar

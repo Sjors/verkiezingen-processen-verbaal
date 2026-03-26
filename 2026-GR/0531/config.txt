@@ -1,0 +1,4 @@
+URL=https://www.h-i-ambacht.nl/Politiek_Bestuur/Totaaloverzicht_Politiek_en_Bestuur/Verkiezingen/Gemeenteraadsverkiezingen_2026/Uitslagen_Gemeenteraadsverkiezing_2026
+REGEX=Uitslagen_Gemeenteraadsverkiezing_2026/.*\.(pdf|org|PDF|ORG)
+PREFIX=https://www.h-i-ambacht.nl
+NAME=Hendrik-Ido-Ambacht

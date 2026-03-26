@@ -1,0 +1,4 @@
+URL=https://www.raalte.nl/uitslagen-gemeenteraadsverkiezingen
+REGEX=/file/raalte.*(?:gr26|digitaleuitkomstcsv|verkiezingsuitslag)
+PREFIX=https://www.raalte.nl
+NAME=Raalte

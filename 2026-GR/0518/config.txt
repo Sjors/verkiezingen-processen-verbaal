@@ -1,0 +1,9 @@
+URL=https://uitslagen.denhaag.nl/gemeenteraadsverkiezing_2026/documenten
+REGEX=uploads/documents/gemeenteraadsverkiezing_2026.*\.pdf
+PREFIX=https://uitslagen.denhaag.nl/
+NAME='s-Gravenhage
+# Note: Per-stembureau N 10-1 PV PDFs are NOT available for download.
+# Only summary documents are available: GSB PV (Na31-2), CSB PV, new session,
+# corrigendum, verklaring aansluitvoorschriften, verslag controleprotocol.
+# Per-stembureau vote data is viewable at https://uitslagen.denhaag.nl/
+# The old tellingen.stembureausindenhaag.nl now redirects to uitslagen.denhaag.nl

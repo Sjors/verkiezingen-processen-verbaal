@@ -1,0 +1,4 @@
+URL=https://www.blaricum.nl/uitslag-gemeenteraadsverkiezingen-2026-in-blaricum
+REGEX=cuatro\.sim-cdn\.nl/blaricum8fbaa4/uploads/.*\.pdf
+PREFIX=
+NAME=Blaricum

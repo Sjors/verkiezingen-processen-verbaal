@@ -1,0 +1,4 @@
+URL=https://www.landsmeer.nl/actueel/nieuws/uitslagen_gemeenteraadsverkiezingen_2026_/
+REGEX=/bestand/actueel/nieuws/uitslagen_gemeenteraadsverkiezingen_2026_/.*
+PREFIX=https://www.landsmeer.nl
+NAME=Landsmeer

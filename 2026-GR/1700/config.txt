@@ -1,0 +1,4 @@
+URL=https://www.twenterand.nl/verkiezingen
+REGEX=cuatro\.sim-cdn\.nl/twenterand/uploads/.*twenterand.*gr26.*\.pdf
+PREFIX=
+NAME=Twenterand

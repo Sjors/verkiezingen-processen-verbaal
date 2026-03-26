@@ -1,0 +1,4 @@
+URL=https://www.bergeijk.nl/voorlopige-uitslag-gemeentelijk-stembureau-gsb
+REGEX=cuatro\.sim-cdn\.nl/bergeijk/uploads/.*\.pdf
+PREFIX=
+NAME=Bergeijk

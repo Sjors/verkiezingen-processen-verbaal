@@ -1,0 +1,4 @@
+URL=https://www.peelenmaas.nl/bestuur-en-organisatie/verkiezingen/Verkiezingsuitslag
+REGEX=data/downloadables/.*peelenmaas.*gr26.*\.pdf
+PREFIX=https://www.peelenmaas.nl
+NAME=Peel en Maas

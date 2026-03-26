@@ -1,0 +1,4 @@
+URL=https://www.vijfheerenlanden.nl/uitslag-gemeenteraadsverkiezing-2026
+REGEX=vijfheerenlanden.*_gr2026\.pdf
+PREFIX=https://www.vijfheerenlanden.nl/
+NAME=Vijfheerenlanden

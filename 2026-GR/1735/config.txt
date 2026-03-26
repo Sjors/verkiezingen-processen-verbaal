@@ -1,0 +1,4 @@
+URL=https://www.hofvantwente.nl/uitslag/
+REGEX=(?:hofvantwente\.nl/)?wp-content/uploads/2026/03/HofvanTwente_.*GR26.*\.pdf
+PREFIX=
+NAME=Hof van Twente

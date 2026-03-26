@@ -1,0 +1,4 @@
+URL=https://www.voorschoten.nl/resultaten-gemeenteraadsverkiezingen-2026
+REGEX=sim-cdn\.nl/voorschoten/uploads/.*\.pdf
+PREFIX=
+NAME=Voorschoten

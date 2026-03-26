@@ -1,0 +1,3 @@
+# Pleio platform - use scripts/scrapers/pleio.py
+URL=https://haarlem.pleio.nl/groups/view/7b769524-7339-4ae6-ab49-c10b7c20abed/verkiezingen/files/e8fa13a8-96b6-425b-a151-38fac9c9045e
+NAME=Zandvoort

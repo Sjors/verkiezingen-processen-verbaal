@@ -1,0 +1,4 @@
+URL=https://www.ijsselstein.nl/processen-verbaal
+REGEX=cuatro\.sim-cdn\.nl/.*/uploads/.*\.pdf
+PREFIX=
+NAME=IJsselstein

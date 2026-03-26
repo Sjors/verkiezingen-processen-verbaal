@@ -1,0 +1,4 @@
+URL=https://www.rijswijk.nl/processen-verbaal-gemeenteraadsverkiezing-2026
+REGEX=sites/default/files/2026-03/rijswijk_.*\.(pdf|csv)
+PREFIX=https://www.rijswijk.nl
+NAME=Rijswijk

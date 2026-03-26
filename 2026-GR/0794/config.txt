@@ -1,0 +1,4 @@
+URL=https://www.helmond.nl/1/verkiezingen/processen-verbaal-gemeenteraadsverkiezingen-2026
+REGEX=Media.*?\.pdf
+PREFIX=https://www.helmond.nl
+NAME=Helmond

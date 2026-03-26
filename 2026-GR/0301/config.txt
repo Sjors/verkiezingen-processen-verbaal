@@ -1,0 +1,4 @@
+URL=https://www.zutphen.nl/verkiezingen/uitslagen
+REGEX=sites/default/files/Verkiezingen/Gemeenteraad%202026/Processen%20verbaal.*\.pdf
+PREFIX=https://www.zutphen.nl/
+NAME=Zutphen

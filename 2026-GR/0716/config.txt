@@ -1,0 +1,4 @@
+URL=https://www.tholen.nl/verkiezingen/uitslagen-verkiezingen-gemeenteraad-2026
+REGEX=fileadmin/tholen/.*GR26.*\.pdf|fileadmin/tholen/.*Gr26.*\.pdf|fileadmin/tholen/.*GR26.*\.csv
+PREFIX=https://www.tholen.nl
+NAME=Tholen

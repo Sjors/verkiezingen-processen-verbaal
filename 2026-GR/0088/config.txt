@@ -1,0 +1,4 @@
+URL=https://www.schiermonnikoog.nl/uitslagen-verkiezingen
+REGEX=sim-cdn\.nl/schiermonnikoog/uploads/.*gr26.*\.pdf
+PREFIX=
+NAME=Schiermonnikoog

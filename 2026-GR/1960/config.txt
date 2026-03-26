@@ -1,0 +1,4 @@
+URL=https://www.westbetuwe.nl/uitslagen-gemeenteraadsverkiezing-2026
+REGEX=file/[^"]*pdf
+PREFIX=https://www.westbetuwe.nl/
+NAME=West Betuwe

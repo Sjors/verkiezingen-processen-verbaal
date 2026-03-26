@@ -1,0 +1,4 @@
+URL=https://www.asten.nl/gemeentebestuur-en-organisatie/verkiezingen/gemeenteraadsverkiezingen/voorlopige-verkiezingsuitslag-18-03-2026
+REGEX=fileadmin/Asten/PDF-formulieren_producten/Beleid/Verkiezingen/GR2026/.*\.pdf
+PREFIX=https://www.asten.nl/
+NAME=Asten

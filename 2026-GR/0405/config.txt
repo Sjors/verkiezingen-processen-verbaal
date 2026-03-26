@@ -1,0 +1,4 @@
+URL=https://www.hoorn.nl/pv-verkiezingen
+REGEX=verkiezingen%202026/.*\.pdf
+PREFIX=https://www.hoorn.nl
+NAME=Hoorn

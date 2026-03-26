@@ -1,0 +1,4 @@
+URL=https://www.meerssen.nl/gemeenteraadsverkiezingen/uitslag
+REGEX=openbaarmaking_processen-verbaal_verkiezingen//(proces_verbaal|bijlage)_
+PREFIX=https://www.meerssen.nl
+NAME=Meerssen

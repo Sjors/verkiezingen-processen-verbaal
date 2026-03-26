@@ -1,0 +1,4 @@
+URL=https://www.waterland.nl/uitslag-gemeenteraadsverkiezingen-2026
+REGEX=file/[^"']*pdf
+PREFIX=https://www.waterland.nl/
+NAME=Waterland

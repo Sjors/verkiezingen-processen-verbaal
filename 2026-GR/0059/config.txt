@@ -1,0 +1,4 @@
+URL=https://www.achtkarspelen.nl/processen-verbaal-gemeenteraadsverkiezing-2026
+REGEX=achtkarspelen/uploads/.*\.(pdf|csv)
+PREFIX=https://cuatro.sim-cdn.nl/
+NAME=Achtkarspelen

@@ -1,0 +1,4 @@
+URL=https://www.bergen.nl/gemeenteraad-2026
+REGEX=bergen/uploads/.*\.pdf
+PREFIX=https://www.bergen.nl
+NAME=Bergen (L.)

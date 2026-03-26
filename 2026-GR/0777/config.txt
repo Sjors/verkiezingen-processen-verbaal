@@ -1,0 +1,4 @@
+URL=https://www.etten-leur.nl/verkiezingen
+REGEX=wp-content/uploads/.*/Etten-Leur.*GR.*\.pdf
+PREFIX=https://www.etten-leur.nl/
+NAME=Etten-Leur

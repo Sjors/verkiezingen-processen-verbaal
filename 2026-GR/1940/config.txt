@@ -1,0 +1,4 @@
+URL=https://www.defryskemarren.nl/direct-regelen/thema/processen-verbaal-gemeenteraadsverkiezingen/
+REGEX=De-Fryske-Marren.*GR26.*\.pdf
+PREFIX=https://www.defryskemarren.nl/wp-content/uploads/2026/03/
+NAME=De Fryske Marren

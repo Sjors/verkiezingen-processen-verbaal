@@ -1,0 +1,4 @@
+URL=https://www.hardinxveld-giessendam.nl/Bestuur/Gemeenteraad/Verkiezingen/Verkiezingen_gemeenteraad/Uitslagen_Gemeenteraadsverkiezing_2026
+REGEX=Uitslagen_Gemeenteraadsverkiezing_2026/(0523_Stembureau|Proces_verbaal).*\.org
+PREFIX=https://www.hardinxveld-giessendam.nl/
+NAME=Hardinxveld-Giessendam

@@ -1,0 +1,4 @@
+URL=https://www.gouda.nl/bestuur-en-organisatie/gemeenteraadsverkiezingen/processen-verbaal-gemeenteraadsverkiezing/
+REGEX=wp-content/uploads/2026/.*\.pdf
+PREFIX=https://www.gouda.nl/
+NAME=Gouda

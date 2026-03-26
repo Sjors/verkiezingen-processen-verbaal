@@ -1,0 +1,4 @@
+URL=https://www.venlo.nl/openbaarmaking-processen-verbaal-verkiezingen
+REGEX=file/venlo[0-9]+.*gr26.*
+PREFIX=https://www.venlo.nl/
+NAME=Venlo

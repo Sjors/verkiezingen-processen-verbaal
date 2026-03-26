@@ -1,0 +1,4 @@
+URL=https://drimmelen.nl/voorlopige-uitslag-gemeenteraadsverkiezingen-18-maart-2026
+REGEX=sites/default/files/documents/.*\.pdf
+PREFIX=https://drimmelen.nl/
+NAME=Drimmelen

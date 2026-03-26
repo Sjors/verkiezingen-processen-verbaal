@@ -1,0 +1,4 @@
+URL=https://www.heuvelrug.nl/proces-verbalen-verkiezingen-gemeenteraad-2026
+REGEX=heuvelrug/uploads/(?:uh_.*_gr26.*\.pdf|uh_uitkomst_gr26\.pdf|proces-verbaal.*\.pdf|osv4-3_telling_gr2026_utrechtseheuvelrug\.csv)
+PREFIX=https://cuatro.sim-cdn.nl/
+NAME=Heuvelrug

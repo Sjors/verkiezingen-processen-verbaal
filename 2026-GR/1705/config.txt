@@ -1,0 +1,4 @@
+URL=https://www.lingewaard.nl/uitslagen-gemeenteraadsverkiezing-2026
+REGEX=cuatro\.sim-cdn\.nl/lingewaard/uploads/.*\.(pdf|csv)
+PREFIX=https://www.lingewaard.nl/
+NAME=Lingewaard

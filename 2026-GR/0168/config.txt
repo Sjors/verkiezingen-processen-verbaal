@@ -1,0 +1,4 @@
+# Uses Mijn Stembureau API
+URL=https://mijnstembureau-losser.nl
+# Download with: ./scripts/scrapers/mijnstembureau.py https://mijnstembureau-losser.nl 2026-GR/0168 --election 2026
+NAME=Losser

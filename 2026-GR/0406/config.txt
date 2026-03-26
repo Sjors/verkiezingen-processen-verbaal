@@ -1,0 +1,4 @@
+URL=https://www.huizen.nl/processen-verbaal-van-verkiezingsuitslag
+REGEX=uploads/stembureau_[0-9]+_gemverkiezing_2026\.pdf|uploads/na31-1_.*\.pdf
+PREFIX=https://cuatro.sim-cdn.nl/huizen/
+NAME=Huizen

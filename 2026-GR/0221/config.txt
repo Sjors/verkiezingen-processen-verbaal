@@ -1,0 +1,4 @@
+URL=https://www.doesburg.nl/publicaties-gemeenteraad-2026
+REGEX=cuatro\.sim-cdn\.nl/doesburg/uploads/(Controleprotocol|Model%2031%20-1|Model%20N%2010-1).*\.pdf
+PREFIX=https://cuatro.sim-cdn.nl/
+NAME=Doesburg

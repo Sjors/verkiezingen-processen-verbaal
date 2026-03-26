@@ -1,0 +1,4 @@
+URL=https://www.castricum.nl/verkiezingen/uitslag-gemeenteraad-verkiezing/
+REGEX=fileadmin/.*\.pdf
+PREFIX=https://www.castricum.nl
+NAME=Castricum

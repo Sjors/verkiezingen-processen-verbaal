@@ -1,0 +1,4 @@
+URL=https://www.beuningen.nl/uitslagverkiezing
+REGEX=cuatro\.sim-cdn\.nl/beuningen.*/uploads/.*beuningen.*gr2.*\.pdf
+PREFIX=
+NAME=Beuningen

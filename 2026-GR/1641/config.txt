@@ -1,0 +1,4 @@
+URL=https://www.gemeentemaasgouw.nl/verkiezingsuitslag
+REGEX=cuatro\.sim-cdn\.nl/maasgouw/uploads/stembureau_.*\.pdf|cuatro\.sim-cdn\.nl/maasgouw/uploads/pv_na31.*\.pdf
+PREFIX=
+NAME=Maasgouw

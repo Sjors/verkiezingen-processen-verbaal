@@ -1,0 +1,5 @@
+URL=https://www.alphenaandenrijn.nl/Verkiezingen/Gemeenteraadsverkiezing/Uitslag_gemeenteraadsverkiezing_2026
+REGEX=dsresource\?objectid=.*type=org
+PREFIX=https://www.alphenaandenrijn.nl/
+NAME=Alphen aan den Rijn
+BLACKLIST_PATTERN=\.csv|\.xlsx

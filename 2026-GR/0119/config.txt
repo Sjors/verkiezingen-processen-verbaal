@@ -1,0 +1,4 @@
+URL=https://www.meppel.nl/processenverbaal-openbare-zitting-gemeentelijk-stembureau/
+REGEX=https://open\.meppel\.nl/app/uploads/sites/5/.*\.pdf
+PREFIX=
+NAME=Meppel

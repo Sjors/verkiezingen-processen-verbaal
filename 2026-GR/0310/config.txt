@@ -1,0 +1,4 @@
+URL=https://www.debilt.nl/bestuur-en-organisatie/verkiezingen/uitslagen-gemeenteraadsverkiezingen-2026
+REGEX=fileadmin/bestanden/Bestuur_en_organisatie/Verkiezingen/Gemeenteraadsverkiezingen_2026/.*\.pdf
+PREFIX=https://www.debilt.nl
+NAME=De Bilt

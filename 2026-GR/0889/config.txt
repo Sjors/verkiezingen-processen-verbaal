@@ -1,0 +1,4 @@
+URL=https://www.beesel.nl/verkiezingsuitslag
+REGEX=/data/downloadables/.*(2026|gr26).*\.pdf
+NAME=Beesel
+PREFIX=https://www.beesel.nl

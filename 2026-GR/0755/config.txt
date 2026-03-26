@@ -1,0 +1,4 @@
+URL=https://www.boekel.nl/bestuur-en-organisatie/verkiezingen/gemeenteraadsverkiezingen-2026/uitslagen
+REGEX=data/downloadables/.*\.pdf
+PREFIX=https://www.boekel.nl
+NAME=Boekel

@@ -1,0 +1,4 @@
+URL=https://www.aalsmeer.nl/uitslag-gemeenteraadsverkiezing-2026
+REGEX=sites/aalsmeer/files/2026-03/.*\.pdf
+PREFIX=https://www.aalsmeer.nl/
+NAME=Aalsmeer

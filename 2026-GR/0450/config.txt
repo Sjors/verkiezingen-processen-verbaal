@@ -1,0 +1,4 @@
+URL=https://www.uitgeest.nl/verkiezingen/uitslag-gemeenteraad-verkiezing/
+REGEX=fileadmin/.*\.pdf
+NAME=Uitgeest
+PREFIX=https://www.uitgeest.nl

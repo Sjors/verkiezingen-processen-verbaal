@@ -1,0 +1,4 @@
+URL=https://www.staphorst.nl/uitslagen-verkiezingen-gemeenteraad-2026
+REGEX=sim-cdn\.nl/.*/uploads/.*\.pdf
+NAME=Staphorst
+PREFIX=https://www.staphorst.nl

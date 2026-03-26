@@ -1,0 +1,4 @@
+URL=https://www.dinkelland.nl/gemeenteraadsverkiezingen-2026
+REGEX=sites/default/files/2026-03/proces.*\.pdf
+PREFIX=https://www.dinkelland.nl/
+NAME=Dinkelland

@@ -1,0 +1,4 @@
+URL=https://www.olst-wijhe.nl/bestuur/verkiezingen/gemeenteraadsverkiezingen-2026/voorlopige-uitslag-gemeenteraadsverkiezingen-2026/proces-verbalen-stembureaus-gemeente
+REGEX=proces-verbalen-stembureaus-gemeente/[0-9].*\.pdf
+PREFIX=
+NAME=Olst-Wijhe

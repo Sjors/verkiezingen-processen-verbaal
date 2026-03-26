@@ -1,0 +1,4 @@
+URL=https://www.doetinchem.nl/verkiezingen/uitslag
+REGEX=cuatro\.sim-cdn\.nl/doetinchem/uploads/.*\.pdf.*
+PREFIX=
+NAME=Doetinchem

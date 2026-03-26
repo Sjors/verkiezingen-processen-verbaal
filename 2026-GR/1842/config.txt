@@ -1,0 +1,4 @@
+URL=https://www.middendelfland.nl/voorlopige-uitslag-gemeenteraadsverkiezing
+REGEX=.*sim-cdn\.nl/.*\.pdf
+NAME=Midden-Delfland
+PREFIX=https://www.middendelfland.nl

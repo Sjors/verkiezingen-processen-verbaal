@@ -1,0 +1,4 @@
+URL=https://www.coevorden.nl/processen-verbaal
+REGEX=file/.*pdf
+PREFIX=https://www.coevorden.nl
+NAME=Coevorden

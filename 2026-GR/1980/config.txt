@@ -1,0 +1,4 @@
+URL=https://www.dijkenwaard.nl/verkiezingen/uitslag-van-de-gemeenteraadsverkiezing
+REGEX=/fileadmin/bestanden/Verkiezingen/Gemeenteraadsverkiezingen/.*\.pdf
+PREFIX=https://www.dijkenwaard.nl
+NAME=Dijk en Waard

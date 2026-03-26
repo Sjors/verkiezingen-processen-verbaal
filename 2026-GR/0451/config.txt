@@ -1,0 +1,4 @@
+URL=https://www.uithoorn.nl/Home/Verkiezingen/Gemeenteraadsverkiezing_18_maart_2026/Processen_verbaal_Gemeenteraadsverkiezing_2026
+REGEX=Processen_verbaal_Gemeenteraadsverkiezing_2026/Uithoorn_.*\.org
+PREFIX=https://www.uithoorn.nl
+NAME=Uithoorn

@@ -1,0 +1,4 @@
+URL=https://www.oudewater.nl/Verkiezingen/Gemeenteraadsverkiezingen/Gemeenteraadsverkiezingen_2026
+REGEX=/Verkiezingen/Documenten/.*GR26.*\.org|/Verkiezingen/Documenten/verslag_controleprotocol\.org
+PREFIX=https://www.oudewater.nl/
+NAME=Oudewater

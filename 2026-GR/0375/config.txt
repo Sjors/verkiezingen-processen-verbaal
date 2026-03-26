@@ -1,0 +1,4 @@
+URL=https://www.beverwijk.nl/processen-verbaal
+REGEX=cuatro\.sim-cdn\.nl/beverwijk/uploads/.*\.pdf
+PREFIX=
+NAME=Beverwijk

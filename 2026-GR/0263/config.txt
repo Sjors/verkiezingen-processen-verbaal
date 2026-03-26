@@ -1,0 +1,4 @@
+URL=https://www.maasdriel.nl/bestuur-en-organisatie/verkiezingen/gemeenteraadsverkiezingen-2026/uitslag-verkiezingen
+REGEX=data/downloadables/.*\.pdf
+PREFIX=https://www.maasdriel.nl
+NAME=Maasdriel

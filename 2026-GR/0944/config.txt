@@ -1,0 +1,4 @@
+URL=https://www.mookenmiddelaar.nl/definitieve-uitslag-gemeenteraadsverkiezingen-2026-0
+REGEX=cuatro\.sim-cdn\.nl/mookenmiddelaar/uploads/.*\.(pdf|csv)
+PREFIX=https:
+NAME=Mook en Middelaar

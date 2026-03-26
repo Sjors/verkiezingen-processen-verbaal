@@ -1,0 +1,4 @@
+URL=https://www.smallingerland.nl/Onderwerpen/Verkiezingen/Gemeenteraadsverkiezingen_2026/Uitslag_gemeenteraadsverkiezing_2026/Verslag_per_stembureau_proces_verbaal_N10_2
+REGEX=.*(Smallingerland|GR26).*\.pdf
+NAME=Smallingerland
+PREFIX=https://www.smallingerland.nl

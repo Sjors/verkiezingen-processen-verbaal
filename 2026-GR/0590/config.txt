@@ -1,0 +1,4 @@
+URL=https://www.papendrecht.nl/Verkiezingen/Bekendmakingen_nieuwsberichten_en_uitslagen
+REGEX=Verkiezingen/Bekendmakingen.*(pdf|\.org)
+PREFIX=https://www.papendrecht.nl
+NAME=Papendrecht

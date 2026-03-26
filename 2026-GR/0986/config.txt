@@ -1,0 +1,4 @@
+URL=https://www.voerendaal.nl/verkiezingen/uitslag-verkiezingen-2026-gemeenteraad
+REGEX=fileadmin/Gemeente_Voerendaal.*GR26.*\.pdf
+PREFIX=https://www.voerendaal.nl/
+NAME=Voerendaal

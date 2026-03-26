@@ -1,0 +1,4 @@
+URL=https://www.tubbergen.nl/gemeenteraadsverkiezingen-2026
+REGEX=\.pdf
+PREFIX=https://www.tubbergen.nl/
+NAME=Tubbergen

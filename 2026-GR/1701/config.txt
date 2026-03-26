@@ -1,0 +1,4 @@
+URL=https://www.gemeentewesterveld.nl/Alle_onderwerpen/Bestuur_en_organisatie/Verkiezingen/Gemeenteraadsverkiezingen_2026/Voorlopige_uitslag_gemeenteraadsverkiezingen_2026
+REGEX=.*\.pdf
+PREFIX=https://www.gemeentewesterveld.nl
+NAME=Westerveld

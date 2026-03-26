@@ -1,0 +1,4 @@
+URL=https://www.lv.nl/voorlopige-uitslag-gemeenteraadsverkiezingen
+REGEX=file/(?!.*csv).*
+PREFIX=https://www.lv.nl/
+NAME=Leidschendam-Voorburg

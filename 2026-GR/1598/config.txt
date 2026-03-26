@@ -1,0 +1,4 @@
+URL=https://www.koggenland.nl/voorlopige-uitslag-koggeland-gemeenteraadsverkiezing-18maart2026
+REGEX=cuatro\.sim-cdn\.nl/koggenland/uploads/.*\.pdf
+PREFIX=
+NAME=Koggenland

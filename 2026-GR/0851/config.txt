@@ -1,0 +1,4 @@
+URL=https://www.gemeente-steenbergen.nl/inwoners_overzicht/verkiezingen/processen-verbaal/
+REGEX=bestand/.*\.pdf
+PREFIX=https://www.gemeente-steenbergen.nl
+NAME=Steenbergen

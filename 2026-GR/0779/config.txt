@@ -1,0 +1,4 @@
+URL=https://www.geertruidenberg.nl/uitslag-gemeenteraadsverkiezingen
+REGEX=sites/default/files/.*GR26.*\.pdf
+PREFIX=https://www.geertruidenberg.nl
+NAME=Geertruidenberg

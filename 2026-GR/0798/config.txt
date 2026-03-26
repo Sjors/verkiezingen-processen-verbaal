@@ -1,0 +1,4 @@
+URL=https://www.hilvarenbeek.nl/verkiezingen/gemeenteraadsverkiezing-2026/voorlopige-uitslagen
+REGEX=fileadmin/.*([Pp]roces.verbaal|[Pp][Vv]_|[Cc]orrigendum|[Cc]oorigendum|hertelling).*\.pdf
+PREFIX=https://www.hilvarenbeek.nl/
+NAME=Hilvarenbeek

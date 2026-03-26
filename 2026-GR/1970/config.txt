@@ -1,0 +1,4 @@
+URL=https://www.noardeast-fryslan.nl/processen-verbaal-gemeenteraadsverkiezing-2026
+REGEX=sites/default/files/.*\.pdf
+PREFIX=
+NAME=Noardeast-Fryslân

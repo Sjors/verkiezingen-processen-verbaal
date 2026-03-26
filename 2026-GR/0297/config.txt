@@ -1,0 +1,4 @@
+URL=https://www.zaltbommel.nl/uitslagverkiezingen
+REGEX=/data/downloadables/[0-9/]+/.*\.pdf
+PREFIX=https://www.zaltbommel.nl
+NAME=Zaltbommel

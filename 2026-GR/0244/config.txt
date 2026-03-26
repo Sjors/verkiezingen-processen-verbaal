@@ -1,0 +1,4 @@
+URL=https://www.hattem.nl/Bestuur_en_organisatie/Verkiezingen/Uitslagen_Gemeenteraadsverkiezingen_2026
+REGEX=dsresource\?objectid=.*type=org
+PREFIX=https://www.hattem.nl
+NAME=Hattem

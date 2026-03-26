@@ -1,0 +1,4 @@
+URL=https://www.leudal.nl/voorlopige-uitslag-verkiezingen-gemeenteraad
+REGEX=leudal/uploads/.*\.pdf.*
+PREFIX=
+NAME=Leudal

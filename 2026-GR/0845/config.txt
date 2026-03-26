@@ -1,0 +1,4 @@
+URL=https://www.sint-michielsgestel.nl/verkiezingen/uitslagen-gemeenteraadsverkiezingen-2026
+REGEX=sites/default/files/.*\.pdf
+PREFIX=
+NAME=Sint-Michielsgestel

@@ -1,0 +1,4 @@
+URL=https://www.goes.nl/definitieve-uitslag-gemeenteraadsverkiezingen-2026
+REGEX=sites/goes/files/2026-03/goes.*gr26.*\.pdf
+PREFIX=https://www.goes.nl
+NAME=Goes

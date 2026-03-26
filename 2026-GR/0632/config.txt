@@ -1,0 +1,4 @@
+URL=https://www.woerden.nl/Verkiezingen/Gemeenteraadsverkiezingen/Gemeenteraadsverkiezingen_2026
+REGEX=Documenten/.*\.(pdf|org|PDF|ORG)
+PREFIX=https://www.woerden.nl
+NAME=Woerden

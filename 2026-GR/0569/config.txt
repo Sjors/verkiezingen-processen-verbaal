@@ -1,0 +1,4 @@
+URL=https://www.nieuwkoop.nl/voorlopige-uitslag-gemeenteraadsverkiezingen
+REGEX=^https://cuatro\.sim-cdn\.nl/nieuwkoop/uploads/.*\.pdf
+PREFIX=
+NAME=Nieuwkoop

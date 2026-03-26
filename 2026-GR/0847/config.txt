@@ -1,0 +1,4 @@
+URL=https://www.someren.nl/gemeente-bestuur-en-organisatie/verkiezingen/gemeenteraadsverkiezingen-2026/uitslagen
+REGEX=fileadmin/Someren/PDF_formulieren_producten/Raad_en_college/Verkiezingen/gemeenteraadsverkiezingen_2026/.*\.pdf
+PREFIX=https://www.someren.nl
+NAME=Someren

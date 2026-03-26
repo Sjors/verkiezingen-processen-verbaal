@@ -1,0 +1,4 @@
+URL=https://www.zeewolde.nl/verkiezingen/uitslagen-gemeenteraadsverkiezing
+REGEX=/fileadmin/Site_Zeewolde/documenten/verkiezingen/uitslagen_GR2026/.*\.pdf
+PREFIX=https://www.zeewolde.nl
+NAME=Zeewolde

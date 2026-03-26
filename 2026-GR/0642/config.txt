@@ -1,0 +1,4 @@
+# Uses Mijn Stembureau API
+URL=https://mijnstembureau-zwijndrecht.nl
+# Download with: ./scripts/scrapers/mijnstembureau.py https://mijnstembureau-zwijndrecht.nl 2026-GR/0642
+NAME=Zwijndrecht

@@ -1,0 +1,4 @@
+URL=https://www.wierden.nl/uitkomst-gemeenteraadsverkiezing
+REGEX=sim-cdn\.nl/wierden/uploads/wierden_.*gr26.*\.pdf
+PREFIX=https://cuatro.
+NAME=Wierden

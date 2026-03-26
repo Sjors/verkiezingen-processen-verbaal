@@ -1,0 +1,4 @@
+URL=https://www.oude-ijsselstreek.nl/
+REGEX=.*\.pdf
+PREFIX=https://www.oude-ijsselstreek.nl/
+NAME=Oude IJsselstreek

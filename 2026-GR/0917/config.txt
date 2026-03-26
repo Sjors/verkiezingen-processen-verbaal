@@ -1,0 +1,4 @@
+URL=https://www.heerlen.nl/uitslag-gemeenteraadsverkiezing
+REGEX=sim-cdn\.nl/heerlenf7cc71/uploads/.*GR26.*\.pdf
+PREFIX=
+NAME=Heerlen

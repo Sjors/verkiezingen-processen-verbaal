@@ -1,0 +1,4 @@
+URL=https://www.gemeente-oldambt.nl/bestanden-verkiezingsuitkomst-oldambt
+REGEX=file/(?!.*csv).*
+PREFIX=https://www.gemeente-oldambt.nl/
+NAME=Oldambt

@@ -1,0 +1,4 @@
+URL=https://www.beekdaelen.nl/voorlopige-uitslagen-gemeenteraadsverkiezingen-2026
+REGEX=beekdaelen.*\.pdf
+PREFIX=
+NAME=Beekdaelen

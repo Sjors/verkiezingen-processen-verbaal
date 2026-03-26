@@ -1,0 +1,4 @@
+URL=https://www.voorst.nl/verkiezingen/documenten-verkiezingen-gemeenteraad-18-maart-2026
+REGEX=fileadmin/user_upload/Over_Voorst/Verkiezingen/2026_gemeenteraad/.*\.pdf
+PREFIX=https://www.voorst.nl/
+NAME=Voorst

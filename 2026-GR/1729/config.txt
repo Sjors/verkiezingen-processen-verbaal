@@ -1,0 +1,4 @@
+URL=https://www.gulpen-wittem.nl/onderwerpen/verkiezingsinfo-voor-kiezers/uitslag-verkiezingen
+REGEX=/data/downloadables/.*/gulpen-wittem_.*gr26.*\.(pdf|csv)
+PREFIX=https://www.gulpen-wittem.nl
+NAME=Gulpen-Wittem

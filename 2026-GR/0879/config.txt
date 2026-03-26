@@ -1,0 +1,4 @@
+URL=https://www.zundert.nl/verkiezingen
+REGEX=fileadmin/Zundert/Documenten/verkiezingen/Gemeentraadsverkiezingen_2026/(Stembureau|Bijlage_1|Zundert_Gemeentelijk_Stembureau).*\.pdf
+PREFIX=https://www.zundert.nl
+NAME=Zundert

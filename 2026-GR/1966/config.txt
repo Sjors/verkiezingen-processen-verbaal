@@ -1,0 +1,4 @@
+URL=https://hethogeland.nl/bestuur-en-organisatie/verkiezingen/uitslag-gemeenteraadsverkiezingen-2026-het-hogeland
+REGEX=fileadmin/.*\.pdf
+PREFIX=https://hethogeland.nl
+NAME=Het Hogeland

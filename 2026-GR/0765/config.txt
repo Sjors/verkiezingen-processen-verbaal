@@ -1,0 +1,4 @@
+URL=https://www.pekela.nl/Homepage/Verkiezingen/Gemeenteraadsverkiezingen:8fds-u4eQ_W3PAZKnSlj6g/Processen_verbaal_gemeenteraadsverkiezingen_2026
+REGEX=dsresource\?objectid=.*type=org
+PREFIX=https://www.pekela.nl
+NAME=Pekela

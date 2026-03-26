@@ -1,0 +1,4 @@
+URL=https://www.geldrop-mierlo.nl/voorlopige-uitslag-gemeenteraadsverkiezingen-2026
+REGEX=cuatro\.sim-cdn\.nl/geldropmierlo/uploads/.*\.pdf
+PREFIX=https://www.geldrop-mierlo.nl
+NAME=Geldrop-Mierlo

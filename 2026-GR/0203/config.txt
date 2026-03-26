@@ -1,0 +1,4 @@
+URL=https://www.barneveld.nl/bestuur-en-organisatie/verkiezingen/gemeenteraadsverkiezingen/uitslag-gemeenteraadsverkiezingen
+PREFIX=https://www.barneveld.nl
+REGEX=/fileadmin/Barneveld/Projecten/Verkiezingen/Gemeenteraad_2026/.*\.pdf
+NAME=Barneveld

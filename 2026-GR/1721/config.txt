@@ -1,0 +1,4 @@
+URL=https://www.bernheze.org/bestuur-en-organisatie/verkiezingen/
+REGEX=model.*\.pdf
+PREFIX=https://www.bernheze.org
+NAME=Bernheze

@@ -1,0 +1,7 @@
+URL=https://www.roermond.nl/uitslag-verkiezingen-gemeenteraad-2026
+# Fetch with `./scripts/scrapers/googledrive.py` using the three public folders below.
+# They are organized locally in `per-kandidaat/`, `op-partijniveau/` and `hertellingen/`.
+# Per kandidaat: https://drive.google.com/drive/u/2/folders/1_G0uhO3ssfArx4XU16gvbq6BK3IH0GH3
+# Op partijniveau: https://drive.google.com/drive/folders/1GG81l9a1O3nes35mSGnaGRls4BjeEeU_
+# Hertellingen: https://drive.google.com/drive/folders/1sXceJd5KREdM8pWR17bGjFsos1giwnK4?usp=drive_link
+NAME=Roermond

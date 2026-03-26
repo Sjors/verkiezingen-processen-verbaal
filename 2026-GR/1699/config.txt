@@ -1,0 +1,4 @@
+URL=https://www.noordenveld.nl/processen-verbaal-verkiezingen-gemeenteraad-18-maart-2026-0
+REGEX=https://www\.noordenveld\.nl/sites/default/files/.*\.pdf
+PREFIX=
+NAME=Noordenveld

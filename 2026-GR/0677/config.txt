@@ -1,0 +1,4 @@
+URL=https://www.gemeentehulst.nl/Verkiezingen/Gemeenteraadsverkiezingen_2026:Xo5fnoiqSWeEp3PMs64HiQ
+REGEX=dsresource\?objectid=.*type=org
+PREFIX=https://www.gemeentehulst.nl/
+NAME=Hulst

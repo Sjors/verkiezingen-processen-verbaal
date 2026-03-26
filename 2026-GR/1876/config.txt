@@ -1,0 +1,4 @@
+URL=https://www.bronckhorst.nl/processen-verbaal
+REGEX=cuatro\.sim-cdn\.nl/bronckhorst82e5ef/uploads/.*\.pdf
+PREFIX=
+NAME=Bronckhorst

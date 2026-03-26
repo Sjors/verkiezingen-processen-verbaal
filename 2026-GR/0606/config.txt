@@ -1,0 +1,4 @@
+URL=https://schiedam.nl/a-tot-z/uitslagen-gemeenteraadsverkiezingen-2026
+REGEX=Schiedam_[0-9]+_.*_GR26.*\.pdf
+PREFIX=https://schiedam.nl
+NAME=Schiedam

@@ -1,0 +1,4 @@
+URL=https://www.duiven.nl/voorlopige-uitslag-gemeenteraadsverkiezingen-18-maart-2026
+REGEX=file/duiven.*gr26.*pdf
+PREFIX=https://www.duiven.nl
+NAME=Duiven

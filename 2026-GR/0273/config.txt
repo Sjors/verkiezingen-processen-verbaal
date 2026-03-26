@@ -1,0 +1,4 @@
+URL=https://www.putten.nl/Verkiezingen/Uitslagen_Gemeenteraadsverkiezingen_2026
+REGEX=dsresource\?objectid=.*type=(pdf|org)|dsresource\?type=org.*objectid=
+NAME=Putten
+PREFIX=https://www.putten.nl

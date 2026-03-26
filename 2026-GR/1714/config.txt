@@ -1,0 +1,4 @@
+URL=https://www.gemeentesluis.nl/bestuur-en-organisatie/verkiezingen/
+REGEX=app/uploads/2026/03/.*GR26.*\.pdf
+PREFIX=https://www.gemeentesluis.nl/
+NAME=Sluis

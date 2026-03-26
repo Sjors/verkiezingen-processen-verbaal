@@ -1,0 +1,4 @@
+URL=https://www.winterswijk.nl/uitslagen
+REGEX=sim-cdn\.nl/winterswijk/uploads/winterswijk_.*gr26.*\.pdf
+PREFIX=
+NAME=Winterswijk

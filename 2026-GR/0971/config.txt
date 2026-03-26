@@ -1,0 +1,4 @@
+URL=https://www.gemeentestein.nl/uitslag-gemeenteraadsverkiezingen-2026
+REGEX=data/downloadables/.*\.pdf
+PREFIX=https://www.gemeentestein.nl
+NAME=Stein (Limburg)

@@ -1,0 +1,4 @@
+URL=https://www.renkum.nl/Bestuur_en_organisatie/Gemeenteraadsverkiezing_2026/Uitslag_verkiezing
+PREFIX=https://www.renkum.nl
+REGEX=dsresource\?objectid=.*type=org
+NAME=Renkum

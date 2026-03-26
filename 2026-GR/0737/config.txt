@@ -1,0 +1,4 @@
+URL=https://www.t-diel.nl/uitslag-en-processen-verbaal-gemeenteraadsverkiezing-2026
+REGEX=cuatro\.sim-cdn\.nl/tytsjerksteradiel/uploads/.*\.pdf
+PREFIX=
+NAME=Tytsjerksteradiel

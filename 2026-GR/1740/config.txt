@@ -1,0 +1,4 @@
+URL=https://www.nederbetuwe.nl/verkiezingen
+REGEX=index\.php\?eID=dumpFile.*
+PREFIX=
+NAME=Neder-Betuwe

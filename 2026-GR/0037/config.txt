@@ -1,0 +1,4 @@
+URL=https://www.stadskanaal.nl/gemeenteraadsverkiezingen/voorlopige-uitkomst-gemeenteraadsverkiezingen-18-maart-2026
+REGEX=\.pdf
+PREFIX=https://www.stadskanaal.nl/
+NAME=Stadskanaal

@@ -1,0 +1,4 @@
+URL=https://cms.dordrecht.nl/Bestuur/Overzicht_Bestuur/Verkiezingen/Gemeenteraadsverkiezing_2026/Uitslagen_Gemeenteraadsverkiezing_2026
+REGEX=Uitslagen_Gemeenteraadsverkiezing_2026/(Dordrecht|Verslag_en_telresultaten).*\.org
+PREFIX=https://cms.dordrecht.nl
+NAME=Dordrecht

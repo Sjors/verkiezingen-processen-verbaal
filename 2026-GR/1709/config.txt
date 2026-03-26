@@ -1,0 +1,4 @@
+URL=https://www.moerdijk.nl/bestuur-organisatie/voorlopige-uitslag-gemeenteraadsverkiezingen-2026/
+REGEX=app/uploads/2026/.*\.pdf
+PREFIX=https://www.moerdijk.nl/
+NAME=Moerdijk

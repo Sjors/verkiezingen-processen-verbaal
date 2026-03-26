@@ -1,0 +1,4 @@
+URL=https://www.velsen.nl/publicaties-en-uitslagen
+REGEX=file/proces-verbaal.*gr2026
+PREFIX=https://www.velsen.nl
+NAME=Velsen

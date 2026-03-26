@@ -1,0 +1,4 @@
+URL=https://www.breda.nl/uitslag-verkiezingen-gemeenteraad-breda
+REGEX=.*\.pdf.*
+PREFIX=
+NAME=Breda

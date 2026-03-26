@@ -1,0 +1,4 @@
+URL=https://www.nijmegen.nl/diensten/verkiezingen/uitslagen-verkiezingen/
+REGEX=2026-gr/[^"']+\.pdf
+PREFIX=https://app4.nijmegen.nl/gns/index/verkiezingen/
+NAME=Nijmegen

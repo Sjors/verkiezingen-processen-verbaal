@@ -1,0 +1,4 @@
+URL=https://www.gemeentebeek.nl/verkiezingen/uitslagen
+REGEX=cuatro\.sim-cdn\.nl/beek/uploads/beek.*gr26.*\.pdf
+PREFIX=
+NAME=Beek

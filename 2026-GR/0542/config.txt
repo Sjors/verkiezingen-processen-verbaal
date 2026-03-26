@@ -1,0 +1,4 @@
+URL=https://krimpenaandenijssel.nl/dossiers/voorlopige-uitslag-gemeenteraadsverkiezing-2026/
+REGEX=app/uploads/2026/03/.*\.pdf
+PREFIX=https://krimpenaandenijssel.nl/
+NAME=Krimpen aan den IJssel

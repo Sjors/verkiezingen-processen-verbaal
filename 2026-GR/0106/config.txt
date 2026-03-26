@@ -1,0 +1,29 @@
+URL=https://www.assen.nl/processen-verbaal-gemeenteraadsverkiezingen
+# Processen-verbaal page:
+# https://www.assen.nl/processen-verbaal-gemeenteraadsverkiezingen
+#
+# StackStorage public shares discovered on 2026-03-26:
+# - https://technischbeheerassen.stackstorage.com/s/TrAgEUIPvzmCfCwp
+# - https://technischbeheerassen.stackstorage.com/s/I32vZL8Bs2a2JdNM
+# - https://technischbeheerassen.stackstorage.com/s/06McdZHRghSWNf69
+# - https://technischbeheerassen.stackstorage.com/s/aGQ4ZnAiiS9duFNV
+# - https://technischbeheerassen.stackstorage.com/s/nmYwZhn1mmtWFpzR
+# - https://technischbeheerassen.stackstorage.com/s/dlILLx2mBfHSR8gV
+# - https://technischbeheerassen.stackstorage.com/s/WLR8SuFTPTtN1IcZ
+#
+# Downloaded without browser automation through the StackStorage public-share API:
+# POST /api/v2/share/{shareId}
+# GET  /api/v2/share/{shareId}
+# GET  /api/v2/share/{shareId}/nodes?parentID={nodeId}&pageNumber=1
+# GET  /api/v2/share/{shareId}/files/{nodeId}/download/{filename}
+# Download with:
+# ./scripts/scrapers/stackstorage.py \
+#   https://technischbeheerassen.stackstorage.com/s/TrAgEUIPvzmCfCwp \
+#   https://technischbeheerassen.stackstorage.com/s/I32vZL8Bs2a2JdNM \
+#   https://technischbeheerassen.stackstorage.com/s/06McdZHRghSWNf69 \
+#   https://technischbeheerassen.stackstorage.com/s/aGQ4ZnAiiS9duFNV \
+#   https://technischbeheerassen.stackstorage.com/s/nmYwZhn1mmtWFpzR \
+#   https://technischbeheerassen.stackstorage.com/s/dlILLx2mBfHSR8gV \
+#   https://technischbeheerassen.stackstorage.com/s/WLR8SuFTPTtN1IcZ \
+#   2026-GR/0106
+NAME=Assen

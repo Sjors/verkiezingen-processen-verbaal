@@ -1,0 +1,4 @@
+URL=https://www.nederweert.nl/uitslagen-gemeenteraadsverkiezingen-dso
+REGEX=sim-cdn\.nl/nederweert/uploads/.*\.pdf
+PREFIX=https://cuatro.
+NAME=Nederweert

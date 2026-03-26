@@ -1,0 +1,4 @@
+URL=https://www.harderwijk.nl/verkiezingen/verkiezingsuitslagen/uitslagen-gemeenteraadsverkiezingen-2026
+REGEX=fileadmin/Site_Harderwijk/documenten/verkiezingen/2026_gr/.*\.pdf
+PREFIX=https://www.harderwijk.nl/
+NAME=Harderwijk

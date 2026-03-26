@@ -1,0 +1,4 @@
+URL=https://www.laarbeek.nl/uitslag-gemeenteraadsverkiezingen
+REGEX=file/.*
+PREFIX=https://www.laarbeek.nl/
+NAME=Laarbeek

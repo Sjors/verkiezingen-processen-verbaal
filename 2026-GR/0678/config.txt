@@ -1,0 +1,4 @@
+URL=https://www.kapelle.nl/verkiezingsuitslag-gemeenteraadsverkiezingen-2026
+REGEX=sites/kapelle/files/.*\.pdf
+PREFIX=
+NAME=Kapelle

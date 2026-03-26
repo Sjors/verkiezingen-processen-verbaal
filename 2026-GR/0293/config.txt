@@ -1,0 +1,4 @@
+URL=https://www.westervoort.nl/voorlopige-uitslag-gemeenteraadsverkiezingen-18-maart-2026
+REGEX=file/westervoort.*pdf
+PREFIX=https://www.westervoort.nl/
+NAME=Westervoort

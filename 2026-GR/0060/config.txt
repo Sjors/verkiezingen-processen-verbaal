@@ -1,0 +1,4 @@
+URL=https://www.ameland.nl/uitslag-gemeenteraadsverkiezing-ameland
+REGEX=ameland/uploads/.*(?:gr26|gemeenteraadsverkiezing).*\.(pdf|csv)
+PREFIX=https://cuatro.sim-cdn.nl/
+NAME=Ameland

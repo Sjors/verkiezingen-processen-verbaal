@@ -1,0 +1,4 @@
+URL=https://www.leusden.nl/verkiezingen/uitslagen/uitslag-gemeenteraadsverkiezingen-2026
+REGEX=Verkiezingen/GR2026/.*\.pdf
+PREFIX=https://www.leusden.nl
+NAME=Leusden

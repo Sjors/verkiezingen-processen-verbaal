@@ -1,0 +1,4 @@
+# Uses Mijn Stembureau API
+URL=https://mijnstembureau-rijssen-holten.nl
+# Download with: ./scripts/scrapers/mijnstembureau.py https://mijnstembureau-rijssen-holten.nl 2026-GR/1742
+NAME=Rijssen-Holten

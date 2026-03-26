@@ -1,0 +1,4 @@
+URL=https://www.hollandskroon.nl/verkiezingen-en-uitslagen/uitslag-gemeenteraadsverkiezingen-2026-voorlopig/
+REGEX=\d+-.*\.pdf
+PREFIX=https://www.hollandskroon.nl/wp-content/uploads/2026/03/
+NAME=Hollands Kroon

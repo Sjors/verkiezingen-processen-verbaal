@@ -1,0 +1,4 @@
+URL=https://www.aalten.nl/voorlopige-uitslag-verkiezingen-gemeenteraad-op-partijniveau
+REGEX=stembureau_.*\.pdf
+PREFIX=https://cuatro.sim-cdn.nl/aalten/uploads/
+NAME=Aalten

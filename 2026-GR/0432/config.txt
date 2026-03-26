@@ -1,0 +1,4 @@
+URL=https://www.opmeer.nl/uitslagen
+REGEX=opmeer_\d+_.*\.pdf|opmeer_uitkomst_gr26.*\.pdf|opmeer_.*aanpassing.*\.pdf
+PREFIX=https://cuatro.sim-cdn.nl/opmeer/uploads/
+NAME=Opmeer

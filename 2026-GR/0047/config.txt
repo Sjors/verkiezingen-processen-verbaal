@@ -1,0 +1,5 @@
+URL=https://www.veendam.nl/Onderwerpen/Actueel/Verkiezingen/Verkiezingsuitslagen/processenverbaal/Proces_verbaal_gemeenteraadsverkiezingen
+REGEX=/dsresource\?objectid=[a-f0-9-]+&type=org
+PREFIX=https://www.veendam.nl
+NAME=Veendam
+BLACKLIST_PATTERN=(TK25|TK_25|\.csv)

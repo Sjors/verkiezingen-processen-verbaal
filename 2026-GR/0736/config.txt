@@ -1,0 +1,4 @@
+URL=https://www.derondevenen.nl/Bestuur_en_organisatie/Verkiezingen_2026/Uitslagen_Gemeenteraadsverkiezingen_2026/Processen_verbaal_van_de_stembureaus
+REGEX=DeRondeVenen.*\.(org|pdf|csv)
+PREFIX=https://www.derondevenen.nl/
+NAME=De Ronde Venen

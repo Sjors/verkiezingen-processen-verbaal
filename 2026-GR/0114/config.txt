@@ -1,0 +1,4 @@
+URL=https://gemeente.emmen.nl/processen-verbaal
+REGEX=/file/(?:[0-9][^"'\s<]+|proces-verbaal-[^"'\s<]+|controleprotocol-centraal-stembureau)
+PREFIX=https://gemeente.emmen.nl
+NAME=Emmen

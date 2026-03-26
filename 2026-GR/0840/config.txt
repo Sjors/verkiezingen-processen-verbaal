@@ -1,0 +1,4 @@
+URL=https://www.rucphen.nl/verkiezingen/Uitslag-gemeenteraadsverkiezingen-2026
+REGEX=Internet_Docs/Verkiezingen/GR_2026/.*\.pdf
+PREFIX=https://www.rucphen.nl/
+NAME=Rucphen

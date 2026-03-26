@@ -1,0 +1,4 @@
+URL=https://www.waalwijk.nl/verkiezingsuitslag-verkiezingen-gemeenteraad-2026
+REGEX=cuatro\.sim-cdn\.nl/waalwijk/uploads/model.*\.pdf
+PREFIX=
+NAME=Waalwijk

@@ -1,0 +1,4 @@
+URL=https://sittard-geleen.nl/de-gemeente/verkiezingen/uitslag-gemeenteraadsverkiezing/
+REGEX=wp-content/uploads/.*\.pdf
+PREFIX=
+NAME=Sittard-Geleen

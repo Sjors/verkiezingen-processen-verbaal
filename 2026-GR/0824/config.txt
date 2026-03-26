@@ -1,0 +1,4 @@
+URL=https://www.oisterwijk.nl/bestuur-en-organisatie/gemeenteraadsverkiezingen/uitslagen
+REGEX=^(?:https://www\.oisterwijk\.nl)?/fileadmin/.*_eerste_telling\.pdf$
+PREFIX=https://www.oisterwijk.nl
+NAME=Oisterwijk

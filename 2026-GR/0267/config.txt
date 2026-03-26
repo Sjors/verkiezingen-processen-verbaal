@@ -1,0 +1,4 @@
+URL=https://www.nijkerk.eu/uitslagen-gemeenteraadsverkiezingen-18-maart-2026
+REGEX=nijkerk/uploads/.*\.pdf
+PREFIX=https://cuatro.sim-cdn.nl/
+NAME=Nijkerk

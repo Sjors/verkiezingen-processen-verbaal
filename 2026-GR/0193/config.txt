@@ -1,0 +1,4 @@
+URL=https://www.zwolle.nl/uitslagen-verkiezingen
+REGEX=file/zwolle.*gr26.*pdf.*
+PREFIX=https://www.zwolle.nl
+NAME=Zwolle

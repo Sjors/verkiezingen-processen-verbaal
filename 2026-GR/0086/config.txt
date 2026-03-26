@@ -1,0 +1,4 @@
+URL=https://www.opsterland.nl/uitslag-gr2026
+REGEX=https://cuatro\.sim-cdn\.nl/opsterland/uploads/.*\.(pdf|csv)
+PREFIX=
+NAME=Opsterland

@@ -1,0 +1,4 @@
+URL=https://www.cranendonck.nl/uitslag-gemeenteraadsverkiezing-2026
+REGEX=cranendonck/uploads/cranendonck_.*gr2?6.*\.pdf
+PREFIX=https://cuatro.sim-cdn.nl/
+NAME=Cranendonck

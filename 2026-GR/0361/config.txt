@@ -1,0 +1,4 @@
+URL=https://www.alkmaar.nl/verkiezingsuitslagen/
+REGEX=wp-content/uploads/.*/Alkmaar_.*GR26.*\.pdf
+PREFIX=
+NAME=Alkmaar

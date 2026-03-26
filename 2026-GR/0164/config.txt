@@ -1,0 +1,4 @@
+URL=https://www.hengelo.nl/Inwoners/Meest-gevraagd/Bekijk-de-verkiezingsuitslagen.html
+REGEX=Verkiezingen/GR2026/Hengelo_[0-9].*\.pdf
+PREFIX=https://www.hengelo.nl
+NAME=Hengelo (Overijssel)

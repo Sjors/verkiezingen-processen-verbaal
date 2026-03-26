@@ -1,0 +1,4 @@
+URL=https://www.wageningen.nl/verkiezingen/uitslagen-2/
+REGEX=.*2026.*\.pdf
+NAME=Wageningen
+PREFIX=

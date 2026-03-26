@@ -1,0 +1,4 @@
+# Uses Mijn Stembureau API
+URL=https://mijnstembureau-baarle-nassau.nl
+# Download with: ./scripts/scrapers/mijnstembureau.py https://mijnstembureau-baarle-nassau.nl 2026-GR/0744
+NAME=Baarle-Nassau
