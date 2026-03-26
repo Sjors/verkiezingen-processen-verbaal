@@ -1,106 +1,51 @@
 # Processen-verbaal verkiezingen
 
-Lijst met URL's van processen-verbaal van verkiezingen, maar niet de documenten zelf.
+Archives URLs and documents from Dutch municipal "proces-verbaal" (vote counting) files published after elections.
 
-Dit maakt het makkelijker ze te downloaden.
+For agent instructions, processing workflows, and automation details, see [AGENTS.md](AGENTS.md).
 
-## Gebruik
+## Setup
 
-Installeer [jq](https://jqlang.github.io/jq/).
-
-Download alle processesen-verbaal voor de gemeentes die aan dit project zijn toegevoegd:
-
-```sh
-./download.sh
+```bash
+python3 -m venv .venv
+source .venv/bin/activate
+pip install -r requirements.txt
 ```
 
-Mocht je een foutmelding krijgen, probeer het commando opnieuw. Gemeentes die
-reeds compleet zijn. worden niet opnieuw gedownload.
-
-Voor de volgende gemeenten is een apart commando nodig:
-* Losser
-* Oosterhout
-* Nissewaard
-* Enschede
-* Zwijndrecht
-* Haarlem
-* Zandvoort
-
-```sh
-./overige-gemeentes.sh
-```
-
-Voor Leiden dient handmatig een zip bestand gedownload te worden, zie issue #68
-
-Roermond (issue #56) en Assen (issue #55) gebruiken Google Drive en Stack Storage,
-dus moeten ook handmatig gedownload worden.
-
-# Hashes en timestamp
-
-De sha256 hashes van alle processen-verbaal staan in [2023-TK/2023-TK.asc](2023-TK/2023-TK.asc), als volgt:
-
-```sh
-find * -type f -not -path '**/*.DS_Store' -not -path '*.txt' -exec shasum -a 256 {} \; | sort -k 2 --version-sort > 2023-TK
-gpg --clear-sign 2023-TK
-```
-
-Daarnaast heb ik een timestamp gemaakt, welke te verifieren is op [opentimestamps.org](https://opentimestamps.org)
-of met [ots-client](https://github.com/opentimestamps/opentimestamps-client) en je eigen Bitcoin node:
+## Structure
 
 ```
-ots verify 2023-TK/2023-TK.asc.ots
-Success! Bitcoin block 818632 attests existence as of 2023-11-26 CET
+2026-GR/           # Election folder (year-type)
+  README.md        # Election-level notes
+  TODO.md          # Problematic municipalities only
+  {code}/          # CBS municipality code
+    config.txt     # Download configuration
+    README.md      # Municipality notes and stembureau counts
+    *.pdf          # Downloaded documents
+    SHA256SUMS     # File checksums
 ```
 
-## Gemeente toevoegen
+## Checking progress
 
-Meestal als volgt:
-
-1. Zoek de processen-verbaal op de site van de gemeente:
-
-    a) via de links van Kiesraad [hier](https://www.kiesraad.nl/verkiezingen/tweede-kamer/uitslagen/uitslagen-per-gemeente-tweede-kamer); of
-
-    b) Google "[gemeente] processen-verbaal tweede kamerverkiezingen 2023"
-
-2. Kopieer de URL van de pagina met de tabel van processen-verbaal
-3. Controleer of hij te verwerken is: `./urls-from-html.py https://www.[gemeente].nl/verkiezingen/processen-verbaal-.../`: zie je een lijst met PDF's?
-4. Zoek het .txt bestand voor de gemeente, bv. "0034 Utrecht.txt"
-5. Sla op: `./urls-from-html.py https://utrecht.nl/... | uniq > 2023-TK/0034\ Utrecht.txt`
-6. Download de documenten: `./download.sh`
-7. Controleer één of meer PDF-bestanden om te zien of de download gelukt is
-8. Commit: zet de URL in de commit message
-9. Maak een pull request
-
-10. (Optioneel): voeg het gebruikte download commando toe aan `scrape-urls.sh`
-
-Om te zien welke gemeentes nog ontbreken:
-
-```
-./progress.sh
+```bash
+./scripts/show-progress.py --election 2026-GR
 ```
 
-N.B. sommmige in deze lijst hebben wel processen-verbaal gepubliceerd, maar
-die zijn niet via een rechtstreekse URL te benaderen.
+## Hashes and timestamps
 
-## Eigenaardigheden per gemeente
+Each election has a signed manifest built from per-municipality `SHA256SUMS` files:
 
-* De bestanden van de volgende gemeenten hebben geen PDF-extensie; voeg evt. `.pdf` toe om ze te bekijken
-    * Emmen
-    * Venray
-    * Tiel
-    * Coevorden
-    * Oudewater
-    * Raalte
-    * Borne
-    * Oss
-    * Borger-Odoorn
-    * Leidschendam-Voorburg
-    * Culemborg
-    * Duiven
-    * Drimmelen
-    * Dinkelland
-    * Gemert-Bakel
-    * Kampen
-    * Haarlemmermeer
-    * Hendrik-Ido-Ambacht
-    * Bodegraven-Reeuwijk
+```bash
+./scripts/build-election-manifest.py 2026-GR
+gpg --yes --clearsign 2026-GR/2026-GR
+```
+
+To verify:
+
+```bash
+./scripts/build-election-manifest.py 2026-GR
+gpg --verify 2026-GR/2026-GR.asc
+ots verify 2026-GR/2026-GR.asc.ots
+```
+
+Timestamps can be verified at [opentimestamps.org](https://opentimestamps.org) or with [ots-client](https://github.com/opentimestamps/opentimestamps-client) and a Bitcoin node.
