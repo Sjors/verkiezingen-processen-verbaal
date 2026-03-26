@@ -12,7 +12,7 @@ The municipality directory must contain a config.txt file with:
 
 Example config.txt:
     URL=https://www.amersfoort.nl/processen-verbaal
-    REGEX=tk25-sb-.*\.pdf
+    REGEX=processen-verbaal.*\.pdf
     PREFIX=https://www.amersfoort.nl
 
 The script will:
@@ -32,8 +32,6 @@ import urllib.parse
 import urllib.error
 from pathlib import Path
 
-# Add parent directory to path for imports
-sys.path.insert(0, str(Path(__file__).parent.parent))
 from bs4 import BeautifulSoup
 
 
@@ -123,6 +121,25 @@ def extract_filename(content_disp: str) -> str | None:
     return None
 
 
+def normalize_download_filename(filename: str, content_type: str = '') -> str:
+    """Add a .pdf suffix when the downloaded file is clearly a PDF."""
+    filename = filename.strip()
+    if not filename:
+        return filename
+
+    lower_name = filename.lower()
+    lower_type = content_type.lower()
+    if lower_name.endswith('.pdf'):
+        return filename
+
+    is_pdf_slug = lower_name.endswith('pdf')
+    is_pdf_response = 'application/pdf' in lower_type
+    if is_pdf_slug or is_pdf_response:
+        return f"{filename}.pdf"
+
+    return filename
+
+
 def download_file(
     url: str,
     dest: Path,
@@ -156,10 +173,13 @@ def download_file(
             with urllib.request.urlopen(req, timeout=30) as response:
                 # Check for Content-Disposition header for filename
                 content_disp = response.headers.get('Content-Disposition', '')
+                content_type = response.headers.get('Content-Type', '')
                 if 'filename=' in content_disp:
                     new_name = extract_filename(content_disp)
                     if new_name:
-                        dest = dest.parent / new_name
+                        dest = dest.parent / normalize_download_filename(new_name, content_type)
+                else:
+                    dest = dest.parent / normalize_download_filename(dest.name, content_type)
 
                 # Now check if file exists (for dsresource URLs)
                 if dest.exists() and dest.stat().st_size > 0:
@@ -197,24 +217,34 @@ def sha256_file(path: Path) -> str:
     return h.hexdigest()
 
 
-def generate_checksums(directory: Path, checksum_file: Path) -> None:
-    """Generate SHA256SUMS file for PDFs only (not config/metadata files)."""
+def generate_checksums(directory: Path, checksum_file: Path, blacklist_pattern: str | None = None) -> None:
+    """Generate SHA256SUMS file for PDFs only (not config/metadata files).
+    
+    If blacklist_pattern is provided, files matching the pattern are excluded.
+    """
     checksums = []
 
     # Find all relevant files (exclude metadata files)
     exclude = {
         'README.md',
-        'fetch.sh',
+
         'config.txt',
         'SHA256SUMS',
         '.DS_Store',
         '.lock',
         '.todo',
     }
+    
+    blacklist_re = re.compile(blacklist_pattern, re.IGNORECASE) if blacklist_pattern else None
+    
     for f in sorted(directory.iterdir()):
         if f.name in exclude or f.suffix == '.txt':
             continue
         if f.is_file():
+            # Check against blacklist pattern
+            if blacklist_re and blacklist_re.search(f.name):
+                print(f"Skipping (blacklist): {f.name}")
+                continue
             h = sha256_file(f)
             checksums.append(f"{h}  {f.name}")
 
@@ -228,7 +258,7 @@ def count_pdf_files(directory: Path) -> int:
     """Count PDF files in directory (excluding metadata)."""
     exclude = {
         'README.md',
-        'fetch.sh',
+
         'config.txt',
         'SHA256SUMS',
         '.DS_Store',
@@ -344,6 +374,7 @@ def main():
             filename = os.path.basename(parsed.path)
             if not filename:
                 filename = url.split('/')[-1].split('?')[0]
+            filename = normalize_download_filename(filename)
 
             dest = muni_dir / filename
             if not download_file(url, dest):
@@ -352,22 +383,30 @@ def main():
 
     # Step 3: Generate or verify checksums
     print()
+    blacklist_pattern = config.get('BLACKLIST_PATTERN')
+    if blacklist_pattern:
+        print(f"Using blacklist pattern: {blacklist_pattern}")
+    
+    pdf_count = count_pdf_files(muni_dir)
     if checksum_file.exists() and checksum_file.stat().st_size > 0:
         print("Verifying checksums...")
         if verify_checksums(muni_dir, checksum_file):
             checksum_count = count_checksum_lines(checksum_file)
-            pdf_count = count_pdf_files(muni_dir)
             if checksum_count != pdf_count:
                 print("\nChecksum count mismatch; regenerating checksums...")
-                generate_checksums(muni_dir, checksum_file)
+                generate_checksums(muni_dir, checksum_file, blacklist_pattern)
             else:
                 print("\nAll checksums OK!")
         else:
             print("\nChecksum verification FAILED!")
             sys.exit(1)
+    elif pdf_count == 0:
+        if checksum_file.exists():
+            checksum_file.unlink()
+        print("No downloaded files found; skipping SHA256SUMS generation.")
     else:
         print("Generating checksums...")
-        generate_checksums(muni_dir, checksum_file)
+        generate_checksums(muni_dir, checksum_file, blacklist_pattern)
 
     print("\nDone!")
 
