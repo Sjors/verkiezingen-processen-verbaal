@@ -16,9 +16,11 @@
 **/.lock
 
 tmp
+progress/
 
 # Amsterdam
 *.json
 
 # macOS
 .DS_Store
+scripts/__pycache__/
