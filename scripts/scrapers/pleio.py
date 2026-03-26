@@ -1,12 +1,17 @@
 #!/usr/bin/env python3
-#
-# pip install requests
-#
-# Usage example:
-#  ./pleio.py <Haarlem|Zandvoort>
-#
-# Downloads in the current folder.
-# Hard-coded stuff comes after '######### main' below. Change as needed.
+"""
+Download PDFs from Pleio (gemeente.pleio.nl) websites.
+
+Usage:
+  ./pleio-fetch.py <municipality_name> [pleio_url]
+
+Examples:
+  ./pleio-fetch.py Zandvoort https://haarlem.pleio.nl/groups/view/.../files/...
+  ./pleio-fetch.py Haarlem
+
+If no URL provided, uses default Haarlem Pleio URL.
+Downloads in the current folder.
+"""
 
 from urllib.parse import urlparse, urlunparse
 from pathlib import Path
@@ -20,16 +25,7 @@ import re
 
 
 def filter_filename(filename):
-    """
-    Filters unsafe characters from a filename and preserves spaces and periods.
-
-    Args:
-         filename (str): The original filename.
-
-    Returns:
-         str: The filtered file name.
-    """
-
+    """Filters unsafe characters from a filename and preserves spaces and periods."""
     keepcharacters = (" ", ".", "_")
     filename = filename.replace("+", " ")
     result = "".join(c for c in filename if c.isalnum() or c in keepcharacters).rstrip()
@@ -59,7 +55,7 @@ def get_level_filter(level, filterarray):
         return None
 
 
-def process_container(s, level, rootid, id, host, settings):
+def process_container(s, level, rootid, id, host, settings, api_url):
     req = Request("POST", api_url, json=create_json_data(rootid, id))
     prepped = s.prepare_request(req)
     resp = s.send(prepped)
@@ -83,7 +79,7 @@ def process_container(s, level, rootid, id, host, settings):
                         if level_filter is None or re.search(level_filter, title, re.IGNORECASE):
                             
                             if subtype == "folder":
-                                process_container(s, level+1, rootid, guid, host, settings)
+                                process_container(s, level+1, rootid, guid, host, settings, api_url)
 
                             elif subtype == "file":
                                 downloadurl = edge["download"]
@@ -103,36 +99,40 @@ def process_container(s, level, rootid, id, host, settings):
                                             with open(safe_filename, "wb") as f:
                                                 f.write(resp_pdf.content)
                                         else:
-                                            print(f"Error requesting url {downloadurl}")
+                                            print(f"Error requesting url {downloadurl}", file=sys.stderr)
                                             sys.exit(2)
 
         except Exception as e:
-            print(f"Error loading JSON: {e}")
+            print(f"Error loading JSON: {e}", file=sys.stderr)
             with open("response.json", "wb") as f:
                 f.write(resp.content)
             sys.exit(1)
-
-
     else:
-        print(f"Error requesting url {api_url}")
+        print(f"Error requesting url {api_url}", file=sys.stderr)
 
 
-######### main
-
-try:
-    municipality = sys.argv[1]
-except IndexError as e:
-    print("Provide as first argument the municipality name (Haarlem or Zandvoort)")
+# Main
+if len(sys.argv) < 2:
+    print("Usage: pleio-fetch.py <municipality> [pleio_url]")
     sys.exit(1)
+
+municipality = sys.argv[1]
+
+# Default to Haarlem Pleio main verkiezingen folder
+starting_url = "https://haarlem.pleio.nl/groups/view/7b769524-7339-4ae6-ab49-c10b7c20abed/verkiezingen/files/ce13ac21-051b-4a33-bc64-0be1ae37ac94"
+
+# If a second argument is provided, use it as the starting URL
+if len(sys.argv) > 2:
+    starting_url = sys.argv[2]
+    print(f"Using provided URL: {starting_url}", file=sys.stderr)
 
 settings = {
     "overwrite_files": False,
-    "target_date": datetime(2024, 6, 1, tzinfo=ZoneInfo("Europe/Amsterdam")),
-    "level_filter": [municipality],  # On level index 0, filter folder/file names on municipality name (case insensitve regex). On level 1 and higher there will be no regex filter.
+    "target_date": datetime(2026, 3, 1, tzinfo=ZoneInfo("Europe/Amsterdam")),
+    "level_filter": [None],  # None = no filtering, get all files at all levels
     "extensions": [".pdf", ".csv"]
 }
 
-starting_url = "https://haarlem.pleio.nl/groups/view/7b769524-7339-4ae6-ab49-c10b7c20abed/verkiezingen/files/ce13ac21-051b-4a33-bc64-0be1ae37ac94"
 parsed_url = urlparse(starting_url)
 api_url = urlunparse((parsed_url.scheme, parsed_url.netloc, "/graphql", "", "", ""))
 host = f"{parsed_url.scheme}://{parsed_url.netloc}"
@@ -151,16 +151,16 @@ request_headers = {
     'Referer': starting_url,
     'Sec-Ch-Ua': '"Google Chrome";v="119", "Chromium";v="119", "Not?A_Brand";v="24"',
     'Sec-Ch-Ua-Mobile': '?0',
-    'Sec-Ch-Ua-Platform': '"Windows"',
+    'Sec-Ch-Ua-Platform': '"macOS"',
     'Sec-Fetch-Dest': 'empty',
     'Sec-Fetch-Mode': 'cors',
     'Sec-Fetch-Site': 'same-origin',
-    'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36',
+    'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36',
 }
 
 s = Session()
 s.headers = request_headers
 
-process_container(s, 0, rootcontainerguid, containerguid, host, settings)
+process_container(s, 0, rootcontainerguid, containerguid, host, settings, api_url)
 
 s.close()

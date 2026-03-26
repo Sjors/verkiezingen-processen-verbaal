@@ -40,8 +40,18 @@ def get_api_url(base_url: str) -> str:
     return f"{parsed.scheme}://{parsed.netloc}/api/prime/uitslagen"
 
 
-def fetch_elections(api_url: str, referer: str) -> list:
-    """Fetch all elections from the API."""
+def get_nuxt_api_url(base_url: str) -> str:
+    """Construct the Nuxt-based API URL from the base URL."""
+    parsed = urlparse(base_url.rstrip("/"))
+    return f"{parsed.scheme}://{parsed.netloc}/uitslagen/api"
+
+
+def fetch_elections(api_url: str, referer: str) -> tuple:
+    """Fetch all elections from the API. Returns (elections, session, api_style).
+
+    Tries the old /api/prime/uitslagen endpoint first, then falls back to
+    the newer Nuxt-based /uitslagen/api/uitslagen endpoint.
+    """
     headers = {
         'Accept': 'application/json',
         'X-Requested-With': 'XMLHttpRequest',
@@ -52,9 +62,18 @@ def fetch_elections(api_url: str, referer: str) -> list:
     session = requests.Session()
     session.headers.update(headers)
 
+    # Try old API first
     resp = session.get(api_url)
-    resp.raise_for_status()
-    return resp.json(), session
+    if resp.status_code == 200:
+        return resp.json(), session, 'old'
+
+    # Fall back to Nuxt-based API
+    nuxt_url = get_nuxt_api_url(referer)
+    nuxt_elections_url = f"{nuxt_url}/uitslagen"
+    print(f"Old API returned {resp.status_code}, trying Nuxt API at {nuxt_elections_url}")
+    resp2 = session.get(nuxt_elections_url)
+    resp2.raise_for_status()
+    return resp2.json(), session, 'nuxt'
 
 
 def select_election(elections: list, election_filter: str = None) -> dict:
@@ -83,7 +102,7 @@ def select_election(elections: list, election_filter: str = None) -> dict:
     return with_pvs[0]
 
 
-def download_pvs(election: dict, api_url: str, session: requests.Session, output_dir: Path) -> list:
+def download_pvs(election: dict, api_url: str, session: requests.Session, output_dir: Path, api_style: str = 'old') -> list:
     """Download all proces-verbaal PDFs for an election."""
     uitslag_id = election['uitslagId']
     pv_keys = election.get('pvKeys') or election.get('pv_keys', [])
@@ -93,15 +112,22 @@ def download_pvs(election: dict, api_url: str, session: requests.Session, output
     downloaded = []
     for item in pv_keys:
         _id = item['_id']
-        # Handle both old and new API formats
-        aws_key = item.get('awsKey') or item.get('pvAwsKey', '')
 
-        if not aws_key:
-            print(f"  Warning: No path for item {_id}")
-            continue
+        if api_style == 'nuxt':
+            # Nuxt API: filename comes from 'omschrijving'
+            raw_name = item.get('omschrijving', '')
+            if not raw_name:
+                print(f"  Warning: No omschrijving for item {_id}")
+                continue
+            filename = filter_filename(raw_name)
+        else:
+            # Old API: filename from awsKey path
+            aws_key = item.get('awsKey') or item.get('pvAwsKey', '')
+            if not aws_key:
+                print(f"  Warning: No path for item {_id}")
+                continue
+            filename = filter_filename(Path(aws_key).name)
 
-        # Sanitize filename
-        filename = filter_filename(Path(aws_key).name)
         filepath = output_dir / filename
 
         if filepath.exists():
@@ -109,7 +135,10 @@ def download_pvs(election: dict, api_url: str, session: requests.Session, output
             downloaded.append(filename)
             continue
 
-        url = f'{api_url}/view-pv/{quote(uitslag_id)}/{quote(_id)}'
+        if api_style == 'nuxt':
+            url = f'{api_url}/view-pv/{quote(uitslag_id)}/{quote(_id)}'
+        else:
+            url = f'{api_url}/view-pv/{quote(uitslag_id)}/{quote(_id)}'
         print(f'Downloading: {filename}')
 
         resp = session.get(url)
@@ -151,10 +180,15 @@ def main():
     api_url = get_api_url(args.base_url)
     print(f"Fetching from {api_url}")
 
-    elections, session = fetch_elections(api_url, args.base_url)
+    elections, session, api_style = fetch_elections(api_url, args.base_url)
     election = select_election(elections, args.election)
 
-    downloaded = download_pvs(election, api_url, session, output_dir)
+    if api_style == 'nuxt':
+        download_api_url = get_nuxt_api_url(args.base_url)
+    else:
+        download_api_url = api_url
+
+    downloaded = download_pvs(election, download_api_url, session, output_dir, api_style)
 
     if downloaded:
         generate_checksums(output_dir, downloaded)
