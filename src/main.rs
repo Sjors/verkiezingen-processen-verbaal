@@ -6,7 +6,7 @@ use std::io::{self, IsTerminal, Read, Write};
 use std::net::TcpStream;
 use std::path::{Path, PathBuf};
 use std::process::{Command, ExitCode};
-use std::time::{Duration, SystemTime, UNIX_EPOCH};
+use std::time::{Duration, Instant, SystemTime, UNIX_EPOCH};
 
 use base64::Engine;
 use image::{GenericImageView, ImageFormat, RgbaImage};
@@ -420,6 +420,7 @@ fn ocr_votes_command(args: &[String]) -> Result<()> {
 
     let mut reports = Vec::new();
     let total_images = images.len();
+    let mut eta = ProgressEta::new();
     for (index, image_path) in images.into_iter().enumerate() {
         let stem = file_stem_string(&image_path)?;
         println!("processing {}/{} {}", index + 1, total_images, stem);
@@ -446,6 +447,7 @@ fn ocr_votes_command(args: &[String]) -> Result<()> {
         );
         io::stdout().flush()?;
         reports.push(report);
+        eta.maybe_print(index + 1, total_images)?;
     }
 
     print_ocr_votes_report(&reports);
@@ -481,6 +483,7 @@ fn ocr_corrections_command(args: &[String]) -> Result<()> {
 
     let mut reports = Vec::new();
     let total_images = images.len();
+    let mut eta = ProgressEta::new();
     for (index, image_path) in images.into_iter().enumerate() {
         let stem = file_stem_string(&image_path)?;
         println!("processing {}/{} {}", index + 1, total_images, stem);
@@ -507,6 +510,7 @@ fn ocr_corrections_command(args: &[String]) -> Result<()> {
         );
         io::stdout().flush()?;
         reports.push(report);
+        eta.maybe_print(index + 1, total_images)?;
     }
 
     print_ocr_report("Correction OCR results", &reports);
@@ -3335,6 +3339,65 @@ fn is_corrections_separator(line: &str) -> bool {
             let stripped = cell.trim_matches(':');
             stripped.len() >= 3 && stripped.chars().all(|ch| ch == '-')
         })
+}
+
+struct ProgressEta {
+    started: Instant,
+    last_printed: Option<Instant>,
+}
+
+impl ProgressEta {
+    fn new() -> Self {
+        Self {
+            started: Instant::now(),
+            last_printed: None,
+        }
+    }
+
+    fn maybe_print(&mut self, completed: usize, total: usize) -> Result<()> {
+        if total <= 1 || completed == 0 {
+            return Ok(());
+        }
+
+        let now = Instant::now();
+        let should_print = completed == 1
+            || completed == total
+            || self
+                .last_printed
+                .map(|last| now.duration_since(last) >= Duration::from_secs(30 * 60))
+                .unwrap_or(true);
+        if !should_print {
+            return Ok(());
+        }
+
+        let elapsed = now.duration_since(self.started);
+        let remaining_count = total.saturating_sub(completed);
+        let remaining_millis =
+            elapsed.as_millis().saturating_mul(remaining_count as u128) / completed as u128;
+        let remaining = Duration::from_millis(remaining_millis.min(u64::MAX as u128) as u64);
+        println!(
+            "progress {completed}/{total}; elapsed {}; ETA remaining {}",
+            format_duration(elapsed),
+            format_duration(remaining)
+        );
+        io::stdout().flush()?;
+        self.last_printed = Some(now);
+        Ok(())
+    }
+}
+
+fn format_duration(duration: Duration) -> String {
+    let total_seconds = duration.as_secs();
+    let hours = total_seconds / 3600;
+    let minutes = (total_seconds % 3600) / 60;
+    let seconds = total_seconds % 60;
+    if hours > 0 {
+        format!("{hours}h {minutes:02}m {seconds:02}s")
+    } else if minutes > 0 {
+        format!("{minutes}m {seconds:02}s")
+    } else {
+        format!("{seconds}s")
+    }
 }
 
 fn print_ocr_votes_report(reports: &[ImageOcrReport]) {
