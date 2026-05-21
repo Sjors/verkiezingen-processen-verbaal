@@ -181,6 +181,7 @@ struct CompareResultsOptions {
     municipality: String,
     results_dir: Option<PathBuf>,
     corrections_dir: Option<PathBuf>,
+    output_path: Option<PathBuf>,
     stations: BTreeSet<String>,
     format: ReportFormat,
     debug: bool,
@@ -646,6 +647,22 @@ fn compare_results_command(args: &[String]) -> Result<()> {
         options.debug,
         !options.stations.is_empty(),
     )?;
+    if let Some(output_path) = &options.output_path {
+        if let Some(parent) = output_path
+            .parent()
+            .filter(|parent| !parent.as_os_str().is_empty())
+        {
+            fs::create_dir_all(parent)?;
+        }
+        let markdown = render_markdown_comparison_report(
+            &official_results,
+            &results_dir,
+            &corrections_dir,
+            mismatch_report_dir.as_deref(),
+            &rows,
+        );
+        fs::write(output_path, markdown)?;
+    }
     print_comparison_report(
         &official_results,
         &results_dir,
@@ -2695,27 +2712,57 @@ fn print_markdown_comparison_report(
     mismatch_report_dir: Option<&Path>,
     rows: &[ComparisonRow],
 ) {
-    println!("Official CSV: {}", official_results.source_path.display());
-    println!("Markdown directory: {}", results_dir.display());
-    println!("Corrections directory: {}", corrections_dir.display());
+    print!(
+        "{}",
+        render_markdown_comparison_report(
+            official_results,
+            results_dir,
+            corrections_dir,
+            mismatch_report_dir,
+            rows,
+        )
+    );
+}
+
+fn render_markdown_comparison_report(
+    official_results: &OfficialResults,
+    results_dir: &Path,
+    corrections_dir: &Path,
+    mismatch_report_dir: Option<&Path>,
+    rows: &[ComparisonRow],
+) -> String {
+    let mut output = String::new();
+    output.push_str(&format!(
+        "Official CSV: {}\n",
+        official_results.source_path.display()
+    ));
+    output.push_str(&format!("Markdown directory: {}\n", results_dir.display()));
+    output.push_str(&format!(
+        "Corrections directory: {}\n",
+        corrections_dir.display()
+    ));
     if let Some(mismatch_report_dir) = mismatch_report_dir {
-        println!("Mismatch reports: {}", mismatch_report_dir.display());
+        output.push_str(&format!(
+            "Mismatch reports: {}\n",
+            mismatch_report_dir.display()
+        ));
     }
-    println!();
-    println!("| Station | Location | Status | Reason |");
-    println!("|---:|---|---|---|");
+    output.push('\n');
+    output.push_str("| Station | Location | Status | Reason |\n");
+    output.push_str("|---:|---|---|---|\n");
     for row in rows {
-        println!(
+        output.push_str(&format!(
             "| {} | {} | {} | {} |",
             escape_markdown_table_cell(&row.station),
             escape_markdown_table_cell(&row.location),
             row.status.label(),
             escape_markdown_table_cell(&report_reason(row))
-        );
+        ));
+        output.push('\n');
     }
     let counts = comparison_counts(rows);
-    println!();
-    println!("Summary:");
+    output.push('\n');
+    output.push_str("Summary:\n");
     for status in [
         ComparisonStatus::Missing,
         ComparisonStatus::Incomplete,
@@ -2724,12 +2771,14 @@ fn print_markdown_comparison_report(
         ComparisonStatus::Mismatch,
         ComparisonStatus::FullyMatches,
     ] {
-        println!(
+        output.push_str(&format!(
             "- {}: {}",
             status.label(),
             counts.get(status.label()).copied().unwrap_or(0)
-        );
+        ));
+        output.push('\n');
     }
+    output
 }
 
 fn comparison_counts(rows: &[ComparisonRow]) -> BTreeMap<&'static str, usize> {
@@ -3768,6 +3817,7 @@ fn parse_compare_results_args(args: &[String]) -> Result<CompareResultsOptions> 
     let mut positionals = Vec::new();
     let mut results_dir = None;
     let mut corrections_dir = None;
+    let mut output_path = None;
     let mut stations = BTreeSet::new();
     let mut format = ReportFormat::Terminal;
     let mut debug = false;
@@ -3787,6 +3837,10 @@ fn parse_compare_results_args(args: &[String]) -> Result<CompareResultsOptions> 
                     index,
                     "--corrections-dir",
                 )?));
+            }
+            "--output" => {
+                index += 1;
+                output_path = Some(PathBuf::from(require_arg(args, index, "--output")?));
             }
             "--station" => {
                 index += 1;
@@ -3823,6 +3877,7 @@ fn parse_compare_results_args(args: &[String]) -> Result<CompareResultsOptions> 
         municipality: positionals[1].clone(),
         results_dir,
         corrections_dir,
+        output_path,
         stations,
         format,
         debug,
@@ -4474,6 +4529,7 @@ Examples:
 Options:
   --results-dir <dir>       Markdown result directory. Default: <election>/<municipality>/results.
   --corrections-dir <dir>   Correction OCR directory. Default: <election>/<municipality>/results/corrections.
+  --output <file>           Also write a Markdown report to this file.
   --station <number>        Compare and rewrite the mismatch report for one polling station.
                             Repeat to check several specific stations.
   --format <terminal|markdown>
