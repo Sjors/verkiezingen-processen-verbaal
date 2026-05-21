@@ -83,7 +83,7 @@ impl CropKind {
             }
             Self::Corrections => {
                 lower.contains("b1 - 2.4")
-                    && lower.contains("lijsten met verschillen")
+                    && lower.contains("lijsten met verschil")
                     && lower.contains("lijsttotaal")
             }
         }
@@ -393,11 +393,29 @@ fn crop_command(args: &[String]) -> Result<()> {
         .unwrap_or_else(|| municipality_dir.join("crops"));
     fs::create_dir_all(&out_dir)?;
 
-    for pdf in pdfs {
-        crop_pdf(&pdf, &out_dir, &options)?;
+    let total_pdfs = pdfs.len();
+    let mut eta = ProgressEta::new();
+    let mut failures = Vec::new();
+    for (index, pdf) in pdfs.into_iter().enumerate() {
+        println!("processing {}/{} {}", index + 1, total_pdfs, pdf.display());
+        io::stdout().flush()?;
+        if let Err(error) = crop_pdf(&pdf, &out_dir, &options) {
+            println!("failed {}: {error}", pdf.display());
+            io::stdout().flush()?;
+            failures.push(format!("{}: {error}", pdf.display()));
+        }
+        eta.maybe_print(index + 1, total_pdfs)?;
     }
 
-    Ok(())
+    if failures.is_empty() {
+        Ok(())
+    } else {
+        err(format!(
+            "failed to crop {} PDF(s): {}",
+            failures.len(),
+            failures.join("; ")
+        ))
+    }
 }
 
 fn ocr_votes_command(args: &[String]) -> Result<()> {
