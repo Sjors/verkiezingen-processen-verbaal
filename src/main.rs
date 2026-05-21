@@ -1396,12 +1396,12 @@ fn parse_votes_markdown_values(markdown: &str) -> BTreeMap<String, u32> {
 }
 
 fn parse_correction_markdown_values(markdown: &str) -> BTreeMap<String, Correction> {
-    let mut corrections = BTreeMap::new();
+    let mut corrections: BTreeMap<String, Correction> = BTreeMap::new();
     for line in markdown.lines().map(str::trim).skip(2) {
         if line.is_empty() {
             continue;
         }
-        let cells = markdown_cells(line);
+        let cells = correction_markdown_cells(line);
         if cells.len() != 5 {
             continue;
         }
@@ -1411,14 +1411,19 @@ fn parse_correction_markdown_values(markdown: &str) -> BTreeMap<String, Correcti
         let Some(difference) = parse_i32_cell(&cells[3]) else {
             continue;
         };
-        corrections.insert(
-            id,
-            Correction {
-                first: parse_optional_u32_cell(&cells[1]),
-                second: parse_optional_u32_cell(&cells[2]),
-                difference,
-            },
-        );
+        let correction = Correction {
+            first: parse_optional_u32_cell(&cells[1]),
+            second: parse_optional_u32_cell(&cells[2]),
+            difference,
+        };
+        corrections
+            .entry(id)
+            .and_modify(|existing| {
+                existing.first = None;
+                existing.second = None;
+                existing.difference += correction.difference;
+            })
+            .or_insert(correction);
     }
     corrections
 }
@@ -1754,7 +1759,7 @@ fn correction_ids_in_markdown(markdown: &str) -> Vec<String> {
         .map(str::trim)
         .skip(2)
         .filter_map(|line| {
-            let cells = markdown_cells(line);
+            let cells = correction_markdown_cells(line);
             if cells.len() == 5 {
                 normalize_correction_id(&cells[0])
             } else {
@@ -3334,10 +3339,9 @@ fn validate_corrections_markdown(markdown: &str) -> ValidationReport {
         errors.push("expected Markdown separator row after header".to_owned());
     }
 
-    let mut seen = BTreeSet::new();
     for (index, line) in lines.iter().enumerate().skip(2) {
         let line_number = index + 1;
-        let cells = markdown_cells(line);
+        let cells = correction_markdown_cells(line);
         if cells.len() != 5 {
             errors.push(format!(
                 "row {line_number} should have exactly 5 cells, found {}",
@@ -3352,9 +3356,6 @@ fn validate_corrections_markdown(markdown: &str) -> ValidationReport {
             ));
             continue;
         };
-        if !seen.insert(id.clone()) {
-            errors.push(format!("row {line_number} duplicates correction ID {id}"));
-        }
         let first = parse_optional_u32_cell(&cells[1]);
         if first.is_none() && !cells[1].trim().is_empty() && cells[1].trim() != "-" {
             errors.push(format!(
@@ -3406,6 +3407,14 @@ fn markdown_cells(line: &str) -> Vec<String> {
         .map(str::trim)
         .map(str::to_owned)
         .collect()
+}
+
+fn correction_markdown_cells(line: &str) -> Vec<String> {
+    let mut cells = markdown_cells(line);
+    if cells.len() == 4 {
+        cells.push(String::new());
+    }
+    cells
 }
 
 fn is_markdown_separator(line: &str) -> bool {
@@ -4777,6 +4786,27 @@ mod tests {
         assert_eq!(corrections["E.1"].second, Some(248));
         assert_eq!(corrections["E.1"].difference, 1);
         assert_eq!(corrections["F"].difference, -1);
+    }
+
+    #[test]
+    fn aggregates_duplicate_correction_rows() {
+        let markdown = "\
+| ID | First | Second | Difference | Note |
+|---|---:|---:|---:|---|
+| E.4 | 49 | 48 | -1 | stembiljet was toch ongeldig |
+| E.4 | | | +1 | 1 stem van een andere lijst |
+| G | 1 | 2 | 1 |
+";
+
+        let report = validate_corrections_markdown(markdown);
+        assert!(report.passed, "{:?}", report.errors);
+        let corrections = parse_correction_markdown_values(markdown);
+        assert_eq!(corrections["E.4"].first, None);
+        assert_eq!(corrections["E.4"].second, None);
+        assert_eq!(corrections["E.4"].difference, 0);
+        assert_eq!(corrections["G"].first, Some(1));
+        assert_eq!(corrections["G"].second, Some(2));
+        assert_eq!(corrections["G"].difference, 1);
     }
 
     #[test]
