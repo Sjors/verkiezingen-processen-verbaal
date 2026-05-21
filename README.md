@@ -74,6 +74,16 @@ locate the table page, then extracts the embedded page image with `pdfimages`
 and crops those native pixels directly. It does not render through `pdftoppm`,
 so the crop keeps the original scan resolution.
 
+Second-count PDFs can also be cropped for the correction table that explains
+changes from the first count:
+
+```bash
+cargo run -- crop 2026-GR 0344 --kind corrections
+```
+
+This writes `B1 - 2.4 Lijsten met verschillen` crops to
+`{election}/{municipality}/crops/corrections/`.
+
 After cropping, run the narrow crops through a local multimodal LLM:
 
 ```bash

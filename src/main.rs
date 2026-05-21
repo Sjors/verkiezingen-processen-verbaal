@@ -43,14 +43,16 @@ struct ExternalTool {
 #[derive(Clone, Copy, Debug, Eq, Ord, PartialEq, PartialOrd)]
 enum CropKind {
     Votes,
+    Corrections,
 }
 
 impl CropKind {
     fn parse(value: &str) -> Result<Self> {
         match value {
             "votes" | "2.2" => Ok(Self::Votes),
+            "corrections" | "b1-2.4" | "2.4" => Ok(Self::Corrections),
             _ => err(format!(
-                "unknown crop kind {value:?}; only votes / 2.2 is supported for now"
+                "unknown crop kind {value:?}; expected votes / 2.2 or corrections / b1-2.4"
             )),
         }
     }
@@ -58,12 +60,14 @@ impl CropKind {
     fn filename_part(self) -> &'static str {
         match self {
             Self::Votes => "2.2",
+            Self::Corrections => "corrections",
         }
     }
 
     fn directory_name(self) -> &'static str {
         match self {
             Self::Votes => "2.2",
+            Self::Corrections => "corrections",
         }
     }
 
@@ -74,6 +78,11 @@ impl CropKind {
                 lower.contains("2.2")
                     && lower.contains("uitgebrachte stemmen")
                     && lower.contains("totaal lijst")
+            }
+            Self::Corrections => {
+                lower.contains("b1 - 2.4")
+                    && lower.contains("lijsten met verschillen")
+                    && lower.contains("lijsttotaal")
             }
         }
     }
@@ -86,17 +95,24 @@ impl CropKind {
                 width: 0.9100,
                 height: 0.7200,
             },
+            Self::Corrections => CropTemplate {
+                x: 0.0250,
+                y: 0.0550,
+                width: 0.9550,
+                height: 0.8750,
+            },
         }
     }
 
-    fn narrow_from_full_table_template(self) -> CropTemplate {
+    fn narrow_from_full_table_template(self) -> Option<CropTemplate> {
         match self {
-            Self::Votes => CropTemplate {
+            Self::Votes => Some(CropTemplate {
                 x: 0.0200,
                 y: 0.1150,
                 width: 0.1725,
                 height: 0.8650,
-            },
+            }),
+            Self::Corrections => None,
         }
     }
 }
@@ -115,6 +131,7 @@ struct CropOptions {
     municipality: String,
     pdf: Option<PathBuf>,
     out_dir: Option<PathBuf>,
+    kind: CropKind,
     page_override: Option<u32>,
     keep_page_images: bool,
 }
@@ -262,7 +279,7 @@ fn crop_command(args: &[String]) -> Result<()> {
     let options = parse_crop_args(args)?;
     ensure_tools(required_crop_tools(&options))?;
     let municipality_dir = Path::new(&options.election).join(&options.municipality);
-    let pdfs = find_pdfs(&municipality_dir, options.pdf.as_deref())?;
+    let pdfs = find_pdfs(&municipality_dir, options.pdf.as_deref(), options.kind)?;
     let out_dir = options
         .out_dir
         .clone()
@@ -945,6 +962,7 @@ fn parse_crop_args(args: &[String]) -> Result<CropOptions> {
     let mut positionals = Vec::new();
     let mut pdf = None;
     let mut out_dir = None;
+    let mut kind = CropKind::Votes;
     let mut page_override = None;
     let mut keep_page_images = false;
 
@@ -962,7 +980,7 @@ fn parse_crop_args(args: &[String]) -> Result<CropOptions> {
             }
             "--kind" => {
                 index += 1;
-                let _ = CropKind::parse(require_arg(args, index, "--kind")?)?;
+                kind = CropKind::parse(require_arg(args, index, "--kind")?)?;
             }
             "--page" => {
                 index += 1;
@@ -992,6 +1010,7 @@ fn parse_crop_args(args: &[String]) -> Result<CropOptions> {
         municipality: positionals[1].clone(),
         pdf,
         out_dir,
+        kind,
         page_override,
         keep_page_images,
     })
@@ -1152,7 +1171,11 @@ fn normalize_election(value: &str) -> String {
     }
 }
 
-fn find_pdfs(municipality_dir: &Path, pdf_arg: Option<&Path>) -> Result<Vec<PathBuf>> {
+fn find_pdfs(
+    municipality_dir: &Path,
+    pdf_arg: Option<&Path>,
+    kind: CropKind,
+) -> Result<Vec<PathBuf>> {
     if let Some(pdf_arg) = pdf_arg {
         let pdf = if pdf_arg.exists() {
             pdf_arg.to_path_buf()
@@ -1172,7 +1195,7 @@ fn find_pdfs(municipality_dir: &Path, pdf_arg: Option<&Path>) -> Result<Vec<Path
         let Some(file_name) = path.file_name().and_then(OsStr::to_str) else {
             continue;
         };
-        if file_name.ends_with(".pdf") && file_name.contains("_eerste_telling") {
+        if default_pdf_matches_kind(file_name, kind) {
             pdfs.push(path);
         }
     }
@@ -1180,19 +1203,46 @@ fn find_pdfs(municipality_dir: &Path, pdf_arg: Option<&Path>) -> Result<Vec<Path
 
     if pdfs.is_empty() {
         return err(format!(
-            "no *_eerste_telling.pdf files found in {}",
+            "no default {} PDFs found in {}",
+            kind.filename_part(),
             municipality_dir.display()
         ));
     }
     Ok(pdfs)
 }
 
+fn default_pdf_matches_kind(file_name: &str, kind: CropKind) -> bool {
+    if !file_name.ends_with(".pdf") {
+        return false;
+    }
+    match kind {
+        CropKind::Votes => file_name.contains("_eerste_telling"),
+        CropKind::Corrections => {
+            !file_name.contains("_eerste_telling")
+                && station_code_from_file_name(file_name).is_some()
+                && file_name.contains("_GR")
+        }
+    }
+}
+
+fn station_code_from_file_name(file_name: &str) -> Option<&str> {
+    file_name
+        .split('_')
+        .find(|part| !part.is_empty() && part.chars().all(|ch| ch.is_ascii_digit()))
+}
+
 fn crop_pdf(pdf: &Path, out_dir: &Path, options: &CropOptions) -> Result<()> {
-    let kind = CropKind::Votes;
+    let kind = options.kind;
     let full_table_path = full_table_output_path_for(pdf, out_dir, kind)?;
-    let narrow_path = narrow_output_path_for(pdf, out_dir, kind)?;
     ensure_output_absent(&full_table_path)?;
-    ensure_output_absent(&narrow_path)?;
+    let narrow_path = if kind.narrow_from_full_table_template().is_some() {
+        Some(narrow_output_path_for(pdf, out_dir, kind)?)
+    } else {
+        None
+    };
+    if let Some(narrow_path) = &narrow_path {
+        ensure_output_absent(narrow_path)?;
+    }
 
     let page_by_kind = if options.page_override.is_some() {
         BTreeMap::new()
@@ -1235,23 +1285,23 @@ fn crop_pdf(pdf: &Path, out_dir: &Path, options: &CropOptions) -> Result<()> {
         full_crop.source_height
     );
 
-    let narrow_crop = write_crop(
-        &full_table_path,
-        &narrow_path,
-        kind.narrow_from_full_table_template(),
-    )?;
-    println!(
-        "{} {} narrow -> {} ({}x{} at {},{} from {}x{})",
-        pdf.display(),
-        kind.filename_part(),
-        narrow_path.display(),
-        narrow_crop.width,
-        narrow_crop.height,
-        narrow_crop.x,
-        narrow_crop.y,
-        narrow_crop.source_width,
-        narrow_crop.source_height
-    );
+    if let (Some(narrow_path), Some(template)) =
+        (&narrow_path, kind.narrow_from_full_table_template())
+    {
+        let narrow_crop = write_crop(&full_table_path, narrow_path, template)?;
+        println!(
+            "{} {} narrow -> {} ({}x{} at {},{} from {}x{})",
+            pdf.display(),
+            kind.filename_part(),
+            narrow_path.display(),
+            narrow_crop.width,
+            narrow_crop.height,
+            narrow_crop.x,
+            narrow_crop.y,
+            narrow_crop.source_width,
+            narrow_crop.source_height
+        );
+    }
 
     if !options.keep_page_images {
         fs::remove_dir_all(extracted.temp_dir)?;
@@ -1513,7 +1563,7 @@ fn help_text() -> &'static str {
 
 Commands:
   doctor          Check required external tools
-  crop            Crop Utrecht-style table 2.2 regions at native page resolution
+  crop            Crop Utrecht-style table regions at native page resolution
   ocr-votes       Run narrow table 2.2 crops through a local multimodal LLM
   official-csvs   Fetch official GSB and CSB CSV tellingsbestanden
 
@@ -1554,20 +1604,22 @@ Examples:
 
 Options:
   --pdf <path>              Crop one PDF. Relative filenames are resolved inside the municipality directory.
-                            Without this option, all *_eerste_telling.pdf files are cropped.
+                            Without this option, votes crops use all *_eerste_telling.pdf files and
+                            corrections crops use station-level second-count PDFs.
   --out-dir <dir>           Output directory. Default: <election>/<municipality>/crops.
-  --kind <kind>             Compatibility option. Only votes / 2.2 is supported for now.
+  --kind <kind>             Crop kind. Default: votes. Supported: votes / 2.2,
+                            corrections / b1-2.4.
   --page <number>           Override automatic section page detection.
   --keep-page-images        Keep extracted native page images under <out-dir>/_native_pages.
 
-The crop command currently writes lossless PNG crops for table 2.2
-\"Uitgebrachte stemmen\" under <election>/<municipality>/crops/2.2/ and narrow
-OCR-focused crops under <election>/<municipality>/crops/2.2/narrow/. The narrow
-crop contains the handwritten number cells and identifier column, including
-total rows E through H. The command uses pdftotext to locate the table page,
-then extracts the embedded page image with pdfimages and crops those native
-pixels directly. It does not use pdftoppm page rendering, so the crop keeps the
-original scan resolution. Existing output files are treated as an error."
+The votes crop writes lossless PNG crops for table 2.2 \"Uitgebrachte stemmen\"
+under <election>/<municipality>/crops/2.2/ and narrow OCR-focused crops under
+<election>/<municipality>/crops/2.2/narrow/. The corrections crop writes table
+B1-2.4 \"Lijsten met verschillen\" under
+<election>/<municipality>/crops/corrections/. The command uses pdftotext to
+locate the table page, then extracts the embedded page image with pdfimages and
+crops those native pixels directly. Existing output files are treated as an
+error."
 }
 
 fn ocr_votes_help_text() -> &'static str {
