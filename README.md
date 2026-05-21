@@ -101,6 +101,29 @@ cargo run -- ocr-votes 2026-GR 0344 \
   --force
 ```
 
+Fetch official Utrecht tellingsbestand CSV files for OCR cross-checks:
+
+```bash
+cargo run -- official-csvs 2026-GR 0344
+```
+
+This writes `gsb-tellingsbestand.csv` and `csb-tellingsbestand.csv` to
+`{election}/{municipality}/results/official/`. For now, the command only has
+built-in URLs for Utrecht. Other municipalities require both URLs explicitly:
+
+```bash
+cargo run -- official-csvs 2026-GR 9999 \
+  --gsb-url https://example.invalid/gsb.csv \
+  --csb-url https://example.invalid/csb.csv
+```
+
+Current limitations:
+
+- Built-in CSV discovery only exists for Utrecht (`2026-GR 0344`).
+- Other municipalities fail unless both URLs are passed manually.
+- The command only downloads the files; it does not validate their schema or
+  compare them to OCR Markdown yet.
+
 ## Hashes and timestamps
 
 Each election has a signed manifest built from per-municipality `SHA256SUMS` files:

@@ -17,6 +17,11 @@ type Result<T> = std::result::Result<T, Box<dyn std::error::Error>>;
 const DEFAULT_LLM_ENDPOINT: &str = "http://127.0.0.1:8089/v1/chat/completions";
 const DEFAULT_LLM_MODEL: &str = "local";
 const DEFAULT_OCR_PROMPT_PATH: &str = "prompts/ocr-votes.md";
+const DEFAULT_DOWNLOAD_USER_AGENT: &str = "Mozilla/5.0 (Macintosh; Intel Mac OS X 14_0) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.0 Safari/605.1.15";
+const UTRECHT_GSB_CSV_URL: &str =
+    "https://open.utrecht.nl/sites/default/files/open-data/osv4-3-telling-gr2026-utrecht.csv";
+const UTRECHT_CSB_CSV_URL: &str =
+    "https://open.utrecht.nl/sites/default/files/open-data/osv4-3-telling-gr2026-utrecht_0.csv";
 
 const EXTERNAL_TOOLS: &[ExternalTool] = &[
     ExternalTool {
@@ -130,6 +135,23 @@ struct OcrVotesOptions {
 }
 
 #[derive(Debug)]
+struct OfficialCsvOptions {
+    election: String,
+    municipality: String,
+    out_dir: Option<PathBuf>,
+    gsb_url: Option<String>,
+    csb_url: Option<String>,
+    force: bool,
+}
+
+#[derive(Debug)]
+struct OfficialCsvSource {
+    label: &'static str,
+    file_name: &'static str,
+    url: String,
+}
+
+#[derive(Debug)]
 struct ImageOcrReport {
     stem: String,
     output_path: PathBuf,
@@ -166,6 +188,7 @@ fn run() -> Result<()> {
         Some("doctor") => doctor_command(&args[1..]),
         Some("crop") => crop_command(&args[1..]),
         Some("ocr-votes") => ocr_votes_command(&args[1..]),
+        Some("official-csvs") => official_csvs_command(&args[1..]),
         Some("-h" | "--help") | None => {
             print_help();
             Ok(())
@@ -304,6 +327,147 @@ fn ocr_votes_command(args: &[String]) -> Result<()> {
     } else {
         Ok(())
     }
+}
+
+fn official_csvs_command(args: &[String]) -> Result<()> {
+    if args.iter().any(|arg| arg == "-h" || arg == "--help") {
+        print_official_csvs_help();
+        return Ok(());
+    }
+
+    let options = parse_official_csvs_args(args)?;
+    let municipality_dir = Path::new(&options.election).join(&options.municipality);
+    let out_dir = options
+        .out_dir
+        .clone()
+        .unwrap_or_else(|| municipality_dir.join("results").join("official"));
+    let sources = official_csv_sources(&options)?;
+    fs::create_dir_all(&out_dir)?;
+
+    for source in sources {
+        let output_path = out_dir.join(source.file_name);
+        if output_path.exists() && !options.force {
+            println!(
+                "existing {} -> {} (use --force to overwrite)",
+                source.label,
+                output_path.display()
+            );
+            continue;
+        }
+        let bytes = download_to_path(&source.url, &output_path)?;
+        println!(
+            "downloaded {} ({} bytes) -> {}",
+            source.label,
+            bytes,
+            output_path.display()
+        );
+    }
+
+    Ok(())
+}
+
+fn official_csv_sources(options: &OfficialCsvOptions) -> Result<Vec<OfficialCsvSource>> {
+    let defaults = default_official_csv_sources(&options.election, &options.municipality);
+    let gsb_url = options
+        .gsb_url
+        .clone()
+        .or_else(|| defaults.as_ref().map(|sources| sources[0].url.clone()));
+    let csb_url = options
+        .csb_url
+        .clone()
+        .or_else(|| defaults.as_ref().map(|sources| sources[1].url.clone()));
+
+    let (Some(gsb_url), Some(csb_url)) = (gsb_url, csb_url) else {
+        return err(format!(
+            "no built-in official CSV URLs for {}/{}; pass both --gsb-url and --csb-url",
+            options.election, options.municipality
+        ));
+    };
+
+    Ok(vec![
+        OfficialCsvSource {
+            label: "GSB tellingsbestand",
+            file_name: "gsb-tellingsbestand.csv",
+            url: gsb_url,
+        },
+        OfficialCsvSource {
+            label: "CSB tellingsbestand",
+            file_name: "csb-tellingsbestand.csv",
+            url: csb_url,
+        },
+    ])
+}
+
+fn default_official_csv_sources(
+    election: &str,
+    municipality: &str,
+) -> Option<Vec<OfficialCsvSource>> {
+    if election == "2026-GR" && municipality == "0344" {
+        Some(vec![
+            OfficialCsvSource {
+                label: "GSB tellingsbestand",
+                file_name: "gsb-tellingsbestand.csv",
+                url: UTRECHT_GSB_CSV_URL.to_owned(),
+            },
+            OfficialCsvSource {
+                label: "CSB tellingsbestand",
+                file_name: "csb-tellingsbestand.csv",
+                url: UTRECHT_CSB_CSV_URL.to_owned(),
+            },
+        ])
+    } else {
+        None
+    }
+}
+
+fn download_to_path(url: &str, output_path: &Path) -> Result<u64> {
+    let parent = output_path.parent().ok_or_else(|| {
+        io::Error::new(
+            io::ErrorKind::InvalidInput,
+            format!("output path has no parent: {}", output_path.display()),
+        )
+    })?;
+    fs::create_dir_all(parent)?;
+
+    let temp_path = output_path.with_file_name(format!(
+        ".{}.tmp-{}",
+        output_path
+            .file_name()
+            .and_then(OsStr::to_str)
+            .unwrap_or("download"),
+        std::process::id()
+    ));
+    if temp_path.exists() {
+        fs::remove_file(&temp_path)?;
+    }
+
+    let output = Command::new("curl")
+        .arg("--fail")
+        .arg("--silent")
+        .arg("--show-error")
+        .arg("--location")
+        .arg("--user-agent")
+        .arg(DEFAULT_DOWNLOAD_USER_AGENT)
+        .arg("--output")
+        .arg(&temp_path)
+        .arg(url)
+        .output()?;
+    if !output.status.success() {
+        let _ = fs::remove_file(&temp_path);
+        return err(format!(
+            "curl failed for {url}: {}",
+            command_output_summary(&output.stdout, &output.stderr)
+                .unwrap_or_else(|| format!("exited with {}", output.status))
+        ));
+    }
+
+    let bytes = fs::metadata(&temp_path)?.len();
+    if bytes == 0 {
+        let _ = fs::remove_file(&temp_path);
+        return err(format!("downloaded empty file from {url}"));
+    }
+    fs::rename(&temp_path, output_path)?;
+    Ok(bytes)
 }
 
 fn process_ocr_image(
@@ -919,6 +1083,57 @@ fn parse_ocr_votes_args(args: &[String]) -> Result<OcrVotesOptions> {
     })
 }
 
+fn parse_official_csvs_args(args: &[String]) -> Result<OfficialCsvOptions> {
+    let mut positionals = Vec::new();
+    let mut out_dir = None;
+    let mut gsb_url = None;
+    let mut csb_url = None;
+    let mut force = false;
+
+    let mut index = 0;
+    while index < args.len() {
+        let arg = &args[index];
+        match arg.as_str() {
+            "--out-dir" => {
+                index += 1;
+                out_dir = Some(PathBuf::from(require_arg(args, index, "--out-dir")?));
+            }
+            "--gsb-url" => {
+                index += 1;
+                gsb_url = Some(require_arg(args, index, "--gsb-url")?.to_owned());
+            }
+            "--csb-url" => {
+                index += 1;
+                csb_url = Some(require_arg(args, index, "--csb-url")?.to_owned());
+            }
+            "--force" => {
+                force = true;
+            }
+            value if value.starts_with("--") => {
+                return err(format!("unknown option {value:?}"));
+            }
+            value => positionals.push(value.to_owned()),
+        }
+        index += 1;
+    }
+
+    if positionals.len() != 2 {
+        return err(format!(
+            "official-csvs expects <election> <municipality>\n\n{}",
+            official_csvs_help_text()
+        ));
+    }
+
+    Ok(OfficialCsvOptions {
+        election: normalize_election(&positionals[0]),
+        municipality: positionals[1].clone(),
+        out_dir,
+        gsb_url,
+        csb_url,
+        force,
+    })
+}
+
 fn require_arg<'a>(args: &'a [String], index: usize, option: &str) -> Result<&'a str> {
     args.get(index).map(String::as_str).ok_or_else(|| {
         io::Error::new(
@@ -1294,13 +1509,15 @@ fn help_text() -> &'static str {
   pv doctor
   pv crop <election|year> <municipality> [options]
   pv ocr-votes <election|year> <municipality> [options]
+  pv official-csvs <election|year> <municipality> [options]
 
 Commands:
-  doctor     Check required external tools
-  crop       Crop Utrecht-style table 2.2 regions at native page resolution
-  ocr-votes  Run narrow table 2.2 crops through a local multimodal LLM
+  doctor          Check required external tools
+  crop            Crop Utrecht-style table 2.2 regions at native page resolution
+  ocr-votes       Run narrow table 2.2 crops through a local multimodal LLM
+  official-csvs   Fetch official GSB and CSB CSV tellingsbestanden
 
-Run `pv crop --help` or `pv ocr-votes --help` for command options."
+Run `pv <command> --help` for command options."
 }
 
 fn print_doctor_help() {
@@ -1321,6 +1538,10 @@ fn print_crop_help() {
 
 fn print_ocr_votes_help() {
     println!("{}", ocr_votes_help_text());
+}
+
+fn print_official_csvs_help() {
+    println!("{}", official_csvs_help_text());
 }
 
 fn crop_help_text() -> &'static str {
@@ -1378,6 +1599,26 @@ and arithmetic. Existing Markdown files are validated without rerunning the LLM
 unless --force is used. The final report lists PASS/FAIL per voting location."
 }
 
+fn official_csvs_help_text() -> &'static str {
+    "Usage:
+  pv official-csvs <election|year> <municipality> [options]
+
+Examples:
+  cargo run -- official-csvs 2026-GR 0344
+  cargo run -- official-csvs 2026 0344 --force
+  cargo run -- official-csvs 2026-GR 9999 --gsb-url <url> --csb-url <url>
+
+Options:
+  --out-dir <dir>           Output directory. Default: <election>/<municipality>/results/official.
+  --gsb-url <url>           Gemeentelijk stembureau / first official tellingsbestand CSV URL.
+  --csb-url <url>           Centraal stembureau / final tellingsbestand CSV URL.
+  --force                   Overwrite existing CSV files.
+
+For now, built-in URLs exist only for Utrecht (`2026-GR 0344`). Other
+municipalities fail unless both URLs are provided manually. The command writes
+`gsb-tellingsbestand.csv` and `csb-tellingsbestand.csv`."
+}
+
 #[cfg(test)]
 mod tests {
     use super::*;
@@ -1426,6 +1667,38 @@ mod tests {
                 .iter()
                 .any(|error| error.contains("expected ID E.10"))
         );
+    }
+
+    #[test]
+    fn official_csvs_defaults_to_utrecht_urls() {
+        let options = OfficialCsvOptions {
+            election: "2026-GR".to_owned(),
+            municipality: "0344".to_owned(),
+            out_dir: None,
+            gsb_url: None,
+            csb_url: None,
+            force: false,
+        };
+        let sources = official_csv_sources(&options).unwrap();
+        assert_eq!(sources.len(), 2);
+        assert_eq!(sources[0].file_name, "gsb-tellingsbestand.csv");
+        assert_eq!(sources[0].url, UTRECHT_GSB_CSV_URL);
+        assert_eq!(sources[1].file_name, "csb-tellingsbestand.csv");
+        assert_eq!(sources[1].url, UTRECHT_CSB_CSV_URL);
+    }
+
+    #[test]
+    fn official_csvs_requires_manual_urls_without_defaults() {
+        let options = OfficialCsvOptions {
+            election: "2026-GR".to_owned(),
+            municipality: "9999".to_owned(),
+            out_dir: None,
+            gsb_url: None,
+            csb_url: None,
+            force: false,
+        };
+        let error = official_csv_sources(&options).unwrap_err().to_string();
+        assert!(error.contains("pass both --gsb-url and --csb-url"));
     }
 }
 
