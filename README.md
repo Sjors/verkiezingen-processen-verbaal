@@ -50,8 +50,7 @@ check before it starts.
 Crop one Utrecht first-count PDF:
 
 ```bash
-cargo run -- crop 2026 0344 \
-  --pdf Utrecht_40_Speeltuin_Noordsepark_GR26_eerste_telling.pdf
+cargo run -- crop 2026 0344 --station 40
 ```
 
 Crop all first-count PDFs for a municipality:
@@ -84,6 +83,12 @@ cargo run -- crop 2026-GR 0344 --kind corrections
 This writes `B1 - 2.4 Lijsten met verschillen` crops to
 `{election}/{municipality}/crops/corrections/`.
 
+To crop one correction table, use the same station shorthand:
+
+```bash
+cargo run -- crop 2026-GR 0344 --kind corrections --station 111
+```
+
 After cropping, run the narrow crops through a local multimodal LLM:
 
 ```bash
@@ -103,12 +108,29 @@ that `E.1` through `E.20` sum to `E`, and verifies that `E + F + G` equals `H`.
 It prints a final PASS/FAIL table per voting-location crop.
 
 To re-run one voting location, pass its crop stem or image path and use
-`--force`:
+`--force`. A polling station number is accepted directly:
 
 ```bash
-cargo run -- ocr-votes 2026-GR 0344 \
-  --image Utrecht_41_Buurtcentrum_De_Uithoek_GR26_eerste_telling \
-  --force
+cargo run -- ocr-votes 2026-GR 0344 --station 41 --force
+```
+
+Run correction crops through the LLM separately:
+
+```bash
+cargo run -- ocr-corrections 2026-GR 0344
+```
+
+By default, `ocr-corrections` reads from
+`{election}/{municipality}/crops/corrections/` and writes Markdown tables to
+`{election}/{municipality}/results/corrections/`. The prompt lives in
+[`prompts/ocr-corrections.md`](prompts/ocr-corrections.md). Each correction row
+has `ID`, `First`, `Second`, `Difference`, and `Note`; list numbers are
+normalized to `E.1` through `E.20`, `blanco` to `F`, and `ongeldig` to `G`.
+
+To OCR one correction table:
+
+```bash
+cargo run -- ocr-corrections 2026-GR 0344 --station 111 --force
 ```
 
 Fetch official Utrecht tellingsbestand CSV files for OCR cross-checks:
@@ -131,8 +153,58 @@ Current limitations:
 
 - Built-in CSV discovery only exists for Utrecht (`2026-GR 0344`).
 - Other municipalities fail unless both URLs are passed manually.
-- The command only downloads the files; it does not validate their schema or
-  compare them to OCR Markdown yet.
+- Utrecht's published `gsb-tellingsbestand.csv` is the OSV4-3
+  central/candidate-count file from the municipal counting board. It is not the
+  first count on list level from the `_eerste_telling` stembureau PDFs.
+- TODO: compare candidate-level OCR results against the OSV4-3 GSB CSV once we
+  extract the candidate-count PDF tables.
+- `official-csvs` only downloads the files; use `compare-results` to compare OCR
+  Markdown to the matching station-level CSV.
+
+Compare OCR Markdown results against the official station-level CSV:
+
+```bash
+cargo run -- compare-results 2026-GR 0344
+```
+
+To recheck one polling station and rewrite only that station's mismatch report:
+
+```bash
+cargo run -- compare-results 2026-GR 0344 --station 111
+```
+
+This prefers
+`{election}/{municipality}/results/official/first-count-tellingsbestand.csv`.
+If that file is absent, it falls back to the GSB CSV written by `official-csvs`
+at `{election}/{municipality}/results/official/gsb-tellingsbestand.csv`. The GSB
+CSV is the OSV4-3 central/candidate count. For `_eerste_telling` Markdown files,
+`compare-results` reverses the station's correction OCR from
+`{election}/{municipality}/results/corrections/` when the uncorrected round-2
+CSV differs from the Markdown. If the matching correction OCR is then missing or
+invalid, the row is marked `incomplete` instead of `mismatch`. It prints a
+terminal-friendly table by default; use
+`--format markdown` for a Markdown table. Use `--debug` to print progress logs
+to stderr while it writes mismatch reports.
+
+Rows have one of six statuses per station: `missing`, `incomplete`,
+`correction inconsistent`, `internally inconsistent`, `fully matches`, or
+`mismatch`. `correction inconsistent` means the correction table conflicts with
+the first-count Markdown, for example when a correction row's first value does
+not match the first-count table. Terminal reasons are kept short, with longer
+failure details written to
+`{election}/{municipality}/results/mismatches/` as one Markdown report per
+failing polling station. Those reports include a highlighted copy of the full
+table crop when the crop is available, with OCR and official CSV values printed
+in the right margin for official mismatches. They also include the correction OCR
+Markdown and correction crop when present, because a remaining mismatch can come
+from OCR errors in either table. Yellow/red highlights mark rows that differ
+from the corrected official CSV; blue highlights mark rows implicated only by
+internal consistency checks.
+
+The CSV is the source of truth for the polling station list; Markdown files in
+`{election}/{municipality}/results/` are matched onto that list when present. The
+CSB CSV is still downloaded for archiving, but Utrecht's CSB CSV currently
+contains only municipality totals and is not used for station-level comparison.
 
 ## Hashes and timestamps
 
