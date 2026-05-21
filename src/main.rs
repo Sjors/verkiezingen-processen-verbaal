@@ -17,6 +17,7 @@ type Result<T> = std::result::Result<T, Box<dyn std::error::Error>>;
 const DEFAULT_LLM_ENDPOINT: &str = "http://127.0.0.1:8089/v1/chat/completions";
 const DEFAULT_LLM_MODEL: &str = "local";
 const DEFAULT_OCR_PROMPT_PATH: &str = "prompts/ocr-votes.md";
+const OCR_SKIP_MARKER: &str = "<!-- pv-ocr-votes: skip -->";
 const DEFAULT_CORRECTIONS_OCR_PROMPT_PATH: &str = "prompts/ocr-corrections.md";
 const DEFAULT_DOWNLOAD_USER_AGENT: &str = "Mozilla/5.0 (Macintosh; Intel Mac OS X 14_0) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.0 Safari/605.1.15";
 const UTRECHT_GSB_CSV_URL: &str =
@@ -214,12 +215,14 @@ struct ImageOcrReport {
 enum OcrAction {
     Generated,
     Existing,
+    Skipped,
     FailedToGenerate(String),
 }
 
 #[derive(Debug)]
 struct ValidationReport {
     passed: bool,
+    skipped: bool,
     errors: Vec<String>,
 }
 
@@ -427,6 +430,7 @@ fn ocr_votes_command(args: &[String]) -> Result<()> {
             &output_path,
             &prompt,
             &options,
+            true,
             validate_votes_markdown,
         )?;
         println!(
@@ -434,6 +438,7 @@ fn ocr_votes_command(args: &[String]) -> Result<()> {
             match &report.action {
                 OcrAction::Generated => "generated",
                 OcrAction::Existing => "existing",
+                OcrAction::Skipped => "skipped",
                 OcrAction::FailedToGenerate(_) => "failed",
             },
             report.stem,
@@ -486,6 +491,7 @@ fn ocr_corrections_command(args: &[String]) -> Result<()> {
             &output_path,
             &prompt,
             &options,
+            false,
             validate_corrections_markdown,
         )?;
         println!(
@@ -493,6 +499,7 @@ fn ocr_corrections_command(args: &[String]) -> Result<()> {
             match &report.action {
                 OcrAction::Generated => "generated",
                 OcrAction::Existing => "existing",
+                OcrAction::Skipped => "skipped",
                 OcrAction::FailedToGenerate(_) => "failed",
             },
             report.stem,
@@ -2796,9 +2803,21 @@ fn process_ocr_image(
     output_path: &Path,
     prompt: &str,
     options: &OcrVotesOptions,
+    skip_round_two: bool,
     validate_markdown: fn(&str) -> ValidationReport,
 ) -> Result<ImageOcrReport> {
     let stem = file_stem_string(image_path)?;
+    if skip_round_two && should_skip_ocr_stem(&stem) {
+        let markdown = skip_markdown("round two scan");
+        fs::write(output_path, &markdown)?;
+        return Ok(ImageOcrReport {
+            stem,
+            output_path: output_path.to_path_buf(),
+            action: OcrAction::Skipped,
+            validation: validate_markdown(&markdown),
+        });
+    }
+
     let (action, markdown) = if output_path.exists() && !options.force {
         (OcrAction::Existing, fs::read_to_string(output_path)?)
     } else {
@@ -2815,6 +2834,7 @@ fn process_ocr_image(
                     action: OcrAction::FailedToGenerate(message.clone()),
                     validation: ValidationReport {
                         passed: false,
+                        skipped: false,
                         errors: vec![message],
                     },
                 });
@@ -2829,6 +2849,14 @@ fn process_ocr_image(
         action,
         validation,
     })
+}
+
+fn should_skip_ocr_stem(stem: &str) -> bool {
+    stem.ends_with("_GR26") || !stem.contains("_eerste_telling")
+}
+
+fn skip_markdown(reason: &str) -> String {
+    format!("{OCR_SKIP_MARKER}\n\nSkipped: {reason}.\n")
 }
 
 fn find_ocr_images(
@@ -3063,6 +3091,14 @@ fn decode_chunked_body(body: &str) -> Result<String> {
 }
 
 fn validate_votes_markdown(markdown: &str) -> ValidationReport {
+    if markdown.trim_start().starts_with(OCR_SKIP_MARKER) {
+        return ValidationReport {
+            passed: true,
+            skipped: true,
+            errors: Vec::new(),
+        };
+    }
+
     let mut errors = Vec::new();
     let lines: Vec<_> = markdown
         .lines()
@@ -3162,11 +3198,20 @@ fn validate_votes_markdown(markdown: &str) -> ValidationReport {
 
     ValidationReport {
         passed: errors.is_empty(),
+        skipped: false,
         errors,
     }
 }
 
 fn validate_corrections_markdown(markdown: &str) -> ValidationReport {
+    if markdown.trim_start().starts_with(OCR_SKIP_MARKER) {
+        return ValidationReport {
+            passed: true,
+            skipped: true,
+            errors: Vec::new(),
+        };
+    }
+
     let mut errors = Vec::new();
     let lines: Vec<_> = markdown
         .lines()
@@ -3254,6 +3299,7 @@ fn validate_corrections_markdown(markdown: &str) -> ValidationReport {
 
     ValidationReport {
         passed: errors.is_empty(),
+        skipped: false,
         errors,
     }
 }
@@ -3301,7 +3347,9 @@ fn print_ocr_report(title: &str, reports: &[ImageOcrReport]) {
     println!("| Status | Action | Item | Details |");
     println!("|---|---|---|---|");
     for report in reports {
-        let status = if report.validation.passed {
+        let status = if report.validation.skipped {
+            "SKIP"
+        } else if report.validation.passed {
             "PASS"
         } else {
             "FAIL"
@@ -3309,6 +3357,7 @@ fn print_ocr_report(title: &str, reports: &[ImageOcrReport]) {
         let action = match &report.action {
             OcrAction::Generated => "generated".to_owned(),
             OcrAction::Existing => "existing".to_owned(),
+            OcrAction::Skipped => "skipped".to_owned(),
             OcrAction::FailedToGenerate(_) => "failed".to_owned(),
         };
         let details = match &report.action {
