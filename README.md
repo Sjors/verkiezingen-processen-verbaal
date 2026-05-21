@@ -60,14 +60,19 @@ Crop all first-count PDFs for a municipality:
 cargo run -- crop 2026-GR 0344
 ```
 
-By default, crops are written to `{election}/{municipality}/crops/`. The crop
-directory is ignored by git.
+By default, full table crops are written to
+`{election}/{municipality}/crops/2.2/`, and narrow OCR-focused crops are written
+to `{election}/{municipality}/crops/2.2/narrow/`. The crop directory is ignored
+by git. Existing output files are treated as an error; remove old crops before
+rerunning the command.
 
 The crop command currently writes lossless PNG crops for table 2.2
-`Uitgebrachte stemmen`. It uses `pdftotext` to locate the table page, then
-extracts the embedded page image with `pdfimages` and crops those native pixels
-directly. It does not render through `pdftoppm`, so the crop keeps the original
-scan resolution.
+`Uitgebrachte stemmen`. The full crop includes the table header and row
+descriptions. The narrow crop contains only the handwritten number cells and
+identifier column, including total rows E through H. It uses `pdftotext` to
+locate the table page, then extracts the embedded page image with `pdfimages`
+and crops those native pixels directly. It does not render through `pdftoppm`,
+so the crop keeps the original scan resolution.
 
 ## Hashes and timestamps
 

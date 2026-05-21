@@ -45,7 +45,13 @@ impl CropKind {
 
     fn filename_part(self) -> &'static str {
         match self {
-            Self::Votes => "votes",
+            Self::Votes => "2.2",
+        }
+    }
+
+    fn directory_name(self) -> &'static str {
+        match self {
+            Self::Votes => "2.2",
         }
     }
 
@@ -60,13 +66,24 @@ impl CropKind {
         }
     }
 
-    fn template(self) -> CropTemplate {
+    fn full_table_template(self) -> CropTemplate {
         match self {
             Self::Votes => CropTemplate {
                 x: 0.0550,
                 y: 0.1200,
                 width: 0.9100,
                 height: 0.7200,
+            },
+        }
+    }
+
+    fn narrow_from_full_table_template(self) -> CropTemplate {
+        match self {
+            Self::Votes => CropTemplate {
+                x: 0.0200,
+                y: 0.1150,
+                width: 0.1725,
+                height: 0.8650,
             },
         }
     }
@@ -389,6 +406,11 @@ fn find_pdfs(municipality_dir: &Path, pdf_arg: Option<&Path>) -> Result<Vec<Path
 
 fn crop_pdf(pdf: &Path, out_dir: &Path, options: &CropOptions) -> Result<()> {
     let kind = CropKind::Votes;
+    let full_table_path = full_table_output_path_for(pdf, out_dir, kind)?;
+    let narrow_path = narrow_output_path_for(pdf, out_dir, kind)?;
+    ensure_output_absent(&full_table_path)?;
+    ensure_output_absent(&narrow_path)?;
+
     let page_by_kind = if options.page_override.is_some() {
         BTreeMap::new()
     } else {
@@ -410,27 +432,58 @@ fn crop_pdf(pdf: &Path, out_dir: &Path, options: &CropOptions) -> Result<()> {
         })?;
 
     let extracted = extract_native_page_image(pdf, page, out_dir, options.keep_page_images)?;
-    let output_path = output_path_for(pdf, out_dir, kind)?;
-    let crop = write_crop(&extracted.image_path, &output_path, kind.template())?;
+    let full_crop = write_crop(
+        &extracted.image_path,
+        &full_table_path,
+        kind.full_table_template(),
+    )?;
 
     println!(
         "{} page {} {} -> {} ({}x{} at {},{} from {}x{})",
         pdf.display(),
         page,
         kind.filename_part(),
-        output_path.display(),
-        crop.width,
-        crop.height,
-        crop.x,
-        crop.y,
-        crop.source_width,
-        crop.source_height
+        full_table_path.display(),
+        full_crop.width,
+        full_crop.height,
+        full_crop.x,
+        full_crop.y,
+        full_crop.source_width,
+        full_crop.source_height
+    );
+
+    let narrow_crop = write_crop(
+        &full_table_path,
+        &narrow_path,
+        kind.narrow_from_full_table_template(),
+    )?;
+    println!(
+        "{} {} narrow -> {} ({}x{} at {},{} from {}x{})",
+        pdf.display(),
+        kind.filename_part(),
+        narrow_path.display(),
+        narrow_crop.width,
+        narrow_crop.height,
+        narrow_crop.x,
+        narrow_crop.y,
+        narrow_crop.source_width,
+        narrow_crop.source_height
     );
 
     if !options.keep_page_images {
         fs::remove_dir_all(extracted.temp_dir)?;
     }
 
+    Ok(())
+}
+
+fn ensure_output_absent(path: &Path) -> Result<()> {
+    if path.exists() {
+        return err(format!(
+            "output already exists: {}. Remove existing crops before rerunning.",
+            path.display()
+        ));
+    }
     Ok(())
 }
 
@@ -557,14 +610,29 @@ fn largest_image_in(dir: &Path) -> Result<Option<PathBuf>> {
     Ok(largest)
 }
 
-fn output_path_for(pdf: &Path, out_dir: &Path, kind: CropKind) -> Result<PathBuf> {
+fn full_table_output_path_for(pdf: &Path, out_dir: &Path, kind: CropKind) -> Result<PathBuf> {
     let stem = pdf.file_stem().and_then(OsStr::to_str).ok_or_else(|| {
         io::Error::new(
             io::ErrorKind::InvalidInput,
             "PDF path has no valid file stem",
         )
     })?;
-    Ok(out_dir.join(format!("{stem}.{}.png", kind.filename_part())))
+    Ok(out_dir
+        .join(kind.directory_name())
+        .join(format!("{stem}.png")))
+}
+
+fn narrow_output_path_for(pdf: &Path, out_dir: &Path, kind: CropKind) -> Result<PathBuf> {
+    let stem = pdf.file_stem().and_then(OsStr::to_str).ok_or_else(|| {
+        io::Error::new(
+            io::ErrorKind::InvalidInput,
+            "PDF path has no valid file stem",
+        )
+    })?;
+    Ok(out_dir
+        .join(kind.directory_name())
+        .join("narrow")
+        .join(format!("{stem}.png")))
 }
 
 #[derive(Debug)]
@@ -600,6 +668,9 @@ fn write_crop(
     }
 
     let crop = image.crop_imm(x, y, width, height);
+    if let Some(parent) = output_path.parent() {
+        fs::create_dir_all(parent)?;
+    }
     crop.save_with_format(output_path, ImageFormat::Png)?;
 
     Ok(WrittenCrop {
@@ -640,7 +711,7 @@ fn help_text() -> &'static str {
 
 Commands:
   doctor  Check required external tools
-  crop    Crop Utrecht-style vote-total table regions at native page resolution
+  crop    Crop Utrecht-style table 2.2 regions at native page resolution
 
 Run `pv crop --help` for crop options."
 }
@@ -678,10 +749,13 @@ Options:
   --keep-page-images        Keep extracted native page images under <out-dir>/_native_pages.
 
 The crop command currently writes lossless PNG crops for table 2.2
-\"Uitgebrachte stemmen\". It uses pdftotext to locate the table page, then
-extracts the embedded page image with pdfimages and crops those native pixels
-directly. It does not use pdftoppm page rendering, so the crop keeps the
-original scan resolution."
+\"Uitgebrachte stemmen\" under <election>/<municipality>/crops/2.2/ and narrow
+OCR-focused crops under <election>/<municipality>/crops/2.2/narrow/. The narrow
+crop contains the handwritten number cells and identifier column, including
+total rows E through H. The command uses pdftotext to locate the table page,
+then extracts the embedded page image with pdfimages and crops those native
+pixels directly. It does not use pdftoppm page rendering, so the crop keeps the
+original scan resolution. Existing output files are treated as an error."
 }
 
 fn err<T>(message: impl Into<String>) -> Result<T> {
