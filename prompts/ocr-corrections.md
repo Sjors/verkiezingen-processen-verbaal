@@ -1,5 +1,8 @@
 Read the correction table in the image and return only one Markdown table.
 
+Start your response immediately with the Markdown table. Do not think step by
+step. Do not describe the image. Do not add commentary.
+
 Use this exact format:
 
 | ID | First | Second | Difference | Note |
