@@ -110,9 +110,9 @@ impl CropKind {
         match self {
             Self::Votes => Some(CropTemplate {
                 x: 0.0200,
-                y: 0.1150,
+                y: 0.0200,
                 width: 0.1725,
-                height: 0.8650,
+                height: 0.9600,
             }),
             Self::Corrections => None,
         }
@@ -137,6 +137,7 @@ struct CropOptions {
     kind: CropKind,
     page_override: Option<u32>,
     keep_page_images: bool,
+    force: bool,
 }
 
 #[derive(Debug)]
@@ -3529,6 +3530,7 @@ fn parse_crop_args(args: &[String]) -> Result<CropOptions> {
     let mut kind = CropKind::Votes;
     let mut page_override = None;
     let mut keep_page_images = false;
+    let mut force = false;
 
     let mut index = 0;
     while index < args.len() {
@@ -3561,6 +3563,9 @@ fn parse_crop_args(args: &[String]) -> Result<CropOptions> {
             "--keep-page-images" => {
                 keep_page_images = true;
             }
+            "--force" => {
+                force = true;
+            }
             value if value.starts_with("--") => {
                 return err(format!("unknown option {value:?}"));
             }
@@ -3586,6 +3591,7 @@ fn parse_crop_args(args: &[String]) -> Result<CropOptions> {
         kind,
         page_override,
         keep_page_images,
+        force,
     })
 }
 
@@ -3970,13 +3976,15 @@ fn station_code_from_file_name(file_name: &str) -> Option<&str> {
 fn crop_pdf(pdf: &Path, out_dir: &Path, options: &CropOptions) -> Result<()> {
     let kind = options.kind;
     let full_table_path = full_table_output_path_for(pdf, out_dir, kind)?;
-    ensure_output_absent(&full_table_path)?;
+    if !options.force {
+        ensure_output_absent(&full_table_path)?;
+    }
     let narrow_path = if kind.narrow_from_full_table_template().is_some() {
         Some(narrow_output_path_for(pdf, out_dir, kind)?)
     } else {
         None
     };
-    if let Some(narrow_path) = &narrow_path {
+    if let (false, Some(narrow_path)) = (options.force, &narrow_path) {
         ensure_output_absent(narrow_path)?;
     }
 
@@ -4362,6 +4370,7 @@ Options:
                             corrections / b1-2.4.
   --page <number>           Override automatic section page detection.
   --keep-page-images        Keep extracted native page images under <out-dir>/_native_pages.
+  --force                   Overwrite existing crop files.
 
 The votes crop writes lossless PNG crops for table 2.2 \"Uitgebrachte stemmen\"
 under <election>/<municipality>/crops/2.2/ and narrow OCR-focused crops under
@@ -4370,7 +4379,7 @@ B1-2.4 \"Lijsten met verschillen\" under
 <election>/<municipality>/crops/corrections/. The command uses pdftotext to
 locate the table page, then extracts the embedded page image with pdfimages and
 crops those native pixels directly. Existing output files are treated as an
-error."
+error unless --force is used."
 }
 
 fn ocr_votes_help_text() -> &'static str {
