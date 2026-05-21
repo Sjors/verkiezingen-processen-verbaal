@@ -1,0 +1,7 @@
+[package]
+name = "pv"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+image = { version = "0.25.10", default-features = false, features = ["jpeg", "png"] }
