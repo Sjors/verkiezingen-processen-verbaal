@@ -996,7 +996,9 @@ fn find_result_markdown_by_station(results_dir: &Path) -> Result<BTreeMap<String
         if path.extension().and_then(OsStr::to_str) != Some("md") {
             continue;
         }
-        let station = station_code_from_markdown_path(&path).unwrap_or_else(|| "?".to_owned());
+        let Some(station) = station_code_from_markdown_path(&path) else {
+            continue;
+        };
         markdown_by_station.entry(station).or_default().push(path);
     }
     for paths in markdown_by_station.values_mut() {
@@ -1177,7 +1179,7 @@ fn compare_one_markdown(
                     markdown_path: Some(path.to_path_buf()),
                     correction_path,
                     official_values,
-                    status: ComparisonStatus::Incomplete,
+                    status: ComparisonStatus::CorrectionInconsistent,
                     details: format!(
                         "could not apply corrections: {}",
                         correction_errors.join("; ")
@@ -1411,9 +1413,19 @@ fn parse_correction_markdown_values(markdown: &str) -> BTreeMap<String, Correcti
         let Some(difference) = parse_i32_cell(&cells[3]) else {
             continue;
         };
+        let first = parse_optional_u32_cell(&cells[1]);
+        let second = parse_optional_u32_cell(&cells[2]);
+        let (first, second) = if first
+            .zip(second)
+            .is_some_and(|(first, second)| second as i32 - first as i32 != difference)
+        {
+            (None, None)
+        } else {
+            (first, second)
+        };
         let correction = Correction {
-            first: parse_optional_u32_cell(&cells[1]),
-            second: parse_optional_u32_cell(&cells[2]),
+            first,
+            second,
             difference,
         };
         corrections
@@ -3349,7 +3361,7 @@ fn validate_corrections_markdown(markdown: &str) -> ValidationReport {
             ));
             continue;
         }
-        let Some(id) = normalize_correction_id(&cells[0]) else {
+        let Some(_id) = normalize_correction_id(&cells[0]) else {
             errors.push(format!(
                 "row {line_number} has unknown correction ID {}",
                 cells[0]
@@ -3370,21 +3382,13 @@ fn validate_corrections_markdown(markdown: &str) -> ValidationReport {
                 cells[2]
             ));
         }
-        let Some(difference) = parse_i32_cell(&cells[3]) else {
+        let Some(_difference) = parse_i32_cell(&cells[3]) else {
             errors.push(format!(
                 "row {line_number} difference is not signed integer: {}",
                 cells[3]
             ));
             continue;
         };
-        if let (Some(first), Some(second)) = (first, second) {
-            let expected = second as i32 - first as i32;
-            if expected != difference {
-                errors.push(format!(
-                    "row {line_number} {id} has difference {difference}, but second-first is {expected}"
-                ));
-            }
-        }
     }
 
     ValidationReport {
@@ -4810,6 +4814,22 @@ mod tests {
     }
 
     #[test]
+    fn trusts_correction_difference_when_count_cells_conflict() {
+        let markdown = "\
+| ID | First | Second | Difference | Note |
+|---|---:|---:|---:|---|
+| E.4 | 49 | 48 | 1 | overwritten count cell |
+";
+
+        let report = validate_corrections_markdown(markdown);
+        assert!(report.passed, "{:?}", report.errors);
+        let corrections = parse_correction_markdown_values(markdown);
+        assert_eq!(corrections["E.4"].first, None);
+        assert_eq!(corrections["E.4"].second, None);
+        assert_eq!(corrections["E.4"].difference, 1);
+    }
+
+    #[test]
     fn reverses_round_two_official_values_with_corrections() {
         let correction_path = write_test_file(
             "Test_1_School_A.md",
@@ -4911,6 +4931,37 @@ mod tests {
 
         assert_eq!(row.status, ComparisonStatus::Incomplete);
         assert_eq!(row.details, "missing correction OCR");
+    }
+
+    #[test]
+    fn marks_unapplied_corrections_as_correction_inconsistent() {
+        let correction_path = write_test_file(
+            "Test_1_School_A.md",
+            "\
+| ID | First | Second | Difference | Note |
+|---|---:|---:|---:|---|
+| E.1 | 1 | 2 | 1 | |
+",
+        );
+        let correction_markdown = fs::read_to_string(&correction_path).unwrap();
+        let correction = parse_correction_document(&correction_path, &correction_markdown);
+        let official = OfficialStationResult {
+            location: "School A".to_owned(),
+            values: parse_votes_markdown_values(
+                &valid_votes_table().replace("| E.1 | 1 |", "| E.1 | 3 |"),
+            ),
+        };
+        let path = write_test_file("Test_1_School_A_eerste_telling.md", &valid_votes_table());
+
+        let row = compare_one_markdown(&path, "1", &official, Some(&correction), true);
+        let _ = fs::remove_file(path);
+        let _ = fs::remove_file(correction_path);
+
+        assert_eq!(row.status, ComparisonStatus::CorrectionInconsistent);
+        assert_eq!(
+            row.details,
+            "could not apply corrections: E.1 second=2, official=3"
+        );
     }
 
     fn write_test_file(name: &str, content: &str) -> PathBuf {

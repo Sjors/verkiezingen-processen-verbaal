@@ -27,8 +27,13 @@ Rules:
 - `First` is the value established by the stembureau.
 - `Second` is the value established by the gemeentelijk stembureau.
 - `Difference` is `Second - First`, as a signed integer without leading zeros.
-- Always fill `Difference` for rows you output. If both `First` and `Second`
-  are written, compute the difference from those values.
+- Read the handwritten signed number in the `Difference` column exactly. If the
+  signed difference conflicts with the `First` and `Second` values you read,
+  re-check the count cells and use the final/corrected handwritten digits that
+  make the row consistent with the signed difference.
+- When a count cell has overwritten or crossed-out digits, use the final
+  intended value, not the crossed-out value.
+- Always fill `Difference` for rows you output.
 - If a first or second value is not written, leave that cell empty but still fill `Difference`.
 - Preserve any handwritten explanation in `Note`; otherwise leave `Note` empty.
 - If the correction table has no correction rows, return only the header and separator.
