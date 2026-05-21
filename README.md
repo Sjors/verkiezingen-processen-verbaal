@@ -74,6 +74,33 @@ locate the table page, then extracts the embedded page image with `pdfimages`
 and crops those native pixels directly. It does not render through `pdftoppm`,
 so the crop keeps the original scan resolution.
 
+After cropping, run the narrow crops through a local multimodal LLM:
+
+```bash
+cargo run -- ocr-votes 2026-GR 0344
+```
+
+By default, `ocr-votes` reads PNG files from
+`{election}/{municipality}/crops/2.2/narrow/` and writes Markdown tables to
+`{election}/{municipality}/results/`. Each image is sent as a fresh chat
+completion request. The prompt lives in
+[`prompts/ocr-votes.md`](prompts/ocr-votes.md) so it can be adjusted without
+editing Rust code.
+
+The command validates every resulting Markdown file: it expects rows `E.1`
+through `E.20`, `E`, `F`, `G`, and `H`, checks that values are digits, verifies
+that `E.1` through `E.20` sum to `E`, and verifies that `E + F + G` equals `H`.
+It prints a final PASS/FAIL table per voting-location crop.
+
+To re-run one voting location, pass its crop stem or image path and use
+`--force`:
+
+```bash
+cargo run -- ocr-votes 2026-GR 0344 \
+  --image Utrecht_41_Buurtcentrum_De_Uithoek_GR26_eerste_telling \
+  --force
+```
+
 ## Hashes and timestamps
 
 Each election has a signed manifest built from per-municipality `SHA256SUMS` files:
