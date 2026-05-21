@@ -3046,12 +3046,22 @@ fn call_llm_for_image(
         }],
         "temperature": 0,
         "max_tokens": options.max_tokens,
+        "reasoning_format": "deepseek",
+        "chat_template_kwargs": {
+            "enable_thinking": false,
+        },
     });
 
     let response = http_post_json(&options.endpoint, &body.to_string(), options.timeout)?;
     let json: serde_json::Value = serde_json::from_str(&response)?;
-    let content = json
-        .pointer("/choices/0/message/content")
+    let message = json.pointer("/choices/0/message").ok_or_else(|| {
+        io::Error::new(
+            io::ErrorKind::InvalidData,
+            "LLM response did not contain choices[0].message",
+        )
+    })?;
+    let content = message
+        .get("content")
         .and_then(serde_json::Value::as_str)
         .ok_or_else(|| {
             io::Error::new(
@@ -3061,6 +3071,13 @@ fn call_llm_for_image(
         })?
         .trim();
     if content.is_empty() {
+        if message
+            .get("reasoning_content")
+            .and_then(serde_json::Value::as_str)
+            .is_some_and(|reasoning| !reasoning.trim().is_empty())
+        {
+            return err("LLM returned reasoning content but no final content");
+        }
         return err("LLM returned empty content");
     }
     Ok(format!("{content}\n"))
