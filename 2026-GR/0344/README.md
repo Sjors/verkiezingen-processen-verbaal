@@ -10,7 +10,8 @@
 
 ## Verification
 
-The 207 per-stembureau PVs (+ 2 summary PVs) were cross-verified against the
-official osv4-3 counting CSV from
+The archive contains 207 first-counting per-stembureau PVs, 207 final
+per-stembureau counting PDFs, and 4 general or central PVs. The stembureau
+numbers were cross-verified against the official osv4-3 counting CSV from
 https://open.utrecht.nl/dataset/tellingsbestand-gemeenteraadsverkiezing-utrecht-2026
 — all 207 stembureau numbers match exactly.

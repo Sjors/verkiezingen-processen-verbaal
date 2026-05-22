@@ -6,6 +6,8 @@
 !**/[0-9][0-9][0-9][0-9]/SHA256SUMS
 !**/[0-9][0-9][0-9][0-9]/*.txt
 !**/[0-9][0-9][0-9][0-9]/.todo
+**/[0-9][0-9][0-9][0-9]/crops/
+**/[0-9][0-9][0-9][0-9]/results/
 **/BES-*/**
 !**/BES-*/README.md
 !**/BES-*/fetch.sh
@@ -24,3 +26,4 @@ progress/
 # macOS
 .DS_Store
 scripts/__pycache__/
+target/
