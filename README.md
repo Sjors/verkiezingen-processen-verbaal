@@ -156,8 +156,6 @@ Current limitations:
 - Utrecht's published `gsb-tellingsbestand.csv` is the OSV4-3
   central/candidate-count file from the municipal counting board. It is not the
   first count on list level from the `_eerste_telling` stembureau PDFs.
-- TODO: compare candidate-level OCR results against the OSV4-3 GSB CSV once we
-  extract the candidate-count PDF tables.
 - `official-csvs` only downloads the files; use `compare-results` to compare OCR
   Markdown to the matching station-level CSV.
 
@@ -185,6 +183,12 @@ invalid, the row is marked `incomplete` instead of `mismatch`. It prints a
 terminal-friendly table by default; use
 `--format markdown` for a Markdown table. Use `--debug` to print progress logs
 to stderr while it writes mismatch reports.
+
+When candidate-level OCR files are present in
+`{election}/{municipality}/results/candidates/`, `compare-results` also compares
+those B1 section 3.5 candidate counts against the station-level OSV4-3 GSB CSV.
+Stations without candidate OCR are marked `not checked` for the candidate
+status and do not count as failures.
 
 Rows have one of six statuses per station: `missing`, `incomplete`,
 `correction inconsistent`, `internally inconsistent`, `fully matches`, or

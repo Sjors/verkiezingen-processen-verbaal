@@ -215,6 +215,7 @@ struct CompareResultsOptions {
     municipality: String,
     results_dir: Option<PathBuf>,
     corrections_dir: Option<PathBuf>,
+    candidates_dir: Option<PathBuf>,
     output_path: Option<PathBuf>,
     stations: BTreeSet<String>,
     format: ReportFormat,
@@ -273,6 +274,19 @@ struct OfficialResults {
 struct OfficialStationResult {
     location: String,
     values: BTreeMap<String, u32>,
+    candidate_values: BTreeMap<CandidateKey, u32>,
+}
+
+#[derive(Clone, Debug, Eq, Ord, PartialEq, PartialOrd)]
+struct CandidateKey {
+    list: u32,
+    candidate: u32,
+}
+
+impl CandidateKey {
+    fn label(&self) -> String {
+        format!("L{}.{}", self.list, self.candidate)
+    }
 }
 
 #[derive(Clone, Copy, Debug, Eq, PartialEq)]
@@ -307,6 +321,35 @@ struct ComparisonRow {
     official_values: BTreeMap<String, u32>,
     status: ComparisonStatus,
     details: String,
+    candidates: Option<CandidateComparison>,
+}
+
+#[derive(Clone, Copy, Debug, Eq, PartialEq)]
+enum CandidateComparisonStatus {
+    Incomplete,
+    InternallyInconsistent,
+    FullyMatches,
+    Mismatch,
+}
+
+impl CandidateComparisonStatus {
+    fn label(self) -> &'static str {
+        match self {
+            Self::Incomplete => "incomplete",
+            Self::InternallyInconsistent => "internally inconsistent",
+            Self::FullyMatches => "fully matches",
+            Self::Mismatch => "mismatch",
+        }
+    }
+}
+
+#[derive(Clone, Debug)]
+struct CandidateComparison {
+    paths: Vec<PathBuf>,
+    status: CandidateComparisonStatus,
+    details: String,
+    compared_values: usize,
+    expected_values: usize,
 }
 
 #[derive(Debug)]
@@ -728,6 +771,10 @@ fn compare_results_command(args: &[String]) -> Result<()> {
         .corrections_dir
         .clone()
         .unwrap_or_else(|| municipality_dir.join("results").join("corrections"));
+    let candidates_dir = options
+        .candidates_dir
+        .clone()
+        .unwrap_or_else(|| municipality_dir.join("results").join("candidates"));
     debug_log(
         options.debug,
         format!("indexing Markdown files in {}", results_dir.display()),
@@ -759,6 +806,23 @@ fn compare_results_command(args: &[String]) -> Result<()> {
     );
     debug_log(
         options.debug,
+        format!(
+            "indexing candidate OCR files in {}",
+            candidates_dir.display()
+        ),
+    );
+    let candidate_markdown_by_station = find_candidate_markdown_by_station(&candidates_dir)?;
+    let candidate_markdown_count: usize =
+        candidate_markdown_by_station.values().map(Vec::len).sum();
+    debug_log(
+        options.debug,
+        format!(
+            "indexed {candidate_markdown_count} candidate OCR files for {} station keys",
+            candidate_markdown_by_station.len()
+        ),
+    );
+    debug_log(
+        options.debug,
         format!("reading official CSV {}", official_csv.display()),
     );
     let official_results = read_official_results_csv(&official_csv)?;
@@ -774,6 +838,7 @@ fn compare_results_command(args: &[String]) -> Result<()> {
         &official_results,
         &markdown_by_station,
         &corrections_by_station,
+        &candidate_markdown_by_station,
         official_csv_needs_correction_reversal(&official_csv),
     );
     if !options.stations.is_empty() {
@@ -807,6 +872,7 @@ fn compare_results_command(args: &[String]) -> Result<()> {
             &official_results,
             &results_dir,
             &corrections_dir,
+            &candidates_dir,
             mismatch_report_dir.as_deref(),
             &rows,
         );
@@ -816,6 +882,7 @@ fn compare_results_command(args: &[String]) -> Result<()> {
         &official_results,
         &results_dir,
         &corrections_dir,
+        &candidates_dir,
         mismatch_report_dir.as_deref(),
         &rows,
         options.format,
@@ -1000,11 +1067,16 @@ fn read_official_results_csv(path: &Path) -> Result<OfficialResults> {
             OfficialStationResult {
                 location: header_row.get(*column).cloned().unwrap_or_default(),
                 values: BTreeMap::new(),
+                candidate_values: BTreeMap::new(),
             },
         );
     }
 
+    let mut current_list_number = None;
     for row in &rows {
+        if let Some(list_number) = official_list_number_for_row(row) {
+            current_list_number = Some(list_number);
+        }
         if let Some(id) = official_result_id_for_row(row) {
             for (column, station_code) in &station_columns {
                 let value = parse_u32_cell(row.get(*column).map(String::as_str).unwrap_or(""))?;
@@ -1013,6 +1085,24 @@ fn read_official_results_csv(path: &Path) -> Result<OfficialResults> {
                     .expect("station initialized from station_columns")
                     .values
                     .insert(id.clone(), value);
+            }
+        }
+        if let (Some(list_number), Some(candidate_number)) =
+            (current_list_number, official_candidate_number_for_row(row))
+        {
+            for (column, station_code) in &station_columns {
+                let value = parse_u32_cell(row.get(*column).map(String::as_str).unwrap_or(""))?;
+                stations
+                    .get_mut(station_code)
+                    .expect("station initialized from station_columns")
+                    .candidate_values
+                    .insert(
+                        CandidateKey {
+                            list: list_number,
+                            candidate: candidate_number,
+                        },
+                        value,
+                    );
             }
         }
     }
@@ -1086,6 +1176,22 @@ fn parse_semicolon_csv_record(line: &str) -> Result<Vec<String>> {
         *first = first.trim_start_matches('\u{feff}').to_owned();
     }
     Ok(fields)
+}
+
+fn official_list_number_for_row(row: &[String]) -> Option<u32> {
+    let list_number = row.first()?.parse::<u32>().ok()?;
+    if row.get(2).is_some_and(|cell| cell.is_empty()) {
+        Some(list_number)
+    } else {
+        None
+    }
+}
+
+fn official_candidate_number_for_row(row: &[String]) -> Option<u32> {
+    if !row.first().is_none_or(|cell| cell.is_empty()) {
+        return None;
+    }
+    row.get(2).and_then(|cell| cell.parse::<u32>().ok())
 }
 
 fn official_result_id_for_row(row: &[String]) -> Option<String> {
@@ -1167,6 +1273,193 @@ fn read_corrections_by_station(
     Ok(corrections_by_station)
 }
 
+fn find_candidate_markdown_by_station(
+    candidates_dir: &Path,
+) -> Result<BTreeMap<String, Vec<PathBuf>>> {
+    let mut markdown_by_station: BTreeMap<String, Vec<PathBuf>> = BTreeMap::new();
+    if !candidates_dir.exists() {
+        return Ok(markdown_by_station);
+    }
+
+    for entry in fs::read_dir(candidates_dir)? {
+        let path = entry?.path();
+        if path.extension().and_then(OsStr::to_str) != Some("md") {
+            continue;
+        }
+        let Some(station) = station_code_from_markdown_path(&path) else {
+            continue;
+        };
+        markdown_by_station.entry(station).or_default().push(path);
+    }
+    for paths in markdown_by_station.values_mut() {
+        paths.sort();
+    }
+    Ok(markdown_by_station)
+}
+
+fn compare_candidate_markdown_to_official(
+    official: &OfficialStationResult,
+    paths: &[PathBuf],
+) -> CandidateComparison {
+    let mut details = Vec::new();
+    let mut values = BTreeMap::new();
+    let mut has_internal_error = false;
+
+    for path in paths {
+        let Some(list_number) = candidate_list_number_from_path(path) else {
+            has_internal_error = true;
+            details.push(format!(
+                "{}: could not parse list number from file name",
+                display_file_name(path)
+            ));
+            continue;
+        };
+        let markdown = match fs::read_to_string(path) {
+            Ok(markdown) => markdown,
+            Err(error) => {
+                has_internal_error = true;
+                details.push(format!(
+                    "{}: could not read Markdown: {error}",
+                    path.display()
+                ));
+                continue;
+            }
+        };
+        let validation = validate_candidates_markdown(&markdown);
+        if !validation.passed {
+            has_internal_error = true;
+            details.push(format!(
+                "{}: {}",
+                display_file_name(path),
+                validation.errors.join("; ")
+            ));
+        }
+        for (candidate_number, value) in parse_candidates_markdown_values(&markdown) {
+            let key = CandidateKey {
+                list: list_number,
+                candidate: candidate_number,
+            };
+            if values.insert(key.clone(), value).is_some() {
+                has_internal_error = true;
+                details.push(format!("duplicate candidate OCR row for {}", key.label()));
+            }
+        }
+    }
+
+    if official.candidate_values.is_empty() {
+        details.push("official CSV has no candidate rows".to_owned());
+        return CandidateComparison {
+            paths: paths.to_vec(),
+            status: CandidateComparisonStatus::Incomplete,
+            details: details.join("; "),
+            compared_values: values.len(),
+            expected_values: 0,
+        };
+    }
+
+    let mut missing_by_list: BTreeMap<u32, Vec<u32>> = BTreeMap::new();
+    let mut mismatches = Vec::new();
+    for (key, official_value) in &official.candidate_values {
+        match values.get(key) {
+            Some(markdown_value) if markdown_value == official_value => {}
+            Some(markdown_value) => mismatches.push(format!(
+                "{}: md={}, official={official_value}",
+                key.label(),
+                markdown_value
+            )),
+            None => missing_by_list
+                .entry(key.list)
+                .or_default()
+                .push(key.candidate),
+        }
+    }
+
+    for key in values.keys() {
+        if !official.candidate_values.contains_key(key) {
+            has_internal_error = true;
+            details.push(format!(
+                "{} is not present in the official candidate list",
+                key.label()
+            ));
+        }
+    }
+
+    details.extend(candidate_missing_details(
+        &official.candidate_values,
+        &missing_by_list,
+    ));
+    details.extend(mismatches);
+
+    let status = if has_internal_error {
+        CandidateComparisonStatus::InternallyInconsistent
+    } else if !missing_by_list.is_empty() {
+        CandidateComparisonStatus::Incomplete
+    } else if details.is_empty() {
+        CandidateComparisonStatus::FullyMatches
+    } else {
+        CandidateComparisonStatus::Mismatch
+    };
+
+    CandidateComparison {
+        paths: paths.to_vec(),
+        status,
+        details: details.join("; "),
+        compared_values: values.len(),
+        expected_values: official.candidate_values.len(),
+    }
+}
+
+fn candidate_missing_details(
+    official_values: &BTreeMap<CandidateKey, u32>,
+    missing_by_list: &BTreeMap<u32, Vec<u32>>,
+) -> Vec<String> {
+    let mut expected_by_list: BTreeMap<u32, usize> = BTreeMap::new();
+    for key in official_values.keys() {
+        *expected_by_list.entry(key.list).or_default() += 1;
+    }
+
+    missing_by_list
+        .iter()
+        .map(|(list, candidates)| {
+            let expected = expected_by_list.get(list).copied().unwrap_or_default();
+            if candidates.len() == expected && expected > 0 {
+                format!("list {list} missing all {expected} candidates")
+            } else if candidates.len() <= 8 {
+                format!(
+                    "list {list} missing candidate(s) {}",
+                    candidates
+                        .iter()
+                        .map(u32::to_string)
+                        .collect::<Vec<_>>()
+                        .join(", ")
+                )
+            } else {
+                let first = candidates
+                    .iter()
+                    .take(5)
+                    .map(u32::to_string)
+                    .collect::<Vec<_>>()
+                    .join(", ");
+                format!(
+                    "list {list} missing {} candidates, starting with {first}",
+                    candidates.len()
+                )
+            }
+        })
+        .collect()
+}
+
+fn candidate_list_number_from_path(path: &Path) -> Option<u32> {
+    let stem = path.file_stem()?.to_str()?;
+    let (_, rest) = stem.split_once("_lijst-")?;
+    let digits: String = rest.chars().take_while(|ch| ch.is_ascii_digit()).collect();
+    if digits.is_empty() {
+        None
+    } else {
+        digits.parse().ok()
+    }
+}
+
 fn parse_correction_document(path: &Path, markdown: &str) -> CorrectionDocument {
     let validation = validate_corrections_markdown(markdown);
     let corrections = parse_correction_markdown_values(markdown);
@@ -1185,6 +1478,7 @@ fn compare_markdown_to_official(
     official_results: &OfficialResults,
     markdown_by_station: &BTreeMap<String, Vec<PathBuf>>,
     corrections_by_station: &BTreeMap<String, CorrectionDocument>,
+    candidate_markdown_by_station: &BTreeMap<String, Vec<PathBuf>>,
     reverse_corrections: bool,
 ) -> Vec<ComparisonRow> {
     let mut rows = Vec::new();
@@ -1194,6 +1488,9 @@ fn compare_markdown_to_official(
             .stations
             .get(station_code)
             .expect("station initialized from station_order");
+        let candidate_comparison = candidate_markdown_by_station
+            .get(station_code)
+            .map(|paths| compare_candidate_markdown_to_official(official, paths));
         if let Some(paths) = markdown_by_station.get(station_code) {
             seen_markdown_stations.insert(station_code.clone());
             for path in paths {
@@ -1203,6 +1500,7 @@ fn compare_markdown_to_official(
                     station_code,
                     official,
                     correction,
+                    candidate_comparison.clone(),
                     reverse_corrections && is_first_count_markdown(path),
                 ));
             }
@@ -1217,6 +1515,7 @@ fn compare_markdown_to_official(
                 official_values: official.values.clone(),
                 status: ComparisonStatus::Missing,
                 details: "no Markdown result".to_owned(),
+                candidates: candidate_comparison,
             });
         }
     }
@@ -1239,6 +1538,15 @@ fn compare_markdown_to_official(
                     "station not found in official CSV: {}",
                     display_file_name(path)
                 ),
+                candidates: candidate_markdown_by_station
+                    .get(station_code)
+                    .map(|paths| CandidateComparison {
+                        paths: paths.clone(),
+                        status: CandidateComparisonStatus::Incomplete,
+                        details: "station not found in official CSV".to_owned(),
+                        compared_values: 0,
+                        expected_values: 0,
+                    }),
             });
         }
     }
@@ -1251,6 +1559,7 @@ fn compare_one_markdown(
     station_code: &str,
     official: &OfficialStationResult,
     correction: Option<&CorrectionDocument>,
+    candidates: Option<CandidateComparison>,
     reverse_corrections: bool,
 ) -> ComparisonRow {
     let correction_path = correction.map(|document| document.path.clone());
@@ -1265,6 +1574,7 @@ fn compare_one_markdown(
                 official_values: official.values.clone(),
                 status: ComparisonStatus::InternallyInconsistent,
                 details: format!("could not read Markdown: {error}"),
+                candidates,
             };
         }
     };
@@ -1285,6 +1595,7 @@ fn compare_one_markdown(
                     official_values: official.values.clone(),
                     status: ComparisonStatus::Incomplete,
                     details: "missing correction OCR".to_owned(),
+                    candidates,
                 };
             };
             if !correction.validation.passed {
@@ -1299,6 +1610,7 @@ fn compare_one_markdown(
                         "invalid correction OCR: {}",
                         correction.validation.errors.join("; ")
                     ),
+                    candidates,
                 };
             }
             let (official_values, correction_errors) =
@@ -1315,6 +1627,7 @@ fn compare_one_markdown(
                         "could not apply corrections: {}",
                         correction_errors.join("; ")
                     ),
+                    candidates,
                 };
             }
             let mismatches = official_mismatches(&values, &official_values);
@@ -1335,6 +1648,7 @@ fn compare_one_markdown(
             official_values,
             status: ComparisonStatus::InternallyInconsistent,
             details: details.join("; "),
+            candidates,
         };
     }
 
@@ -1349,6 +1663,7 @@ fn compare_one_markdown(
             official_values,
             status: ComparisonStatus::CorrectionInconsistent,
             details: details.join("; "),
+            candidates,
         }
     } else if mismatches.is_empty() {
         ComparisonRow {
@@ -1359,6 +1674,7 @@ fn compare_one_markdown(
             official_values,
             status: ComparisonStatus::FullyMatches,
             details: String::new(),
+            candidates,
         }
     } else {
         ComparisonRow {
@@ -1369,6 +1685,7 @@ fn compare_one_markdown(
             official_values,
             status: ComparisonStatus::Mismatch,
             details: mismatches.join("; "),
+            candidates,
         }
     }
 }
@@ -1528,6 +1845,21 @@ fn parse_votes_markdown_values(markdown: &str) -> BTreeMap<String, u32> {
     values
 }
 
+fn parse_candidates_markdown_values(markdown: &str) -> BTreeMap<u32, u32> {
+    let mut values = BTreeMap::new();
+    for line in markdown.lines().map(str::trim).skip(2) {
+        let cells = markdown_cells(line);
+        if cells.len() != 2 {
+            continue;
+        }
+        let (Ok(candidate), Ok(votes)) = (cells[0].parse::<u32>(), cells[1].parse::<u32>()) else {
+            continue;
+        };
+        values.insert(candidate, votes);
+    }
+    values
+}
+
 fn parse_correction_markdown_values(markdown: &str) -> BTreeMap<String, Correction> {
     let mut corrections: BTreeMap<String, Correction> = BTreeMap::new();
     for line in markdown.lines().map(str::trim).skip(2) {
@@ -1647,15 +1979,7 @@ fn write_mismatch_reports(
 
     let report_rows: Vec<_> = rows
         .iter()
-        .filter(|row| {
-            matches!(
-                row.status,
-                ComparisonStatus::Incomplete
-                    | ComparisonStatus::CorrectionInconsistent
-                    | ComparisonStatus::InternallyInconsistent
-                    | ComparisonStatus::Mismatch
-            )
-        })
+        .filter(|row| row_needs_mismatch_report(row))
         .collect();
     if report_rows.is_empty() {
         debug_log(debug, "no mismatch reports to write");
@@ -1704,6 +2028,24 @@ fn write_mismatch_reports(
     Ok(Some(report_dir))
 }
 
+fn row_needs_mismatch_report(row: &ComparisonRow) -> bool {
+    station_needs_mismatch_report(row)
+        || row
+            .candidates
+            .as_ref()
+            .is_some_and(|candidates| candidates.status != CandidateComparisonStatus::FullyMatches)
+}
+
+fn station_needs_mismatch_report(row: &ComparisonRow) -> bool {
+    matches!(
+        row.status,
+        ComparisonStatus::Incomplete
+            | ComparisonStatus::CorrectionInconsistent
+            | ComparisonStatus::InternallyInconsistent
+            | ComparisonStatus::Mismatch
+    )
+}
+
 fn prepare_filtered_mismatch_report_dir(report_dir: &Path, rows: &[ComparisonRow]) -> Result<()> {
     fs::create_dir_all(report_dir)?;
     for row in rows {
@@ -1744,7 +2086,9 @@ fn write_mismatch_report(
     let highlighted_image_name = format!("{base_name}.png");
     let highlighted_image_path = report_dir.join(&highlighted_image_name);
 
-    let image_note = if let Some(markdown_path) = &row.markdown_path {
+    let image_note = if !station_needs_mismatch_report(row) {
+        String::new()
+    } else if let Some(markdown_path) = &row.markdown_path {
         let full_crop_path = full_crop_path_for_markdown(municipality_dir, markdown_path)?;
         if full_crop_path.exists() {
             let highlight_rows = highlight_rows_for_row(row);
@@ -1800,15 +2144,51 @@ fn write_mismatch_report(
     for detail in row.details.split("; ").filter(|detail| !detail.is_empty()) {
         content.push_str(&format!("- {detail}\n"));
     }
+    content.push_str(&candidate_note_for_report(row));
     content.push_str(&image_note);
-    content.push_str(&correction_note_for_report(
-        municipality_dir,
-        report_dir,
-        &base_name,
-        row,
-    )?);
+    if station_needs_mismatch_report(row) {
+        content.push_str(&correction_note_for_report(
+            municipality_dir,
+            report_dir,
+            &base_name,
+            row,
+        )?);
+    }
     fs::write(report_path, content)?;
     Ok(())
+}
+
+fn candidate_note_for_report(row: &ComparisonRow) -> String {
+    let Some(candidates) = &row.candidates else {
+        return String::new();
+    };
+
+    let mut content = String::new();
+    content.push_str("\n## Candidate Votes\n\n");
+    content.push_str(&format!("- Status: `{}`\n", candidates.status.label()));
+    content.push_str(&format!(
+        "- Compared candidate cells: {}/{}\n",
+        candidates.compared_values, candidates.expected_values
+    ));
+    content.push_str(&format!(
+        "- Candidate OCR files: {}\n",
+        candidates.paths.len()
+    ));
+    for detail in candidates
+        .details
+        .split("; ")
+        .filter(|detail| !detail.is_empty())
+    {
+        content.push_str(&format!("- {detail}\n"));
+    }
+    if !candidates.paths.is_empty() {
+        content.push_str("\n<details>\n<summary>Candidate OCR Markdown files</summary>\n\n");
+        for path in &candidates.paths {
+            content.push_str(&format!("- `{}`\n", path.display()));
+        }
+        content.push_str("\n</details>\n");
+    }
+    content
 }
 
 fn correction_issue_details_from_row(row: &ComparisonRow) -> Vec<&str> {
@@ -2642,6 +3022,7 @@ fn print_comparison_report(
     official_results: &OfficialResults,
     results_dir: &Path,
     corrections_dir: &Path,
+    candidates_dir: &Path,
     mismatch_report_dir: Option<&Path>,
     rows: &[ComparisonRow],
     format: ReportFormat,
@@ -2651,6 +3032,7 @@ fn print_comparison_report(
             official_results,
             results_dir,
             corrections_dir,
+            candidates_dir,
             mismatch_report_dir,
             rows,
         ),
@@ -2658,6 +3040,7 @@ fn print_comparison_report(
             official_results,
             results_dir,
             corrections_dir,
+            candidates_dir,
             mismatch_report_dir,
             rows,
         ),
@@ -2668,6 +3051,7 @@ fn print_terminal_comparison_report(
     official_results: &OfficialResults,
     results_dir: &Path,
     corrections_dir: &Path,
+    candidates_dir: &Path,
     mismatch_report_dir: Option<&Path>,
     rows: &[ComparisonRow],
 ) {
@@ -2703,6 +3087,7 @@ fn print_terminal_comparison_report(
     );
     println!("Markdown directory  {}", results_dir.display());
     println!("Corrections dir     {}", corrections_dir.display());
+    println!("Candidates dir      {}", candidates_dir.display());
     if let Some(mismatch_report_dir) = mismatch_report_dir {
         println!("Mismatch reports   {}", mismatch_report_dir.display());
     }
@@ -2722,6 +3107,25 @@ fn print_terminal_comparison_report(
             status.label(),
             counts.get(status.label()).copied().unwrap_or(0)
         );
+    }
+    let candidate_counts = candidate_comparison_counts(rows);
+    if !candidate_counts.is_empty() {
+        println!();
+        println!("Candidate summary");
+        for status in [
+            CandidateComparisonStatus::Incomplete,
+            CandidateComparisonStatus::InternallyInconsistent,
+            CandidateComparisonStatus::Mismatch,
+            CandidateComparisonStatus::FullyMatches,
+        ] {
+            println!(
+                "  {:<23} {}",
+                status.label(),
+                candidate_counts.get(status.label()).copied().unwrap_or(0)
+            );
+        }
+        let unchecked = rows.iter().filter(|row| row.candidates.is_none()).count();
+        println!("  {:<23} {}", "not checked", unchecked);
     }
     println!();
     println!(
@@ -2759,13 +3163,50 @@ fn terminal_reason(row: &ComparisonRow) -> String {
 }
 
 fn report_reason(row: &ComparisonRow) -> String {
+    let primary_reason = station_report_reason(row);
+    let candidate_reason = candidate_report_reason(row);
+    match (primary_reason.is_empty(), candidate_reason.is_empty()) {
+        (true, true) => String::new(),
+        (false, true) => primary_reason,
+        (true, false) => candidate_reason,
+        (false, false) => format!("{primary_reason}; {candidate_reason}"),
+    }
+}
+
+fn station_report_reason(row: &ComparisonRow) -> String {
     if row.details.is_empty()
         || row.status == ComparisonStatus::FullyMatches
         || (row.status == ComparisonStatus::Missing && row.details == "no Markdown result")
     {
         return String::new();
+    } else {
+        row.details.clone()
     }
-    row.details.clone()
+}
+
+fn candidate_report_reason(row: &ComparisonRow) -> String {
+    let Some(candidates) = &row.candidates else {
+        return String::new();
+    };
+    if candidates.status == CandidateComparisonStatus::FullyMatches {
+        return String::new();
+    }
+    if candidates.details.is_empty() {
+        format!("candidate votes {}", candidates.status.label())
+    } else {
+        format!(
+            "candidate votes {}: {}",
+            candidates.status.label(),
+            candidates.details
+        )
+    }
+}
+
+fn candidate_status_label(row: &ComparisonRow) -> &'static str {
+    row.candidates
+        .as_ref()
+        .map(|candidates| candidates.status.label())
+        .unwrap_or("not checked")
 }
 
 fn shorten_reason(details: &str) -> String {
@@ -2783,6 +3224,9 @@ fn shorten_reason(details: &str) -> String {
 }
 
 fn shorten_detail(detail: &str) -> String {
+    if let Some(shortened) = shorten_candidate_comparison_detail(detail) {
+        return shortened;
+    }
     if let Some(shortened) = shorten_mismatch_detail(detail) {
         return shortened;
     }
@@ -2820,6 +3264,12 @@ fn shorten_detail(detail: &str) -> String {
         return format!("bad correction: {error}");
     }
     detail.to_owned()
+}
+
+fn shorten_candidate_comparison_detail(detail: &str) -> Option<String> {
+    let rest = detail.strip_prefix("candidate votes ")?;
+    let (status, detail) = rest.split_once(": ")?;
+    Some(format!("candidate {status}: {}", shorten_detail(detail)))
 }
 
 fn shorten_mismatch_detail(detail: &str) -> Option<String> {
@@ -2875,6 +3325,7 @@ fn print_markdown_comparison_report(
     official_results: &OfficialResults,
     results_dir: &Path,
     corrections_dir: &Path,
+    candidates_dir: &Path,
     mismatch_report_dir: Option<&Path>,
     rows: &[ComparisonRow],
 ) {
@@ -2884,6 +3335,7 @@ fn print_markdown_comparison_report(
             official_results,
             results_dir,
             corrections_dir,
+            candidates_dir,
             mismatch_report_dir,
             rows,
         )
@@ -2894,6 +3346,7 @@ fn render_markdown_comparison_report(
     official_results: &OfficialResults,
     results_dir: &Path,
     corrections_dir: &Path,
+    candidates_dir: &Path,
     mismatch_report_dir: Option<&Path>,
     rows: &[ComparisonRow],
 ) -> String {
@@ -2907,6 +3360,10 @@ fn render_markdown_comparison_report(
         "Corrections directory: {}\n",
         corrections_dir.display()
     ));
+    output.push_str(&format!(
+        "Candidates directory: {}\n",
+        candidates_dir.display()
+    ));
     if let Some(mismatch_report_dir) = mismatch_report_dir {
         output.push_str(&format!(
             "Mismatch reports: {}\n",
@@ -2914,15 +3371,19 @@ fn render_markdown_comparison_report(
         ));
     }
     output.push('\n');
-    output.push_str("| Station | Location | Status | Reason |\n");
-    output.push_str("|---:|---|---|---|\n");
+    output.push_str(
+        "| Station | Location | Status | Reason | Candidate Status | Candidate Reason |\n",
+    );
+    output.push_str("|---:|---|---|---|---|---|\n");
     for row in rows {
         output.push_str(&format!(
-            "| {} | {} | {} | {} |",
+            "| {} | {} | {} | {} | {} | {} |",
             escape_markdown_table_cell(&row.station),
             escape_markdown_table_cell(&row.location),
             row.status.label(),
-            escape_markdown_table_cell(&report_reason(row))
+            escape_markdown_table_cell(&station_report_reason(row)),
+            escape_markdown_table_cell(candidate_status_label(row)),
+            escape_markdown_table_cell(&candidate_report_reason(row))
         ));
         output.push('\n');
     }
@@ -2944,6 +3405,24 @@ fn render_markdown_comparison_report(
         ));
         output.push('\n');
     }
+    let candidate_counts = candidate_comparison_counts(rows);
+    output.push('\n');
+    output.push_str("Candidate summary:\n");
+    for status in [
+        CandidateComparisonStatus::Incomplete,
+        CandidateComparisonStatus::InternallyInconsistent,
+        CandidateComparisonStatus::Mismatch,
+        CandidateComparisonStatus::FullyMatches,
+    ] {
+        output.push_str(&format!(
+            "- {}: {}",
+            status.label(),
+            candidate_counts.get(status.label()).copied().unwrap_or(0)
+        ));
+        output.push('\n');
+    }
+    let unchecked = rows.iter().filter(|row| row.candidates.is_none()).count();
+    output.push_str(&format!("- not checked: {unchecked}\n"));
     output
 }
 
@@ -2951,6 +3430,16 @@ fn comparison_counts(rows: &[ComparisonRow]) -> BTreeMap<&'static str, usize> {
     let mut counts: BTreeMap<&'static str, usize> = BTreeMap::new();
     for row in rows {
         *counts.entry(row.status.label()).or_default() += 1;
+    }
+    counts
+}
+
+fn candidate_comparison_counts(rows: &[ComparisonRow]) -> BTreeMap<&'static str, usize> {
+    let mut counts: BTreeMap<&'static str, usize> = BTreeMap::new();
+    for row in rows {
+        if let Some(candidates) = &row.candidates {
+            *counts.entry(candidates.status.label()).or_default() += 1;
+        }
     }
     counts
 }
@@ -4220,6 +4709,7 @@ fn parse_compare_results_args(args: &[String]) -> Result<CompareResultsOptions> 
     let mut positionals = Vec::new();
     let mut results_dir = None;
     let mut corrections_dir = None;
+    let mut candidates_dir = None;
     let mut output_path = None;
     let mut stations = BTreeSet::new();
     let mut format = ReportFormat::Terminal;
@@ -4240,6 +4730,10 @@ fn parse_compare_results_args(args: &[String]) -> Result<CompareResultsOptions> 
                     index,
                     "--corrections-dir",
                 )?));
+            }
+            "--candidates-dir" => {
+                index += 1;
+                candidates_dir = Some(PathBuf::from(require_arg(args, index, "--candidates-dir")?));
             }
             "--output" => {
                 index += 1;
@@ -4280,6 +4774,7 @@ fn parse_compare_results_args(args: &[String]) -> Result<CompareResultsOptions> 
         municipality: positionals[1].clone(),
         results_dir,
         corrections_dir,
+        candidates_dir,
         output_path,
         stations,
         format,
@@ -5448,6 +5943,7 @@ Examples:
 Options:
   --results-dir <dir>       Markdown result directory. Default: <election>/<municipality>/results.
   --corrections-dir <dir>   Correction OCR directory. Default: <election>/<municipality>/results/corrections.
+  --candidates-dir <dir>    Candidate OCR directory. Default: <election>/<municipality>/results/candidates.
   --output <file>           Also write a Markdown report to this file.
   --station <number>        Compare and rewrite the mismatch report for one polling station.
                             Repeat to check several specific stations.
@@ -5467,9 +5963,11 @@ the command reverses per-station corrections from
 invalid correction OCR marks that row `incomplete`. Status values are `missing`,
 `incomplete`, `correction inconsistent`, `internally inconsistent`,
 `fully matches`, and `mismatch`. Full failure details and highlighted table crops are written under
-`<election>/<municipality>/results/mismatches/`. Missing rows include official
-stations without Markdown and Markdown files whose station number is not present
-in the official CSV."
+`<election>/<municipality>/results/mismatches/`. Candidate OCR files under
+`<election>/<municipality>/results/candidates/` are compared against the same
+station-level official CSV when present. Missing rows include official stations
+without Markdown and Markdown files whose station number is not present in the
+official CSV."
 }
 
 #[cfg(test)]
@@ -5606,6 +6104,12 @@ mod tests {
                 index,
                 index * 2
             ));
+            csv.push_str(&format!(
+                ";;\"1\";\"Candidate {index}\";\"{}\";\"{}\";\"{}\"\n",
+                index * 30,
+                index * 10,
+                index * 20
+            ));
         }
         csv.push_str(
             ";\"geldige stembiljetten\";;;\"63\";\"21\";\"42\"\n\
@@ -5623,6 +6127,52 @@ mod tests {
         assert_eq!(official.stations["1"].values["E.1"], 1);
         assert_eq!(official.stations["2"].values["E.20"], 40);
         assert_eq!(official.stations["2"].values["H"], 46);
+        assert_eq!(
+            official.stations["1"].candidate_values[&CandidateKey {
+                list: 7,
+                candidate: 1
+            }],
+            70
+        );
+    }
+
+    #[test]
+    fn compares_candidate_markdown_against_official_values() {
+        let path = write_test_file(
+            "Test_1_School_A_lijst-01_Party_kolom-1.md",
+            "\
+| Candidate | Votes |
+|---:|---:|
+| 1 | 7 |
+| 2 | 3 |
+",
+        );
+        let official = OfficialStationResult {
+            location: "School A".to_owned(),
+            values: BTreeMap::new(),
+            candidate_values: BTreeMap::from([
+                (
+                    CandidateKey {
+                        list: 1,
+                        candidate: 1,
+                    },
+                    7,
+                ),
+                (
+                    CandidateKey {
+                        list: 1,
+                        candidate: 2,
+                    },
+                    4,
+                ),
+            ]),
+        };
+
+        let comparison = compare_candidate_markdown_to_official(&official, &[path.clone()]);
+        let _ = fs::remove_file(path);
+
+        assert_eq!(comparison.status, CandidateComparisonStatus::Mismatch);
+        assert!(comparison.details.contains("L1.2: md=3, official=4"));
     }
 
     #[test]
@@ -5631,14 +6181,15 @@ mod tests {
         let official = OfficialStationResult {
             location: "School A".to_owned(),
             values: parse_votes_markdown_values(&valid_votes_table()),
+            candidate_values: BTreeMap::new(),
         };
 
-        let row = compare_one_markdown(&path, "1", &official, None, false);
+        let row = compare_one_markdown(&path, "1", &official, None, None, false);
         assert_eq!(row.status, ComparisonStatus::FullyMatches);
 
         let mut changed_official = official;
         changed_official.values.insert("E.1".to_owned(), 2);
-        let row = compare_one_markdown(&path, "1", &changed_official, None, false);
+        let row = compare_one_markdown(&path, "1", &changed_official, None, None, false);
         let _ = fs::remove_file(path);
 
         assert_eq!(row.status, ComparisonStatus::Mismatch);
@@ -5652,9 +6203,10 @@ mod tests {
         let official = OfficialStationResult {
             location: "School A".to_owned(),
             values: parse_votes_markdown_values(&valid_votes_table()),
+            candidate_values: BTreeMap::new(),
         };
 
-        let row = compare_one_markdown(&path, "1", &official, None, false);
+        let row = compare_one_markdown(&path, "1", &official, None, None, false);
         let highlight_rows = highlight_rows_for_row(&row);
         let _ = fs::remove_file(path);
 
@@ -5807,10 +6359,11 @@ mod tests {
         let official = OfficialStationResult {
             location: "School A".to_owned(),
             values: round_two_values,
+            candidate_values: BTreeMap::new(),
         };
         let path = write_test_file("Test_1_School_A_eerste_telling.md", &valid_votes_table());
 
-        let row = compare_one_markdown(&path, "1", &official, Some(&correction), true);
+        let row = compare_one_markdown(&path, "1", &official, Some(&correction), None, true);
         let _ = fs::remove_file(path);
         let _ = fs::remove_file(correction_path);
 
@@ -5843,10 +6396,11 @@ mod tests {
         let official = OfficialStationResult {
             location: "School A".to_owned(),
             values: round_two_values,
+            candidate_values: BTreeMap::new(),
         };
         let path = write_test_file("Test_1_School_A_eerste_telling.md", &table);
 
-        let row = compare_one_markdown(&path, "1", &official, Some(&correction), true);
+        let row = compare_one_markdown(&path, "1", &official, Some(&correction), None, true);
         let _ = fs::remove_file(path);
         let _ = fs::remove_file(correction_path);
 
@@ -5865,10 +6419,11 @@ mod tests {
         let official = OfficialStationResult {
             location: "School A".to_owned(),
             values: parse_votes_markdown_values(&valid_votes_table()),
+            candidate_values: BTreeMap::new(),
         };
         let path = write_test_file("Test_1_School_A_eerste_telling.md", &valid_votes_table());
 
-        let row = compare_one_markdown(&path, "1", &official, None, true);
+        let row = compare_one_markdown(&path, "1", &official, None, None, true);
         let _ = fs::remove_file(path);
 
         assert_eq!(row.status, ComparisonStatus::FullyMatches);
@@ -5882,10 +6437,11 @@ mod tests {
             values: parse_votes_markdown_values(
                 &valid_votes_table().replace("| E.1 | 1 |", "| E.1 | 2 |"),
             ),
+            candidate_values: BTreeMap::new(),
         };
         let path = write_test_file("Test_1_School_A_eerste_telling.md", &valid_votes_table());
 
-        let row = compare_one_markdown(&path, "1", &official, None, true);
+        let row = compare_one_markdown(&path, "1", &official, None, None, true);
         let _ = fs::remove_file(path);
 
         assert_eq!(row.status, ComparisonStatus::Incomplete);
@@ -5909,10 +6465,11 @@ mod tests {
             values: parse_votes_markdown_values(
                 &valid_votes_table().replace("| E.1 | 1 |", "| E.1 | 3 |"),
             ),
+            candidate_values: BTreeMap::new(),
         };
         let path = write_test_file("Test_1_School_A_eerste_telling.md", &valid_votes_table());
 
-        let row = compare_one_markdown(&path, "1", &official, Some(&correction), true);
+        let row = compare_one_markdown(&path, "1", &official, Some(&correction), None, true);
         let _ = fs::remove_file(path);
         let _ = fs::remove_file(correction_path);
 
