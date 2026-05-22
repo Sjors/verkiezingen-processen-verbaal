@@ -1,217 +1,218 @@
 Official CSV: 2026-GR/0344/results/official/gsb-tellingsbestand.csv
 Markdown directory: 2026-GR/0344/results
 Corrections directory: 2026-GR/0344/results/corrections
+Candidates directory: 2026-GR/0344/results/candidates
 Mismatch reports: 2026-GR/0344/results/mismatches
 
-| Station | Location | Status | Reason |
-|---:|---|---|---|
-| 1 | Stadhuisbrug 1 | fully matches |  |
-| 2 | Stadhuisbrug 1 | fully matches |  |
-| 3 | Vredenburgkade 11 | internally inconsistent | row 23 value for E could not be parsed: cannot parse integer from empty string; E.1: md=394, official=294; E.4: md=93, official=43; E.14: md=9, official=4; E: md=missing, official=976 |
-| 4 | Oudegracht 36 | fully matches |  |
-| 8 | Lange Smeestraat 40 | internally inconsistent | E.1 through E.20 sum to 1292, but E is 1288; E: md=1288, official=1292; H: md=1294, official=1298 |
-| 11 | Jaarbeursplein 6  ingang via Croeselaan | fully matches |  |
-| 12 | Van Riebeeckstraat 40 | fully matches |  |
-| 13 | Cremerstraat 253 | internally inconsistent | E.1 through E.20 sum to 499, but E is 0; E + F + G is 0, but H is 500; E.1: md=190, official=191; E: md=0, official=500 |
-| 14 | Leidsekade 118 | internally inconsistent | expected 26 non-empty table lines, found 25; row 23 expected ID E, found F; row 24 expected ID F, found G; row 25 expected ID G, found H; missing row 26 for H; E.2: md=60, official=241; E.17: md=16, official=10; E: md=missing, official=1133; H: md=1122, official=1136 |
-| 16 | Staringstraat 1 ingang H.J. Schimmelplein | mismatch | G: md=1, official=2; H: md=1030, official=1031 |
-| 18 | Louis Couperusstraat 85 | fully matches |  |
-| 20 | Vleutenseweg 515 ingang via Broerestraat | mismatch | E.1: md=371, official=369; E: md=1190, official=1188; H: md=1195, official=1193 |
-| 22 | Johan Wagenaarkade 45A | mismatch | E.1: md=missing, official=409; E.2: md=missing, official=305; E.3: md=missing, official=128; E.4: md=missing, official=76; E.5: md=missing, official=67; E.6: md=missing, official=57; E.7: md=missing, official=34; E.8: md=missing, official=37; E.9: md=missing, official=66; E.10: md=missing, official=31; E.11: md=missing, official=24; E.12: md=missing, official=20; E.13: md=missing, official=27; E.14: md=missing, official=5; E.15: md=missing, official=14; E.16: md=missing, official=9; E.17: md=missing, official=15; E.18: md=missing, official=0; E.19: md=missing, official=31; E.20: md=missing, official=23; E: md=missing, official=1378; F: md=missing, official=3; G: md=missing, official=4; H: md=missing, official=1385 |
-| 23 | Franz Schubertstraat 20 ingang via Händelstraat | fully matches |  |
-| 24 | Franz Schubertstraat 20 ingang via Händelstraat | internally inconsistent | expected 26 non-empty table lines, found 25; row 23 expected ID E, found F; row 24 expected ID F, found G; row 25 expected ID G, found H; missing row 26 for H; E.3: md=33, official=112; E: md=missing, official=1115 |
-| 25 | Leidseweg 140 | mismatch | E.1: md=264, official=265; E: md=923, official=924; H: md=926, official=927 |
-| 26 | Cartesiusweg 11 | fully matches |  |
-| 27 | St.-Bonifaciusstraat 8 | fully matches |  |
-| 28 | St.-Ludgerusstraat 251 | fully matches |  |
-| 29 | Prinses Margrietstraat 22 | mismatch | E.1: md=135, official=136; E.5: md=21, official=20 |
-| 31 | Prinses Beatrixlaan 2 | correction inconsistent | could not apply corrections: E.7 second=13, official=14 |
-| 32 | Prof. H. Bavinckstraat 5A | fully matches |  |
-| 35 | Zwanenvechtlaan 4 | fully matches |  |
-| 36 | Van Hoornekade 6 | mismatch | E.1: md=221, official=225; E: md=885, official=889; H: md=886, official=890 |
-| 37 | Jan van Ransdorpstraat 32 | internally inconsistent | E.1 through E.20 sum to 1233, but E is 525; E.15: md=715, official=7 |
-| 40 | Lagenoord 28A | mismatch | E.19: md=25, official=27; E: md=889, official=891; H: md=889, official=891 |
-| 41 | 2e Daalsedijk 2B | fully matches |  |
-| 42 | St.-Jacobsstraat 171 ingang via zijkant Jacobskerkhof | fully matches |  |
-| 44 | Ondiep 63 | internally inconsistent | E + F + G is 971, but H is 961; E.1: md=259, official=249; E: md=968, official=958 |
-| 45 | Boerhaaveplein 199 | fully matches |  |
-| 46 | Soestwetering 1 | fully matches |  |
-| 48 | Archimedeslaan 6 | internally inconsistent | expected 26 non-empty table lines, found 25; row 23 expected ID E, found F; row 24 expected ID F, found G; row 25 expected ID G, found H; missing row 26 for H; E.13: md=7, official=4; E: md=missing, official=523 |
-| 49 | Rhônedreef 40 | internally inconsistent | expected 26 non-empty table lines, found 25; row 23 expected ID E, found F; row 24 expected ID F, found G; row 25 expected ID G, found H; missing row 26 for H; E: md=missing, official=686 |
-| 50 | Gloriantdreef 1 | mismatch | E.1: md=193, official=194; E.2: md=88, official=87; E.14: md=24, official=23; E.17: md=24, official=25 |
-| 51 | Beyaertdreef 5 | fully matches |  |
-| 52 | Moezeldreef 400 | fully matches |  |
-| 53 | Dianadreef 27 ingang zijkant via Atlasdreef | internally inconsistent | E + F + G is 453, but H is 447; G: md=7, official=1 |
-| 55 | Kretadreef 61 ingang via Kalymnosdreef | internally inconsistent | E.1 through E.20 sum to 386, but E is 341; E.13: md=38, official=8; E.16: md=28, official=20; E.18: md=7, official=0 |
-| 56 | Dommeringdreef 60 ingang achterkant via Brandenburchdreef | fully matches |  |
-| 58 | Perudreef 8 | internally inconsistent | E + F + G is 419, but H is 413; E.9: md=86, official=80; E: md=417, official=411; G: md=1, official=2; H: md=413, official=414 |
-| 59 | Hoge Woerdplein 1 | internally inconsistent | E.1 through E.20 sum to 1462, but E is 1468; E + F + G is 1474, but H is 1468; E: md=1468, official=1462 |
-| 60 | Costa Ricadreef 9 | mismatch | E.7: md=8, official=9; E.10: md=17, official=18; E.16: md=44, official=42 |
-| 61 | Eufraatdreef 1 | fully matches |  |
-| 62 | Indusdreef 5 | mismatch | E.1: md=67, official=68; E.6: md=9, official=10; E.7: md=9, official=8; E.14: md=21, official=20; E.16: md=17, official=18; E: md=429, official=430; H: md=433, official=434 |
-| 64 | Gambiadreef 60 | fully matches |  |
-| 65 | Nigerdreef 8 ingang via hoek Bantoedreef/Nigerdreef | internally inconsistent | E.1 through E.20 sum to 614, but E is 616; E.10: md=13, official=15 |
-| 66 | Koekoeksplein 1 ingang achterzijde via Lijsterstraat | fully matches |  |
-| 67 | Vogelsanglaan 1 | fully matches |  |
-| 69 | Willem Arntszkade 5 | fully matches |  |
-| 70 | Van Swindenstraat 129 | fully matches |  |
-| 71 | Maria van Reedestraat 4 ingang via B.F. Suermanstraat | fully matches |  |
-| 72 | Samuel van Houtenstraat 1 | fully matches |  |
-| 73 | Hooghiemstraplein 51 | fully matches |  |
-| 74 | Bouwstraat 55 | internally inconsistent | E.1 through E.20 sum to 1304, but E is 0; E + F + G is 8, but H is 1312; E: md=0, official=1304 |
-| 76 | Poortstraat 73 ingang via Bladstraat | mismatch | E.1: md=285, official=283; E.7: md=31, official=30; E.8: md=20, official=21; E: md=829, official=827; F: md=1, official=0; G: md=0, official=1; H: md=830, official=828 |
-| 77 | Oude Kerkstraat 2A ingang via kleuterplein | internally inconsistent | E.1 through E.20 sum to 924, but E is 904; E.20: md=28, official=8 |
-| 78 | Smijerslaan 2  | fully matches |  |
-| 79 | Jan van Galenstraat 6 | fully matches |  |
-| 81 | Kouwerplantsoen 1A | correction inconsistent | could not apply corrections: E second=334, official=969; E.8 second=32, official=33 |
-| 82 | Voorveldselaan 2 | mismatch | E.1: md=314, official=313; E.2: md=276, official=277; E.11: md=22, official=21; E.12: md=13, official=14 |
-| 83 | Ché Guevarastraat 15 ingang via achterkant P. L. Brionstraat | mismatch | F: md=2, official=1; H: md=1076, official=1075 |
-| 85 | Prof. van Bemmelenlaan 34 ingang via Prof. Broekemalaan | mismatch | G: md=2, official=1; H: md=1259, official=1258 |
-| 88 | Kruisstraat 201 | internally inconsistent | E.1 through E.20 sum to 1219, but E is 1227; E.1: md=400, official=408 |
-| 90 | Schoolplein 6 ingang via Schoolstraat | internally inconsistent | E.1 through E.20 sum to 1153, but E is 1168; E.2: md=270, official=278; E: md=1168, official=1161; H: md=1175, official=1168 |
-| 91 | Oudwijkerdwarsstraat 148 | internally inconsistent | E.1 through E.20 sum to 1035, but E is 0; E + F + G is 2, but H is 1037; E: md=0, official=1035 |
-| 93 | Homeruslaan 40 ingang via gymzaal Minervaplein | internally inconsistent | E.1 through E.20 sum to 759, but E is 0; E + F + G is 5, but H is 764; E: md=0, official=759 |
-| 94 | Alkhof 55-58 ingang via Gansstraat | mismatch | F: md=1, official=0; H: md=1295, official=1294 |
-| 96 | Burg Fockema Andreaelaan 9 | internally inconsistent | E.1 through E.20 sum to 948, but E is 0; E + F + G is 2, but H is 950; E: md=0, official=948 |
-| 97 | Burg Fockema Andreaelaan 9 | fully matches |  |
-| 98 | Marislaan 1 | internally inconsistent | E + F + G is 1154, but H is 1128; E.4: md=48, official=40; E: md=1117, official=1109; G: md=35, official=3; H: md=1128, official=1114 |
-| 100 | Frans Halsstraat 22A | fully matches |  |
-| 101 | Rembrandtkade 10 | fully matches |  |
-| 102 | Hobbemastraat 35 ingang aan de zijkant | internally inconsistent | E.1 through E.20 sum to 833, but E is 828; E.8: md=29, official=24 |
-| 103 | Jan Muschlaan 24 ingang gymzaal | internally inconsistent | E.1 through E.20 sum to 796, but E is 106; E.2: md=29, official=295; E: md=106, official=1062; H: md=106, official=1062 |
-| 104 | Maupertuusplein 1 | fully matches |  |
-| 107 | Rotsoord 20 | internally inconsistent | E.1 through E.20 sum to 848, but E is 1218; E.1: md=48, official=419; E: md=1218, official=1219; H: md=1221, official=1222 |
-| 111 | Verlengde Hoogravenseweg 63 | correction inconsistent | correction E.16 first=13, Markdown=23, second=23, maybe belongs to E.13; E.13: md=13, official=23; E.16: md=23, official=13 |
-| 113 | Oud-Wulvenlaan 4 ingang zijkant via Detmoldstraat | internally inconsistent | expected 26 non-empty table lines, found 25; row 23 expected ID E, found F; row 24 expected ID F, found G; row 25 expected ID G, found H; missing row 26 for H; E: md=missing, official=771 |
-| 116 | Koppeldijk 115 | fully matches |  |
-| 117 | Pecanlaan 50 | fully matches |  |
-| 118 | Hondsrug 477 | fully matches |  |
-| 119 | Hondsrug 19 | fully matches |  |
-| 120 | Hengeveldstraat 29 | fully matches |  |
-| 121 | Beneluxlaan 928 | correction inconsistent | could not apply corrections: E.1 second=179, official=177 |
-| 122 | Australiëlaan 25 | fully matches |  |
-| 123 | Afrikalaan 28A ingang via Buurtlokaal Marco Pololaan | fully matches |  |
-| 124 | Heidelberglaan 100 | mismatch | E.6: md=38, official=50; E.7: md=75, official=74; E.8: md=33, official=23; E: md=828, official=829; H: md=830, official=831 |
-| 126 | Trumanlaan 60 ingang via Geallieerdenlaan | correction inconsistent | could not apply corrections: E second=1252, official=1259 |
-| 127 | Tamboersdijk 9 | fully matches |  |
-| 129 | Van Bijnkershoeklaan 250 | internally inconsistent | E + F + G is 681, but H is 684; E.4: md=49, official=47; E: md=678, official=676; H: md=684, official=679 |
-| 130 | Briljantlaan 6 | mismatch | E.8: md=33, official=32; E: md=861, official=860; F: md=2, official=1; G: md=3, official=4; H: md=866, official=865 |
-| 131 | Hof van Transwijk 16 | fully matches |  |
-| 134 | Maasplein 1 ingang hek Rijnlaan | internally inconsistent | E.1 through E.20 sum to 1290, but E is 1291; E.2: md=155, official=156; G: md=7, official=8; H: md=1300, official=1301 |
-| 135 | Oranje-Nassaulaan 2 | internally inconsistent | E.1 through E.20 sum to 1547, but E is 947; E.3: md=660, official=60 |
-| 136 | Vondellaan 174 | fully matches |  |
-| 137 | Amaliadwarsstraat 2 ingang via schoolplein | internally inconsistent | E.1 through E.20 sum to 3229, but E is 1091; E.1: md=388, official=360; E.2: md=2345, official=235; E.16: md=36, official=37; E: md=1091, official=1092; H: md=1093, official=1094 |
-| 140 | Langerakbaan 231 | internally inconsistent | E.1 through E.20 sum to 551, but E is 531; E.5: md=35, official=15 |
-| 141 | Atalantahof 11 | fully matches |  |
-| 142 | Hogeweide 6 | mismatch | E.1: md=158, official=157; E.3: md=106, official=104; E: md=740, official=737; H: md=742, official=739 |
-| 143 | Maartvlinder 11 | internally inconsistent | expected 26 non-empty table lines, found 25; row 23 expected ID E, found F; row 24 expected ID F, found G; row 25 expected ID G, found H; missing row 26 for H; E: md=missing, official=870 |
-| 144 | Dorpsplein 1 | correction inconsistent | could not apply corrections: E.14 second=20, official=19 |
-| 145 | Brinkstraat 4 | fully matches |  |
-| 146 | Kortland 23 | correction inconsistent | could not apply corrections: E.9 second=33, official=20 |
-| 148 | Musicallaan 100 | fully matches |  |
-| 149 | Amerikalaan 207 | fully matches |  |
-| 151 | Zandweg 148 | internally inconsistent | E.1 through E.20 sum to 1053, but E is 1051; E.1: md=84, official=88; E.3: md=356, official=350 |
-| 153 | Mereveldlaan 3 | mismatch | E.1: md=missing, official=102; E.2: md=missing, official=143; E.3: md=missing, official=235; E.4: md=missing, official=130; E.5: md=missing, official=38; E.6: md=missing, official=10; E.7: md=missing, official=12; E.8: md=missing, official=26; E.9: md=missing, official=6; E.10: md=missing, official=4; E.11: md=missing, official=22; E.12: md=missing, official=9; E.13: md=missing, official=39; E.14: md=missing, official=12; E.15: md=missing, official=55; E.16: md=missing, official=16; E.17: md=missing, official=51; E.18: md=missing, official=1; E.19: md=missing, official=56; E.20: md=missing, official=3; E: md=missing, official=970; F: md=missing, official=2; G: md=missing, official=0; H: md=missing, official=972 |
-| 154 | Touwslagerslaan 3 | mismatch | E.1: md=missing, official=85; E.2: md=missing, official=67; E.3: md=missing, official=159; E.4: md=missing, official=96; E.5: md=missing, official=12; E.6: md=missing, official=11; E.7: md=missing, official=24; E.8: md=missing, official=24; E.9: md=missing, official=6; E.10: md=missing, official=4; E.11: md=missing, official=14; E.12: md=missing, official=14; E.13: md=missing, official=24; E.14: md=missing, official=20; E.15: md=missing, official=30; E.16: md=missing, official=21; E.17: md=missing, official=24; E.18: md=missing, official=0; E.19: md=missing, official=33; E.20: md=missing, official=0; E: md=missing, official=668; F: md=missing, official=1; G: md=missing, official=0; H: md=missing, official=669 |
-| 155 | Bovenpolder 80 | fully matches |  |
-| 158 | Ten Veldestraat 94 | fully matches |  |
-| 160 | Niels Bohrweg 121 | fully matches |  |
-| 161 | Kweektuinlaan 11 | internally inconsistent | expected 26 non-empty table lines, found 25; row 5 expected ID E.3, found E.4; row 6 expected ID E.4, found E.5; row 7 expected ID E.5, found E.6; row 8 expected ID E.6, found E.7; row 9 expected ID E.7, found E.8; row 10 expected ID E.8, found E.9; row 11 expected ID E.9, found E.10; row 12 expected ID E.10, found E.11; row 13 expected ID E.11, found E.12; row 14 expected ID E.12, found E.13; row 15 expected ID E.13, found E.14; row 16 expected ID E.14, found E.15; row 17 expected ID E.15, found E.16; row 18 expected ID E.16, found E.17; row 19 expected ID E.17, found E.18; row 20 expected ID E.18, found E.19; row 21 expected ID E.19, found E.20; row 22 expected ID E.20, found E; row 23 expected ID E, found F; row 24 expected ID F, found G; row 25 expected ID G, found H; missing row 26 for H; E.3: md=missing, official=239 |
-| 162 | Jazzsingel 900 | internally inconsistent | E.1 through E.20 sum to 439, but E is 441; E: md=441, official=439; G: md=0, official=2 |
-| 163 | Keerderberg 21 | mismatch | E.1: md=missing, official=136; E.2: md=missing, official=134; E.3: md=missing, official=329; E.4: md=missing, official=104; E.5: md=missing, official=26; E.6: md=missing, official=17; E.7: md=missing, official=20; E.8: md=missing, official=21; E.9: md=missing, official=82; E.10: md=missing, official=4; E.11: md=missing, official=34; E.12: md=missing, official=9; E.13: md=missing, official=57; E.14: md=missing, official=33; E.15: md=missing, official=61; E.16: md=missing, official=42; E.17: md=missing, official=61; E.18: md=missing, official=0; E.19: md=missing, official=88; E.20: md=missing, official=5; E: md=missing, official=1263; F: md=missing, official=2; G: md=missing, official=1; H: md=missing, official=1266 |
-| 164 | Teunisbloemlaan 50 | internally inconsistent | expected 26 non-empty table lines, found 25; row 23 expected ID E, found F; row 24 expected ID F, found G; row 25 expected ID G, found H; missing row 26 for H; E: md=missing, official=970 |
-| 167 | Pauwoogvlinder 20 | mismatch | F: md=1, official=0; H: md=785, official=784 |
-| 168 | Kandinskystraat 40 | mismatch | G: md=3, official=4; H: md=955, official=956 |
-| 170 | Gouden Koetslaan 97 | fully matches |  |
-| 175 | Louis Armstronglaan 800 | fully matches |  |
-| 179 | Parkzichtlaan 203 | internally inconsistent | E.1 through E.20 sum to 675, but E is 775; E.1: md=21, official=120; E.4: md=67, official=66; E: md=775, official=773; H: md=776, official=774 |
-| 180 | Derde Oosterparklaan 71 | internally inconsistent | expected 26 non-empty table lines, found 25; row 23 expected ID E, found F; row 24 expected ID F, found G; row 25 expected ID G, found H; missing row 26 for H; E: md=missing, official=516; H: md=508, official=518 |
-| 181 | Musicallaan 100 | fully matches |  |
-| 183 | Stationshal 1e verdieping | fully matches |  |
-| 184 | Stadsplateau 1 | correction inconsistent | could not apply corrections: E.1 second=3, official=189 |
-| 185 | Paranádreef 10 | fully matches |  |
-| 186 | Stationshal 1e verdieping | fully matches |  |
-| 190 | Kouwerplantsoen 1A | internally inconsistent | E.1 through E.20 sum to 1064, but E is 1119; E + F + G is 1154, but H is 1119; E.4: md=29, official=79; E: md=1119, official=1114; F: md=32, official=2 |
-| 192 | Stadsplateau 1 | mismatch | F: md=4, official=3; H: md=634, official=633 |
-| 193 | Kanaalstraat 198 | internally inconsistent | E + F + G is 1330, but H is 665; F: md=2, official=0; G: md=665, official=2 |
-| 194 | Schoolstraat 11 | mismatch | E.1: md=missing, official=159; E.2: md=missing, official=181; E.3: md=missing, official=250; E.4: md=missing, official=197; E.5: md=missing, official=27; E.6: md=missing, official=21; E.7: md=missing, official=11; E.8: md=missing, official=39; E.9: md=missing, official=7; E.10: md=missing, official=5; E.11: md=missing, official=22; E.12: md=missing, official=10; E.13: md=missing, official=35; E.14: md=missing, official=20; E.15: md=missing, official=35; E.16: md=missing, official=29; E.17: md=missing, official=54; E.18: md=missing, official=0; E.19: md=missing, official=61; E.20: md=missing, official=6; E: md=missing, official=1169; F: md=missing, official=3; G: md=missing, official=3; H: md=missing, official=1175 |
-| 195 | Koekoeksplein 1 ingang achterzijde via Lijsterstraat | mismatch | E.1: md=missing, official=252; E.2: md=missing, official=219; E.3: md=missing, official=98; E.4: md=missing, official=35; E.5: md=missing, official=50; E.6: md=missing, official=43; E.7: md=missing, official=39; E.8: md=missing, official=16; E.9: md=missing, official=2; E.10: md=missing, official=24; E.11: md=missing, official=12; E.12: md=missing, official=12; E.13: md=missing, official=22; E.14: md=missing, official=5; E.15: md=missing, official=7; E.16: md=missing, official=9; E.17: md=missing, official=6; E.18: md=missing, official=0; E.19: md=missing, official=15; E.20: md=missing, official=16; E: md=missing, official=882; F: md=missing, official=0; G: md=missing, official=0; H: md=missing, official=882 |
-| 196 | Kanaalstraat 198 | fully matches |  |
-| 199 | Oudwijkerdwarsstraat 148 | internally inconsistent | row 20 value for E.18 could not be parsed: cannot parse integer from empty string; E.1: md=309, official=308; E.18: md=missing, official=0; E: md=1041, official=1040; H: md=1046, official=1045 |
-| 202 | Bovenpolder 80 | internally inconsistent | row 23 value for E could not be parsed: cannot parse integer from empty string; E: md=missing, official=895; G: md=3, official=2; H: md=899, official=898 |
-| 203 | Duurstedelaan 16 | fully matches |  |
-| 501 | Haarzichtsingel 15 ingang via achterkant | mismatch | E.1: md=93, official=96; E.3: md=229, official=225; E: md=764, official=763; H: md=766, official=765 |
-| 503 | M. van Meelstraat 2 | fully matches |  |
-| 509 | Pagodedreef 4 | internally inconsistent | E.1 through E.20 sum to 294, but E is 302; E.2: md=20, official=28 |
-| 511 | Prof. van Bemmelenlaan 51A | fully matches |  |
-| 518 | Deken Roesstraat 2G | internally inconsistent | E + F + G is 674, but H is 644; E.7: md=33, official=34; E: md=672, official=673; H: md=644, official=675 |
-| 519 | Weerdsingel W.Z. 22 | internally inconsistent | expected 26 non-empty table lines, found 25; row 23 expected ID E, found F; row 24 expected ID F, found G; row 25 expected ID G, found H; missing row 26 for H; E: md=missing, official=1248 |
-| 521 | Van Imhoffstraat 2 | fully matches |  |
-| 523 | Goeree 4 | mismatch | F: md=6, official=5; G: md=1, official=2 |
-| 530 | Van Bijnkershoeklaan 6 | fully matches |  |
-| 535 | Emile Hullebroeckstraat 64 | fully matches |  |
-| 537 | Akkrumerraklaan 131 ingang via achterkant | internally inconsistent | E.1 through E.20 sum to 1290, but E is 1287; E.3: md=195, official=194; E.14: md=14, official=11; E: md=1287, official=1286; H: md=1290, official=1289 |
-| 538 | Verlengde Houtrakgracht 598 | internally inconsistent | E.1 through E.20 sum to 1485, but E is 1495; E.14: md=26, official=36 |
-| 539 | Mereveldlaan 12 | internally inconsistent | E + F + G is 994, but H is 995; G: md=6, official=0; H: md=995, official=988 |
-| 545 | Augustusweg 30 | fully matches |  |
-| 546 | IJzervarensingel 12 | fully matches |  |
-| 553 | Thorbeckelaan 18  | fully matches |  |
-| 565 | Schooneggendreef 27C | internally inconsistent | E.1 through E.20 sum to 175, but E is 273; E + F + G is 278, but H is 270; E.9: md=0, official=98; H: md=270, official=278 |
-| 574 | Livingstonelaan 1350 | fully matches |  |
-| 575 | Noordzeestraat 20 | fully matches |  |
-| 582 | 't Goylaan 77 | mismatch | G: md=4, official=5; H: md=1235, official=1236 |
-| 583 | Voor de Burchten 2 | fully matches |  |
-| 584 | Voor de Burchten 2 | internally inconsistent | E.1 through E.20 sum to 934, but E is 923; E.20: md=12, official=1 |
-| 593 | Europaweg 50A | fully matches |  |
-| 601 | Pieterskerkhof 10  ingang t.o. Kromme Nieuwegracht nr. 60 | internally inconsistent | E.1 through E.20 sum to 742, but E is 743; E + F + G is 745, but H is 744; E.1: md=154, official=209; E.2: md=209, official=154; E: md=743, official=742 |
-| 606 | Concordiastraat 67A | correction inconsistent | could not apply corrections: E.2 second=42, official=138 |
-| 608 | Achter de Dom 1 ingang via hoofdingang Domplein 31 | internally inconsistent | E.1 through E.20 sum to 1612, but E is 1607; E.18: md=7, official=1; E: md=1607, official=1606; H: md=1608, official=1607 |
-| 609 | Wijde Doelen 8 | fully matches |  |
-| 610 | Berlijnplein 100 | fully matches |  |
-| 611 | Stationshal 9  Zaal 7 Spoorpaviljoen | internally inconsistent | expected 26 non-empty table lines, found 25; row 23 expected ID E, found F; row 24 expected ID F, found G; row 25 expected ID G, found H; missing row 26 for H; E: md=missing, official=905 |
-| 612 | Passiebloemweg 5 ingang via linkerzijde van het gebouw | fully matches |  |
-| 614 | Zwarte Woud 211 | mismatch | F: md=0, official=2; G: md=2, official=0 |
-| 618 | Hortensiastraat 4 | fully matches |  |
-| 620 | Hamburgerstraat 28 | fully matches |  |
-| 622 | Boorstraat 107 | fully matches |  |
-| 625 | Kopenhagenstraat 41 | fully matches |  |
-| 627 | Laurierweg 104 | fully matches |  |
-| 629 | Neude 11 | correction inconsistent | could not apply corrections: E.1 second=390, official=391 |
-| 630 | Neude 11 | fully matches |  |
-| 631 | Jeanne d'Arcdreef 1 | internally inconsistent | E.1 through E.20 sum to 1194, but E is 654; E.6: md=184, official=14; E.17: md=316, official=16; E.18: md=70, official=0 |
-| 634 | Mecklenburglaan 3 | correction inconsistent | could not apply corrections: E.1 second=204, official=284 |
-| 635 | Braziliëdreef 2 | internally inconsistent | E.1 through E.20 sum to 425, but E is 0; E + F + G is 2, but H is 417; E.19: md=19, official=9; E: md=0, official=415 |
-| 641 | Europalaan 2B | mismatch | E.1: md=152, official=154; E: md=540, official=542; H: md=540, official=542 |
-| 642 | Agnietenstraat 1 ingang via Nicolaasdwarsstr (Tuinzaal) | fully matches |  |
-| 649 | Burg Norbruislaan 17 | mismatch | G: md=4, official=3; H: md=705, official=704 |
-| 650 | Verlengde Hoogravenseweg 203 ingang via zijkant | fully matches |  |
-| 651 | Amsterdamsestraatweg 239A | correction inconsistent | could not apply corrections: E.1 second=295, official=296 |
-| 655 | Tjalkstraat 20 | correction inconsistent | could not apply corrections: E.10 second=21, official=20 |
-| 659 | Marco Pololaan 185 | internally inconsistent | E.1 through E.20 sum to 481, but E is 377; E + F + G is 383, but H is 476; E.4: md=26, official=20; E: md=377, official=475; F: md=6, official=0; G: md=0, official=2; H: md=476, official=477 |
-| 667 | Hendrika v Tussenbroekln 1A ingang via Petristraat | fully matches |  |
-| 668 | Geertekerkhof 23 | fully matches |  |
-| 669 | Moskeeplein 89 | internally inconsistent | E.1 through E.20 sum to 800, but E is 0; E: md=0, official=800; H: md=4, official=804 |
-| 670 | Prof. Suringarlaan 1 ingang via H.F. van Riellaan  | fully matches |  |
-| 677 | Budapestlaan 4A-B | internally inconsistent | E.1 through E.20 sum to 584, but E is 583; E.2: md=73, official=74; E.13: md=8, official=6; G: md=0, official=1; H: md=583, official=584 |
-| 679 | Prinsesselaan 2 | mismatch | E.1: md=290, official=286; E.2: md=274, official=275; E.5: md=55, official=56; E.7: md=40, official=41; E.20: md=9, official=6; E: md=1128, official=1124; H: md=1130, official=1126 |
-| 684 | Moskeeplein 89 | fully matches |  |
-| 688 | Hondsrug 19 | internally inconsistent | E.1 through E.20 sum to 733, but E is 0; E + F + G is 2, but H is 1052; E.20: md=78, official=28; E: md=0, official=683; H: md=1052, official=685 |
-| 690 | Heycopplein 5 | internally inconsistent | E.1 through E.20 sum to 909, but E is 903; E.1: md=316, official=310 |
-| 692 | Briljantlaan 6 | fully matches |  |
-| 693 | Heidelberglaan 3 | internally inconsistent | E.1 through E.20 sum to 898, but E is 0; E + F + G is 1, but H is 899; E: md=0, official=898 |
-| 694 | Poortstraat 73 ingang via Bladstraat | fully matches |  |
-| 696 | Royaards van den Hamkade 18 ingang achterkant via Opzoomerstraat | fully matches |  |
-| 698 | Jagerskade 4 | fully matches |  |
-| 711 | Pauwoogvlinder 20 | correction inconsistent | could not apply corrections: E.10 second=14, official=13 |
-| 712 | Samuel van Houtenstraat 1 | fully matches |  |
-| 715 | Oesterzwam nabij station Vleuten | internally inconsistent | E.1 through E.20 sum to 685, but E is 688; E.17: md=31, official=34; G: md=2, official=4; H: md=691, official=693 |
-| 717 | Jonkvrouw Sanderijndreef 35 | internally inconsistent | E.1 through E.20 sum to 385, but E is 298; E.8: md=90, official=9; E: md=298, official=304; H: md=300, official=306 |
-| 718 | Domplein 21 | internally inconsistent | E.1 through E.20 sum to 1784, but E is 0; E + F + G is 5, but H is 1789; E: md=0, official=1784 |
-| 719 | Nedereindseweg 501A | internally inconsistent | E.1 through E.20 sum to 161, but E is 149; E.9: md=6, official=0; E.10: md=6, official=0 |
-| 720 | Heidelberglaan 3 | fully matches |  |
-| 721 | Ella Fitzgeraldplein 291 | fully matches |  |
-| 723 | Mariastraat 12 | internally inconsistent | E.1 through E.20 sum to 398, but E is 0; E + F + G is 1, but H is 11; correction G first=1, Markdown=0, second=0; E.10: md=22, official=28; E.11: md=3, official=8; E: md=0, official=409; G: md=0, official=1; H: md=11, official=411 |
-| 724 | Heycopstraat (op de stoep) | correction inconsistent | could not apply corrections: E.2 second=373, official=372 |
+| Station | Location | Status | Reason | Candidate Status | Candidate Reason | Report |
+|---:|---|---|---|---|---|---|
+| 1 | Stadhuisbrug 1 | <span style="color:#22863a"><strong>fully matches</strong></span> |  | <span style="color:#6a737d"><strong>not checked</strong></span> |  |  |
+| 2 | Stadhuisbrug 1 | <span style="color:#22863a"><strong>fully matches</strong></span> |  | <span style="color:#6a737d"><strong>not checked</strong></span> |  |  |
+| 3 | Vredenburgkade 11 | <span style="color:#b08800"><strong>internally inconsistent</strong></span> | row 23 value for E could not be parsed: cannot parse integer from empty string; E.1 394->294; +3 | <span style="color:#e36209"><strong>incomplete</strong></span> | candidate incomplete: candidate OCR not available; known list/correction issues are shown | [details](mismatches/station-3.md) |
+| 4 | Oudegracht 36 | <span style="color:#22863a"><strong>fully matches</strong></span> |  | <span style="color:#6a737d"><strong>not checked</strong></span> |  |  |
+| 8 | Lange Smeestraat 40 | <span style="color:#b08800"><strong>internally inconsistent</strong></span> | sum(E.1-E.20) 1292!=1288; E 1288->1292; +1 | <span style="color:#e36209"><strong>incomplete</strong></span> | candidate incomplete: candidate OCR not available; known list/correction issues are shown | [details](mismatches/station-8.md) |
+| 11 | Jaarbeursplein 6  ingang via Croeselaan | <span style="color:#22863a"><strong>fully matches</strong></span> |  | <span style="color:#6a737d"><strong>not checked</strong></span> |  |  |
+| 12 | Van Riebeeckstraat 40 | <span style="color:#22863a"><strong>fully matches</strong></span> |  | <span style="color:#6a737d"><strong>not checked</strong></span> |  |  |
+| 13 | Cremerstraat 253 | <span style="color:#b08800"><strong>internally inconsistent</strong></span> | sum(E.1-E.20) 499!=0; E+F+G 0!=500; +2 | <span style="color:#e36209"><strong>incomplete</strong></span> | candidate incomplete: candidate OCR not available; known list/correction issues are shown | [details](mismatches/station-13.md) |
+| 14 | Leidsekade 118 | <span style="color:#b08800"><strong>internally inconsistent</strong></span> | rows 25/26; row 23 E->F; +7 | <span style="color:#e36209"><strong>incomplete</strong></span> | candidate incomplete: candidate OCR not available; known list/correction issues are shown | [details](mismatches/station-14.md) |
+| 16 | Staringstraat 1 ingang H.J. Schimmelplein | <span style="color:#d73a49"><strong>mismatch</strong></span> | G 1->2; H 1030->1031 | <span style="color:#e36209"><strong>incomplete</strong></span> | candidate incomplete: candidate OCR not available; known list/correction issues are shown | [details](mismatches/station-16.md) |
+| 18 | Louis Couperusstraat 85 | <span style="color:#22863a"><strong>fully matches</strong></span> |  | <span style="color:#6a737d"><strong>not checked</strong></span> |  |  |
+| 20 | Vleutenseweg 515 ingang via Broerestraat | <span style="color:#d73a49"><strong>mismatch</strong></span> | E.1 371->369; E 1190->1188; +1 | <span style="color:#e36209"><strong>incomplete</strong></span> | candidate incomplete: candidate OCR not available; known list/correction issues are shown | [details](mismatches/station-20.md) |
+| 22 | Johan Wagenaarkade 45A | <span style="color:#d73a49"><strong>mismatch</strong></span> | E.1 missing->409; E.2 missing->305; +22 | <span style="color:#e36209"><strong>incomplete</strong></span> | candidate incomplete: candidate OCR not available; known list/correction issues are shown | [details](mismatches/station-22.md) |
+| 23 | Franz Schubertstraat 20 ingang via Händelstraat | <span style="color:#22863a"><strong>fully matches</strong></span> |  | <span style="color:#6a737d"><strong>not checked</strong></span> |  |  |
+| 24 | Franz Schubertstraat 20 ingang via Händelstraat | <span style="color:#b08800"><strong>internally inconsistent</strong></span> | rows 25/26; row 23 E->F; +5 | <span style="color:#e36209"><strong>incomplete</strong></span> | candidate incomplete: candidate OCR not available; known list/correction issues are shown | [details](mismatches/station-24.md) |
+| 25 | Leidseweg 140 | <span style="color:#d73a49"><strong>mismatch</strong></span> | E.1 264->265; E 923->924; +1 | <span style="color:#e36209"><strong>incomplete</strong></span> | candidate incomplete: candidate OCR not available; known list/correction issues are shown | [details](mismatches/station-25.md) |
+| 26 | Cartesiusweg 11 | <span style="color:#22863a"><strong>fully matches</strong></span> |  | <span style="color:#6a737d"><strong>not checked</strong></span> |  |  |
+| 27 | St.-Bonifaciusstraat 8 | <span style="color:#22863a"><strong>fully matches</strong></span> |  | <span style="color:#6a737d"><strong>not checked</strong></span> |  |  |
+| 28 | St.-Ludgerusstraat 251 | <span style="color:#22863a"><strong>fully matches</strong></span> |  | <span style="color:#6a737d"><strong>not checked</strong></span> |  |  |
+| 29 | Prinses Margrietstraat 22 | <span style="color:#d73a49"><strong>mismatch</strong></span> | E.1 135->136; E.5 21->20 | <span style="color:#e36209"><strong>incomplete</strong></span> | candidate incomplete: candidate OCR not available; known list/correction issues are shown | [details](mismatches/station-29.md) |
+| 31 | Prinses Beatrixlaan 2 | <span style="color:#6f42c1"><strong>correction inconsistent</strong></span> | bad correction: E.7 second=13, official=14 | <span style="color:#e36209"><strong>incomplete</strong></span> | candidate incomplete: candidate OCR not available; known list/correction issues are shown | [details](mismatches/station-31.md) |
+| 32 | Prof. H. Bavinckstraat 5A | <span style="color:#22863a"><strong>fully matches</strong></span> |  | <span style="color:#6a737d"><strong>not checked</strong></span> |  |  |
+| 35 | Zwanenvechtlaan 4 | <span style="color:#22863a"><strong>fully matches</strong></span> |  | <span style="color:#6a737d"><strong>not checked</strong></span> |  |  |
+| 36 | Van Hoornekade 6 | <span style="color:#d73a49"><strong>mismatch</strong></span> | E.1 221->225; E 885->889; +1 | <span style="color:#e36209"><strong>incomplete</strong></span> | candidate incomplete: candidate OCR not available; known list/correction issues are shown | [details](mismatches/station-36.md) |
+| 37 | Jan van Ransdorpstraat 32 | <span style="color:#b08800"><strong>internally inconsistent</strong></span> | sum(E.1-E.20) 1233!=525; E.15 715->7 | <span style="color:#e36209"><strong>incomplete</strong></span> | candidate incomplete: candidate OCR not available; known list/correction issues are shown | [details](mismatches/station-37.md) |
+| 40 | Lagenoord 28A | <span style="color:#d73a49"><strong>mismatch</strong></span> | E.19 25->27; E 889->891; +1 | <span style="color:#e36209"><strong>incomplete</strong></span> | candidate incomplete: candidate OCR not available; known list/correction issues are shown | [details](mismatches/station-40.md) |
+| 41 | 2e Daalsedijk 2B | <span style="color:#22863a"><strong>fully matches</strong></span> |  | <span style="color:#6a737d"><strong>not checked</strong></span> |  |  |
+| 42 | St.-Jacobsstraat 171 ingang via zijkant Jacobskerkhof | <span style="color:#22863a"><strong>fully matches</strong></span> |  | <span style="color:#6a737d"><strong>not checked</strong></span> |  |  |
+| 44 | Ondiep 63 | <span style="color:#b08800"><strong>internally inconsistent</strong></span> | E+F+G 971!=961; E.1 259->249; +1 | <span style="color:#e36209"><strong>incomplete</strong></span> | candidate incomplete: candidate OCR not available; known list/correction issues are shown | [details](mismatches/station-44.md) |
+| 45 | Boerhaaveplein 199 | <span style="color:#22863a"><strong>fully matches</strong></span> |  | <span style="color:#6a737d"><strong>not checked</strong></span> |  |  |
+| 46 | Soestwetering 1 | <span style="color:#22863a"><strong>fully matches</strong></span> |  | <span style="color:#6a737d"><strong>not checked</strong></span> |  |  |
+| 48 | Archimedeslaan 6 | <span style="color:#b08800"><strong>internally inconsistent</strong></span> | rows 25/26; row 23 E->F; +5 | <span style="color:#e36209"><strong>incomplete</strong></span> | candidate incomplete: candidate OCR not available; known list/correction issues are shown | [details](mismatches/station-48.md) |
+| 49 | Rhônedreef 40 | <span style="color:#b08800"><strong>internally inconsistent</strong></span> | rows 25/26; row 23 E->F; +4 | <span style="color:#e36209"><strong>incomplete</strong></span> | candidate incomplete: candidate OCR not available; known list/correction issues are shown | [details](mismatches/station-49.md) |
+| 50 | Gloriantdreef 1 | <span style="color:#d73a49"><strong>mismatch</strong></span> | E.1 193->194; E.2 88->87; +2 | <span style="color:#e36209"><strong>incomplete</strong></span> | candidate incomplete: candidate OCR not available; known list/correction issues are shown | [details](mismatches/station-50.md) |
+| 51 | Beyaertdreef 5 | <span style="color:#22863a"><strong>fully matches</strong></span> |  | <span style="color:#6a737d"><strong>not checked</strong></span> |  |  |
+| 52 | Moezeldreef 400 | <span style="color:#22863a"><strong>fully matches</strong></span> |  | <span style="color:#6a737d"><strong>not checked</strong></span> |  |  |
+| 53 | Dianadreef 27 ingang zijkant via Atlasdreef | <span style="color:#b08800"><strong>internally inconsistent</strong></span> | E+F+G 453!=447; G 7->1 | <span style="color:#e36209"><strong>incomplete</strong></span> | candidate incomplete: candidate OCR not available; known list/correction issues are shown | [details](mismatches/station-53.md) |
+| 55 | Kretadreef 61 ingang via Kalymnosdreef | <span style="color:#b08800"><strong>internally inconsistent</strong></span> | sum(E.1-E.20) 386!=341; E.13 38->8; +2 | <span style="color:#e36209"><strong>incomplete</strong></span> | candidate incomplete: candidate OCR not available; known list/correction issues are shown | [details](mismatches/station-55.md) |
+| 56 | Dommeringdreef 60 ingang achterkant via Brandenburchdreef | <span style="color:#22863a"><strong>fully matches</strong></span> |  | <span style="color:#6a737d"><strong>not checked</strong></span> |  |  |
+| 58 | Perudreef 8 | <span style="color:#b08800"><strong>internally inconsistent</strong></span> | E+F+G 419!=413; E.9 86->80; +3 | <span style="color:#e36209"><strong>incomplete</strong></span> | candidate incomplete: candidate OCR not available; known list/correction issues are shown | [details](mismatches/station-58.md) |
+| 59 | Hoge Woerdplein 1 | <span style="color:#b08800"><strong>internally inconsistent</strong></span> | sum(E.1-E.20) 1462!=1468; E+F+G 1474!=1468; +1 | <span style="color:#e36209"><strong>incomplete</strong></span> | candidate incomplete: candidate OCR not available; known list/correction issues are shown | [details](mismatches/station-59.md) |
+| 60 | Costa Ricadreef 9 | <span style="color:#d73a49"><strong>mismatch</strong></span> | E.7 8->9; E.10 17->18; +1 | <span style="color:#e36209"><strong>incomplete</strong></span> | candidate incomplete: candidate OCR not available; known list/correction issues are shown | [details](mismatches/station-60.md) |
+| 61 | Eufraatdreef 1 | <span style="color:#22863a"><strong>fully matches</strong></span> |  | <span style="color:#6a737d"><strong>not checked</strong></span> |  |  |
+| 62 | Indusdreef 5 | <span style="color:#d73a49"><strong>mismatch</strong></span> | E.1 67->68; E.6 9->10; +5 | <span style="color:#e36209"><strong>incomplete</strong></span> | candidate incomplete: candidate OCR not available; known list/correction issues are shown | [details](mismatches/station-62.md) |
+| 64 | Gambiadreef 60 | <span style="color:#22863a"><strong>fully matches</strong></span> |  | <span style="color:#6a737d"><strong>not checked</strong></span> |  |  |
+| 65 | Nigerdreef 8 ingang via hoek Bantoedreef/Nigerdreef | <span style="color:#b08800"><strong>internally inconsistent</strong></span> | sum(E.1-E.20) 614!=616; E.10 13->15 | <span style="color:#e36209"><strong>incomplete</strong></span> | candidate incomplete: candidate OCR not available; known list/correction issues are shown | [details](mismatches/station-65.md) |
+| 66 | Koekoeksplein 1 ingang achterzijde via Lijsterstraat | <span style="color:#22863a"><strong>fully matches</strong></span> |  | <span style="color:#6a737d"><strong>not checked</strong></span> |  |  |
+| 67 | Vogelsanglaan 1 | <span style="color:#22863a"><strong>fully matches</strong></span> |  | <span style="color:#6a737d"><strong>not checked</strong></span> |  |  |
+| 69 | Willem Arntszkade 5 | <span style="color:#22863a"><strong>fully matches</strong></span> |  | <span style="color:#6a737d"><strong>not checked</strong></span> |  |  |
+| 70 | Van Swindenstraat 129 | <span style="color:#22863a"><strong>fully matches</strong></span> |  | <span style="color:#6a737d"><strong>not checked</strong></span> |  |  |
+| 71 | Maria van Reedestraat 4 ingang via B.F. Suermanstraat | <span style="color:#22863a"><strong>fully matches</strong></span> |  | <span style="color:#6a737d"><strong>not checked</strong></span> |  |  |
+| 72 | Samuel van Houtenstraat 1 | <span style="color:#22863a"><strong>fully matches</strong></span> |  | <span style="color:#6a737d"><strong>not checked</strong></span> |  |  |
+| 73 | Hooghiemstraplein 51 | <span style="color:#22863a"><strong>fully matches</strong></span> |  | <span style="color:#6a737d"><strong>not checked</strong></span> |  |  |
+| 74 | Bouwstraat 55 | <span style="color:#b08800"><strong>internally inconsistent</strong></span> | sum(E.1-E.20) 1304!=0; E+F+G 8!=1312; +1 | <span style="color:#e36209"><strong>incomplete</strong></span> | candidate incomplete: candidate OCR not available; known list/correction issues are shown | [details](mismatches/station-74.md) |
+| 76 | Poortstraat 73 ingang via Bladstraat | <span style="color:#d73a49"><strong>mismatch</strong></span> | E.1 285->283; E.7 31->30; +5 | <span style="color:#e36209"><strong>incomplete</strong></span> | candidate incomplete: candidate OCR not available; known list/correction issues are shown | [details](mismatches/station-76.md) |
+| 77 | Oude Kerkstraat 2A ingang via kleuterplein | <span style="color:#b08800"><strong>internally inconsistent</strong></span> | sum(E.1-E.20) 924!=904; E.20 28->8 | <span style="color:#e36209"><strong>incomplete</strong></span> | candidate incomplete: candidate OCR not available; known list/correction issues are shown | [details](mismatches/station-77.md) |
+| 78 | Smijerslaan 2  | <span style="color:#22863a"><strong>fully matches</strong></span> |  | <span style="color:#6a737d"><strong>not checked</strong></span> |  |  |
+| 79 | Jan van Galenstraat 6 | <span style="color:#22863a"><strong>fully matches</strong></span> |  | <span style="color:#6a737d"><strong>not checked</strong></span> |  |  |
+| 81 | Kouwerplantsoen 1A | <span style="color:#6f42c1"><strong>correction inconsistent</strong></span> | bad correction: E second=334, official=969; E.8 second=32, official=33 | <span style="color:#e36209"><strong>incomplete</strong></span> | candidate incomplete: candidate OCR not available; known list/correction issues are shown | [details](mismatches/station-81.md) |
+| 82 | Voorveldselaan 2 | <span style="color:#d73a49"><strong>mismatch</strong></span> | E.1 314->313; E.2 276->277; +2 | <span style="color:#e36209"><strong>incomplete</strong></span> | candidate incomplete: candidate OCR not available; known list/correction issues are shown | [details](mismatches/station-82.md) |
+| 83 | Ché Guevarastraat 15 ingang via achterkant P. L. Brionstraat | <span style="color:#d73a49"><strong>mismatch</strong></span> | F 2->1; H 1076->1075 | <span style="color:#e36209"><strong>incomplete</strong></span> | candidate incomplete: candidate OCR not available; known list/correction issues are shown | [details](mismatches/station-83.md) |
+| 85 | Prof. van Bemmelenlaan 34 ingang via Prof. Broekemalaan | <span style="color:#d73a49"><strong>mismatch</strong></span> | G 2->1; H 1259->1258 | <span style="color:#e36209"><strong>incomplete</strong></span> | candidate incomplete: candidate OCR not available; known list/correction issues are shown | [details](mismatches/station-85.md) |
+| 88 | Kruisstraat 201 | <span style="color:#b08800"><strong>internally inconsistent</strong></span> | sum(E.1-E.20) 1219!=1227; E.1 400->408 | <span style="color:#e36209"><strong>incomplete</strong></span> | candidate incomplete: candidate OCR not available; known list/correction issues are shown | [details](mismatches/station-88.md) |
+| 90 | Schoolplein 6 ingang via Schoolstraat | <span style="color:#b08800"><strong>internally inconsistent</strong></span> | sum(E.1-E.20) 1153!=1168; E.2 270->278; +2 | <span style="color:#e36209"><strong>incomplete</strong></span> | candidate incomplete: candidate OCR not available; known list/correction issues are shown | [details](mismatches/station-90.md) |
+| 91 | Oudwijkerdwarsstraat 148 | <span style="color:#b08800"><strong>internally inconsistent</strong></span> | sum(E.1-E.20) 1035!=0; E+F+G 2!=1037; +1 | <span style="color:#e36209"><strong>incomplete</strong></span> | candidate incomplete: candidate OCR not available; known list/correction issues are shown | [details](mismatches/station-91.md) |
+| 93 | Homeruslaan 40 ingang via gymzaal Minervaplein | <span style="color:#b08800"><strong>internally inconsistent</strong></span> | sum(E.1-E.20) 759!=0; E+F+G 5!=764; +1 | <span style="color:#e36209"><strong>incomplete</strong></span> | candidate incomplete: candidate OCR not available; known list/correction issues are shown | [details](mismatches/station-93.md) |
+| 94 | Alkhof 55-58 ingang via Gansstraat | <span style="color:#d73a49"><strong>mismatch</strong></span> | F 1->0; H 1295->1294 | <span style="color:#e36209"><strong>incomplete</strong></span> | candidate incomplete: candidate OCR not available; known list/correction issues are shown | [details](mismatches/station-94.md) |
+| 96 | Burg Fockema Andreaelaan 9 | <span style="color:#b08800"><strong>internally inconsistent</strong></span> | sum(E.1-E.20) 948!=0; E+F+G 2!=950; +1 | <span style="color:#e36209"><strong>incomplete</strong></span> | candidate incomplete: candidate OCR not available; known list/correction issues are shown | [details](mismatches/station-96.md) |
+| 97 | Burg Fockema Andreaelaan 9 | <span style="color:#22863a"><strong>fully matches</strong></span> |  | <span style="color:#6a737d"><strong>not checked</strong></span> |  |  |
+| 98 | Marislaan 1 | <span style="color:#b08800"><strong>internally inconsistent</strong></span> | E+F+G 1154!=1128; E.4 48->40; +3 | <span style="color:#e36209"><strong>incomplete</strong></span> | candidate incomplete: candidate OCR not available; known list/correction issues are shown | [details](mismatches/station-98.md) |
+| 100 | Frans Halsstraat 22A | <span style="color:#22863a"><strong>fully matches</strong></span> |  | <span style="color:#b08800"><strong>internally inconsistent</strong></span> | candidate internally inconsistent: L7.51 is not present in the official candidate list | [details](mismatches/station-100.md) |
+| 101 | Rembrandtkade 10 | <span style="color:#22863a"><strong>fully matches</strong></span> |  | <span style="color:#d73a49"><strong>mismatch</strong></span> | candidate mismatch: L13.16 6->0 | [details](mismatches/station-101.md) |
+| 102 | Hobbemastraat 35 ingang aan de zijkant | <span style="color:#b08800"><strong>internally inconsistent</strong></span> | sum(E.1-E.20) 833!=828; E.8 29->24 | <span style="color:#d73a49"><strong>mismatch</strong></span> | candidate mismatch: L7.2 48->11; L19.8 18->1 | [details](mismatches/station-102.md) |
+| 103 | Jan Muschlaan 24 ingang gymzaal | <span style="color:#b08800"><strong>internally inconsistent</strong></span> | sum(E.1-E.20) 796!=106; E.2 29->295; +2 | <span style="color:#d73a49"><strong>mismatch</strong></span> | candidate mismatch: L1.50 3->1 | [details](mismatches/station-103.md) |
+| 104 | Maupertuusplein 1 | <span style="color:#22863a"><strong>fully matches</strong></span> |  | <span style="color:#e36209"><strong>incomplete</strong></span> | candidate incomplete: list 15 missing all 18 candidates; list 16 missing all 14 candidates; +4 | [details](mismatches/station-104.md) |
+| 107 | Rotsoord 20 | <span style="color:#b08800"><strong>internally inconsistent</strong></span> | sum(E.1-E.20) 848!=1218; E.1 48->419; +2 | <span style="color:#e36209"><strong>incomplete</strong></span> | candidate incomplete: candidate OCR not available; known list/correction issues are shown | [details](mismatches/station-107.md) |
+| 111 | Verlengde Hoogravenseweg 63 | <span style="color:#6f42c1"><strong>correction inconsistent</strong></span> | correction E.16 13->23, maybe E.13, md=23; E.13 13->23; +1 | <span style="color:#e36209"><strong>incomplete</strong></span> | candidate incomplete: candidate OCR not available; known list/correction issues are shown | [details](mismatches/station-111.md) |
+| 113 | Oud-Wulvenlaan 4 ingang zijkant via Detmoldstraat | <span style="color:#b08800"><strong>internally inconsistent</strong></span> | rows 25/26; row 23 E->F; +4 | <span style="color:#e36209"><strong>incomplete</strong></span> | candidate incomplete: candidate OCR not available; known list/correction issues are shown | [details](mismatches/station-113.md) |
+| 116 | Koppeldijk 115 | <span style="color:#22863a"><strong>fully matches</strong></span> |  | <span style="color:#6a737d"><strong>not checked</strong></span> |  |  |
+| 117 | Pecanlaan 50 | <span style="color:#22863a"><strong>fully matches</strong></span> |  | <span style="color:#6a737d"><strong>not checked</strong></span> |  |  |
+| 118 | Hondsrug 477 | <span style="color:#22863a"><strong>fully matches</strong></span> |  | <span style="color:#6a737d"><strong>not checked</strong></span> |  |  |
+| 119 | Hondsrug 19 | <span style="color:#22863a"><strong>fully matches</strong></span> |  | <span style="color:#6a737d"><strong>not checked</strong></span> |  |  |
+| 120 | Hengeveldstraat 29 | <span style="color:#22863a"><strong>fully matches</strong></span> |  | <span style="color:#6a737d"><strong>not checked</strong></span> |  |  |
+| 121 | Beneluxlaan 928 | <span style="color:#6f42c1"><strong>correction inconsistent</strong></span> | bad correction: E.1 second=179, official=177 | <span style="color:#e36209"><strong>incomplete</strong></span> | candidate incomplete: candidate OCR not available; known list/correction issues are shown | [details](mismatches/station-121.md) |
+| 122 | Australiëlaan 25 | <span style="color:#22863a"><strong>fully matches</strong></span> |  | <span style="color:#6a737d"><strong>not checked</strong></span> |  |  |
+| 123 | Afrikalaan 28A ingang via Buurtlokaal Marco Pololaan | <span style="color:#22863a"><strong>fully matches</strong></span> |  | <span style="color:#6a737d"><strong>not checked</strong></span> |  |  |
+| 124 | Heidelberglaan 100 | <span style="color:#d73a49"><strong>mismatch</strong></span> | E.6 38->50; E.7 75->74; +3 | <span style="color:#e36209"><strong>incomplete</strong></span> | candidate incomplete: candidate OCR not available; known list/correction issues are shown | [details](mismatches/station-124.md) |
+| 126 | Trumanlaan 60 ingang via Geallieerdenlaan | <span style="color:#6f42c1"><strong>correction inconsistent</strong></span> | bad correction: E second=1252, official=1259 | <span style="color:#e36209"><strong>incomplete</strong></span> | candidate incomplete: candidate OCR not available; known list/correction issues are shown | [details](mismatches/station-126.md) |
+| 127 | Tamboersdijk 9 | <span style="color:#22863a"><strong>fully matches</strong></span> |  | <span style="color:#6a737d"><strong>not checked</strong></span> |  |  |
+| 129 | Van Bijnkershoeklaan 250 | <span style="color:#b08800"><strong>internally inconsistent</strong></span> | E+F+G 681!=684; E.4 49->47; +2 | <span style="color:#e36209"><strong>incomplete</strong></span> | candidate incomplete: candidate OCR not available; known list/correction issues are shown | [details](mismatches/station-129.md) |
+| 130 | Briljantlaan 6 | <span style="color:#d73a49"><strong>mismatch</strong></span> | E.8 33->32; E 861->860; +3 | <span style="color:#e36209"><strong>incomplete</strong></span> | candidate incomplete: candidate OCR not available; known list/correction issues are shown | [details](mismatches/station-130.md) |
+| 131 | Hof van Transwijk 16 | <span style="color:#22863a"><strong>fully matches</strong></span> |  | <span style="color:#6a737d"><strong>not checked</strong></span> |  |  |
+| 134 | Maasplein 1 ingang hek Rijnlaan | <span style="color:#b08800"><strong>internally inconsistent</strong></span> | sum(E.1-E.20) 1290!=1291; E.2 155->156; +2 | <span style="color:#e36209"><strong>incomplete</strong></span> | candidate incomplete: candidate OCR not available; known list/correction issues are shown | [details](mismatches/station-134.md) |
+| 135 | Oranje-Nassaulaan 2 | <span style="color:#b08800"><strong>internally inconsistent</strong></span> | sum(E.1-E.20) 1547!=947; E.3 660->60 | <span style="color:#e36209"><strong>incomplete</strong></span> | candidate incomplete: candidate OCR not available; known list/correction issues are shown | [details](mismatches/station-135.md) |
+| 136 | Vondellaan 174 | <span style="color:#22863a"><strong>fully matches</strong></span> |  | <span style="color:#6a737d"><strong>not checked</strong></span> |  |  |
+| 137 | Amaliadwarsstraat 2 ingang via schoolplein | <span style="color:#b08800"><strong>internally inconsistent</strong></span> | sum(E.1-E.20) 3229!=1091; E.1 388->360; +4 | <span style="color:#e36209"><strong>incomplete</strong></span> | candidate incomplete: candidate OCR not available; known list/correction issues are shown | [details](mismatches/station-137.md) |
+| 140 | Langerakbaan 231 | <span style="color:#b08800"><strong>internally inconsistent</strong></span> | sum(E.1-E.20) 551!=531; E.5 35->15 | <span style="color:#e36209"><strong>incomplete</strong></span> | candidate incomplete: candidate OCR not available; known list/correction issues are shown | [details](mismatches/station-140.md) |
+| 141 | Atalantahof 11 | <span style="color:#22863a"><strong>fully matches</strong></span> |  | <span style="color:#6a737d"><strong>not checked</strong></span> |  |  |
+| 142 | Hogeweide 6 | <span style="color:#d73a49"><strong>mismatch</strong></span> | E.1 158->157; E.3 106->104; +2 | <span style="color:#e36209"><strong>incomplete</strong></span> | candidate incomplete: candidate OCR not available; known list/correction issues are shown | [details](mismatches/station-142.md) |
+| 143 | Maartvlinder 11 | <span style="color:#b08800"><strong>internally inconsistent</strong></span> | rows 25/26; row 23 E->F; +4 | <span style="color:#e36209"><strong>incomplete</strong></span> | candidate incomplete: candidate OCR not available; known list/correction issues are shown | [details](mismatches/station-143.md) |
+| 144 | Dorpsplein 1 | <span style="color:#6f42c1"><strong>correction inconsistent</strong></span> | bad correction: E.14 second=20, official=19 | <span style="color:#e36209"><strong>incomplete</strong></span> | candidate incomplete: candidate OCR not available; known list/correction issues are shown | [details](mismatches/station-144.md) |
+| 145 | Brinkstraat 4 | <span style="color:#22863a"><strong>fully matches</strong></span> |  | <span style="color:#6a737d"><strong>not checked</strong></span> |  |  |
+| 146 | Kortland 23 | <span style="color:#6f42c1"><strong>correction inconsistent</strong></span> | bad correction: E.9 second=33, official=20 | <span style="color:#e36209"><strong>incomplete</strong></span> | candidate incomplete: candidate OCR not available; known list/correction issues are shown | [details](mismatches/station-146.md) |
+| 148 | Musicallaan 100 | <span style="color:#22863a"><strong>fully matches</strong></span> |  | <span style="color:#6a737d"><strong>not checked</strong></span> |  |  |
+| 149 | Amerikalaan 207 | <span style="color:#22863a"><strong>fully matches</strong></span> |  | <span style="color:#6a737d"><strong>not checked</strong></span> |  |  |
+| 151 | Zandweg 148 | <span style="color:#b08800"><strong>internally inconsistent</strong></span> | sum(E.1-E.20) 1053!=1051; E.1 84->88; +1 | <span style="color:#e36209"><strong>incomplete</strong></span> | candidate incomplete: candidate OCR not available; known list/correction issues are shown | [details](mismatches/station-151.md) |
+| 153 | Mereveldlaan 3 | <span style="color:#d73a49"><strong>mismatch</strong></span> | E.1 missing->102; E.2 missing->143; +22 | <span style="color:#e36209"><strong>incomplete</strong></span> | candidate incomplete: candidate OCR not available; known list/correction issues are shown | [details](mismatches/station-153.md) |
+| 154 | Touwslagerslaan 3 | <span style="color:#d73a49"><strong>mismatch</strong></span> | E.1 missing->85; E.2 missing->67; +22 | <span style="color:#e36209"><strong>incomplete</strong></span> | candidate incomplete: candidate OCR not available; known list/correction issues are shown | [details](mismatches/station-154.md) |
+| 155 | Bovenpolder 80 | <span style="color:#22863a"><strong>fully matches</strong></span> |  | <span style="color:#6a737d"><strong>not checked</strong></span> |  |  |
+| 158 | Ten Veldestraat 94 | <span style="color:#22863a"><strong>fully matches</strong></span> |  | <span style="color:#6a737d"><strong>not checked</strong></span> |  |  |
+| 160 | Niels Bohrweg 121 | <span style="color:#22863a"><strong>fully matches</strong></span> |  | <span style="color:#6a737d"><strong>not checked</strong></span> |  |  |
+| 161 | Kweektuinlaan 11 | <span style="color:#b08800"><strong>internally inconsistent</strong></span> | rows 25/26; row 5 E.3->E.4; +22 | <span style="color:#e36209"><strong>incomplete</strong></span> | candidate incomplete: candidate OCR not available; known list/correction issues are shown | [details](mismatches/station-161.md) |
+| 162 | Jazzsingel 900 | <span style="color:#b08800"><strong>internally inconsistent</strong></span> | sum(E.1-E.20) 439!=441; E 441->439; +1 | <span style="color:#e36209"><strong>incomplete</strong></span> | candidate incomplete: candidate OCR not available; known list/correction issues are shown | [details](mismatches/station-162.md) |
+| 163 | Keerderberg 21 | <span style="color:#d73a49"><strong>mismatch</strong></span> | E.1 missing->136; E.2 missing->134; +22 | <span style="color:#e36209"><strong>incomplete</strong></span> | candidate incomplete: candidate OCR not available; known list/correction issues are shown | [details](mismatches/station-163.md) |
+| 164 | Teunisbloemlaan 50 | <span style="color:#b08800"><strong>internally inconsistent</strong></span> | rows 25/26; row 23 E->F; +4 | <span style="color:#e36209"><strong>incomplete</strong></span> | candidate incomplete: candidate OCR not available; known list/correction issues are shown | [details](mismatches/station-164.md) |
+| 167 | Pauwoogvlinder 20 | <span style="color:#d73a49"><strong>mismatch</strong></span> | F 1->0; H 785->784 | <span style="color:#e36209"><strong>incomplete</strong></span> | candidate incomplete: candidate OCR not available; known list/correction issues are shown | [details](mismatches/station-167.md) |
+| 168 | Kandinskystraat 40 | <span style="color:#d73a49"><strong>mismatch</strong></span> | G 3->4; H 955->956 | <span style="color:#e36209"><strong>incomplete</strong></span> | candidate incomplete: candidate OCR not available; known list/correction issues are shown | [details](mismatches/station-168.md) |
+| 170 | Gouden Koetslaan 97 | <span style="color:#22863a"><strong>fully matches</strong></span> |  | <span style="color:#6a737d"><strong>not checked</strong></span> |  |  |
+| 175 | Louis Armstronglaan 800 | <span style="color:#22863a"><strong>fully matches</strong></span> |  | <span style="color:#6a737d"><strong>not checked</strong></span> |  |  |
+| 179 | Parkzichtlaan 203 | <span style="color:#b08800"><strong>internally inconsistent</strong></span> | sum(E.1-E.20) 675!=775; E.1 21->120; +3 | <span style="color:#e36209"><strong>incomplete</strong></span> | candidate incomplete: candidate OCR not available; known list/correction issues are shown | [details](mismatches/station-179.md) |
+| 180 | Derde Oosterparklaan 71 | <span style="color:#b08800"><strong>internally inconsistent</strong></span> | rows 25/26; row 23 E->F; +5 | <span style="color:#e36209"><strong>incomplete</strong></span> | candidate incomplete: candidate OCR not available; known list/correction issues are shown | [details](mismatches/station-180.md) |
+| 181 | Musicallaan 100 | <span style="color:#22863a"><strong>fully matches</strong></span> |  | <span style="color:#6a737d"><strong>not checked</strong></span> |  |  |
+| 183 | Stationshal 1e verdieping | <span style="color:#22863a"><strong>fully matches</strong></span> |  | <span style="color:#6a737d"><strong>not checked</strong></span> |  |  |
+| 184 | Stadsplateau 1 | <span style="color:#6f42c1"><strong>correction inconsistent</strong></span> | bad correction: E.1 second=3, official=189 | <span style="color:#e36209"><strong>incomplete</strong></span> | candidate incomplete: candidate OCR not available; known list/correction issues are shown | [details](mismatches/station-184.md) |
+| 185 | Paranádreef 10 | <span style="color:#22863a"><strong>fully matches</strong></span> |  | <span style="color:#6a737d"><strong>not checked</strong></span> |  |  |
+| 186 | Stationshal 1e verdieping | <span style="color:#22863a"><strong>fully matches</strong></span> |  | <span style="color:#6a737d"><strong>not checked</strong></span> |  |  |
+| 190 | Kouwerplantsoen 1A | <span style="color:#b08800"><strong>internally inconsistent</strong></span> | sum(E.1-E.20) 1064!=1119; E+F+G 1154!=1119; +3 | <span style="color:#e36209"><strong>incomplete</strong></span> | candidate incomplete: candidate OCR not available; known list/correction issues are shown | [details](mismatches/station-190.md) |
+| 192 | Stadsplateau 1 | <span style="color:#d73a49"><strong>mismatch</strong></span> | F 4->3; H 634->633 | <span style="color:#e36209"><strong>incomplete</strong></span> | candidate incomplete: candidate OCR not available; known list/correction issues are shown | [details](mismatches/station-192.md) |
+| 193 | Kanaalstraat 198 | <span style="color:#b08800"><strong>internally inconsistent</strong></span> | E+F+G 1330!=665; F 2->0; +1 | <span style="color:#e36209"><strong>incomplete</strong></span> | candidate incomplete: candidate OCR not available; known list/correction issues are shown | [details](mismatches/station-193.md) |
+| 194 | Schoolstraat 11 | <span style="color:#d73a49"><strong>mismatch</strong></span> | E.1 missing->159; E.2 missing->181; +22 | <span style="color:#e36209"><strong>incomplete</strong></span> | candidate incomplete: candidate OCR not available; known list/correction issues are shown | [details](mismatches/station-194.md) |
+| 195 | Koekoeksplein 1 ingang achterzijde via Lijsterstraat | <span style="color:#d73a49"><strong>mismatch</strong></span> | E.1 missing->252; E.2 missing->219; +22 | <span style="color:#e36209"><strong>incomplete</strong></span> | candidate incomplete: candidate OCR not available; known list/correction issues are shown | [details](mismatches/station-195.md) |
+| 196 | Kanaalstraat 198 | <span style="color:#22863a"><strong>fully matches</strong></span> |  | <span style="color:#6a737d"><strong>not checked</strong></span> |  |  |
+| 199 | Oudwijkerdwarsstraat 148 | <span style="color:#b08800"><strong>internally inconsistent</strong></span> | row 20 value for E.18 could not be parsed: cannot parse integer from empty string; E.1 309->308; +3 | <span style="color:#e36209"><strong>incomplete</strong></span> | candidate incomplete: candidate OCR not available; known list/correction issues are shown | [details](mismatches/station-199.md) |
+| 202 | Bovenpolder 80 | <span style="color:#b08800"><strong>internally inconsistent</strong></span> | row 23 value for E could not be parsed: cannot parse integer from empty string; E missing->895; +2 | <span style="color:#e36209"><strong>incomplete</strong></span> | candidate incomplete: candidate OCR not available; known list/correction issues are shown | [details](mismatches/station-202.md) |
+| 203 | Duurstedelaan 16 | <span style="color:#22863a"><strong>fully matches</strong></span> |  | <span style="color:#6a737d"><strong>not checked</strong></span> |  |  |
+| 501 | Haarzichtsingel 15 ingang via achterkant | <span style="color:#d73a49"><strong>mismatch</strong></span> | E.1 93->96; E.3 229->225; +2 | <span style="color:#e36209"><strong>incomplete</strong></span> | candidate incomplete: candidate OCR not available; known list/correction issues are shown | [details](mismatches/station-501.md) |
+| 503 | M. van Meelstraat 2 | <span style="color:#22863a"><strong>fully matches</strong></span> |  | <span style="color:#6a737d"><strong>not checked</strong></span> |  |  |
+| 509 | Pagodedreef 4 | <span style="color:#b08800"><strong>internally inconsistent</strong></span> | sum(E.1-E.20) 294!=302; E.2 20->28 | <span style="color:#e36209"><strong>incomplete</strong></span> | candidate incomplete: candidate OCR not available; known list/correction issues are shown | [details](mismatches/station-509.md) |
+| 511 | Prof. van Bemmelenlaan 51A | <span style="color:#22863a"><strong>fully matches</strong></span> |  | <span style="color:#6a737d"><strong>not checked</strong></span> |  |  |
+| 518 | Deken Roesstraat 2G | <span style="color:#b08800"><strong>internally inconsistent</strong></span> | E+F+G 674!=644; E.7 33->34; +2 | <span style="color:#e36209"><strong>incomplete</strong></span> | candidate incomplete: candidate OCR not available; known list/correction issues are shown | [details](mismatches/station-518.md) |
+| 519 | Weerdsingel W.Z. 22 | <span style="color:#b08800"><strong>internally inconsistent</strong></span> | rows 25/26; row 23 E->F; +4 | <span style="color:#e36209"><strong>incomplete</strong></span> | candidate incomplete: candidate OCR not available; known list/correction issues are shown | [details](mismatches/station-519.md) |
+| 521 | Van Imhoffstraat 2 | <span style="color:#22863a"><strong>fully matches</strong></span> |  | <span style="color:#6a737d"><strong>not checked</strong></span> |  |  |
+| 523 | Goeree 4 | <span style="color:#d73a49"><strong>mismatch</strong></span> | F 6->5; G 1->2 | <span style="color:#e36209"><strong>incomplete</strong></span> | candidate incomplete: candidate OCR not available; known list/correction issues are shown | [details](mismatches/station-523.md) |
+| 530 | Van Bijnkershoeklaan 6 | <span style="color:#22863a"><strong>fully matches</strong></span> |  | <span style="color:#6a737d"><strong>not checked</strong></span> |  |  |
+| 535 | Emile Hullebroeckstraat 64 | <span style="color:#22863a"><strong>fully matches</strong></span> |  | <span style="color:#6a737d"><strong>not checked</strong></span> |  |  |
+| 537 | Akkrumerraklaan 131 ingang via achterkant | <span style="color:#b08800"><strong>internally inconsistent</strong></span> | sum(E.1-E.20) 1290!=1287; E.3 195->194; +3 | <span style="color:#e36209"><strong>incomplete</strong></span> | candidate incomplete: candidate OCR not available; known list/correction issues are shown | [details](mismatches/station-537.md) |
+| 538 | Verlengde Houtrakgracht 598 | <span style="color:#b08800"><strong>internally inconsistent</strong></span> | sum(E.1-E.20) 1485!=1495; E.14 26->36 | <span style="color:#e36209"><strong>incomplete</strong></span> | candidate incomplete: candidate OCR not available; known list/correction issues are shown | [details](mismatches/station-538.md) |
+| 539 | Mereveldlaan 12 | <span style="color:#b08800"><strong>internally inconsistent</strong></span> | E+F+G 994!=995; G 6->0; +1 | <span style="color:#e36209"><strong>incomplete</strong></span> | candidate incomplete: candidate OCR not available; known list/correction issues are shown | [details](mismatches/station-539.md) |
+| 545 | Augustusweg 30 | <span style="color:#22863a"><strong>fully matches</strong></span> |  | <span style="color:#6a737d"><strong>not checked</strong></span> |  |  |
+| 546 | IJzervarensingel 12 | <span style="color:#22863a"><strong>fully matches</strong></span> |  | <span style="color:#6a737d"><strong>not checked</strong></span> |  |  |
+| 553 | Thorbeckelaan 18  | <span style="color:#22863a"><strong>fully matches</strong></span> |  | <span style="color:#6a737d"><strong>not checked</strong></span> |  |  |
+| 565 | Schooneggendreef 27C | <span style="color:#b08800"><strong>internally inconsistent</strong></span> | sum(E.1-E.20) 175!=273; E+F+G 278!=270; +2 | <span style="color:#e36209"><strong>incomplete</strong></span> | candidate incomplete: candidate OCR not available; known list/correction issues are shown | [details](mismatches/station-565.md) |
+| 574 | Livingstonelaan 1350 | <span style="color:#22863a"><strong>fully matches</strong></span> |  | <span style="color:#6a737d"><strong>not checked</strong></span> |  |  |
+| 575 | Noordzeestraat 20 | <span style="color:#22863a"><strong>fully matches</strong></span> |  | <span style="color:#6a737d"><strong>not checked</strong></span> |  |  |
+| 582 | 't Goylaan 77 | <span style="color:#d73a49"><strong>mismatch</strong></span> | G 4->5; H 1235->1236 | <span style="color:#e36209"><strong>incomplete</strong></span> | candidate incomplete: candidate OCR not available; known list/correction issues are shown | [details](mismatches/station-582.md) |
+| 583 | Voor de Burchten 2 | <span style="color:#22863a"><strong>fully matches</strong></span> |  | <span style="color:#6a737d"><strong>not checked</strong></span> |  |  |
+| 584 | Voor de Burchten 2 | <span style="color:#b08800"><strong>internally inconsistent</strong></span> | sum(E.1-E.20) 934!=923; E.20 12->1 | <span style="color:#e36209"><strong>incomplete</strong></span> | candidate incomplete: candidate OCR not available; known list/correction issues are shown | [details](mismatches/station-584.md) |
+| 593 | Europaweg 50A | <span style="color:#22863a"><strong>fully matches</strong></span> |  | <span style="color:#6a737d"><strong>not checked</strong></span> |  |  |
+| 601 | Pieterskerkhof 10  ingang t.o. Kromme Nieuwegracht nr. 60 | <span style="color:#b08800"><strong>internally inconsistent</strong></span> | sum(E.1-E.20) 742!=743; E+F+G 745!=744; +3 | <span style="color:#e36209"><strong>incomplete</strong></span> | candidate incomplete: candidate OCR not available; known list/correction issues are shown | [details](mismatches/station-601.md) |
+| 606 | Concordiastraat 67A | <span style="color:#6f42c1"><strong>correction inconsistent</strong></span> | bad correction: E.2 second=42, official=138 | <span style="color:#e36209"><strong>incomplete</strong></span> | candidate incomplete: candidate OCR not available; known list/correction issues are shown | [details](mismatches/station-606.md) |
+| 608 | Achter de Dom 1 ingang via hoofdingang Domplein 31 | <span style="color:#b08800"><strong>internally inconsistent</strong></span> | sum(E.1-E.20) 1612!=1607; E.18 7->1; +2 | <span style="color:#e36209"><strong>incomplete</strong></span> | candidate incomplete: candidate OCR not available; known list/correction issues are shown | [details](mismatches/station-608.md) |
+| 609 | Wijde Doelen 8 | <span style="color:#22863a"><strong>fully matches</strong></span> |  | <span style="color:#6a737d"><strong>not checked</strong></span> |  |  |
+| 610 | Berlijnplein 100 | <span style="color:#22863a"><strong>fully matches</strong></span> |  | <span style="color:#6a737d"><strong>not checked</strong></span> |  |  |
+| 611 | Stationshal 9  Zaal 7 Spoorpaviljoen | <span style="color:#b08800"><strong>internally inconsistent</strong></span> | rows 25/26; row 23 E->F; +4 | <span style="color:#e36209"><strong>incomplete</strong></span> | candidate incomplete: candidate OCR not available; known list/correction issues are shown | [details](mismatches/station-611.md) |
+| 612 | Passiebloemweg 5 ingang via linkerzijde van het gebouw | <span style="color:#22863a"><strong>fully matches</strong></span> |  | <span style="color:#6a737d"><strong>not checked</strong></span> |  |  |
+| 614 | Zwarte Woud 211 | <span style="color:#d73a49"><strong>mismatch</strong></span> | F 0->2; G 2->0 | <span style="color:#e36209"><strong>incomplete</strong></span> | candidate incomplete: candidate OCR not available; known list/correction issues are shown | [details](mismatches/station-614.md) |
+| 618 | Hortensiastraat 4 | <span style="color:#22863a"><strong>fully matches</strong></span> |  | <span style="color:#6a737d"><strong>not checked</strong></span> |  |  |
+| 620 | Hamburgerstraat 28 | <span style="color:#22863a"><strong>fully matches</strong></span> |  | <span style="color:#6a737d"><strong>not checked</strong></span> |  |  |
+| 622 | Boorstraat 107 | <span style="color:#22863a"><strong>fully matches</strong></span> |  | <span style="color:#6a737d"><strong>not checked</strong></span> |  |  |
+| 625 | Kopenhagenstraat 41 | <span style="color:#22863a"><strong>fully matches</strong></span> |  | <span style="color:#6a737d"><strong>not checked</strong></span> |  |  |
+| 627 | Laurierweg 104 | <span style="color:#22863a"><strong>fully matches</strong></span> |  | <span style="color:#6a737d"><strong>not checked</strong></span> |  |  |
+| 629 | Neude 11 | <span style="color:#6f42c1"><strong>correction inconsistent</strong></span> | bad correction: E.1 second=390, official=391 | <span style="color:#e36209"><strong>incomplete</strong></span> | candidate incomplete: candidate OCR not available; known list/correction issues are shown | [details](mismatches/station-629.md) |
+| 630 | Neude 11 | <span style="color:#22863a"><strong>fully matches</strong></span> |  | <span style="color:#6a737d"><strong>not checked</strong></span> |  |  |
+| 631 | Jeanne d'Arcdreef 1 | <span style="color:#b08800"><strong>internally inconsistent</strong></span> | sum(E.1-E.20) 1194!=654; E.6 184->14; +2 | <span style="color:#e36209"><strong>incomplete</strong></span> | candidate incomplete: candidate OCR not available; known list/correction issues are shown | [details](mismatches/station-631.md) |
+| 634 | Mecklenburglaan 3 | <span style="color:#6f42c1"><strong>correction inconsistent</strong></span> | bad correction: E.1 second=204, official=284 | <span style="color:#e36209"><strong>incomplete</strong></span> | candidate incomplete: candidate OCR not available; known list/correction issues are shown | [details](mismatches/station-634.md) |
+| 635 | Braziliëdreef 2 | <span style="color:#b08800"><strong>internally inconsistent</strong></span> | sum(E.1-E.20) 425!=0; E+F+G 2!=417; +2 | <span style="color:#e36209"><strong>incomplete</strong></span> | candidate incomplete: candidate OCR not available; known list/correction issues are shown | [details](mismatches/station-635.md) |
+| 641 | Europalaan 2B | <span style="color:#d73a49"><strong>mismatch</strong></span> | E.1 152->154; E 540->542; +1 | <span style="color:#e36209"><strong>incomplete</strong></span> | candidate incomplete: candidate OCR not available; known list/correction issues are shown | [details](mismatches/station-641.md) |
+| 642 | Agnietenstraat 1 ingang via Nicolaasdwarsstr (Tuinzaal) | <span style="color:#22863a"><strong>fully matches</strong></span> |  | <span style="color:#6a737d"><strong>not checked</strong></span> |  |  |
+| 649 | Burg Norbruislaan 17 | <span style="color:#d73a49"><strong>mismatch</strong></span> | G 4->3; H 705->704 | <span style="color:#e36209"><strong>incomplete</strong></span> | candidate incomplete: candidate OCR not available; known list/correction issues are shown | [details](mismatches/station-649.md) |
+| 650 | Verlengde Hoogravenseweg 203 ingang via zijkant | <span style="color:#22863a"><strong>fully matches</strong></span> |  | <span style="color:#6a737d"><strong>not checked</strong></span> |  |  |
+| 651 | Amsterdamsestraatweg 239A | <span style="color:#6f42c1"><strong>correction inconsistent</strong></span> | bad correction: E.1 second=295, official=296 | <span style="color:#e36209"><strong>incomplete</strong></span> | candidate incomplete: candidate OCR not available; known list/correction issues are shown | [details](mismatches/station-651.md) |
+| 655 | Tjalkstraat 20 | <span style="color:#6f42c1"><strong>correction inconsistent</strong></span> | bad correction: E.10 second=21, official=20 | <span style="color:#e36209"><strong>incomplete</strong></span> | candidate incomplete: candidate OCR not available; known list/correction issues are shown | [details](mismatches/station-655.md) |
+| 659 | Marco Pololaan 185 | <span style="color:#b08800"><strong>internally inconsistent</strong></span> | sum(E.1-E.20) 481!=377; E+F+G 383!=476; +5 | <span style="color:#e36209"><strong>incomplete</strong></span> | candidate incomplete: candidate OCR not available; known list/correction issues are shown | [details](mismatches/station-659.md) |
+| 667 | Hendrika v Tussenbroekln 1A ingang via Petristraat | <span style="color:#22863a"><strong>fully matches</strong></span> |  | <span style="color:#6a737d"><strong>not checked</strong></span> |  |  |
+| 668 | Geertekerkhof 23 | <span style="color:#22863a"><strong>fully matches</strong></span> |  | <span style="color:#6a737d"><strong>not checked</strong></span> |  |  |
+| 669 | Moskeeplein 89 | <span style="color:#b08800"><strong>internally inconsistent</strong></span> | sum(E.1-E.20) 800!=0; E 0->800; +1 | <span style="color:#e36209"><strong>incomplete</strong></span> | candidate incomplete: candidate OCR not available; known list/correction issues are shown | [details](mismatches/station-669.md) |
+| 670 | Prof. Suringarlaan 1 ingang via H.F. van Riellaan  | <span style="color:#22863a"><strong>fully matches</strong></span> |  | <span style="color:#6a737d"><strong>not checked</strong></span> |  |  |
+| 677 | Budapestlaan 4A-B | <span style="color:#b08800"><strong>internally inconsistent</strong></span> | sum(E.1-E.20) 584!=583; E.2 73->74; +3 | <span style="color:#e36209"><strong>incomplete</strong></span> | candidate incomplete: candidate OCR not available; known list/correction issues are shown | [details](mismatches/station-677.md) |
+| 679 | Prinsesselaan 2 | <span style="color:#d73a49"><strong>mismatch</strong></span> | E.1 290->286; E.2 274->275; +5 | <span style="color:#e36209"><strong>incomplete</strong></span> | candidate incomplete: candidate OCR not available; known list/correction issues are shown | [details](mismatches/station-679.md) |
+| 684 | Moskeeplein 89 | <span style="color:#22863a"><strong>fully matches</strong></span> |  | <span style="color:#6a737d"><strong>not checked</strong></span> |  |  |
+| 688 | Hondsrug 19 | <span style="color:#b08800"><strong>internally inconsistent</strong></span> | sum(E.1-E.20) 733!=0; E+F+G 2!=1052; +3 | <span style="color:#e36209"><strong>incomplete</strong></span> | candidate incomplete: candidate OCR not available; known list/correction issues are shown | [details](mismatches/station-688.md) |
+| 690 | Heycopplein 5 | <span style="color:#b08800"><strong>internally inconsistent</strong></span> | sum(E.1-E.20) 909!=903; E.1 316->310 | <span style="color:#e36209"><strong>incomplete</strong></span> | candidate incomplete: candidate OCR not available; known list/correction issues are shown | [details](mismatches/station-690.md) |
+| 692 | Briljantlaan 6 | <span style="color:#22863a"><strong>fully matches</strong></span> |  | <span style="color:#6a737d"><strong>not checked</strong></span> |  |  |
+| 693 | Heidelberglaan 3 | <span style="color:#b08800"><strong>internally inconsistent</strong></span> | sum(E.1-E.20) 898!=0; E+F+G 1!=899; +1 | <span style="color:#e36209"><strong>incomplete</strong></span> | candidate incomplete: candidate OCR not available; known list/correction issues are shown | [details](mismatches/station-693.md) |
+| 694 | Poortstraat 73 ingang via Bladstraat | <span style="color:#22863a"><strong>fully matches</strong></span> |  | <span style="color:#6a737d"><strong>not checked</strong></span> |  |  |
+| 696 | Royaards van den Hamkade 18 ingang achterkant via Opzoomerstraat | <span style="color:#22863a"><strong>fully matches</strong></span> |  | <span style="color:#6a737d"><strong>not checked</strong></span> |  |  |
+| 698 | Jagerskade 4 | <span style="color:#22863a"><strong>fully matches</strong></span> |  | <span style="color:#6a737d"><strong>not checked</strong></span> |  |  |
+| 711 | Pauwoogvlinder 20 | <span style="color:#6f42c1"><strong>correction inconsistent</strong></span> | bad correction: E.10 second=14, official=13 | <span style="color:#e36209"><strong>incomplete</strong></span> | candidate incomplete: candidate OCR not available; known list/correction issues are shown | [details](mismatches/station-711.md) |
+| 712 | Samuel van Houtenstraat 1 | <span style="color:#22863a"><strong>fully matches</strong></span> |  | <span style="color:#6a737d"><strong>not checked</strong></span> |  |  |
+| 715 | Oesterzwam nabij station Vleuten | <span style="color:#b08800"><strong>internally inconsistent</strong></span> | sum(E.1-E.20) 685!=688; E.17 31->34; +2 | <span style="color:#e36209"><strong>incomplete</strong></span> | candidate incomplete: candidate OCR not available; known list/correction issues are shown | [details](mismatches/station-715.md) |
+| 717 | Jonkvrouw Sanderijndreef 35 | <span style="color:#b08800"><strong>internally inconsistent</strong></span> | sum(E.1-E.20) 385!=298; E.8 90->9; +2 | <span style="color:#e36209"><strong>incomplete</strong></span> | candidate incomplete: candidate OCR not available; known list/correction issues are shown | [details](mismatches/station-717.md) |
+| 718 | Domplein 21 | <span style="color:#b08800"><strong>internally inconsistent</strong></span> | sum(E.1-E.20) 1784!=0; E+F+G 5!=1789; +1 | <span style="color:#e36209"><strong>incomplete</strong></span> | candidate incomplete: candidate OCR not available; known list/correction issues are shown | [details](mismatches/station-718.md) |
+| 719 | Nedereindseweg 501A | <span style="color:#b08800"><strong>internally inconsistent</strong></span> | sum(E.1-E.20) 161!=149; E.9 6->0; +1 | <span style="color:#e36209"><strong>incomplete</strong></span> | candidate incomplete: candidate OCR not available; known list/correction issues are shown | [details](mismatches/station-719.md) |
+| 720 | Heidelberglaan 3 | <span style="color:#22863a"><strong>fully matches</strong></span> |  | <span style="color:#6a737d"><strong>not checked</strong></span> |  |  |
+| 721 | Ella Fitzgeraldplein 291 | <span style="color:#22863a"><strong>fully matches</strong></span> |  | <span style="color:#6a737d"><strong>not checked</strong></span> |  |  |
+| 723 | Mariastraat 12 | <span style="color:#b08800"><strong>internally inconsistent</strong></span> | sum(E.1-E.20) 398!=0; E+F+G 1!=11; +6 | <span style="color:#e36209"><strong>incomplete</strong></span> | candidate incomplete: candidate OCR not available; known list/correction issues are shown | [details](mismatches/station-723.md) |
+| 724 | Heycopstraat (op de stoep) | <span style="color:#6f42c1"><strong>correction inconsistent</strong></span> | bad correction: E.2 second=373, official=372 | <span style="color:#e36209"><strong>incomplete</strong></span> | candidate incomplete: candidate OCR not available; known list/correction issues are shown | [details](mismatches/station-724.md) |
 
 Summary:
 - missing: 0
@@ -220,3 +221,10 @@ Summary:
 - internally inconsistent: 66
 - mismatch: 33
 - fully matches: 93
+
+Candidate summary:
+- incomplete: 113
+- internally inconsistent: 1
+- mismatch: 3
+- fully matches: 0
+- not checked: 90

@@ -14,6 +14,14 @@
 - E.13: md=7, official=4
 - E: md=missing, official=523
 
+## Candidate Votes
+
+- Status: `incomplete`
+- Compared candidate cells: 0/508
+- Candidate OCR files: 0
+- candidate OCR not available
+- known list/correction issues are shown
+
 Legend: yellow/red = official CSV mismatch; blue = internal consistency issue. The right margin shows OCR and official values for official mismatches.
 
 ![Highlighted table rows](station-48.png)

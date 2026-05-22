@@ -9,6 +9,14 @@
 - E.1 through E.20 sum to 614, but E is 616
 - E.10: md=13, official=15
 
+## Candidate Votes
+
+- Status: `incomplete`
+- Compared candidate cells: 0/508
+- Candidate OCR files: 0
+- candidate OCR not available
+- known list/correction issues are shown
+
 Legend: yellow/red = official CSV mismatch; blue = internal consistency issue. The right margin shows OCR and official values for official mismatches.
 
 ![Highlighted table rows](station-65.png)

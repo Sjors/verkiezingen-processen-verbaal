@@ -10,6 +10,14 @@
 - E + F + G is 1474, but H is 1468
 - E: md=1468, official=1462
 
+## Candidate Votes
+
+- Status: `incomplete`
+- Compared candidate cells: 0/508
+- Candidate OCR files: 0
+- candidate OCR not available
+- known list/correction issues are shown
+
 Legend: yellow/red = official CSV mismatch; blue = internal consistency issue. The right margin shows OCR and official values for official mismatches.
 
 ![Highlighted table rows](station-59.png)
