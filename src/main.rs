@@ -25,16 +25,22 @@ const UTRECHT_GSB_CSV_URL: &str =
 const UTRECHT_CSB_CSV_URL: &str =
     "https://open.utrecht.nl/sites/default/files/open-data/osv4-3-telling-gr2026-utrecht_0.csv";
 
-const EXTERNAL_TOOLS: &[ExternalTool] = &[
-    ExternalTool {
-        name: "pdfimages",
-        purpose: "extract embedded PDF page images at native resolution",
-    },
-    ExternalTool {
-        name: "pdftotext",
-        purpose: "locate table pages by text anchors",
-    },
-];
+const PDFIMAGES_TOOL: ExternalTool = ExternalTool {
+    name: "pdfimages",
+    purpose: "extract embedded PDF page images at native resolution",
+};
+const PDFTOTEXT_TOOL: ExternalTool = ExternalTool {
+    name: "pdftotext",
+    purpose: "locate table pages by text anchors",
+};
+const MUTOOL_TOOL: ExternalTool = ExternalTool {
+    name: "mutool",
+    purpose: "render B1 candidate-list pages at scan resolution",
+};
+const EXTERNAL_TOOLS: &[ExternalTool] = &[PDFIMAGES_TOOL, PDFTOTEXT_TOOL, MUTOOL_TOOL];
+const STANDARD_CROP_TOOLS: &[ExternalTool] = &[PDFIMAGES_TOOL, PDFTOTEXT_TOOL];
+const SINGLE_PAGE_STANDARD_CROP_TOOLS: &[ExternalTool] = &[PDFIMAGES_TOOL];
+const CANDIDATE_LIST_CROP_TOOLS: &[ExternalTool] = &[MUTOOL_TOOL, PDFTOTEXT_TOOL];
 
 #[derive(Clone, Copy, Debug)]
 struct ExternalTool {
@@ -46,6 +52,7 @@ struct ExternalTool {
 enum CropKind {
     Votes,
     Corrections,
+    CandidateLists,
 }
 
 impl CropKind {
@@ -53,8 +60,9 @@ impl CropKind {
         match value {
             "votes" | "2.2" => Ok(Self::Votes),
             "corrections" | "b1-2.4" | "2.4" => Ok(Self::Corrections),
+            "candidate-votes" | "candidates" | "b1-3.5" | "3.5" => Ok(Self::CandidateLists),
             _ => err(format!(
-                "unknown crop kind {value:?}; expected votes / 2.2 or corrections / b1-2.4"
+                "unknown crop kind {value:?}; expected votes / 2.2, corrections / b1-2.4, or candidates / b1-3.5"
             )),
         }
     }
@@ -63,6 +71,7 @@ impl CropKind {
         match self {
             Self::Votes => "2.2",
             Self::Corrections => "corrections",
+            Self::CandidateLists => "b1-3.5",
         }
     }
 
@@ -70,6 +79,7 @@ impl CropKind {
         match self {
             Self::Votes => "2.2",
             Self::Corrections => "corrections",
+            Self::CandidateLists => "b1-3.5",
         }
     }
 
@@ -85,6 +95,10 @@ impl CropKind {
                 lower.contains("b1 - 2.4")
                     && lower.contains("lijsten met verschil")
                     && lower.contains("lijsttotaal")
+            }
+            Self::CandidateLists => {
+                lower.contains("b1 - 3.5")
+                    && lower.contains("stemmen per lijst en per kandidaat")
             }
         }
     }
@@ -103,6 +117,7 @@ impl CropKind {
                 width: 0.9550,
                 height: 0.8750,
             },
+            Self::CandidateLists => candidate_list_full_template(),
         }
     }
 
@@ -114,7 +129,7 @@ impl CropKind {
                 width: 0.1725,
                 height: 0.9600,
             }),
-            Self::Corrections => None,
+            Self::Corrections | Self::CandidateLists => None,
         }
     }
 }
@@ -125,6 +140,23 @@ struct CropTemplate {
     y: f32,
     width: f32,
     height: f32,
+}
+
+#[derive(Clone, Debug)]
+struct CandidateListPage {
+    page: u32,
+    list_number: u32,
+    list_name: String,
+    candidate_count: Option<u32>,
+    detected_columns: u8,
+}
+
+#[derive(Clone, Copy, Debug)]
+struct UtrechtCandidateList {
+    number: u32,
+    page: u32,
+    name: &'static str,
+    candidate_count: u32,
 }
 
 #[derive(Debug)]
@@ -3534,10 +3566,13 @@ fn print_ocr_report(title: &str, reports: &[ImageOcrReport]) {
 }
 
 fn required_crop_tools(options: &CropOptions) -> &'static [ExternalTool] {
+    if options.kind == CropKind::CandidateLists {
+        return CANDIDATE_LIST_CROP_TOOLS;
+    }
     if options.page_override.is_some() {
-        &EXTERNAL_TOOLS[..1]
+        SINGLE_PAGE_STANDARD_CROP_TOOLS
     } else {
-        EXTERNAL_TOOLS
+        STANDARD_CROP_TOOLS
     }
 }
 
@@ -4062,7 +4097,7 @@ fn default_pdf_matches_kind(file_name: &str, kind: CropKind) -> bool {
     }
     match kind {
         CropKind::Votes => file_name.contains("_eerste_telling"),
-        CropKind::Corrections => {
+        CropKind::Corrections | CropKind::CandidateLists => {
             !file_name.contains("_eerste_telling")
                 && station_code_from_file_name(file_name).is_some()
                 && file_name.contains("_GR")
@@ -4078,6 +4113,10 @@ fn station_code_from_file_name(file_name: &str) -> Option<&str> {
 
 fn crop_pdf(pdf: &Path, out_dir: &Path, options: &CropOptions) -> Result<()> {
     let kind = options.kind;
+    if kind == CropKind::CandidateLists {
+        return crop_candidate_lists_pdf(pdf, out_dir, options);
+    }
+
     let full_table_path = full_table_output_path_for(pdf, out_dir, kind)?;
     if !options.force {
         ensure_output_absent(&full_table_path)?;
@@ -4155,6 +4194,397 @@ fn crop_pdf(pdf: &Path, out_dir: &Path, options: &CropOptions) -> Result<()> {
     }
 
     Ok(())
+}
+
+fn crop_candidate_lists_pdf(pdf: &Path, out_dir: &Path, options: &CropOptions) -> Result<()> {
+    let mut pages = locate_candidate_list_pages(pdf)?;
+    if let Some(page_override) = options.page_override {
+        pages.retain(|page| page.page == page_override);
+        if pages.is_empty() {
+            return err(format!(
+                "could not locate a B1-3.5 candidate list on page {page_override} in {}",
+                pdf.display()
+            ));
+        }
+    }
+
+    for page in pages {
+        let output_stem = candidate_list_output_stem(pdf, &page)?;
+        let full_table_path = out_dir
+            .join(CropKind::CandidateLists.directory_name())
+            .join(format!("{output_stem}.png"));
+        if !options.force {
+            ensure_output_absent(&full_table_path)?;
+        }
+
+        let column_count = candidate_list_column_count(&page);
+        let mut narrow_paths = Vec::new();
+        for column in 1..=column_count {
+            let narrow_path = out_dir
+                .join(CropKind::CandidateLists.directory_name())
+                .join("narrow")
+                .join(format!("{output_stem}_kolom-{column}.png"));
+            if !options.force {
+                ensure_output_absent(&narrow_path)?;
+            }
+            narrow_paths.push((column, narrow_path));
+        }
+
+        let extracted =
+            render_candidate_page_image(pdf, page.page, out_dir, options.keep_page_images)?;
+        let full_crop = write_crop(
+            &extracted.image_path,
+            &full_table_path,
+            candidate_list_full_template(),
+        )?;
+        println!(
+            "{} page {} b1-3.5 list {} -> {} ({}x{} at {},{} from {}x{})",
+            pdf.display(),
+            page.page,
+            page.list_number,
+            full_table_path.display(),
+            full_crop.width,
+            full_crop.height,
+            full_crop.x,
+            full_crop.y,
+            full_crop.source_width,
+            full_crop.source_height
+        );
+
+        for (column, narrow_path) in narrow_paths {
+            let narrow_crop = write_crop(
+                &extracted.image_path,
+                &narrow_path,
+                candidate_list_column_template(&page, column),
+            )?;
+            println!(
+                "{} b1-3.5 list {} column {} narrow -> {} ({}x{} at {},{} from {}x{})",
+                pdf.display(),
+                page.list_number,
+                column,
+                narrow_path.display(),
+                narrow_crop.width,
+                narrow_crop.height,
+                narrow_crop.x,
+                narrow_crop.y,
+                narrow_crop.source_width,
+                narrow_crop.source_height
+            );
+        }
+
+        if !options.keep_page_images {
+            fs::remove_dir_all(extracted.temp_dir)?;
+        }
+    }
+
+    Ok(())
+}
+
+const UTRECHT_CANDIDATE_LISTS: &[UtrechtCandidateList] = &[
+    UtrechtCandidateList {
+        number: 1,
+        page: 7,
+        name: "GROENLINKS PvdA",
+        candidate_count: 50,
+    },
+    UtrechtCandidateList {
+        number: 2,
+        page: 9,
+        name: "D66",
+        candidate_count: 45,
+    },
+    UtrechtCandidateList {
+        number: 3,
+        page: 10,
+        name: "VVD",
+        candidate_count: 45,
+    },
+    UtrechtCandidateList {
+        number: 4,
+        page: 11,
+        name: "CDA",
+        candidate_count: 44,
+    },
+    UtrechtCandidateList {
+        number: 5,
+        page: 12,
+        name: "Partij voor de Dieren",
+        candidate_count: 25,
+    },
+    UtrechtCandidateList {
+        number: 6,
+        page: 13,
+        name: "Volt",
+        candidate_count: 20,
+    },
+    UtrechtCandidateList {
+        number: 7,
+        page: 14,
+        name: "Student Starter",
+        candidate_count: 50,
+    },
+    UtrechtCandidateList {
+        number: 8,
+        page: 15,
+        name: "ChristenUnie",
+        candidate_count: 30,
+    },
+    UtrechtCandidateList {
+        number: 9,
+        page: 16,
+        name: "DENK",
+        candidate_count: 13,
+    },
+    UtrechtCandidateList {
+        number: 10,
+        page: 17,
+        name: "BIJ1",
+        candidate_count: 20,
+    },
+    UtrechtCandidateList {
+        number: 11,
+        page: 18,
+        name: "EenUtrecht",
+        candidate_count: 39,
+    },
+    UtrechtCandidateList {
+        number: 12,
+        page: 19,
+        name: "SP",
+        candidate_count: 25,
+    },
+    UtrechtCandidateList {
+        number: 13,
+        page: 20,
+        name: "Stadsbelang Utrecht",
+        candidate_count: 16,
+    },
+    UtrechtCandidateList {
+        number: 14,
+        page: 21,
+        name: "PVV",
+        candidate_count: 3,
+    },
+    UtrechtCandidateList {
+        number: 15,
+        page: 22,
+        name: "UtrechtNu",
+        candidate_count: 18,
+    },
+    UtrechtCandidateList {
+        number: 16,
+        page: 23,
+        name: "Utrecht Solidair",
+        candidate_count: 14,
+    },
+    UtrechtCandidateList {
+        number: 17,
+        page: 24,
+        name: "Forum voor Democratie",
+        candidate_count: 11,
+    },
+    UtrechtCandidateList {
+        number: 18,
+        page: 25,
+        name: "Lijst 18",
+        candidate_count: 1,
+    },
+    UtrechtCandidateList {
+        number: 19,
+        page: 26,
+        name: "JA21",
+        candidate_count: 8,
+    },
+    UtrechtCandidateList {
+        number: 20,
+        page: 27,
+        name: "Lijst 20",
+        candidate_count: 31,
+    },
+];
+
+fn candidate_list_full_template() -> CropTemplate {
+    CropTemplate {
+        x: 0.0550,
+        y: 0.0800,
+        width: 0.8900,
+        height: 0.8420,
+    }
+}
+
+fn candidate_list_column_template(page: &CandidateListPage, column: u8) -> CropTemplate {
+    let rows = candidate_list_rows_in_column(page, column).unwrap_or(25);
+    let height = (0.0180 + rows as f32 * 0.0280).min(0.7180);
+    let (x, width) = match column {
+        1 => (0.3330, 0.1480),
+        2 => (0.7850, 0.1420),
+        _ => (0.3330, 0.1480),
+    };
+    CropTemplate {
+        x,
+        y: 0.1300,
+        width,
+        height,
+    }
+}
+
+fn candidate_list_rows_in_column(page: &CandidateListPage, column: u8) -> Option<u32> {
+    let count = page.candidate_count?;
+    match column {
+        1 => Some(count.min(25)),
+        2 => Some(count.saturating_sub(25)),
+        _ => None,
+    }
+}
+
+fn candidate_list_column_count(page: &CandidateListPage) -> u8 {
+    if let Some(candidate_count) = page.candidate_count {
+        candidate_columns_from_count(candidate_count)
+    } else {
+        page.detected_columns.clamp(1, 2)
+    }
+}
+
+fn locate_candidate_list_pages(pdf: &Path) -> Result<Vec<CandidateListPage>> {
+    let text_pages = pdftotext_pages(pdf)?;
+    let is_utrecht = text_pages
+        .iter()
+        .any(|page_text| page_text.contains("Gemeente 0344 Utrecht"))
+        || pdf
+            .file_name()
+            .and_then(OsStr::to_str)
+            .is_some_and(|file_name| file_name.starts_with("Utrecht_"));
+    let mut pages_by_page = BTreeMap::new();
+
+    for (index, page_text) in text_pages.iter().enumerate() {
+        let Some((list_number, list_name)) = parse_candidate_list_title(page_text) else {
+            continue;
+        };
+        let static_info = if is_utrecht {
+            utrecht_candidate_list(list_number)
+        } else {
+            None
+        };
+        let list_name = static_info
+            .map(|info| info.name.to_owned())
+            .filter(|name| !name.trim().is_empty())
+            .unwrap_or_else(|| list_name);
+        let candidate_count = static_info.map(|info| info.candidate_count);
+        pages_by_page.insert(
+            index as u32 + 1,
+            CandidateListPage {
+                page: index as u32 + 1,
+                list_number,
+                list_name,
+                candidate_count,
+                detected_columns: detected_candidate_columns(page_text),
+            },
+        );
+    }
+
+    if is_utrecht {
+        for info in UTRECHT_CANDIDATE_LISTS {
+            if info.page as usize > text_pages.len() {
+                continue;
+            }
+            pages_by_page
+                .entry(info.page)
+                .and_modify(|page: &mut CandidateListPage| {
+                    page.list_number = info.number;
+                    page.list_name = info.name.to_owned();
+                    page.candidate_count = Some(info.candidate_count);
+                    page.detected_columns = candidate_columns_from_count(info.candidate_count);
+                })
+                .or_insert_with(|| CandidateListPage {
+                    page: info.page,
+                    list_number: info.number,
+                    list_name: info.name.to_owned(),
+                    candidate_count: Some(info.candidate_count),
+                    detected_columns: candidate_columns_from_count(info.candidate_count),
+                });
+        }
+    }
+
+    let pages: Vec<_> = pages_by_page.into_values().collect();
+    if pages.is_empty() {
+        return err(format!(
+            "could not locate B1-3.5 candidate list pages in {}",
+            pdf.display()
+        ));
+    }
+    Ok(pages)
+}
+
+fn pdftotext_pages(pdf: &Path) -> Result<Vec<String>> {
+    let output = Command::new("pdftotext")
+        .arg("-layout")
+        .arg(pdf)
+        .arg("-")
+        .output()?;
+    if !output.status.success() {
+        return err(format!(
+            "pdftotext failed for {}: {}",
+            pdf.display(),
+            String::from_utf8_lossy(&output.stderr)
+        ));
+    }
+
+    Ok(String::from_utf8_lossy(&output.stdout)
+        .split('\x0c')
+        .map(str::to_owned)
+        .collect())
+}
+
+fn parse_candidate_list_title(page_text: &str) -> Option<(u32, String)> {
+    for line in page_text.lines() {
+        let trimmed = line.trim();
+        let Some(rest) = trimmed.strip_prefix("Lijst ") else {
+            continue;
+        };
+        let digits_len = rest
+            .chars()
+            .take_while(|ch| ch.is_ascii_digit())
+            .map(char::len_utf8)
+            .sum();
+        if digits_len == 0 {
+            continue;
+        }
+        let list_number = rest[..digits_len].parse().ok()?;
+        let list_name = rest[digits_len..].trim().to_owned();
+        return Some((list_number, list_name));
+    }
+    None
+}
+
+fn detected_candidate_columns(page_text: &str) -> u8 {
+    let lower = page_text.to_lowercase();
+    if lower.matches("kandidaat").count() >= 2 && lower.matches("stemmen").count() >= 2 {
+        2
+    } else {
+        1
+    }
+}
+
+fn candidate_columns_from_count(candidate_count: u32) -> u8 {
+    if candidate_count > 25 { 2 } else { 1 }
+}
+
+fn utrecht_candidate_list(number: u32) -> Option<UtrechtCandidateList> {
+    UTRECHT_CANDIDATE_LISTS
+        .iter()
+        .copied()
+        .find(|info| info.number == number)
+}
+
+fn candidate_list_output_stem(pdf: &Path, page: &CandidateListPage) -> Result<String> {
+    let mut stem = file_stem_string(pdf)?;
+    stem.push_str(&format!("_lijst-{:02}", page.list_number));
+    let list_slug = safe_file_slug(&page.list_name);
+    if !list_slug.is_empty() {
+        stem.push('_');
+        stem.push_str(&list_slug);
+    }
+    Ok(stem)
 }
 
 fn ensure_output_absent(path: &Path) -> Result<()> {
@@ -4260,6 +4690,59 @@ fn extract_native_page_image(
             ),
         )
     })?;
+
+    Ok(ExtractedImage {
+        temp_dir,
+        image_path,
+    })
+}
+
+fn render_candidate_page_image(
+    pdf: &Path,
+    page: u32,
+    out_dir: &Path,
+    keep_page_image: bool,
+) -> Result<ExtractedImage> {
+    let temp_dir = if keep_page_image {
+        let stem = pdf.file_stem().and_then(OsStr::to_str).unwrap_or("page");
+        out_dir
+            .join("_rendered_pages")
+            .join(format!("{}-page-{page}", safe_file_part(stem)))
+    } else {
+        env::temp_dir().join(format!(
+            "pv-crop-render-{}-{}",
+            std::process::id(),
+            SystemTime::now().duration_since(UNIX_EPOCH)?.as_nanos()
+        ))
+    };
+    fs::create_dir_all(&temp_dir)?;
+
+    let image_path = temp_dir.join("page.png");
+    let output = Command::new("mutool")
+        .arg("draw")
+        .arg("-r")
+        .arg("300")
+        .arg("-o")
+        .arg(&image_path)
+        .arg(pdf)
+        .arg(page.to_string())
+        .output()?;
+    if !output.status.success() {
+        return err(format!(
+            "mutool draw failed for {} page {}: {}",
+            pdf.display(),
+            page,
+            String::from_utf8_lossy(&output.stderr)
+        ));
+    }
+    if !image_path.exists() {
+        return err(format!(
+            "mutool draw did not create {} for {} page {}",
+            image_path.display(),
+            pdf.display(),
+            page
+        ));
+    }
 
     Ok(ExtractedImage {
         temp_dir,
@@ -4380,6 +4863,24 @@ fn safe_file_part(value: &str) -> String {
         .collect()
 }
 
+fn safe_file_slug(value: &str) -> String {
+    let mut slug = String::new();
+    let mut previous_separator = true;
+    for ch in value.chars() {
+        if ch.is_ascii_alphanumeric() {
+            slug.push(ch);
+            previous_separator = false;
+        } else if !previous_separator {
+            slug.push('_');
+            previous_separator = true;
+        }
+    }
+    if slug.ends_with('_') {
+        slug.pop();
+    }
+    slug
+}
+
 fn file_stem_string(path: &Path) -> Result<String> {
     path.file_stem()
         .and_then(OsStr::to_str)
@@ -4430,7 +4931,8 @@ fn doctor_help_text() -> &'static str {
   pv doctor
 
 Checks whether external tools required by the Rust utilities are available on
-PATH. The current crop workflow requires Poppler's pdfimages and pdftotext."
+PATH. The current crop workflow requires Poppler's pdfimages and pdftotext;
+B1-3.5 candidate-list crops also require mutool."
 }
 
 fn print_crop_help() {
@@ -4460,6 +4962,7 @@ fn crop_help_text() -> &'static str {
 Examples:
   cargo run -- crop 2026 0344 --station 40
   cargo run -- crop 2026 0344 --kind corrections --station 111
+  cargo run -- crop 2026 0344 --kind b1-3.5 --station 100
   cargo run -- crop 2026-GR 0344
 
 Options:
@@ -4467,10 +4970,10 @@ Options:
                             A bare number is treated as a polling station number.
   --station <number>        Crop one polling station. Repeat to crop several stations.
                             Without this option, votes crops use all *_eerste_telling.pdf files and
-                            corrections crops use station-level second-count PDFs.
+                            corrections/candidate crops use station-level second-count PDFs.
   --out-dir <dir>           Output directory. Default: <election>/<municipality>/crops.
   --kind <kind>             Crop kind. Default: votes. Supported: votes / 2.2,
-                            corrections / b1-2.4.
+                            corrections / b1-2.4, candidates / b1-3.5.
   --page <number>           Override automatic section page detection.
   --keep-page-images        Keep extracted native page images under <out-dir>/_native_pages.
   --force                   Overwrite existing crop files.
@@ -4479,10 +4982,15 @@ The votes crop writes lossless PNG crops for table 2.2 \"Uitgebrachte stemmen\"
 under <election>/<municipality>/crops/2.2/ and narrow OCR-focused crops under
 <election>/<municipality>/crops/2.2/narrow/. The corrections crop writes table
 B1-2.4 \"Lijsten met verschillen\" under
-<election>/<municipality>/crops/corrections/. The command uses pdftotext to
-locate the table page, then extracts the embedded page image with pdfimages and
-crops those native pixels directly. Existing output files are treated as an
-error unless --force is used."
+<election>/<municipality>/crops/corrections/. The candidate crop writes one
+full B1-3.5 PNG per party list under
+<election>/<municipality>/crops/b1-3.5/ and per-column narrow crops under
+<election>/<municipality>/crops/b1-3.5/narrow/. The command uses pdftotext to
+locate table pages. Votes and correction crops extract the embedded page image
+with pdfimages and crop those native pixels directly; candidate-list crops use
+mutool at 300 DPI, matching the scan dimensions while avoiding slow per-page
+image extraction. Existing output files are treated as an error unless --force
+is used."
 }
 
 fn ocr_votes_help_text() -> &'static str {
@@ -4827,6 +5335,46 @@ mod tests {
         assert_eq!(corrections["E.4"].first, None);
         assert_eq!(corrections["E.4"].second, None);
         assert_eq!(corrections["E.4"].difference, 1);
+    }
+
+    #[test]
+    fn parses_candidate_list_title_and_slug() {
+        let page_text = "Bijlage 1\n\nLijst 1 GROENLINKS / Partij van de Arbeid (PvdA)\n";
+
+        assert_eq!(
+            parse_candidate_list_title(page_text),
+            Some((
+                1,
+                "GROENLINKS / Partij van de Arbeid (PvdA)".to_owned()
+            ))
+        );
+        assert_eq!(
+            safe_file_slug("GROENLINKS / Partij van de Arbeid (PvdA)"),
+            "GROENLINKS_Partij_van_de_Arbeid_PvdA"
+        );
+    }
+
+    #[test]
+    fn computes_candidate_list_column_counts() {
+        let one_column = CandidateListPage {
+            page: 21,
+            list_number: 14,
+            list_name: "PVV".to_owned(),
+            candidate_count: Some(3),
+            detected_columns: 2,
+        };
+        let two_columns = CandidateListPage {
+            page: 7,
+            list_number: 1,
+            list_name: "GROENLINKS PvdA".to_owned(),
+            candidate_count: Some(50),
+            detected_columns: 1,
+        };
+
+        assert_eq!(candidate_list_column_count(&one_column), 1);
+        assert_eq!(candidate_list_column_count(&two_columns), 2);
+        assert_eq!(candidate_list_rows_in_column(&two_columns, 1), Some(25));
+        assert_eq!(candidate_list_rows_in_column(&two_columns, 2), Some(25));
     }
 
     #[test]
