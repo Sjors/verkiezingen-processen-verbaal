@@ -1495,17 +1495,19 @@ fn compare_markdown_to_official(
             seen_markdown_stations.insert(station_code.clone());
             for path in paths {
                 let correction = corrections_by_station.get(station_code);
-                rows.push(compare_one_markdown(
+                let mut row = compare_one_markdown(
                     path,
                     station_code,
                     official,
                     correction,
                     candidate_comparison.clone(),
                     reverse_corrections && is_first_count_markdown(path),
-                ));
+                );
+                mark_missing_candidate_ocr_incomplete(&mut row, official);
+                rows.push(row);
             }
         } else {
-            rows.push(ComparisonRow {
+            let mut row = ComparisonRow {
                 station: station_code.clone(),
                 location: official.location.clone(),
                 markdown_path: None,
@@ -1516,7 +1518,9 @@ fn compare_markdown_to_official(
                 status: ComparisonStatus::Missing,
                 details: "no Markdown result".to_owned(),
                 candidates: candidate_comparison,
-            });
+            };
+            mark_missing_candidate_ocr_incomplete(&mut row, official);
+            rows.push(row);
         }
     }
 
@@ -1552,6 +1556,26 @@ fn compare_markdown_to_official(
     }
 
     rows
+}
+
+fn mark_missing_candidate_ocr_incomplete(
+    row: &mut ComparisonRow,
+    official: &OfficialStationResult,
+) {
+    if !station_needs_mismatch_report(row)
+        || row.candidates.is_some()
+        || official.candidate_values.is_empty()
+    {
+        return;
+    }
+
+    row.candidates = Some(CandidateComparison {
+        paths: Vec::new(),
+        status: CandidateComparisonStatus::Incomplete,
+        details: "candidate OCR not available; known list/correction issues are shown".to_owned(),
+        compared_values: 0,
+        expected_values: official.candidate_values.len(),
+    });
 }
 
 fn compare_one_markdown(
@@ -3209,6 +3233,50 @@ fn candidate_status_label(row: &ComparisonRow) -> &'static str {
         .unwrap_or("not checked")
 }
 
+fn short_markdown_reason(reason: &str) -> String {
+    if reason.is_empty() {
+        String::new()
+    } else {
+        shorten_reason(reason)
+    }
+}
+
+fn candidate_status_badge(row: &ComparisonRow) -> String {
+    status_badge(candidate_status_label(row))
+}
+
+fn status_badge(label: &str) -> String {
+    let color = match label {
+        "fully matches" => "#22863a",
+        "mismatch" => "#d73a49",
+        "internally inconsistent" => "#b08800",
+        "correction inconsistent" => "#6f42c1",
+        "incomplete" => "#e36209",
+        "missing" => "#d73a49",
+        "not checked" => "#6a737d",
+        _ => "#24292e",
+    };
+    format!("<span style=\"color:{color}\"><strong>{label}</strong></span>")
+}
+
+fn mismatch_report_markdown_link(
+    mismatch_report_dir: Option<&Path>,
+    row: &ComparisonRow,
+) -> String {
+    if !row_needs_mismatch_report(row) {
+        return String::new();
+    }
+    let Some(mismatch_report_dir) = mismatch_report_dir else {
+        return String::new();
+    };
+    let dir_name = mismatch_report_dir
+        .file_name()
+        .and_then(OsStr::to_str)
+        .unwrap_or("mismatches");
+    let report_name = format!("station-{}.md", safe_file_part(&row.station));
+    format!("[details]({dir_name}/{report_name})")
+}
+
 fn shorten_reason(details: &str) -> String {
     const MAX_TERMINAL_DETAILS: usize = 2;
     let shortened: Vec<_> = details.split("; ").map(shorten_detail).collect();
@@ -3372,18 +3440,19 @@ fn render_markdown_comparison_report(
     }
     output.push('\n');
     output.push_str(
-        "| Station | Location | Status | Reason | Candidate Status | Candidate Reason |\n",
+        "| Station | Location | Status | Reason | Candidate Status | Candidate Reason | Report |\n",
     );
-    output.push_str("|---:|---|---|---|---|---|\n");
+    output.push_str("|---:|---|---|---|---|---|---|\n");
     for row in rows {
         output.push_str(&format!(
-            "| {} | {} | {} | {} | {} | {} |",
+            "| {} | {} | {} | {} | {} | {} | {} |",
             escape_markdown_table_cell(&row.station),
             escape_markdown_table_cell(&row.location),
-            row.status.label(),
-            escape_markdown_table_cell(&station_report_reason(row)),
-            escape_markdown_table_cell(candidate_status_label(row)),
-            escape_markdown_table_cell(&candidate_report_reason(row))
+            status_badge(row.status.label()),
+            escape_markdown_table_cell(&short_markdown_reason(&station_report_reason(row))),
+            candidate_status_badge(row),
+            escape_markdown_table_cell(&short_markdown_reason(&candidate_report_reason(row))),
+            mismatch_report_markdown_link(mismatch_report_dir, row)
         ));
         output.push('\n');
     }
