@@ -16,5 +16,7 @@ Rules:
 - If a visible row has no handwritten number, use 0.
 - Concatenate digits written across separate boxes into one number.
 - If digits are overwritten or crossed out, use the final intended value.
-- Ignore printed headers, party names, totals, and any footer text.
+- Ignore printed headers, party names, subtotals, totals, and any footer text.
+- If a handwritten number appears in a row that has no printed candidate number,
+  ignore that row entirely.
 - Do not add commentary before or after the table.

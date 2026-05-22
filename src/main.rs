@@ -184,6 +184,7 @@ struct OcrVotesOptions {
     images: Vec<String>,
     stations: BTreeSet<String>,
     force: bool,
+    max_new_stations: Option<usize>,
     max_tokens: u32,
     timeout: Duration,
 }
@@ -469,8 +470,19 @@ fn ocr_votes_command(args: &[String]) -> Result<()> {
         .out_dir
         .clone()
         .unwrap_or_else(|| municipality_dir.join("results"));
-    let images = find_ocr_images(&input_dir, &options.images, &options.stations, false)?;
     fs::create_dir_all(&out_dir)?;
+    let images = find_ocr_images(&input_dir, &options.images, &options.stations, false)?;
+    let images = limit_ocr_images_to_new_stations(
+        images,
+        &out_dir,
+        options.max_new_stations,
+        options.force,
+        validate_votes_markdown,
+    )?;
+    if images.is_empty() {
+        println!("no voting-location OCR work needed");
+        return Ok(());
+    }
 
     let mut reports = Vec::new();
     let total_images = images.len();
@@ -532,8 +544,19 @@ fn ocr_corrections_command(args: &[String]) -> Result<()> {
         .out_dir
         .clone()
         .unwrap_or_else(|| municipality_dir.join("results").join("corrections"));
-    let images = find_ocr_images(&input_dir, &options.images, &options.stations, false)?;
     fs::create_dir_all(&out_dir)?;
+    let images = find_ocr_images(&input_dir, &options.images, &options.stations, false)?;
+    let images = limit_ocr_images_to_new_stations(
+        images,
+        &out_dir,
+        options.max_new_stations,
+        options.force,
+        validate_corrections_markdown,
+    )?;
+    if images.is_empty() {
+        println!("no correction OCR work needed");
+        return Ok(());
+    }
 
     let mut reports = Vec::new();
     let total_images = images.len();
@@ -595,8 +618,19 @@ fn ocr_candidates_command(args: &[String]) -> Result<()> {
         .out_dir
         .clone()
         .unwrap_or_else(|| municipality_dir.join("results").join("candidates"));
-    let images = find_ocr_images(&input_dir, &options.images, &options.stations, true)?;
     fs::create_dir_all(&out_dir)?;
+    let images = find_ocr_images(&input_dir, &options.images, &options.stations, true)?;
+    let images = limit_ocr_images_to_new_stations(
+        images,
+        &out_dir,
+        options.max_new_stations,
+        options.force,
+        validate_candidates_markdown,
+    )?;
+    if images.is_empty() {
+        println!("no candidate OCR work needed");
+        return Ok(());
+    }
 
     let mut reports = Vec::new();
     let total_images = images.len();
@@ -3087,6 +3121,88 @@ fn find_ocr_images(
     Ok(images)
 }
 
+fn limit_ocr_images_to_new_stations(
+    images: Vec<PathBuf>,
+    out_dir: &Path,
+    max_new_stations: Option<usize>,
+    force: bool,
+    validate_markdown: fn(&str) -> ValidationReport,
+) -> Result<Vec<PathBuf>> {
+    let Some(limit) = max_new_stations else {
+        return Ok(images);
+    };
+
+    let mut station_order = Vec::new();
+    let mut images_by_station: BTreeMap<String, Vec<PathBuf>> = BTreeMap::new();
+    for image in images {
+        let station = ocr_image_station_key(&image)?;
+        if !images_by_station.contains_key(&station) {
+            station_order.push(station.clone());
+        }
+        images_by_station.entry(station).or_default().push(image);
+    }
+
+    let mut selected_stations = BTreeSet::new();
+    for station in &station_order {
+        let station_images = images_by_station
+            .get(station)
+            .expect("station_order is populated from images_by_station");
+        let mut needs_work = false;
+        for image in station_images {
+            if ocr_image_needs_work(image, out_dir, force, validate_markdown)? {
+                needs_work = true;
+                break;
+            }
+        }
+        if needs_work {
+            selected_stations.insert(station.clone());
+            if selected_stations.len() == limit {
+                break;
+            }
+        }
+    }
+
+    let mut selected_images = Vec::new();
+    for station in station_order {
+        if selected_stations.contains(&station) {
+            let images = images_by_station
+                .remove(&station)
+                .expect("station_order is populated from images_by_station");
+            selected_images.extend(images);
+        }
+    }
+    Ok(selected_images)
+}
+
+fn ocr_image_needs_work(
+    image_path: &Path,
+    out_dir: &Path,
+    force: bool,
+    validate_markdown: fn(&str) -> ValidationReport,
+) -> Result<bool> {
+    if force {
+        return Ok(true);
+    }
+    let output_path = ocr_output_path(out_dir, image_path)?;
+    if !output_path.exists() {
+        return Ok(true);
+    }
+    let markdown = fs::read_to_string(&output_path)?;
+    Ok(!validate_markdown(&markdown).passed)
+}
+
+fn ocr_output_path(out_dir: &Path, image_path: &Path) -> Result<PathBuf> {
+    let stem = file_stem_string(image_path)?;
+    Ok(out_dir.join(format!("{stem}.md")))
+}
+
+fn ocr_image_station_key(image_path: &Path) -> Result<String> {
+    let stem = file_stem_string(image_path)?;
+    Ok(station_code_from_file_name(&stem)
+        .map(str::to_owned)
+        .unwrap_or(stem))
+}
+
 fn resolve_ocr_image(input_dir: &Path, request: &str) -> Result<PathBuf> {
     if is_station_number(request) {
         return resolve_station_ocr_image(input_dir, &normalize_station_number(request));
@@ -3955,6 +4071,7 @@ fn parse_ocr_args(
     let mut images = Vec::new();
     let mut stations = BTreeSet::new();
     let mut force = false;
+    let mut max_new_stations = None;
     let mut max_tokens = 4096;
     let mut timeout = Duration::from_secs(300);
 
@@ -3997,6 +4114,14 @@ fn parse_ocr_args(
             "--force" => {
                 force = true;
             }
+            "--max-new-stations" | "--max-stations" => {
+                index += 1;
+                let limit: usize = require_arg(args, index, arg)?.parse()?;
+                if limit == 0 {
+                    return err(format!("{arg} must be greater than zero"));
+                }
+                max_new_stations = Some(limit);
+            }
             "--max-tokens" => {
                 index += 1;
                 max_tokens = require_arg(args, index, "--max-tokens")?.parse()?;
@@ -4034,6 +4159,7 @@ fn parse_ocr_args(
         images,
         stations,
         force,
+        max_new_stations,
         max_tokens,
         timeout,
     })
@@ -5215,6 +5341,8 @@ Options:
                             A bare number is treated as a polling station number.
   --station <number>        Process one polling station crop. Repeat to OCR several stations.
   --force                   Re-run the LLM and overwrite existing Markdown outputs.
+  --max-new-stations <n>    Process at most N stations with missing or invalid Markdown outputs.
+                            Existing valid stations are skipped when choosing the batch.
   --max-tokens <n>          Maximum completion tokens. Default: 4096.
   --timeout-seconds <n>     Socket read/write timeout for each LLM request. Default: 300.
 
@@ -5246,6 +5374,8 @@ Options:
                             A bare number is treated as a polling station number.
   --station <number>        Process one polling station correction crop. Repeat to OCR several stations.
   --force                   Re-run the LLM and overwrite existing Markdown outputs.
+  --max-new-stations <n>    Process at most N stations with missing or invalid Markdown outputs.
+                            Existing valid stations are skipped when choosing the batch.
   --max-tokens <n>          Maximum completion tokens. Default: 4096.
   --timeout-seconds <n>     Socket read/write timeout for each LLM request. Default: 300.
 
@@ -5277,6 +5407,8 @@ Options:
   --station <number>        Process all candidate-column crops for one polling station.
                             Repeat to OCR several stations.
   --force                   Re-run the LLM and overwrite existing Markdown outputs.
+  --max-new-stations <n>    Process at most N stations with missing or invalid Markdown outputs.
+                            Existing valid stations are skipped when choosing the batch.
   --max-tokens <n>          Maximum completion tokens. Default: 4096.
   --timeout-seconds <n>     Socket read/write timeout for each LLM request. Default: 300.
 
@@ -5423,6 +5555,42 @@ mod tests {
         };
         let error = official_csv_sources(&options).unwrap_err().to_string();
         assert!(error.contains("pass both --gsb-url and --csb-url"));
+    }
+
+    #[test]
+    fn parses_ocr_max_new_stations() {
+        let args = vec![
+            "2026-GR".to_owned(),
+            "0344".to_owned(),
+            "--max-new-stations".to_owned(),
+            "2".to_owned(),
+        ];
+        let options = parse_ocr_candidates_args(&args).unwrap();
+        assert_eq!(options.max_new_stations, Some(2));
+    }
+
+    #[test]
+    fn max_new_stations_skips_complete_stations() {
+        let out_dir = test_temp_path("ocr-out");
+        fs::create_dir_all(&out_dir).unwrap();
+        let images = vec![
+            PathBuf::from("Test_1_School_A.png"),
+            PathBuf::from("Test_2_School_B.png"),
+            PathBuf::from("Test_3_School_C.png"),
+        ];
+        fs::write(out_dir.join("Test_1_School_A.md"), valid_votes_table()).unwrap();
+
+        let selected = limit_ocr_images_to_new_stations(
+            images,
+            &out_dir,
+            Some(1),
+            false,
+            validate_votes_markdown,
+        )
+        .unwrap();
+
+        assert_eq!(selected, vec![PathBuf::from("Test_2_School_B.png")]);
+        let _ = fs::remove_dir_all(out_dir);
     }
 
     #[test]
@@ -5756,8 +5924,14 @@ mod tests {
     }
 
     fn write_test_file(name: &str, content: &str) -> PathBuf {
+        let path = test_temp_path(name);
+        fs::write(&path, content).unwrap();
+        path
+    }
+
+    fn test_temp_path(name: &str) -> PathBuf {
         let counter = TEST_FILE_COUNTER.fetch_add(1, Ordering::Relaxed);
-        let path = env::temp_dir().join(format!(
+        env::temp_dir().join(format!(
             "pv-test-{}-{}-{}-{name}",
             std::process::id(),
             counter,
@@ -5765,9 +5939,7 @@ mod tests {
                 .duration_since(UNIX_EPOCH)
                 .unwrap()
                 .as_nanos()
-        ));
-        fs::write(&path, content).unwrap();
-        path
+        ))
     }
 }
 
