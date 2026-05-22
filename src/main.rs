@@ -19,6 +19,7 @@ const DEFAULT_LLM_MODEL: &str = "local";
 const DEFAULT_OCR_PROMPT_PATH: &str = "prompts/ocr-votes.md";
 const OCR_SKIP_MARKER: &str = "<!-- pv-ocr-votes: skip -->";
 const DEFAULT_CORRECTIONS_OCR_PROMPT_PATH: &str = "prompts/ocr-corrections.md";
+const DEFAULT_CANDIDATES_OCR_PROMPT_PATH: &str = "prompts/ocr-candidates.md";
 const DEFAULT_DOWNLOAD_USER_AGENT: &str = "Mozilla/5.0 (Macintosh; Intel Mac OS X 14_0) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.0 Safari/605.1.15";
 const UTRECHT_GSB_CSV_URL: &str =
     "https://open.utrecht.nl/sites/default/files/open-data/osv4-3-telling-gr2026-utrecht.csv";
@@ -97,8 +98,7 @@ impl CropKind {
                     && lower.contains("lijsttotaal")
             }
             Self::CandidateLists => {
-                lower.contains("b1 - 3.5")
-                    && lower.contains("stemmen per lijst en per kandidaat")
+                lower.contains("b1 - 3.5") && lower.contains("stemmen per lijst en per kandidaat")
             }
         }
     }
@@ -189,6 +189,7 @@ struct OcrVotesOptions {
 }
 
 type OcrCorrectionsOptions = OcrVotesOptions;
+type OcrCandidatesOptions = OcrVotesOptions;
 
 #[derive(Debug)]
 struct OfficialCsvOptions {
@@ -338,6 +339,7 @@ fn run() -> Result<()> {
         Some("crop") => crop_command(&args[1..]),
         Some("ocr-votes") => ocr_votes_command(&args[1..]),
         Some("ocr-corrections") => ocr_corrections_command(&args[1..]),
+        Some("ocr-candidates") | Some("ocr-candidate-votes") => ocr_candidates_command(&args[1..]),
         Some("official-csvs") => official_csvs_command(&args[1..]),
         Some("compare-results") => compare_results_command(&args[1..]),
         Some("-h" | "--help") | None => {
@@ -467,7 +469,7 @@ fn ocr_votes_command(args: &[String]) -> Result<()> {
         .out_dir
         .clone()
         .unwrap_or_else(|| municipality_dir.join("results"));
-    let images = find_ocr_images(&input_dir, &options.images, &options.stations)?;
+    let images = find_ocr_images(&input_dir, &options.images, &options.stations, false)?;
     fs::create_dir_all(&out_dir)?;
 
     let mut reports = Vec::new();
@@ -530,7 +532,7 @@ fn ocr_corrections_command(args: &[String]) -> Result<()> {
         .out_dir
         .clone()
         .unwrap_or_else(|| municipality_dir.join("results").join("corrections"));
-    let images = find_ocr_images(&input_dir, &options.images, &options.stations)?;
+    let images = find_ocr_images(&input_dir, &options.images, &options.stations, false)?;
     fs::create_dir_all(&out_dir)?;
 
     let mut reports = Vec::new();
@@ -571,6 +573,69 @@ fn ocr_corrections_command(args: &[String]) -> Result<()> {
         matches!(report.action, OcrAction::FailedToGenerate(_)) || !report.validation.passed
     }) {
         err("one or more correction OCR results failed validation")
+    } else {
+        Ok(())
+    }
+}
+
+fn ocr_candidates_command(args: &[String]) -> Result<()> {
+    if args.iter().any(|arg| arg == "-h" || arg == "--help") {
+        print_ocr_candidates_help();
+        return Ok(());
+    }
+
+    let options = parse_ocr_candidates_args(args)?;
+    let prompt = fs::read_to_string(&options.prompt)?;
+    let municipality_dir = Path::new(&options.election).join(&options.municipality);
+    let input_dir = options
+        .input_dir
+        .clone()
+        .unwrap_or_else(|| municipality_dir.join("crops").join("b1-3.5").join("narrow"));
+    let out_dir = options
+        .out_dir
+        .clone()
+        .unwrap_or_else(|| municipality_dir.join("results").join("candidates"));
+    let images = find_ocr_images(&input_dir, &options.images, &options.stations, true)?;
+    fs::create_dir_all(&out_dir)?;
+
+    let mut reports = Vec::new();
+    let total_images = images.len();
+    let mut eta = ProgressEta::new();
+    for (index, image_path) in images.into_iter().enumerate() {
+        let stem = file_stem_string(&image_path)?;
+        println!("processing {}/{} {}", index + 1, total_images, stem);
+        io::stdout().flush()?;
+        let output_path = out_dir.join(format!("{stem}.md"));
+        let report = process_ocr_image(
+            &image_path,
+            &output_path,
+            &prompt,
+            &options,
+            false,
+            validate_candidates_markdown,
+        )?;
+        println!(
+            "{} {} -> {}",
+            match &report.action {
+                OcrAction::Generated => "generated",
+                OcrAction::Existing => "existing",
+                OcrAction::Skipped => "skipped",
+                OcrAction::FailedToGenerate(_) => "failed",
+            },
+            report.stem,
+            report.output_path.display()
+        );
+        io::stdout().flush()?;
+        reports.push(report);
+        eta.maybe_print(index + 1, total_images)?;
+    }
+
+    print_ocr_report("Candidate OCR results", &reports);
+
+    if reports.iter().any(|report| {
+        matches!(report.action, OcrAction::FailedToGenerate(_)) || !report.validation.passed
+    }) {
+        err("one or more candidate OCR results failed validation")
     } else {
         Ok(())
     }
@@ -2984,6 +3049,7 @@ fn find_ocr_images(
     input_dir: &Path,
     requested: &[String],
     stations: &BTreeSet<String>,
+    allow_multiple_station_matches: bool,
 ) -> Result<Vec<PathBuf>> {
     let images = if requested.is_empty() && stations.is_empty() {
         let mut images = Vec::new();
@@ -3001,7 +3067,13 @@ fn find_ocr_images(
             images.insert(resolve_ocr_image(input_dir, request)?);
         }
         for station in stations {
-            images.insert(resolve_station_ocr_image(input_dir, station)?);
+            if allow_multiple_station_matches {
+                for path in resolve_station_ocr_images(input_dir, station)? {
+                    images.insert(path);
+                }
+            } else {
+                images.insert(resolve_station_ocr_image(input_dir, station)?);
+            }
         }
         images.into_iter().collect()
     };
@@ -3045,17 +3117,7 @@ fn resolve_ocr_image(input_dir: &Path, request: &str) -> Result<PathBuf> {
 }
 
 fn resolve_station_ocr_image(input_dir: &Path, station: &str) -> Result<PathBuf> {
-    let mut matches = Vec::new();
-    for entry in fs::read_dir(input_dir)? {
-        let path = entry?.path();
-        if path.extension().and_then(OsStr::to_str) != Some("png") {
-            continue;
-        }
-        if station_code_from_markdown_path(&path).as_deref() == Some(station) {
-            matches.push(path);
-        }
-    }
-    matches.sort();
+    let mut matches = resolve_station_ocr_images(input_dir, station)?;
     match matches.len() {
         1 => Ok(matches.remove(0)),
         0 => err(format!(
@@ -3071,6 +3133,28 @@ fn resolve_station_ocr_image(input_dir: &Path, station: &str) -> Result<PathBuf>
                 .collect::<Vec<_>>()
                 .join(", ")
         )),
+    }
+}
+
+fn resolve_station_ocr_images(input_dir: &Path, station: &str) -> Result<Vec<PathBuf>> {
+    let mut matches = Vec::new();
+    for entry in fs::read_dir(input_dir)? {
+        let path = entry?.path();
+        if path.extension().and_then(OsStr::to_str) != Some("png") {
+            continue;
+        }
+        if station_code_from_markdown_path(&path).as_deref() == Some(station) {
+            matches.push(path);
+        }
+    }
+    matches.sort();
+    if matches.is_empty() {
+        err(format!(
+            "could not find crop for station {station} in {}",
+            input_dir.display()
+        ))
+    } else {
+        Ok(matches)
     }
 }
 
@@ -3430,6 +3514,107 @@ fn validate_corrections_markdown(markdown: &str) -> ValidationReport {
     }
 }
 
+fn validate_candidates_markdown(markdown: &str) -> ValidationReport {
+    if markdown.trim_start().starts_with(OCR_SKIP_MARKER) {
+        return ValidationReport {
+            passed: true,
+            skipped: true,
+            errors: Vec::new(),
+        };
+    }
+
+    let mut errors = Vec::new();
+    let lines: Vec<_> = markdown
+        .lines()
+        .map(str::trim)
+        .filter(|line| !line.is_empty())
+        .collect();
+    if lines.len() < 3 {
+        errors.push(format!(
+            "expected at least 3 non-empty table lines, found {}",
+            lines.len()
+        ));
+    }
+    if lines
+        .iter()
+        .any(|line| !line.starts_with('|') || !line.ends_with('|'))
+    {
+        errors.push("all non-empty lines must be Markdown table rows".to_owned());
+    }
+
+    let header = lines.first().copied().unwrap_or_default();
+    let header_cells = markdown_cells(header);
+    if header_cells != ["Candidate", "Votes"] {
+        errors.push(format!(
+            "expected header `| Candidate | Votes |`, found {header:?}"
+        ));
+    }
+    if lines.get(1).is_none_or(|line| !is_markdown_separator(line)) {
+        errors.push("expected Markdown separator row after header".to_owned());
+    }
+
+    let mut previous_candidate = None;
+    for (index, line) in lines.iter().enumerate().skip(2) {
+        let line_number = index + 1;
+        let cells = markdown_cells(line);
+        if cells.len() != 2 {
+            errors.push(format!(
+                "row {line_number} should have exactly 2 cells, found {}",
+                cells.len()
+            ));
+            continue;
+        }
+        if !cells[0].chars().all(|ch| ch.is_ascii_digit()) {
+            errors.push(format!(
+                "row {line_number} candidate is not digits only: {}",
+                cells[0]
+            ));
+            continue;
+        }
+        let candidate = match cells[0].parse::<u32>() {
+            Ok(candidate) if candidate > 0 => candidate,
+            Ok(_) => {
+                errors.push(format!(
+                    "row {line_number} candidate must be greater than zero"
+                ));
+                continue;
+            }
+            Err(error) => {
+                errors.push(format!(
+                    "row {line_number} candidate could not be parsed: {error}"
+                ));
+                continue;
+            }
+        };
+        if let Some(previous) = previous_candidate {
+            if candidate != previous + 1 {
+                errors.push(format!(
+                    "row {line_number} candidate expected {}, found {candidate}",
+                    previous + 1
+                ));
+            }
+        }
+        previous_candidate = Some(candidate);
+
+        if !cells[1].chars().all(|ch| ch.is_ascii_digit()) {
+            errors.push(format!(
+                "row {line_number} votes are not digits only: {}",
+                cells[1]
+            ));
+        } else if let Err(error) = cells[1].parse::<u32>() {
+            errors.push(format!(
+                "row {line_number} votes could not be parsed: {error}"
+            ));
+        }
+    }
+
+    ValidationReport {
+        passed: errors.is_empty(),
+        skipped: false,
+        errors,
+    }
+}
+
 fn markdown_cells(line: &str) -> Vec<String> {
     let mut cells: Vec<_> = line.split('|').collect();
     if line.starts_with('|') && !cells.is_empty() {
@@ -3742,6 +3927,15 @@ fn parse_ocr_corrections_args(args: &[String]) -> Result<OcrCorrectionsOptions> 
         DEFAULT_CORRECTIONS_OCR_PROMPT_PATH,
         "ocr-corrections",
         ocr_corrections_help_text(),
+    )
+}
+
+fn parse_ocr_candidates_args(args: &[String]) -> Result<OcrCandidatesOptions> {
+    parse_ocr_args(
+        args,
+        DEFAULT_CANDIDATES_OCR_PROMPT_PATH,
+        "ocr-candidates",
+        ocr_candidates_help_text(),
     )
 }
 
@@ -4908,6 +5102,7 @@ fn help_text() -> &'static str {
   pv crop <election|year> <municipality> [options]
   pv ocr-votes <election|year> <municipality> [options]
   pv ocr-corrections <election|year> <municipality> [options]
+  pv ocr-candidates <election|year> <municipality> [options]
   pv official-csvs <election|year> <municipality> [options]
   pv compare-results <election|year> <municipality> [options]
 
@@ -4916,6 +5111,7 @@ Commands:
   crop            Crop Utrecht-style table regions at native page resolution
   ocr-votes       Run narrow table 2.2 crops through a local multimodal LLM
   ocr-corrections Run correction table crops through a local multimodal LLM
+  ocr-candidates  Run B1-3.5 candidate-column crops through a local multimodal LLM
   official-csvs   Fetch official GSB and CSB CSV tellingsbestanden
   compare-results Compare OCR Markdown results against the downloaded GSB CSV
 
@@ -4945,6 +5141,10 @@ fn print_ocr_votes_help() {
 
 fn print_ocr_corrections_help() {
     println!("{}", ocr_corrections_help_text());
+}
+
+fn print_ocr_candidates_help() {
+    println!("{}", ocr_candidates_help_text());
 }
 
 fn print_official_csvs_help() {
@@ -5052,6 +5252,37 @@ Options:
 The ocr-corrections command is meant to run after
 `pv crop --kind corrections`. It writes one Markdown table per station with the
 first count, second count, and signed difference for every correction row."
+}
+
+fn ocr_candidates_help_text() -> &'static str {
+    "Usage:
+  pv ocr-candidates <election|year> <municipality> [options]
+
+Examples:
+  cargo run -- ocr-candidates 2026-GR 0344
+  cargo run -- ocr-candidates 2026 0344 --image Utrecht_100_Utrechtse_Schoolvereniging_GR26_lijst-01_GROENLINKS_PvdA_kolom-1 --force
+  cargo run -- ocr-candidates 2026-GR 0344 --station 100 --force
+
+Options:
+  --input-dir <dir>         Candidate crop directory. Default: <election>/<municipality>/crops/b1-3.5/narrow.
+  --out-dir <dir>           Markdown output directory. Default: <election>/<municipality>/results/candidates.
+  --prompt <path>           Prompt markdown file. Default: prompts/ocr-candidates.md.
+  --endpoint <url>          OpenAI-compatible local chat endpoint. Default: http://127.0.0.1:8089/v1/chat/completions.
+                            Can also be set with PV_LLM_ENDPOINT.
+  --model <model>           Model name sent to the endpoint. Default: local.
+                            Can also be set with PV_LLM_MODEL.
+  --image <stem-path>
+                            Process only one candidate-column crop. Repeat to process several exact crops.
+                            Stems are resolved under --input-dir with a .png suffix.
+  --station <number>        Process all candidate-column crops for one polling station.
+                            Repeat to OCR several stations.
+  --force                   Re-run the LLM and overwrite existing Markdown outputs.
+  --max-tokens <n>          Maximum completion tokens. Default: 4096.
+  --timeout-seconds <n>     Socket read/write timeout for each LLM request. Default: 300.
+
+The ocr-candidates command is meant to run after
+`pv crop --kind b1-3.5`. It writes one Markdown table per candidate-list column
+with the candidate number and handwritten vote count."
 }
 
 fn official_csvs_help_text() -> &'static str {
@@ -5343,10 +5574,7 @@ mod tests {
 
         assert_eq!(
             parse_candidate_list_title(page_text),
-            Some((
-                1,
-                "GROENLINKS / Partij van de Arbeid (PvdA)".to_owned()
-            ))
+            Some((1, "GROENLINKS / Partij van de Arbeid (PvdA)".to_owned()))
         );
         assert_eq!(
             safe_file_slug("GROENLINKS / Partij van de Arbeid (PvdA)"),
@@ -5375,6 +5603,21 @@ mod tests {
         assert_eq!(candidate_list_column_count(&two_columns), 2);
         assert_eq!(candidate_list_rows_in_column(&two_columns, 1), Some(25));
         assert_eq!(candidate_list_rows_in_column(&two_columns, 2), Some(25));
+    }
+
+    #[test]
+    fn validates_candidate_vote_table() {
+        let report = validate_candidates_markdown(
+            "\
+| Candidate | Votes |
+|---:|---:|
+| 26 | 0 |
+| 27 | 13 |
+| 28 | 2 |
+",
+        );
+
+        assert!(report.passed, "{:?}", report.errors);
     }
 
     #[test]
